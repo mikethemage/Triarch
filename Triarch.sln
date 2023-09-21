@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.RPGSystem.Models", "Triarch.RPGSystem.Models\Triarch.RPGSystem.Models.csproj", "{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triarch.RPGSystem.Editor.WPF", "Triarch.RPGSystem.Editor.WPF\Triarch.RPGSystem.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0A06396-299B-4210-8D65-83DE83579EA7}
+	EndGlobalSection
+EndGlobal

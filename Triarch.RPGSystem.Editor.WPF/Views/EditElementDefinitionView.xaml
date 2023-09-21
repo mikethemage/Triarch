@@ -1,0 +1,64 @@
+﻿<Window x:Class="Triarch.RPGSystem.Editor.WPF.Views.EditElementDefinitionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Triarch.RPGSystem.Editor.WPF.Views"
+        xmlns:vm="clr-namespace:Triarch.RPGSystem.Editor.WPF.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:EditElementDefinitionViewModel}"
+        Title="EditElementDefinitionView" Height="1000" Width="500">
+    <StackPanel>
+        <TextBlock>Name</TextBlock>
+        <TextBox></TextBox>
+        <TextBlock>Type</TextBlock>
+        <ComboBox ItemsSource="{Binding TypeList}" SelectedItem="{Binding SelectedType}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TypeName}"></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock>Description</TextBlock>
+        <TextBox></TextBox>
+        <TextBlock>Stat</TextBlock>
+        <TextBox></TextBox>
+        <TextBlock>Page number(s)</TextBlock>
+        <TextBox></TextBox>
+        <TextBlock>Human?</TextBlock>
+        <CheckBox></CheckBox>
+        <TextBlock>Levelable?</TextBlock>
+        <CheckBox></CheckBox>
+        <StackPanel x:Name="LevelableProperties">
+            <TextBlock>Levelable Properties</TextBlock>
+            <TextBlock>Max Level</TextBlock>
+            <TextBox></TextBox>
+            <TextBox>Enforce Max Level?</TextBox>
+            <CheckBox></CheckBox>
+            <TextBlock>Cost per Level</TextBlock>
+            <TextBox></TextBox>
+            <TextBlock>Cost per Level Description</TextBlock>
+            <TextBox TextWrapping="WrapWithOverflow"></TextBox>
+            <TextBlock>Variants</TextBlock>
+            <ListBox Height="100"></ListBox>
+            <TextBlock>Multi Genre?</TextBlock>
+            <CheckBox></CheckBox>
+            <StackPanel>
+                <TextBlock>Genre Costs per Level</TextBlock>
+                <ListBox Height="100"></ListBox>
+            </StackPanel>
+            <TextBlock>Progression</TextBlock>
+            <ComboBox></ComboBox>
+            <Button>Edit Custom Progression</Button>
+            <TextBlock>Has Special Points?</TextBlock>
+            <StackPanel>
+                <TextBlock>Special Points per Level</TextBlock>
+                <TextBox></TextBox>
+            </StackPanel>
+        </StackPanel>
+        <TextBlock>Freebies</TextBlock>
+        <ListBox Height="100"></ListBox>
+        <TextBlock>Points Container?</TextBlock>
+        <CheckBox></CheckBox>        
+    </StackPanel>
+</Window>
