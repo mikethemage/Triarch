@@ -11,7 +11,7 @@ using Triarch.RPGSystem.Models;
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
 internal class EditElementsViewModel : INotifyPropertyChanged
 {
-    
+
     public bool EditItemShouldBeVisible
     {
         get
@@ -51,7 +51,7 @@ internal class EditElementsViewModel : INotifyPropertyChanged
         _rPGSystem = rPGSystem;
 
         ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
-        
+
     }
 
     public void Edit()
@@ -59,8 +59,12 @@ internal class EditElementsViewModel : INotifyPropertyChanged
         if (SelectedItem != null)
         {
             var b = _context.RPGElementDefinitions.FirstOrDefault(x => x.Id == SelectedItem.Id);
-            var a = new EditElementDefinitionViewModel(_context, b);
-            a.ShowWindow();
+            if (b != null)
+            {
+                var a = new EditElementDefinitionViewModel(_context, b);
+                a.ShowWindow();
+            }
+
         }
     }
 
@@ -81,7 +85,7 @@ internal class EditElementsViewModel : INotifyPropertyChanged
             }
             _context.SaveChanges();
 
-            ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType=x.ElementType.TypeName }));
+            ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
             SelectedItem = ElementsList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }
@@ -145,7 +149,7 @@ internal class EditElementsViewModel : INotifyPropertyChanged
         CurrentlyEditingItem = null;
     }
 
-   
+
 }
 
 public class ElementSelectItem

@@ -156,8 +156,12 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
         if(SelectedItem!=null)
         {
             var b = _context.Progressions.FirstOrDefault(x => x.Id == SelectedItem.Id);
-            var a = new EditProgressionDefinitionViewModel(_context, b);
-            a.ShowWindow();
+            if (b != null)
+            {
+                var a = new EditProgressionDefinitionViewModel(_context, b);
+                a.ShowWindow();
+            }
+            
         }
         
     }

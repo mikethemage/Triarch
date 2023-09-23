@@ -151,7 +151,7 @@ internal class EditGenresViewModel : INotifyPropertyChanged
                 _context.Genres.FirstOrDefault(x => x.Id == aaa.Id).GenreOrder--;
                 _context.Genres.FirstOrDefault(x => x.Id == temp.Id).GenreOrder++;
                 _context.SaveChanges();
-
+                
                 
                 GenresList[currentIndex - 1]= aaa;
                 GenresList[currentIndex] = temp;
