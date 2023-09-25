@@ -46,6 +46,85 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         }
     }
 
+    public string Description
+    {
+        get
+        {
+            return _elementDefinition.Description ?? "";
+        }
+        set
+        {
+            _elementDefinition.Description = value; 
+            OnPropertyChanged(nameof(Description));
+        }
+    }
+
+    public string Stat
+    {
+        get
+        {
+            return _elementDefinition.Stat ?? "";
+        }
+        set
+        { 
+            _elementDefinition.Stat = value; 
+            OnPropertyChanged(nameof(Stat)); 
+        }
+    }
+
+    public string PageNumbers
+    {
+        get
+        {
+            return _elementDefinition.PageNumbers ?? "";
+        }
+        set
+        {
+            _elementDefinition.PageNumbers= value;
+            OnPropertyChanged(nameof(PageNumbers));
+        }
+    }
+
+    public bool Human
+    {
+        get
+        { return _elementDefinition.Human; }    
+        set
+        {
+            _elementDefinition.Human = value;
+            OnPropertyChanged(nameof(Human));
+        }
+    }
+
+    public ObservableCollection<string> FreebiesList
+    {
+        get
+        {
+            if(_elementDefinition.Freebies == null )
+            {
+                return new ObservableCollection<string>();
+            }
+            else
+            {
+                return new ObservableCollection<string>(_elementDefinition.Freebies.Select(x => x.FreebieElementDefinition.ElementName));
+            }
+            
+        }        
+    }
+
+    public bool PointsContainer
+    {
+        get
+        {
+            return _elementDefinition.PointsContainerScale != null;
+        }
+        set
+        {
+            OnPropertyChanged(nameof(PointsContainer));
+        }
+    }
+
+
     public ObservableCollection<RPGElementType> TypeList { get; set; }
     public RPGElementType SelectedType
     {

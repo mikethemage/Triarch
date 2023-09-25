@@ -10,7 +10,7 @@
         Title="EditElementDefinitionView" Height="1000" Width="500">
     <StackPanel>
         <TextBlock>Name</TextBlock>
-        <TextBox></TextBox>
+        <TextBox Text="{Binding Name}"></TextBox>
         <TextBlock>Type</TextBlock>
         <ComboBox ItemsSource="{Binding TypeList}" SelectedItem="{Binding SelectedType}">
             <ComboBox.ItemTemplate>
@@ -20,13 +20,13 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <TextBlock>Description</TextBlock>
-        <TextBox></TextBox>
+        <TextBox Text="{Binding Description}"></TextBox>
         <TextBlock>Stat</TextBlock>
-        <TextBox></TextBox>
+        <TextBox Text="{Binding Stat}"></TextBox>
         <TextBlock>Page number(s)</TextBlock>
-        <TextBox></TextBox>
+        <TextBox Text="{Binding PageNumbers}"></TextBox>
         <TextBlock>Human?</TextBlock>
-        <CheckBox></CheckBox>
+        <CheckBox IsChecked="{Binding Human}"></CheckBox>
         <TextBlock>Levelable?</TextBlock>
         <CheckBox></CheckBox>
         <StackPanel x:Name="LevelableProperties">
@@ -57,8 +57,8 @@
             </StackPanel>
         </StackPanel>
         <TextBlock>Freebies</TextBlock>
-        <ListBox Height="100"></ListBox>
+        <ListBox ItemsSource="{Binding FreebiesList}" Height="100"></ListBox>
         <TextBlock>Points Container?</TextBlock>
-        <CheckBox></CheckBox>        
+        <CheckBox IsChecked="{Binding PointsContainer}"></CheckBox>        
     </StackPanel>
 </Window>
