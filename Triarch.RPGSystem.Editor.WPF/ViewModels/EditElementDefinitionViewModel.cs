@@ -10,19 +10,46 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-internal class EditElementDefinitionViewModel : INotifyPropertyChanged
-{
-    public event PropertyChangedEventHandler? PropertyChanged;
-
+internal class EditElementDefinitionViewModel : ObservableViewModel
+{   
     private RPGElementDefinition _elementDefinition;
+
     private TriarchDbContext _context;
-    
+    private bool saved;
+    private bool levelable;
+    private LevelableViewModel? levelableData;
+
+    public LevelableViewModel? LevelableData
+    {
+        get
+        {
+            return levelableData;
+        }
+        set
+        {
+            levelableData = value;
+            OnPropertyChanged(nameof(LevelableData));
+        }
+    }
 
     public EditElementDefinitionViewModel(TriarchDbContext context, RPGElementDefinition existingElementDefinition)
     {
         _context = context;
         _elementDefinition = existingElementDefinition;
         TypeList = new ObservableCollection<RPGElementType>(_context.RPGElementTypes.Where(x=>x.RPGSystem==_elementDefinition.RPGSystem).OrderBy(x=>x.TypeName));
+        
+        if(_elementDefinition.LevelableData != null)
+        {
+            LevelableData = new(_context, _elementDefinition.LevelableData);
+            Levelable = true;
+        }
+        else
+        {
+            LevelableData=null;
+            Levelable = false;
+        }
+
+        Saved = true;
     }
 
     public EditElementDefinitionViewModel(TriarchDbContext context, Models.RPGSystem rPGSystem)
@@ -31,6 +58,9 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         _elementDefinition = new();
         _elementDefinition.RPGSystem = rPGSystem;
         TypeList = new ObservableCollection<RPGElementType>(_context.RPGElementTypes.Where(x => x.RPGSystem == _elementDefinition.RPGSystem).OrderBy(x => x.TypeName));
+        LevelableData = null;
+        _context.Add(_elementDefinition);
+        Saved = false;
     }
 
     public string Name
@@ -43,6 +73,7 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         {
             _elementDefinition.ElementName = value;
             OnPropertyChanged(nameof(Name));
+            Saved = false;
         }
     }
 
@@ -56,6 +87,7 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         {
             _elementDefinition.Description = value; 
             OnPropertyChanged(nameof(Description));
+            Saved = false;
         }
     }
 
@@ -68,7 +100,8 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         set
         { 
             _elementDefinition.Stat = value; 
-            OnPropertyChanged(nameof(Stat)); 
+            OnPropertyChanged(nameof(Stat));
+            Saved = false;
         }
     }
 
@@ -82,6 +115,7 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         {
             _elementDefinition.PageNumbers= value;
             OnPropertyChanged(nameof(PageNumbers));
+            Saved = false;
         }
     }
 
@@ -93,6 +127,32 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         {
             _elementDefinition.Human = value;
             OnPropertyChanged(nameof(Human));
+            Saved = false;
+        }
+    }
+
+    public bool Levelable
+    {
+        get
+        {
+            return levelable;
+        }
+        set
+        {
+            levelable = value;
+
+            if(value==true && LevelableData==null)
+            {
+                if(_elementDefinition.LevelableData==null)
+                {
+                    _elementDefinition.LevelableData = new();
+                    _context.Add(_elementDefinition.LevelableData);                    
+                }
+                
+                LevelableData = new(_context, _elementDefinition.LevelableData);
+            }
+
+            OnPropertyChanged(nameof(Levelable));
         }
     }
 
@@ -124,8 +184,8 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         }
     }
 
-
     public ObservableCollection<RPGElementType> TypeList { get; set; }
+
     public RPGElementType SelectedType
     {
         get
@@ -146,8 +206,40 @@ internal class EditElementDefinitionViewModel : INotifyPropertyChanged
         a.ShowDialog();
     }
 
-    private void OnPropertyChanged(string name)
+    public void Save()
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        if (Saved == false && !string.IsNullOrEmpty(Name) && SelectedType!=null)
+        {
+            if(!Levelable)
+            {
+                if (_elementDefinition.LevelableData != null)
+                {
+                    _context.Remove(_elementDefinition.LevelableData);
+                }
+                _elementDefinition.LevelableData = null;
+                LevelableData = null;
+            }
+
+            _context.SaveChanges();
+            Saved = true;
+        }
+    }
+
+    internal void EditCustomProgression()
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool Saved
+    {
+        get
+        {
+            return saved;
+        }
+        set
+        {
+            saved = value;
+            OnPropertyChanged(nameof(Saved));
+        }
     }
 }

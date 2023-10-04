@@ -9,9 +9,8 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-internal class EditGenresViewModel : INotifyPropertyChanged
-{
-  
+internal class EditGenresViewModel : ObservableViewModel
+{  
     public bool EditItemShouldBeVisible
     {
         get
@@ -35,14 +34,9 @@ internal class EditGenresViewModel : INotifyPropertyChanged
     }
 
     private TriarchDbContext _context;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
-
+    
     private Models.RPGSystem _rPGSystem;
+
     public EditGenresViewModel(TriarchDbContext context, Models.RPGSystem rPGSystem)
     {
         _context = context;
@@ -61,7 +55,6 @@ internal class EditGenresViewModel : INotifyPropertyChanged
             }
         }              
     }
-
 
     public void Create()
     {
@@ -96,11 +89,10 @@ internal class EditGenresViewModel : INotifyPropertyChanged
             SelectedItem = GenresList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }
-        
-       
     }
 
     private RPGGenreSelectItem? selectedItem;
+
     public RPGGenreSelectItem? SelectedItem
     {
         get
@@ -115,6 +107,7 @@ internal class EditGenresViewModel : INotifyPropertyChanged
     }
 
     private ObservableCollection<RPGGenreSelectItem> genresList = null!;
+    
     private Genre? currentlyEditingItem;
 
     public ObservableCollection<RPGGenreSelectItem> GenresList
@@ -129,7 +122,6 @@ internal class EditGenresViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(GenresList));
         }
     }
-
 
     public void ShowWindow()
     {
@@ -146,10 +138,10 @@ internal class EditGenresViewModel : INotifyPropertyChanged
             int currentIndex = GenresList.IndexOf(aaa);
             if (currentIndex > 0)
             {
-                var temp = GenresList[currentIndex - 1];
+                RPGGenreSelectItem temp = GenresList[currentIndex - 1];
 
-                _context.Genres.FirstOrDefault(x => x.Id == aaa.Id).GenreOrder--;
-                _context.Genres.FirstOrDefault(x => x.Id == temp.Id).GenreOrder++;
+                _context.Genres.First(x => x.Id == aaa.Id).GenreOrder--;
+                _context.Genres.First(x => x.Id == temp.Id).GenreOrder++;
                 _context.SaveChanges();
                 
                 
@@ -169,11 +161,10 @@ internal class EditGenresViewModel : INotifyPropertyChanged
             int currentIndex = GenresList.IndexOf(aaa);
             if (currentIndex < GenresList.Count - 1)
             {
-                var temp = GenresList[currentIndex + 1];
+                RPGGenreSelectItem temp = GenresList[currentIndex + 1];
 
-
-                _context.Genres.FirstOrDefault(x => x.Id == aaa.Id).GenreOrder++;
-                _context.Genres.FirstOrDefault(x => x.Id == temp.Id).GenreOrder--;
+                _context.Genres.First(x => x.Id == aaa.Id).GenreOrder++;
+                _context.Genres.First(x => x.Id == temp.Id).GenreOrder--;
                 _context.SaveChanges();
 
                 GenresList[currentIndex + 1] = aaa;
@@ -188,7 +179,7 @@ internal class EditGenresViewModel : INotifyPropertyChanged
     {
         if (SelectedItem != null)
         {
-            var toRemove = _context.Genres.FirstOrDefault(x => x.Id == SelectedItem.Id);
+            Genre? toRemove = _context.Genres.FirstOrDefault(x => x.Id == SelectedItem.Id);
             if(toRemove != null)
             {
                 int orderRemoved = toRemove.GenreOrder;

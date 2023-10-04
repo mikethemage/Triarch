@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Triarch.RPGSystem.Models;
 
-namespace Triarch.RPGSystem.Editor.WPF;
+namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
 
-public class RPGSystemSelectViewModel : INotifyPropertyChanged
+public class RPGSystemSelectViewModel : ObservableViewModel
 {
     public ObservableCollection<RPGSystemSelectItem> RPGSystemList
     {
@@ -25,10 +25,10 @@ public class RPGSystemSelectViewModel : INotifyPropertyChanged
     }
 
     private TriarchDbContext _context = new();
-    private RPGSystemSelectItem? selectedItem;
-    private ObservableCollection<RPGSystemSelectItem> rPGSystemList = null!;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    private RPGSystemSelectItem? selectedItem;
+
+    private ObservableCollection<RPGSystemSelectItem> rPGSystemList = null!;
 
     public TriarchDbContext GetDbContext() => _context;
 
@@ -40,10 +40,6 @@ public class RPGSystemSelectViewModel : INotifyPropertyChanged
     public void RequeryList()
     {
         RPGSystemList = new ObservableCollection<RPGSystemSelectItem>(_context.RPGSystems.Select(x => new RPGSystemSelectItem { Id = x.Id, Name = x.SystemName }));
-    }
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
     public RPGSystemSelectItem? SelectedItem
@@ -70,11 +66,8 @@ public class RPGSystemSelectViewModel : INotifyPropertyChanged
                 _context.SaveChanges();
                 RequeryList();
             }
-
         }
     }
-
-
 }
 
 public class RPGSystemSelectItem

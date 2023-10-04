@@ -9,7 +9,7 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-internal class EditTypesViewModel : INotifyPropertyChanged
+internal class EditTypesViewModel : ObservableViewModel
 {
     public bool EditItemShouldBeVisible
     {
@@ -33,14 +33,10 @@ internal class EditTypesViewModel : INotifyPropertyChanged
         }
     }
 
-    private TriarchDbContext _context;
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    private TriarchDbContext _context;    
 
     private Models.RPGSystem _rPGSystem;
+
     public EditTypesViewModel(TriarchDbContext context, Models.RPGSystem rPGSystem)
     {
         _context = context;
@@ -59,7 +55,6 @@ internal class EditTypesViewModel : INotifyPropertyChanged
             }
         }              
     }
-
 
     public void Create()
     {
@@ -93,12 +88,11 @@ internal class EditTypesViewModel : INotifyPropertyChanged
             TypesList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementTypes).Query().OrderBy(x => x.TypeOrder).Select(x => new RPGTypeSelectItem { Id = x.Id, Name = x.TypeName }));
             SelectedItem = TypesList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
-        }
-        
-       
+        }       
     }
 
     private RPGTypeSelectItem? selectedItem;
+
     public RPGTypeSelectItem? SelectedItem
     {
         get
@@ -113,6 +107,7 @@ internal class EditTypesViewModel : INotifyPropertyChanged
     }
 
     private ObservableCollection<RPGTypeSelectItem> typesList = null!;
+
     private RPGElementType? currentlyEditingItem;
 
     public ObservableCollection<RPGTypeSelectItem> TypesList
@@ -127,7 +122,6 @@ internal class EditTypesViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(TypesList));
         }
     }
-
 
     public void ShowWindow()
     {
@@ -144,12 +138,11 @@ internal class EditTypesViewModel : INotifyPropertyChanged
             int currentIndex = TypesList.IndexOf(aaa);
             if (currentIndex > 0)
             {
-                var temp = TypesList[currentIndex - 1];
+                RPGTypeSelectItem temp = TypesList[currentIndex - 1];
 
-                _context.RPGElementTypes.FirstOrDefault(x => x.Id == aaa.Id).TypeOrder--;
-                _context.RPGElementTypes.FirstOrDefault(x => x.Id == temp.Id).TypeOrder++;
+                _context.RPGElementTypes.First(x => x.Id == aaa.Id).TypeOrder--;
+                _context.RPGElementTypes.First(x => x.Id == temp.Id).TypeOrder++;
                 _context.SaveChanges();
-
                 
                 TypesList[currentIndex - 1]= aaa;
                 TypesList[currentIndex] = temp;
@@ -167,11 +160,10 @@ internal class EditTypesViewModel : INotifyPropertyChanged
             int currentIndex = TypesList.IndexOf(aaa);
             if (currentIndex < TypesList.Count - 1)
             {
-                var temp = TypesList[currentIndex + 1];
+                RPGTypeSelectItem temp = TypesList[currentIndex + 1];
 
-
-                _context.RPGElementTypes.FirstOrDefault(x => x.Id == aaa.Id).TypeOrder++;
-                _context.RPGElementTypes.FirstOrDefault(x => x.Id == temp.Id).TypeOrder--;
+                _context.RPGElementTypes.First(x => x.Id == aaa.Id).TypeOrder++;
+                _context.RPGElementTypes.First(x => x.Id == temp.Id).TypeOrder--;
                 _context.SaveChanges();
 
                 TypesList[currentIndex + 1] = aaa;

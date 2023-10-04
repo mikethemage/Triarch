@@ -10,10 +10,12 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-public class EditSystemViewModel : INotifyPropertyChanged
+public class EditSystemViewModel : ObservableViewModel
 {
     private TriarchDbContext _context;
+
     private bool saved = false;
+
     public bool Saved
     {
         get
@@ -56,7 +58,6 @@ public class EditSystemViewModel : INotifyPropertyChanged
     }
 
     private Models.RPGSystem rPGSystem = null!;
-
     
     public void CreateEditTypes()
     {
@@ -84,7 +85,7 @@ public class EditSystemViewModel : INotifyPropertyChanged
             a.ShowWindow();
         }
     }
-
+    
     public void CreateEditProgressions()
     {
         if (saved)
@@ -93,7 +94,6 @@ public class EditSystemViewModel : INotifyPropertyChanged
             a.ShowWindow();
         }
     }
-
 
     public string SystemName
     {
@@ -131,18 +131,14 @@ public class EditSystemViewModel : INotifyPropertyChanged
             rPGSystem.DescriptiveName = string.IsNullOrWhiteSpace(value) ? null : value;
             OnPropertyChanged(nameof(Description));
         }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    }    
 
     public void Save()
     {
-        _context.SaveChanges();
-        Saved = true;
+        if (Saved == false && !string.IsNullOrEmpty(SystemName))
+        {
+            _context.SaveChanges();
+            Saved = true;
+        }
     }
 }

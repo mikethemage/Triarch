@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,9 +10,8 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-internal class EditElementsViewModel : INotifyPropertyChanged
+internal class EditElementsViewModel : ObservableViewModel
 {
-
     public bool EditItemShouldBeVisible
     {
         get
@@ -34,14 +34,7 @@ internal class EditElementsViewModel : INotifyPropertyChanged
         }
     }
 
-    private TriarchDbContext _context;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    private TriarchDbContext _context;       
 
     private Models.RPGSystem _rPGSystem;
 
@@ -51,27 +44,24 @@ internal class EditElementsViewModel : INotifyPropertyChanged
         _rPGSystem = rPGSystem;
 
         ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
-
     }
 
     public void Edit()
     {
         if (SelectedItem != null)
         {
-            var b = _context.RPGElementDefinitions.FirstOrDefault(x => x.Id == SelectedItem.Id);
+            var b = _context.RPGElementDefinitions.Include(e => e.LevelableData).FirstOrDefault(x => x.Id == SelectedItem.Id);
             if (b != null)
             {
-                var a = new EditElementDefinitionViewModel(_context, b);
+                EditElementDefinitionViewModel a = new EditElementDefinitionViewModel(_context, b);
                 a.ShowWindow();
             }
-
         }
     }
 
-
     public void Create()
     {
-        var a = new EditElementDefinitionViewModel(_context, _rPGSystem);
+        EditElementDefinitionViewModel a = new EditElementDefinitionViewModel(_context, _rPGSystem);
         a.ShowWindow();
     }
 
@@ -92,6 +82,7 @@ internal class EditElementsViewModel : INotifyPropertyChanged
     }
 
     private ElementSelectItem? selectedItem;
+
     public ElementSelectItem? SelectedItem
     {
         get
@@ -106,6 +97,7 @@ internal class EditElementsViewModel : INotifyPropertyChanged
     }
 
     private ObservableCollection<ElementSelectItem> elementsList = null!;
+
     private RPGElementDefinition? currentlyEditingItem;
 
     public ObservableCollection<ElementSelectItem> ElementsList
@@ -120,7 +112,6 @@ internal class EditElementsViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(ElementsList));
         }
     }
-
 
     public void ShowWindow()
     {
@@ -149,7 +140,10 @@ internal class EditElementsViewModel : INotifyPropertyChanged
         CurrentlyEditingItem = null;
     }
 
-
+    internal void RequeryList()
+    {
+        ElementsList = new ObservableCollection<ElementSelectItem>(_context.RPGElementDefinitions.Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName }));
+    }
 }
 
 public class ElementSelectItem
