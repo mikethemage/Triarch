@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Triarch.RPGSystem.Editor.WPF.ViewModels;
 
 namespace Triarch.RPGSystem.Editor.WPF.Views;
 /// <summary>
@@ -21,5 +22,15 @@ public partial class EditElementDefinitionView : Window
     public EditElementDefinitionView()
     {
         InitializeComponent();
+    }    
+
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+        ((EditElementDefinitionViewModel)DataContext).Save();
+    }
+
+    private void CustomProgressionButton_Click(object sender, RoutedEventArgs e)
+    {
+        ((EditElementDefinitionViewModel)DataContext).EditCustomProgression();
     }
 }

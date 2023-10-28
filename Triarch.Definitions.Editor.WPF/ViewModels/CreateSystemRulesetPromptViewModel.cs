@@ -11,17 +11,14 @@ using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
 
-public class CreateSystemRulesetPromptViewModel : INotifyPropertyChanged
+public class CreateSystemRulesetPromptViewModel : ObservableViewModel
 {
-    
-
-    public ObservableCollection<CoreRulesetSelectItem> RulesetList { get; set; }
-    public TriarchDbContext GetDbContext() => _context;
-
     private TriarchDbContext _context = new();
     private CoreRulesetSelectItem? selectedItem = null;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public ObservableCollection<CoreRulesetSelectItem> RulesetList { get; set; }
+
+    public TriarchDbContext GetDbContext() => _context;     
 
     public CoreRulesetSelectItem? SelectedItem
     {
@@ -42,12 +39,7 @@ public class CreateSystemRulesetPromptViewModel : INotifyPropertyChanged
             return null;
 
         return _context.CoreRulesets.FirstOrDefault(x => x.Id == SelectedItem.Id);
-    }
-
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    }    
 
     public void ShowWindow()
     {
@@ -61,11 +53,7 @@ public class CreateSystemRulesetPromptViewModel : INotifyPropertyChanged
         _context = context;
         RulesetList = new ObservableCollection<CoreRulesetSelectItem>(_context.CoreRulesets.Select(x => new CoreRulesetSelectItem { Id = x.Id, Name = x.CoreRulesetName }).OrderBy(x => x.Name));
         SelectedItem = RulesetList.FirstOrDefault();        
-    }    
-
-
-
-
+    }
 }
 
 public class CoreRulesetSelectItem

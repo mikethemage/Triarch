@@ -27,6 +27,7 @@ public partial class EditElementsView : Window
     private void CreateButton_Click(object sender, RoutedEventArgs e)
     {
         ((EditElementsViewModel)DataContext).Create();
+        ((EditElementsViewModel)DataContext).RequeryList();
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)

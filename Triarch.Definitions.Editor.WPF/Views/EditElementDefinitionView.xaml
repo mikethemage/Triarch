@@ -8,6 +8,9 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:EditElementDefinitionViewModel}"
         Title="EditElementDefinitionView" Height="1000" Width="500">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
     <StackPanel>
         <TextBlock>Name</TextBlock>
         <TextBox Text="{Binding Name}"></TextBox>
@@ -27,12 +30,15 @@
         <TextBox Text="{Binding PageNumbers}"></TextBox>
         <TextBlock>Human?</TextBlock>
         <CheckBox IsChecked="{Binding Human}"></CheckBox>
+
+        <Button x:Name="SaveButton" Click="SaveButton_Click">Save</Button>
+        
         <TextBlock>Levelable?</TextBlock>
-        <CheckBox></CheckBox>
-        <StackPanel x:Name="LevelableProperties">
+        <CheckBox IsChecked="{Binding Levelable}"></CheckBox>
+        <StackPanel x:Name="LevelableProperties" Visibility="Visible" DataContext="{Binding LevelableData}">
             <TextBlock>Levelable Properties</TextBlock>
             <TextBlock>Max Level</TextBlock>
-            <TextBox></TextBox>
+            <TextBox Text="{Binding MaxLevel}"></TextBox>
             <TextBox>Enforce Max Level?</TextBox>
             <CheckBox></CheckBox>
             <TextBlock>Cost per Level</TextBlock>
@@ -49,7 +55,7 @@
             </StackPanel>
             <TextBlock>Progression</TextBlock>
             <ComboBox></ComboBox>
-            <Button>Edit Custom Progression</Button>
+            <Button x:Name="CustomProgressionButton" Click="CustomProgressionButton_Click">Edit Custom Progression</Button>
             <TextBlock>Has Special Points?</TextBlock>
             <StackPanel>
                 <TextBlock>Special Points per Level</TextBlock>

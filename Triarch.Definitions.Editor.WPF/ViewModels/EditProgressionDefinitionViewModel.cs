@@ -9,7 +9,7 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
+internal class EditProgressionDefinitionViewModel : ObservableViewModel
 {
     public bool EditItemShouldBeVisible
     {
@@ -33,14 +33,10 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
         }
     }
 
-    private TriarchDbContext _context;
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    private TriarchDbContext _context;    
 
     private Progression _progression;
+
     public EditProgressionDefinitionViewModel(TriarchDbContext context, Progression progression)
     {
         _context = context;
@@ -59,7 +55,6 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
             }
         }              
     }
-
 
     public void Create()
     {
@@ -99,6 +94,7 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
     }
 
     private ProgressionDefinitionSelectItem? selectedItem;
+
     public ProgressionDefinitionSelectItem? SelectedItem
     {
         get
@@ -113,6 +109,7 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
     }
 
     private ObservableCollection<ProgressionDefinitionSelectItem> progressionDefinitionsList = null!;
+
     private ProgressionEntry? currentlyEditingItem;
 
     public ObservableCollection<ProgressionDefinitionSelectItem> ProgressionDefinitionsList
@@ -127,7 +124,6 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(ProgressionDefinitionsList));
         }
     }
-
 
     public void ShowWindow()
     {
@@ -144,12 +140,11 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
             int currentIndex = ProgressionDefinitionsList.IndexOf(aaa);
             if (currentIndex > 0)
             {
-                var temp = ProgressionDefinitionsList[currentIndex - 1];
+                ProgressionDefinitionSelectItem temp = ProgressionDefinitionsList[currentIndex - 1];
 
-                _context.ProgressionEntries.FirstOrDefault(x => x.Id == aaa.Id).ProgressionLevel--;
-                _context.ProgressionEntries.FirstOrDefault(x => x.Id == temp.Id).ProgressionLevel++;
+                _context.ProgressionEntries.First(x => x.Id == aaa.Id).ProgressionLevel--;
+                _context.ProgressionEntries.First(x => x.Id == temp.Id).ProgressionLevel++;
                 _context.SaveChanges();
-
                 
                 ProgressionDefinitionsList[currentIndex - 1]= aaa;
                 ProgressionDefinitionsList[currentIndex] = temp;
@@ -167,11 +162,10 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
             int currentIndex = ProgressionDefinitionsList.IndexOf(aaa);
             if (currentIndex < ProgressionDefinitionsList.Count - 1)
             {
-                var temp = ProgressionDefinitionsList[currentIndex + 1];
+                ProgressionDefinitionSelectItem temp = ProgressionDefinitionsList[currentIndex + 1];
 
-
-                _context.ProgressionEntries.FirstOrDefault(x => x.Id == aaa.Id).ProgressionLevel++;
-                _context.ProgressionEntries.FirstOrDefault(x => x.Id == temp.Id).ProgressionLevel--;
+                _context.ProgressionEntries.First(x => x.Id == aaa.Id).ProgressionLevel++;
+                _context.ProgressionEntries.First(x => x.Id == temp.Id).ProgressionLevel--;
                 _context.SaveChanges();
 
                 ProgressionDefinitionsList[currentIndex + 1] = aaa;
@@ -186,7 +180,7 @@ internal class EditProgressionDefinitionViewModel : INotifyPropertyChanged
     {
         if (SelectedItem != null)
         {
-            var toRemove = _context.ProgressionEntries.FirstOrDefault(x => x.Id == SelectedItem.Id);
+            ProgressionEntry? toRemove = _context.ProgressionEntries.FirstOrDefault(x => x.Id == SelectedItem.Id);
             if(toRemove != null)
             {
                 int orderRemoved = toRemove.ProgressionLevel;

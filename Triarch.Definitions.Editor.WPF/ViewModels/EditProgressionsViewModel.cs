@@ -9,7 +9,7 @@ using Triarch.RPGSystem.Editor.WPF.Views;
 using Triarch.RPGSystem.Models;
 
 namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
-internal class EditProgressionsViewModel : INotifyPropertyChanged
+internal class EditProgressionsViewModel : ObservableViewModel
 {
     public bool EditItemShouldBeVisible
     {
@@ -33,12 +33,7 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
         }
     }
 
-    private TriarchDbContext _context;
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void OnPropertyChanged(string name)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
+    private TriarchDbContext _context;    
 
     private Models.RPGSystem _rPGSystem;
 
@@ -60,7 +55,6 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
             }
         }
     }
-
 
     public void Create()
     {
@@ -89,11 +83,10 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
             SelectedItem = ProgressionsList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }
-
-
     }
 
     private ProgressionSelectItem? selectedItem;
+
     public ProgressionSelectItem? SelectedItem
     {
         get
@@ -108,6 +101,7 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
     }
 
     private ObservableCollection<ProgressionSelectItem> progressionsList = null!;
+
     private Progression? currentlyEditingItem;
 
     public ObservableCollection<ProgressionSelectItem> ProgressionsList
@@ -122,7 +116,6 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(ProgressionsList));
         }
     }
-
 
     public void ShowWindow()
     {
@@ -160,10 +153,8 @@ internal class EditProgressionsViewModel : INotifyPropertyChanged
             {
                 var a = new EditProgressionDefinitionViewModel(_context, b);
                 a.ShowWindow();
-            }
-            
-        }
-        
+            }            
+        }        
     }
 }
 

@@ -38,10 +38,9 @@ public partial class EditSystemView : Window
 
     private void Save_Click(object sender, RoutedEventArgs e)
     {
-        if (((EditSystemViewModel)DataContext).Saved == false && !string.IsNullOrEmpty(((EditSystemViewModel)DataContext).SystemName))
-        {
+        
             ((EditSystemViewModel)DataContext).Save();
-        }
+        
     }
 
     private void CreateEditTypesButton_Click(object sender, RoutedEventArgs e)
