@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.RPGSystem.Models", "Triarch.RPGSystem.Models\Triarch.RPGSystem.Models.csproj", "{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Definitions.Models", "Triarch.Definitions.Models\Triarch.Definitions.Models.csproj", "{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triarch.RPGSystem.Editor.WPF", "Triarch.RPGSystem.Editor.WPF\Triarch.RPGSystem.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Definitions.Editor.WPF", "Triarch.Definitions.Editor.WPF\Triarch.Definitions.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

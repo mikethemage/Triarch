@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Triarch.RPGSystem.Models\Triarch.RPGSystem.Models.csproj" />
+    <ProjectReference Include="..\Triarch.Definitions.Models\Triarch.Definitions.Models.csproj" />
   </ItemGroup>
 
 </Project>
