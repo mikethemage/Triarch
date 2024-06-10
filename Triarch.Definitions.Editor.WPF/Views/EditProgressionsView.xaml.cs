@@ -11,9 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Triarch.RPGSystem.Editor.WPF.ViewModels;
+using Triarch.Definitions.Editor.WPF.ViewModels;
 
-namespace Triarch.RPGSystem.Editor.WPF.Views;
+namespace Triarch.Definitions.Editor.WPF.Views;
 /// <summary>
 /// Interaction logic for EditProgressionsView.xaml
 /// </summary>

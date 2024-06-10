@@ -6,10 +6,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Triarch.RPGSystem.Editor.WPF.Views;
-using Triarch.RPGSystem.Models;
+using Triarch.Definitions.Editor.WPF.Views;
+using Triarch.Database;
+using Triarch.Database.Models.Definitions;
 
-namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
+namespace Triarch.Definitions.Editor.WPF.ViewModels;
 public class EditSystemViewModel : ObservableViewModel
 {
     private TriarchDbContext _context;
@@ -48,7 +49,7 @@ public class EditSystemViewModel : ObservableViewModel
     public EditSystemViewModel(TriarchDbContext context, CoreRuleset createFromCoreRuleset)
     {
         _context = context;
-        rPGSystem = new Models.RPGSystem
+        rPGSystem = new RPGSystem
         {
             Ruleset = createFromCoreRuleset
         };
@@ -57,7 +58,7 @@ public class EditSystemViewModel : ObservableViewModel
         Saved = false;
     }
 
-    private Models.RPGSystem rPGSystem = null!;
+    private RPGSystem rPGSystem = null!;
     
     public void CreateEditTypes()
     {

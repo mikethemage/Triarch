@@ -5,10 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Triarch.RPGSystem.Editor.WPF.Views;
-using Triarch.RPGSystem.Models;
+using Triarch.Definitions.Editor.WPF.Views;
+using Triarch.Database;
+using Triarch.Database.Models.Definitions;
 
-namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
+namespace Triarch.Definitions.Editor.WPF.ViewModels;
 internal class EditProgressionsViewModel : ObservableViewModel
 {
     public bool EditItemShouldBeVisible
@@ -35,9 +36,9 @@ internal class EditProgressionsViewModel : ObservableViewModel
 
     private TriarchDbContext _context;    
 
-    private Models.RPGSystem _rPGSystem;
+    private RPGSystem _rPGSystem;
 
-    public EditProgressionsViewModel(TriarchDbContext context, Models.RPGSystem rPGSystem)
+    public EditProgressionsViewModel(TriarchDbContext context, RPGSystem rPGSystem)
     {
         _context = context;
         _rPGSystem = rPGSystem;

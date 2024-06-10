@@ -5,9 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Triarch.RPGSystem.Models;
+using Triarch.Database;
 
-namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
+
+namespace Triarch.Definitions.Editor.WPF.ViewModels;
 
 public class RPGSystemSelectViewModel : ObservableViewModel
 {

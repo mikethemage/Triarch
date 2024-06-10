@@ -6,10 +6,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Triarch.RPGSystem.Editor.WPF.Views;
-using Triarch.RPGSystem.Models;
+using Triarch.Definitions.Editor.WPF.Views;
+using Triarch.Database;
+using Triarch.Database.Models.Definitions;
 
-namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
+namespace Triarch.Definitions.Editor.WPF.ViewModels;
 internal class EditElementDefinitionViewModel : ObservableViewModel
 {   
     private RPGElementDefinition _elementDefinition;
@@ -52,7 +53,7 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
         Saved = true;
     }
 
-    public EditElementDefinitionViewModel(TriarchDbContext context, Models.RPGSystem rPGSystem)
+    public EditElementDefinitionViewModel(TriarchDbContext context, RPGSystem rPGSystem)
     {
         _context = context;
         _elementDefinition = new();

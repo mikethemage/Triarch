@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Triarch.RPGSystem.Editor.WPF.ViewModels;
+namespace Triarch.Definitions.Editor.WPF.ViewModels;
 public abstract class ObservableViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;

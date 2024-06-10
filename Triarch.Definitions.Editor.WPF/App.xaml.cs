@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Triarch.RPGSystem.Editor.WPF;
+namespace Triarch.Definitions.Editor.WPF;
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
