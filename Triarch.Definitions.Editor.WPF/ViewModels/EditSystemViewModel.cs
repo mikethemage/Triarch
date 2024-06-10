@@ -131,14 +131,56 @@ public class EditSystemViewModel : ObservableViewModel
             rPGSystem.DescriptiveName = string.IsNullOrWhiteSpace(value) ? null : value;
             OnPropertyChanged(nameof(Description));
         }
-    }    
+    }
 
+    // ... (existing code)
+
+    private bool isFormLocked = false;
+
+    public bool IsFormLocked
+    {
+        get => isFormLocked;
+        private set
+        {
+            isFormLocked = value;
+            OnPropertyChanged(nameof(IsFormLocked));
+        }
+    }
+
+    public bool SaveButtonEnabled => !IsFormLocked;
+
+    public void LockForm()
+    {
+        IsFormLocked = true;
+        OnPropertyChanged(nameof(SaveButtonEnabled));
+    }
+
+    public void UnlockForm()
+    {
+        IsFormLocked = false;
+        OnPropertyChanged(nameof(SaveButtonEnabled));
+    }
+
+    // Modify the Save method to lock the form after saving
     public void Save()
     {
-        if (Saved == false && !string.IsNullOrEmpty(SystemName))
+        if (!IsFormLocked && !string.IsNullOrEmpty(SystemName))
         {
             _context.SaveChanges();
             Saved = true;
+            LockForm(); // Lock the form after saving
         }
     }
+
+    // ... (existing code)
+
+
+    //public void Save()
+    //{
+    //    if (Saved == false && !string.IsNullOrEmpty(SystemName))
+    //    {
+    //        _context.SaveChanges();
+    //        Saved = true;
+    //    }
+    //}
 }

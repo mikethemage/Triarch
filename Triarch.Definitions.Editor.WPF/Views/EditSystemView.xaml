@@ -16,15 +16,39 @@
             <TextBox x:Name="CoreRuleset" IsReadOnly="True" Text="{Binding Path=CoreRuleset, Mode=OneWay}" Background="LightGray"></TextBox>
             <TextBlock>Description</TextBlock>
             <TextBox x:Name="Description" TextWrapping="WrapWithOverflow" Text="{Binding Description}"></TextBox>
-            <Button x:Name="Save" Click="Save_Click">Save</Button>
             
+
+
+            <!-- ... (existing XAML code) -->
+
+            <Button x:Name="UnlockButton" Click="UnlockButton_Click" IsEnabled="{Binding Path=IsFormLocked, Mode=OneWay}">
+                Unlock Form
+            </Button>
+
+            <Button x:Name="Save" Click="Save_Click" IsEnabled="{Binding Path=SaveButtonEnabled, Mode=OneWay}">
+                Save
+            </Button>
+
+            <!-- Disable other buttons based on the form's locked state -->
+            <Button x:Name="CreateEditTypesButton" Click="CreateEditTypesButton_Click" IsEnabled="{Binding Path=SaveButtonEnabled, Mode=OneWay}">
+                Create / Edit Types
+            </Button>
+            <Button x:Name="CreateEditAttributesButton" Click="CreateEditAttributesButton_Click" IsEnabled="{Binding Path=SaveButtonEnabled, Mode=OneWay}">
+                Create / Edit Attributes
+            </Button>
+            <Button x:Name="CreateEditGenresButton" Click="CreateEditGenresButton_Click" IsEnabled="{Binding Path=SaveButtonEnabled, Mode=OneWay}">
+                Create / Edit Genres
+            </Button>
+            <Button x:Name="CreateEditProgressionsButton" Click="CreateEditProgressionsButton_Click" IsEnabled="{Binding Path=SaveButtonEnabled, Mode=OneWay}">
+                Create / Edit Progressions
+            </Button>
+            <Button x:Name="CloseButton" Click="Close_Click" IsEnabled="{Binding Path=SaveButtonEnabled, Mode=OneWay}">
+                Close
+            </Button>
+
+            <!-- ... (existing XAML code) -->
+
             
-            
-            <Button x:Name="CreateEditTypesButton" Click="CreateEditTypesButton_Click">Create / Edit Types</Button>
-            <Button x:Name="CreateEditAttributesButton" Click="CreateEditAttributesButton_Click">Create / Edit Attributes</Button>
-            <Button x:Name="CreateEditGenresButton" Click="CreateEditGenresButton_Click">Create / Edit Genres</Button>
-            <Button x:Name="CreateEditProgressionsButton" Click="CreateEditProgressionsButton_Click">Create / Edit Progressions</Button>
-            <Button x:Name="CloseButton" Click="Close_Click">Close</Button>
             
         </StackPanel>
         
