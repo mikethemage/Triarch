@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Triarch.Database.Models.Ruleset;
+namespace Triarch.Database.Models.Definitions;
 
-public class RPGElementType
+public class Genre
 {
     [Key]
     public int Id { get; set; }
 
     [MaxLength(100)]
-    public string TypeName { get; set; } = null!;
+    public string GenreName { get; set; } = null!;
 
-    public int TypeOrder { get; set; }
+    public int GenreOrder { get; set; }
 
     public RPGSystem RPGSystem { get; set; } = null!;
 }

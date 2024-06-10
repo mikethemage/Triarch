@@ -1,4 +1,4 @@
-﻿namespace Triarch.Dtos.Ruleset;
+﻿namespace Triarch.Dtos.Definitions;
 
 public class GenreCostPerLevelDto
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Triarch.Database.Models.Ruleset;
+namespace Triarch.Database.Models.Definitions;
 
 public class VariantDefinition
 {

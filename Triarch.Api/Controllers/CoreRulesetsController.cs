@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Triarch.Repositories;
-using Triarch.Dtos.Ruleset;
+using Triarch.Dtos.Definitions;
 
 namespace Triarch.Api.Controllers;
 

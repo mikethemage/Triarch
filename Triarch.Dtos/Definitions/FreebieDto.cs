@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Triarch.Dtos.Ruleset;
+namespace Triarch.Dtos.Definitions;
 
 public class FreebieDto
 {   

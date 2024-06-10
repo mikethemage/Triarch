@@ -1,4 +1,4 @@
-﻿using Triarch.Dtos.Ruleset;
+﻿using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories;
 public interface ICoreRuleSetRepository

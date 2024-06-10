@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Triarch.Database.Models.Ruleset;
-using Triarch.Dtos.Ruleset;
+using Triarch.Database.Models.Definitions;
+using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories.Mappers;
 internal static class LevelableDefinitionExtensions

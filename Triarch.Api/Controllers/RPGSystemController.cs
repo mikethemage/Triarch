@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Triarch.Repositories;
-using Triarch.Dtos.Ruleset;
+using Triarch.Dtos.Definitions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

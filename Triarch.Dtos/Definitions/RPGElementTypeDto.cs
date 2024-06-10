@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Triarch.Dtos.Ruleset;
+namespace Triarch.Dtos.Definitions;
 
 public class RPGElementTypeDto
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Triarch.Database.Models.Ruleset;
+namespace Triarch.Database.Models.Definitions;
 
 public class RPGElementDefinition
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Triarch.Database;
-using Triarch.Database.Models.Ruleset;
-using Triarch.Dtos.Ruleset;
+using Triarch.Database.Models.Definitions;
+using Triarch.Dtos.Definitions;
 using Triarch.Repositories.Mappers;
 
 namespace Triarch.Repositories;

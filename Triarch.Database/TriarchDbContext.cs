@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Triarch.Database.Models.Ruleset;
+using Triarch.Database.Models.Definitions;
 
 namespace Triarch.Database;
 

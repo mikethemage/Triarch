@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Triarch.Database;
-using Triarch.Dtos.Ruleset;
+using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories;
 public class CoreRuleSetRepository : ICoreRuleSetRepository
