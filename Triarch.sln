@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.RPGSystem.Editor.WPF", "Triarch.RPGSystem.Editor.WPF\Triarch.RPGSystem.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Definitions.Editor.WPF", "Triarch.Definitions.Editor.WPF\Triarch.Definitions.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Database", "Triarch.Database\Triarch.Database.csproj", "{A7A1D50E-199C-4AEA-BCCB-B8A704B27472}"
 EndProject
