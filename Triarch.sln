@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.RPGSystem.Models", "Triarch.RPGSystem.Models\Triarch.RPGSystem.Models.csproj", "{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.RPGSystem.Editor.WPF", "Triarch.RPGSystem.Editor.WPF\Triarch.RPGSystem.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Database", "Triarch.Database\Triarch.Database.csproj", "{A7A1D50E-199C-4AEA-BCCB-B8A704B27472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triarch.RPGSystem.Editor.WPF", "Triarch.RPGSystem.Editor.WPF\Triarch.RPGSystem.Editor.WPF.csproj", "{86039C79-BAF9-450D-B95B-B65F64A7546C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Dtos", "Triarch.Dtos\Triarch.Dtos.csproj", "{939E3EA4-3388-4ED6-976C-5F253D7E66BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Repositories", "Triarch.Repositories\Triarch.Repositories.csproj", "{04C912BF-E2A0-47DF-8FCA-F9141C7383C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Api", "Triarch.Api\Triarch.Api.csproj", "{AB730A34-CC39-4811-BC99-FD110AD34603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B3DE82C-AEA8-41F9-B6FB-DE298F328775}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BABF10EF-BF1B-45FF-BBB3-4768E0DCFE25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86039C79-BAF9-450D-B95B-B65F64A7546C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7A1D50E-199C-4AEA-BCCB-B8A704B27472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A1D50E-199C-4AEA-BCCB-B8A704B27472}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A1D50E-199C-4AEA-BCCB-B8A704B27472}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7A1D50E-199C-4AEA-BCCB-B8A704B27472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{939E3EA4-3388-4ED6-976C-5F253D7E66BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{939E3EA4-3388-4ED6-976C-5F253D7E66BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{939E3EA4-3388-4ED6-976C-5F253D7E66BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{939E3EA4-3388-4ED6-976C-5F253D7E66BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04C912BF-E2A0-47DF-8FCA-F9141C7383C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04C912BF-E2A0-47DF-8FCA-F9141C7383C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04C912BF-E2A0-47DF-8FCA-F9141C7383C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04C912BF-E2A0-47DF-8FCA-F9141C7383C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB730A34-CC39-4811-BC99-FD110AD34603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB730A34-CC39-4811-BC99-FD110AD34603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB730A34-CC39-4811-BC99-FD110AD34603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB730A34-CC39-4811-BC99-FD110AD34603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

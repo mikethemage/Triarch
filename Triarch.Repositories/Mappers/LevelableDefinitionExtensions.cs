@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Triarch.Database.Models.Ruleset;
+using Triarch.Dtos.Ruleset;
+
+namespace Triarch.Repositories.Mappers;
+internal static class LevelableDefinitionExtensions
+{
+    public static LevelableDefinitionDto ToDto(this LevelableDefinition levelableDefinition)
+    {
+        return new LevelableDefinitionDto
+        {
+            Id = levelableDefinition.Id,
+            MaxLevel = levelableDefinition.MaxLevel,
+            EnforceMaxLevel = levelableDefinition.EnforceMaxLevel,
+            CostPerLevel = levelableDefinition.CostPerLevel,
+            CostPerLevelDescription = levelableDefinition.CostPerLevelDescription,
+            MultiGenreCostPerLevels = levelableDefinition.MultiGenreCostPerLevels?.Select(x => x.ToDto()).ToList(),
+            ProgressionId = levelableDefinition.Progression?.Id,
+            Variants = levelableDefinition.Variants?.Select(x => x.ToDto()).ToList(),
+            SpecialPointsPerLevel = levelableDefinition.SpecialPointsPerLevel
+        };
+    }
+
+    public static LevelableDefinition ToModel(this LevelableDefinitionDto levelableDefinitionDto)
+    {
+        return new LevelableDefinition
+        {
+            Id = levelableDefinitionDto.Id,
+            MaxLevel = levelableDefinitionDto.MaxLevel,
+            EnforceMaxLevel = levelableDefinitionDto.EnforceMaxLevel,
+            CostPerLevel = levelableDefinitionDto.CostPerLevel,
+            CostPerLevelDescription = levelableDefinitionDto.CostPerLevelDescription,
+
+            MultiGenreCostPerLevels = levelableDefinitionDto.MultiGenreCostPerLevels?.Select(x => x.ToModel()).ToList(),
+            
+            
+            Variants = levelableDefinitionDto.Variants?.Select(x => x.ToModel()).ToList(),
+            SpecialPointsPerLevel = levelableDefinitionDto.SpecialPointsPerLevel
+        };
+    }
+    
+}

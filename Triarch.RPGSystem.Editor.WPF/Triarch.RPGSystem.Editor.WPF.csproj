@@ -2,14 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Triarch.RPGSystem.Models\Triarch.RPGSystem.Models.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Views\EditGenresView.xaml.cs">
