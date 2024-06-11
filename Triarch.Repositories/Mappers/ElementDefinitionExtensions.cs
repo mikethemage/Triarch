@@ -10,7 +10,7 @@ internal static class ElementDefinitionExtensions
         {
             Id = elementDefinition.Id,
             ElementName = elementDefinition.ElementName,
-            ElementTypeId = elementDefinition.ElementType.Id,
+            ElementTypeName = elementDefinition.ElementType.TypeName,
             Description = elementDefinition.Description,
             Stat = elementDefinition.Stat,
             PageNumbers = elementDefinition.PageNumbers,
@@ -33,7 +33,7 @@ internal static class ElementDefinitionExtensions
         {
             Id = elementDefinitionDto.Id,
             ElementName = elementDefinitionDto.ElementName,
-            ElementType = new RPGElementType { Id = elementDefinitionDto.ElementTypeId },
+            
             Description = elementDefinitionDto.Description,
             Stat = elementDefinitionDto.Stat,
             PageNumbers = elementDefinitionDto.PageNumbers,

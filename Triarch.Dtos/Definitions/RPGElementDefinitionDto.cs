@@ -11,7 +11,8 @@ public class RPGElementDefinitionDto
     [Required]
     public string ElementName { get; set; } = null!;
 
-    public int ElementTypeId { get; set; }
+    [Required]
+    public string ElementTypeName { get; set; } = string.Empty;
 
     [MaxLength(100)]
     public string? Description { get; set; } = null;  //Do we need a better name for this?  Used to reference description of effects

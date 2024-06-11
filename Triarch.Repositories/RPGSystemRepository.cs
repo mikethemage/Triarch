@@ -115,14 +115,14 @@ public class RPGSystemRepository : IRPGSystemRepository
                     _context.Add(newGenre);
                 }
 
-                foreach (Progression progression in existing.Progressions)
+                foreach (Progression progression in existing.Progressions.ToList())
                 {
                     if(rPGSystem.Progressions.Select(x=>x.Id).Contains(progression.Id))
                     {
                         Progression updatedProgression = rPGSystem.Progressions.First(x => x.Id == progression.Id);
                         _context.Entry(progression).CurrentValues.SetValues(updatedProgression);
 
-                        foreach (ProgressionEntry progressionEntry in progression.Progressions)
+                        foreach (ProgressionEntry progressionEntry in progression.Progressions.ToList())
                         {
                             if (updatedProgression.Progressions.Select(x => x.Id).Contains(progressionEntry.Id))
                             {
@@ -169,6 +169,25 @@ public class RPGSystemRepository : IRPGSystemRepository
                 {
                     existing.ElementTypes.Add(newElementType);
                     _context.Add(newElementType);
+                }
+
+                foreach (RPGElementDefinition elementDefinition in existing.ElementDefinitions)
+                {
+                    if(rPGSystem.ElementDefinitions.Select(x=>x.Id).Contains(elementDefinition.Id))
+                    {
+                        _context.Entry(elementDefinition).CurrentValues.SetValues(rPGSystem.ElementDefinitions.First(x => x.Id == elementDefinition.Id));
+                    }
+                    else
+                    {
+                        rPGSystem.ElementDefinitions.Remove(elementDefinition);
+                        _context.Remove(elementDefinition);
+                    }
+                }
+                foreach (RPGElementDefinition newElementDefinition in rPGSystem.ElementDefinitions.Where(x=>x.Id==0))
+                {
+                    newElementDefinition.ElementType = existing.ElementTypes.First(x => x.TypeName == newElementDefinition.ElementType.TypeName);
+                    existing.ElementDefinitions.Add(newElementDefinition);
+                    _context.Add(newElementDefinition);
                 }
             }
         }

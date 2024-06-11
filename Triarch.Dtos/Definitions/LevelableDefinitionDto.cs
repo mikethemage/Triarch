@@ -12,7 +12,7 @@ public class LevelableDefinitionDto
     [DefaultValue(false)]
     public bool EnforceMaxLevel { get; set; } = false;
 
-    public int CostPerLevel { get; set; }
+    public int? CostPerLevel { get; set; } = null;
 
     [MaxLength(100)]
     public string? CostPerLevelDescription { get; set; } = null;

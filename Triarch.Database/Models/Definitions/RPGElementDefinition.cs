@@ -38,5 +38,6 @@ public class RPGElementDefinition
     [InverseProperty(nameof(Freebie.OwnerElementDefinition))]
     public ICollection<Freebie>? Freebies { get; set; } = null;
 
+    
     public RPGSystem RPGSystem { get; set; } = null!;
 }

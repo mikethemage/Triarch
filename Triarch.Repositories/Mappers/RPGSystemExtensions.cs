@@ -49,6 +49,14 @@ internal static class RPGSystemExtensions
         foreach (RPGElementDefinition elementDefinition in model.ElementDefinitions)
         {
             string name = elementDefinition.ElementName;
+
+            RPGElementType? elementType = model.ElementTypes.Where(x => x.TypeName == rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).ElementTypeName).FirstOrDefault();
+
+            if (elementType != null)
+            {
+                elementDefinition.ElementType = elementType;
+            }
+
             List<string> allowedChildrenNames = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).AllowedChildrenNames;
             List<RPGElementDefinition> allowedChildren = model.ElementDefinitions.Where(x => allowedChildrenNames.Contains(x.ElementName)).ToList();
             elementDefinition.AllowedChildren = allowedChildren;

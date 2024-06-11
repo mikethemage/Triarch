@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Triarch.Database.Models.Definitions;
 
@@ -18,7 +19,8 @@ public class RPGSystem
     public int OwnerUserId { get; set; } = 1;
 
     public ICollection<RPGElementType> ElementTypes { get; set; } = null!;
-
+        
+    
     public ICollection<RPGElementDefinition> ElementDefinitions { get; set; } = null!;
 
     public ICollection<Genre> Genres { get; set; } = null!;
