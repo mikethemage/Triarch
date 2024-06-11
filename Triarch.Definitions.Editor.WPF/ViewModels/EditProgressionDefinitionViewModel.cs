@@ -61,8 +61,8 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
             if(_context.Entry(_progression).Collection(x => x.Progressions).Query().Any())
             {
                 NextOrder = _context.Entry(_progression).Collection(x => x.Progressions).Query().Max(x => x.ProgressionLevel);
-            }
-            NextOrder++;
+                NextOrder++;
+            }            
 
             CurrentlyEditingItem = new ProgressionEntry
             {

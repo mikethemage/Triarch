@@ -14,7 +14,7 @@ internal static class GenreCostPerLevelExtensions
         return new GenreCostPerLevelDto
         {
             Id = genreCostPerLevel.Id,
-            GenreId = genreCostPerLevel.Genre.Id,
+            GenreName = genreCostPerLevel.Genre.GenreName,
             CostPerLevel = genreCostPerLevel.CostPerLevel            
         };
     }
@@ -23,8 +23,7 @@ internal static class GenreCostPerLevelExtensions
     {
         return new GenreCostPerLevel
         {
-            Id = genreCostPerLevelDto.Id,
-            
+            Id = genreCostPerLevelDto.Id,            
             CostPerLevel = genreCostPerLevelDto.CostPerLevel
         };
     }

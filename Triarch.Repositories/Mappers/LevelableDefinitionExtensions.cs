@@ -30,7 +30,7 @@ internal static class LevelableDefinitionExtensions
             CostPerLevel = levelableDefinitionDto.CostPerLevel,
             CostPerLevelDescription = levelableDefinitionDto.CostPerLevelDescription,
 
-            MultiGenreCostPerLevels = levelableDefinitionDto.MultiGenreCostPerLevels?.Select(x => x.ToModel()).ToList(),
+            
             
             
             Variants = levelableDefinitionDto.Variants?.Select(x => x.ToModel()).ToList(),

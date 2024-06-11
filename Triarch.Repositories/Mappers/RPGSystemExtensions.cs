@@ -64,6 +64,18 @@ internal static class RPGSystemExtensions
                 {
                     elementDefinition.LevelableData.Progression = model.Progressions.First(x => x.ProgressionType == progressionName);
                 }
+
+                List<GenreCostPerLevelDto>? multiGenreData = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).LevelableData?.MultiGenreCostPerLevels;
+                if (multiGenreData != null)
+                {
+                    elementDefinition.LevelableData.MultiGenreCostPerLevels = new List<GenreCostPerLevel>();
+                    foreach (GenreCostPerLevelDto genreCostPerLevelDto in multiGenreData)
+                    {
+                        GenreCostPerLevel newGenreCostPerLevel = genreCostPerLevelDto.ToModel();
+                        newGenreCostPerLevel.Genre = model.Genres.First(x => x.GenreName == genreCostPerLevelDto.GenreName);
+                        elementDefinition.LevelableData.MultiGenreCostPerLevels.Add(newGenreCostPerLevel);
+                    }
+                }
             }
 
             if(rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).Freebies != null)

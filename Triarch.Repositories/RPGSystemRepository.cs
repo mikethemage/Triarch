@@ -96,6 +96,63 @@ public class RPGSystemRepository : IRPGSystemRepository
             {
                 await HydrateSystem(existing);
                 _context.Entry(existing).CurrentValues.SetValues(rPGSystem);
+
+                foreach (Genre genre in existing.Genres)
+                {
+                    if (rPGSystem.Genres.Select(x => x.Id).Contains(genre.Id))
+                    {
+                        _context.Entry(genre).CurrentValues.SetValues(rPGSystem.Genres.First(x => x.Id == genre.Id));
+                    }
+                    else
+                    {
+                        rPGSystem.Genres.Remove(genre);
+                        _context.Remove(genre);
+                    }
+                }
+                foreach (Genre newGenre in rPGSystem.Genres.Where(x => x.Id == 0))
+                {
+                    existing.Genres.Add(newGenre);
+                    _context.Add(newGenre);
+                }
+
+                foreach (Progression progression in existing.Progressions)
+                {
+                    if(rPGSystem.Progressions.Select(x=>x.Id).Contains(progression.Id))
+                    {
+                        Progression updatedProgression = rPGSystem.Progressions.First(x => x.Id == progression.Id);
+                        _context.Entry(progression).CurrentValues.SetValues(updatedProgression);
+
+                        foreach (ProgressionEntry progressionEntry in progression.Progressions)
+                        {
+                            if (updatedProgression.Progressions.Select(x => x.Id).Contains(progressionEntry.Id))
+                            {
+                                _context.Entry(progressionEntry).CurrentValues.SetValues(updatedProgression.Progressions.First(x => x.Id == progressionEntry.Id));
+                            }
+                            else
+                            {
+                                progression.Progressions.Remove(progressionEntry);
+                                _context.Remove(progressionEntry);
+                            }
+                        }
+
+                        foreach (ProgressionEntry newProgressionEntry in updatedProgression.Progressions.Where(x=>x.Id==0))
+                        {
+                            progression.Progressions.Add(newProgressionEntry);
+                            _context.Add(newProgressionEntry);
+                        }
+                    }
+                    else
+                    {
+                        rPGSystem.Progressions.Remove(progression);
+                        _context.Remove(progression);
+                    }
+                }
+                foreach (Progression newProgression in rPGSystem.Progressions.Where(x=>x.Id==0))
+                {
+                    existing.Progressions.Add(newProgression);
+                    _context.Add(newProgression);
+                }
+
                 foreach (RPGElementType elementType in existing.ElementTypes)
                 {
                     if (rPGSystem.ElementTypes.Select(x=>x.Id).Contains(elementType.Id))
@@ -108,7 +165,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                         _context.Remove(elementType);
                     }
                 }
-                foreach (RPGElementType? newElementType in rPGSystem.ElementTypes.Where(x=>x.Id==0))
+                foreach (RPGElementType newElementType in rPGSystem.ElementTypes.Where(x=>x.Id==0))
                 {
                     existing.ElementTypes.Add(newElementType);
                     _context.Add(newElementType);
