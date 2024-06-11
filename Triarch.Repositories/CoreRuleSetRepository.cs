@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Triarch.Database;
 using Triarch.Dtos.Definitions;
+using Triarch.Database.Models.Definitions;
+using Triarch.Repositories.Mappers;
 
 namespace Triarch.Repositories;
 public class CoreRuleSetRepository : ICoreRuleSetRepository
@@ -19,27 +16,58 @@ public class CoreRuleSetRepository : ICoreRuleSetRepository
 
     public async Task<IEnumerable<CoreRulesetDto>> GetAllAsync()
     {
-        return new List<CoreRulesetDto>();
+        List<CoreRulesetDto> coreRulesetDtos = new List<CoreRulesetDto>();
+        List<CoreRuleset> rulesets = await _context.CoreRulesets.ToListAsync();
+        
+        foreach (CoreRuleset ruleset in rulesets)
+        {
+            coreRulesetDtos.Add(ruleset.ToDto());
+        }
+
+        return coreRulesetDtos;
     }
 
     public async Task<CoreRulesetDto> GetByIdAsync(int id)
     {
-        if (_context.CoreRulesets == null)
+        CoreRuleset? ruleset = await _context.CoreRulesets.Where(x=>x.Id==id).SingleOrDefaultAsync();
+        if(ruleset == null)
         {
-            throw new Exception("No Core Rule Sets found");
+            throw new Exception("Core Rule Set not found");
         }
 
-        return await _context.CoreRulesets.Select(x => new CoreRulesetDto { Id = x.Id, CoreRulesetName = x.CoreRulesetName }).SingleAsync();
-
+        return ruleset.ToDto();
     }
 
-    public async Task SaveAsync(CoreRulesetDto coreRuleSetDto)
+    public async Task<CoreRulesetDto> SaveAsync(CoreRulesetDto coreRuleSetDto)
     {
+        if(coreRuleSetDto.Id!=0)
+        {
+            CoreRuleset? existing = await _context.CoreRulesets.Where(x => x.Id == coreRuleSetDto.Id).SingleOrDefaultAsync();
+            if (existing != null)
+            {
+                existing.CoreRulesetName = coreRuleSetDto.CoreRulesetName;
+                await _context.SaveChangesAsync();
+                return existing.ToDto();
+            }
+        }
 
+        CoreRuleset newRuleset = coreRuleSetDto.ToModel();
+        _context.Add(newRuleset);
+        await _context.SaveChangesAsync();
+        return newRuleset.ToDto();
     }
 
     public async Task DeleteAsync(int id)
     {
-
+        CoreRuleset? existing = await _context.CoreRulesets.Where(x => x.Id == id).SingleOrDefaultAsync();
+        if (existing == null)
+        {
+            throw new Exception("Core Rule Set not found");
+        }
+        else
+        {
+            _context.Remove(existing);
+            await _context.SaveChangesAsync();
+        }
     }
 }

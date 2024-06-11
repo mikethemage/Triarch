@@ -24,114 +24,49 @@ public class CoreRulesetsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CoreRulesetDto>>> GetCoreRulesets()
     {
-        return Ok(await _coreRuleSetRepository.GetAllAsync());
-        //if (_context.CoreRulesets == null)
-        //{
-        //    return NotFound();
-        //} 
-
-        //return await _context.CoreRulesets.Select(x => new CoreRulesetDto { Id = x.Id, CoreRulesetName = x.CoreRulesetName }).ToListAsync();
+        return Ok(await _coreRuleSetRepository.GetAllAsync());        
     }
 
     // GET: api/CoreRulesets/5
     [HttpGet("{id}")]
     public async Task<ActionResult<CoreRulesetDto>> GetCoreRuleset(int id)
     {
-        //if (_context.CoreRulesets == null)
-        //{
-            return NotFound();
-        //}
-        //var coreRuleset = await _context.CoreRulesets.FindAsync(id);
-
-        //if (coreRuleset == null)
-        //{
-        //    return NotFound();
-        //}
-
-        //return new CoreRulesetDto
-        //{
-        //    Id = coreRuleset.Id,
-        //    CoreRulesetName = coreRuleset.CoreRulesetName
-        //};
-    }
-
-    // PUT: api/CoreRulesets/5
-    [HttpPut]
-    public async Task<IActionResult> PutCoreRuleset(CoreRulesetDto coreRulesetDTO)
-    {
-        //CoreRuleset coreRuleset = new CoreRuleset 
-        //{
-        //    Id = coreRulesetDTO.Id,
-        //    CoreRulesetName= coreRulesetDTO.CoreRulesetName
-        //};
-
-        //_context.Entry(coreRuleset).State = EntityState.Modified;
-
-        //try
-        //{
-        //    await _context.SaveChangesAsync();
-        //}
-        //catch (DbUpdateConcurrencyException)
-        //{
-        //    if (!CoreRulesetExists(coreRulesetDTO.Id))
-        //    {
-                return NotFound();
-        //    }
-        //    else
-        //    {
-        //        throw;
-        //    }
-        //}
-
-        //return NoContent();
-    }
+        try
+        {
+            return Ok(await _coreRuleSetRepository.GetByIdAsync(id));
+        }
+        catch (Exception ex)
+        {
+            return NotFound(ex.Message);
+        }
+    }    
 
     // POST: api/CoreRulesets
     [HttpPost]
     public async Task<ActionResult<CoreRulesetDto>> PostCoreRuleset(CoreRulesetDto coreRulesetDTO)
     {
-        return NotFound();
-      //if (_context.CoreRulesets == null)
-      //{
-      //    return Problem("Entity set 'TriarchDbContext.CoreRulesets' is null.");
-      //}
-      //  CoreRuleset coreRuleset = new CoreRuleset 
-      //  {
-      //      Id=0,
-      //      CoreRulesetName=coreRulesetDTO.CoreRulesetName
-      //  };
-      //  _context.CoreRulesets.Add(coreRuleset);
-      //  await _context.SaveChangesAsync();
-
-      //  coreRulesetDTO.Id = coreRuleset.Id;
-
-      //  return CreatedAtAction("GetCoreRuleset", new { id = coreRuleset.Id }, coreRulesetDTO);
+        try
+        {
+            return Ok(await _coreRuleSetRepository.SaveAsync(coreRulesetDTO));
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }       
     }
 
     // DELETE: api/CoreRulesets/5
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteCoreRuleset(int id)
+    public async Task<ActionResult> DeleteCoreRuleset(int id)
     {
-        return NotFound();
-        //if (_context.CoreRulesets == null)
-        //{
-        //    return NotFound();
-        //}
-        //var coreRuleset = await _context.CoreRulesets.FindAsync(id);
-        //if (coreRuleset == null)
-        //{
-        //    return NotFound();
-        //}
-
-        //_context.CoreRulesets.Remove(coreRuleset);
-        //await _context.SaveChangesAsync();
-
-        //return NoContent();
-    }
-
-    private bool CoreRulesetExists(int id)
-    {
-        return false;
-        //return (_context.CoreRulesets?.Any(e => e.Id == id)).GetValueOrDefault();
-    }
+        try
+        {
+            await _coreRuleSetRepository.DeleteAsync(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }       
+    }    
 }

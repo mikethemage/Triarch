@@ -8,6 +8,7 @@ public class RPGElementDefinitionDto
     public int Id { get; set; }
 
     [MaxLength(100)]
+    [Required]
     public string ElementName { get; set; } = null!;
 
     public int ElementTypeId { get; set; }
@@ -24,10 +25,10 @@ public class RPGElementDefinitionDto
     [DefaultValue(false)]
     public bool Human { get; set; } = false;
 
-    //Needs Many-Many mapping:    
-    public List<int> AllowedChildrenIds { get; set; } = [];
+      
+    public List<string> AllowedChildrenNames { get; set; } = [];
 
-    public List<int> AllowedParentsIds { get; set; } = [];
+    public List<string> AllowedParentsNames { get; set; } = [];
 
     public LevelableDefinitionDto? LevelableData { get; set; } = null;
 

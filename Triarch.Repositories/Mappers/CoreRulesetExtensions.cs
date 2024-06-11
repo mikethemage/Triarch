@@ -2,6 +2,7 @@
 using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories.Mappers;
+
 internal static class CoreRulesetExtensions
 {
     public static CoreRulesetDto ToDto(this CoreRuleset coreRuleset)

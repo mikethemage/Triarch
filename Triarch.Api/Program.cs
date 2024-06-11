@@ -17,6 +17,7 @@ internal class Program
         // Add services to the container.
         builder.Services.AddDbContext<TriarchDbContext>();
         builder.Services.AddTransient<IRPGSystemRepository, RPGSystemRepository>();
+        builder.Services.AddTransient<ICoreRuleSetRepository, CoreRuleSetRepository>();
 
         builder.Services.AddControllers();
 

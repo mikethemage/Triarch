@@ -14,7 +14,7 @@ internal static class FreebieExtensions
         return new FreebieDto
         {
             Id = freebie.Id,
-            FreebieElementDefinitionId = freebie.FreebieElementDefinitionId,
+            FreebieElementDefinitionName = freebie.FreebieElementDefinition.ElementName,
             FreeLevels = freebie.FreeLevels,
             RequiredLevels = freebie.RequiredLevels            
         };
@@ -25,7 +25,7 @@ internal static class FreebieExtensions
         return new Freebie
         {
             Id = freebieDto.Id,
-            FreebieElementDefinitionId = freebieDto.FreebieElementDefinitionId,
+            
             FreeLevels = freebieDto.FreeLevels,
             RequiredLevels = freebieDto.RequiredLevels
         };

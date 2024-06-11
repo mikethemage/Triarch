@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.Database.Models.Definitions;
+﻿using Triarch.Database.Models.Definitions;
 using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories.Mappers;
@@ -19,7 +14,7 @@ internal static class LevelableDefinitionExtensions
             CostPerLevel = levelableDefinition.CostPerLevel,
             CostPerLevelDescription = levelableDefinition.CostPerLevelDescription,
             MultiGenreCostPerLevels = levelableDefinition.MultiGenreCostPerLevels?.Select(x => x.ToDto()).ToList(),
-            ProgressionId = levelableDefinition.Progression?.Id,
+            ProgressionName = levelableDefinition.Progression?.ProgressionType,
             Variants = levelableDefinition.Variants?.Select(x => x.ToDto()).ToList(),
             SpecialPointsPerLevel = levelableDefinition.SpecialPointsPerLevel
         };

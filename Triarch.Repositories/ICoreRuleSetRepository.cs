@@ -6,5 +6,5 @@ public interface ICoreRuleSetRepository
     Task DeleteAsync(int id);
     Task<IEnumerable<CoreRulesetDto>> GetAllAsync();
     Task<CoreRulesetDto> GetByIdAsync(int id);
-    Task SaveAsync(CoreRulesetDto coreRuleSetDto);
+    Task<CoreRulesetDto> SaveAsync(CoreRulesetDto coreRuleSetDto);
 }

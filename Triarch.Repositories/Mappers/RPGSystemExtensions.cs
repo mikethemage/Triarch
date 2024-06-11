@@ -48,21 +48,31 @@ internal static class RPGSystemExtensions
 
         foreach (RPGElementDefinition elementDefinition in model.ElementDefinitions)
         {
-            int id = elementDefinition.Id;
-            List<int> allowedChildrenIds = rpgSystemDto.ElementDefinitions.First(x => x.Id == id).AllowedChildrenIds;
-            List<RPGElementDefinition> allowedChildren = model.ElementDefinitions.Where(x => allowedChildrenIds.Contains(x.Id)).ToList();
+            string name = elementDefinition.ElementName;
+            List<string> allowedChildrenNames = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).AllowedChildrenNames;
+            List<RPGElementDefinition> allowedChildren = model.ElementDefinitions.Where(x => allowedChildrenNames.Contains(x.ElementName)).ToList();
             elementDefinition.AllowedChildren = allowedChildren;
 
-            List<int> allowedParentsIds = rpgSystemDto.ElementDefinitions.First(x => x.Id == id).AllowedParentsIds;
-            List<RPGElementDefinition> allowedParents = model.ElementDefinitions.Where(x => allowedParentsIds.Contains(x.Id)).ToList();
+            List<string> allowedParentsNames = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).AllowedParentsNames;
+            List<RPGElementDefinition> allowedParents = model.ElementDefinitions.Where(x => allowedParentsNames.Contains(x.ElementName)).ToList();
             elementDefinition.AllowedParents = allowedParents;
 
             if (elementDefinition.LevelableData != null)
             {
-                int? progressionId = rpgSystemDto.ElementDefinitions.First(x => x.Id == id).LevelableData?.ProgressionId;
-                if (progressionId != null)
+                string? progressionName = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).LevelableData?.ProgressionName;
+                if (progressionName != null)
                 {
-                    elementDefinition.LevelableData.Progression = model.Progressions.First(x => x.Id == progressionId);
+                    elementDefinition.LevelableData.Progression = model.Progressions.First(x => x.ProgressionType == progressionName);
+                }
+            }
+
+            if(rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).Freebies != null)
+            {
+                foreach (FreebieDto freebieDto in rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).Freebies!)
+                {
+                    elementDefinition.Freebies = new List<Freebie>();
+                    Freebie newFreebie =  freebieDto.ToModel();
+                    newFreebie.FreebieElementDefinition = model.ElementDefinitions.First(x => x.ElementName == freebieDto.FreebieElementDefinitionName);                
                 }
             }
         }

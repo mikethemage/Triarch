@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Triarch.Dtos.Definitions;
 
 public class FreebieDto
 {   
     public int Id { get; set; }
-        
-    public int FreebieElementDefinitionId { get; set; }    
+
+    [Required]
+    public string FreebieElementDefinitionName { get; set; }  = null!;
 
     [DefaultValue(0)]
     public int FreeLevels { get; set; }  

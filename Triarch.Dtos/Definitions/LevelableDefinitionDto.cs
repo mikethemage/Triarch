@@ -19,7 +19,7 @@ public class LevelableDefinitionDto
 
     public List<GenreCostPerLevelDto>? MultiGenreCostPerLevels { get; set; } = null;  
 
-    public int? ProgressionId { get; set; } = null; 
+    public string? ProgressionName { get; set; } = null; 
 
 
     public List<VariantDefinitionDto>? Variants { get; set; } = null;    

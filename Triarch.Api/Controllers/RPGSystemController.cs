@@ -18,7 +18,7 @@ public class RPGSystemController : ControllerBase
 
     // GET: api/<RPGSystemController>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<RPGSystemDto>>> GetRPGSystems()
+    public async Task<ActionResult<IEnumerable<RPGSystemHeadingDto>>> GetRPGSystems()
     {
         try
         {
@@ -50,6 +50,6 @@ public class RPGSystemController : ControllerBase
     [HttpDelete("{id}")]
     public async Task Delete(int id)
     {
-
+        await _rPGSystemRepository.DeleteAsync(id);
     }
 }

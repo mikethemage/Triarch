@@ -16,8 +16,8 @@ internal static class ElementDefinitionExtensions
             PageNumbers = elementDefinition.PageNumbers,
             Human = elementDefinition.Human,
 
-            AllowedChildrenIds = elementDefinition.AllowedChildren.Select(x=>x.Id).ToList(),
-            AllowedParentsIds = elementDefinition.AllowedParents.Select(x => x.Id).ToList(),
+            AllowedChildrenNames = elementDefinition.AllowedChildren.Select(x=>x.ElementName).ToList(),
+            AllowedParentsNames = elementDefinition.AllowedParents.Select(x => x.ElementName).ToList(),
 
             LevelableData = elementDefinition.LevelableData?.ToDto(),
 
@@ -44,7 +44,7 @@ internal static class ElementDefinitionExtensions
 
             PointsContainerScale = elementDefinitionDto.PointsContainerScale,
 
-            Freebies = elementDefinitionDto.Freebies?.Select(x => x.ToModel()).ToList() 
+            
         };
     }
 }

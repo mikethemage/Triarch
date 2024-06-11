@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
+
 internal class EditProgressionDefinitionViewModel : ObservableViewModel
 {
     public bool EditItemShouldBeVisible
