@@ -14,6 +14,9 @@ public class Progression
     [DefaultValue(false)]
     public bool CustomProgression { get; set; } = false;
 
+    [DefaultValue(false)]
+    public bool Linear { get; set; } = false;    
+
     public ICollection<ProgressionEntry> Progressions { get; set; } = null!;
 
     public RPGSystem RPGSystem { get; set; } = null!;

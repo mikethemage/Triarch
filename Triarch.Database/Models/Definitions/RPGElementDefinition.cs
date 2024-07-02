@@ -14,7 +14,7 @@ public class RPGElementDefinition
 
     public RPGElementType ElementType { get; set; } = null!;
 
-    [MaxLength(100)]
+    [MaxLength(600)]
     public string? Description { get; set; } = null;  //Do we need a better name for this?  Used to reference description of effects
 
     [MaxLength(50)]

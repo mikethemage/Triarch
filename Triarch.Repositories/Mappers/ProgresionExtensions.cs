@@ -11,6 +11,7 @@ internal static class ProgresionExtensions
             Id = progression.Id,
             ProgressionType = progression.ProgressionType,
             CustomProgression = progression.CustomProgression,
+            Linear = progression.Linear,
             Progressions = progression.Progressions.Select(x => x.ToDto()).ToList()
         };
     }
@@ -22,6 +23,7 @@ internal static class ProgresionExtensions
             Id = progressionDto.Id,
             ProgressionType = progressionDto.ProgressionType,
             CustomProgression = progressionDto.CustomProgression,
+            Linear = progressionDto.Linear,
             Progressions = progressionDto.Progressions.Select(x => x.ToModel()).ToList()
         };
     }

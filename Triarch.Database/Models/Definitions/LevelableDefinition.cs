@@ -22,6 +22,9 @@ public class LevelableDefinition
 
     public Progression? Progression { get; set; } = null; //Has to be levelable to have progression
 
+    
+    public bool? ProgressionReversed { get; set; } = null;
+
 
 
     public ICollection<VariantDefinition>? Variants { get; set; } = null; //Has to be levelable to have variants?  Are all variants levelable???    

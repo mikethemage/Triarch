@@ -7,7 +7,7 @@ public class ProgressionEntry
     [Key]
     public int Id { get; set; }
 
-    [MaxLength(100)]
+    [MaxLength(400)]
     public string Text { get; set; } = null!;
 
     public int ProgressionLevel { get; set; }

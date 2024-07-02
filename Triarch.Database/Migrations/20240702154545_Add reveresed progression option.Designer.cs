@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Triarch.Database;
 
@@ -11,9 +12,11 @@ using Triarch.Database;
 namespace Triarch.Database.Migrations
 {
     [DbContext(typeof(TriarchDbContext))]
-    partial class TriarchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240702154545_Add reveresed progression option")]
+    partial class Addreveresedprogressionoption
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,9 +163,6 @@ namespace Triarch.Database.Migrations
                     b.Property<int?>("ProgressionId")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("ProgressionReversed")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("SpecialPointsPerLevel")
                         .HasColumnType("int");
 
@@ -194,6 +194,9 @@ namespace Triarch.Database.Migrations
 
                     b.Property<int>("RPGSystemId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Reversed")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

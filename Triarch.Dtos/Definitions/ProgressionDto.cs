@@ -13,5 +13,10 @@ public class ProgressionDto
     [DefaultValue(false)]
     public bool CustomProgression { get; set; } = false;
 
+    [DefaultValue(false)]
+    public bool Linear { get; set; } = false;
+
+    
+
     public List<ProgressionEntryDto> Progressions { get; set; } = [];
 }

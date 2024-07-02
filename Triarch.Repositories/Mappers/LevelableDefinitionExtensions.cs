@@ -15,6 +15,7 @@ internal static class LevelableDefinitionExtensions
             CostPerLevelDescription = levelableDefinition.CostPerLevelDescription,
             MultiGenreCostPerLevels = levelableDefinition.MultiGenreCostPerLevels?.Select(x => x.ToDto()).ToList(),
             ProgressionName = levelableDefinition.Progression?.ProgressionType,
+            ProgressionReversed = levelableDefinition.ProgressionReversed,
             Variants = levelableDefinition.Variants?.Select(x => x.ToDto()).ToList(),
             SpecialPointsPerLevel = levelableDefinition.SpecialPointsPerLevel
         };
@@ -29,10 +30,7 @@ internal static class LevelableDefinitionExtensions
             EnforceMaxLevel = levelableDefinitionDto.EnforceMaxLevel,
             CostPerLevel = levelableDefinitionDto.CostPerLevel,
             CostPerLevelDescription = levelableDefinitionDto.CostPerLevelDescription,
-
-            
-            
-            
+            ProgressionReversed=levelableDefinitionDto.ProgressionReversed,           
             Variants = levelableDefinitionDto.Variants?.Select(x => x.ToModel()).ToList(),
             SpecialPointsPerLevel = levelableDefinitionDto.SpecialPointsPerLevel
         };

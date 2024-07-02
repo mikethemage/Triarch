@@ -19,8 +19,9 @@ public class LevelableDefinitionDto
 
     public List<GenreCostPerLevelDto>? MultiGenreCostPerLevels { get; set; } = null;  
 
-    public string? ProgressionName { get; set; } = null; 
-
+    public string? ProgressionName { get; set; } = null;
+    
+    public bool? ProgressionReversed { get; set; } = null;
 
     public List<VariantDefinitionDto>? Variants { get; set; } = null;    
 
