@@ -112,7 +112,7 @@ internal class Program
 
             if (inputElement.HasLevel)
             {
-                LevelableDefinitionDto levellableData = new LevelableDefinitionDto
+                LevelableDefinitionDto levelableData = new LevelableDefinitionDto
                 {
                     MaxLevel = inputElement.MaxLevel,
                     CostPerLevel = inputElement.CostperLevel,
@@ -137,14 +137,14 @@ internal class Program
                             progressionName = progressionName.Replace(" Rev", "");
                         }
 
-                        levellableData.ProgressionName = progressionName;
-                        levellableData.ProgressionReversed = reversed;
+                        levelableData.ProgressionName = progressionName;
+                        levelableData.ProgressionReversed = reversed;
                     }                    
                 }
                 else if (inputElement.CustomProgression != null && inputElement.CustomProgression.Count > 0)
                 {
                     string customProgressionName = inputElement.Name + "Custom";
-                    levellableData.ProgressionName = customProgressionName;
+                    levelableData.ProgressionName = customProgressionName;
 
                     ProgressionDto customProgression = new ProgressionDto
                     {
@@ -169,7 +169,7 @@ internal class Program
 
                 if (inputElement.Variants != null && inputElement.Variants.Count > 0)
                 {
-                    levellableData.Variants = new List<VariantDefinitionDto>();
+                    levelableData.Variants = new List<VariantDefinitionDto>();
 
                     foreach (VariantListingSerialized inputVariant in inputElement.Variants)
                     {
@@ -180,19 +180,19 @@ internal class Program
                             Description = inputVariant.Desc,
                             IsDefault = inputVariant.DefaultVariant
                         };
-                        levellableData.Variants.Add(outputVariant);
+                        levelableData.Variants.Add(outputVariant);
                     }
                 }
 
                 if (inputElement.MultiGenre == true && inputElement.GenrePoints!=null)
                 {
-                    levellableData.MultiGenreCostPerLevels = new List<GenreCostPerLevelDto>();
+                    levelableData.MultiGenreCostPerLevels = new List<GenreCostPerLevelDto>();
                     for (int i = 0; i < inputElement.GenrePoints.Count; i++)
                     {
                         GenreDto? genre = outputSystem.Genres.Where(x => x.GenreOrder == i).FirstOrDefault();
                         if (genre != null)
                         {
-                            levellableData.MultiGenreCostPerLevels.Add(new GenreCostPerLevelDto
+                            levelableData.MultiGenreCostPerLevels.Add(new GenreCostPerLevelDto
                             {
                                 GenreName = genre.GenreName,
                                 CostPerLevel = inputElement.GenrePoints[i]
@@ -201,7 +201,7 @@ internal class Program
                     }
                 }
 
-                outputElement.LevelableData = levellableData;
+                outputElement.LevelableData = levelableData;
             }
 
             if (inputElement.HasFreebie)
