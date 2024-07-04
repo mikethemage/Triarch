@@ -1,33 +1,28 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class LevelableDefinition
+public partial class LevelableDefinition
 {
-    [Key]
     public int Id { get; set; }
 
     public int? MaxLevel { get; set; }
 
-    [DefaultValue(false)]
-    public bool EnforceMaxLevel { get; set; } = false;
+    public bool EnforceMaxLevel { get; set; }
 
-    public int? CostPerLevel { get; set; } = null;
+    public int? CostPerLevel { get; set; }
 
-    [MaxLength(100)]
-    public string? CostPerLevelDescription { get; set; } = null;
+    public string? CostPerLevelDescription { get; set; }   
 
-    public ICollection<GenreCostPerLevel>? MultiGenreCostPerLevels { get; set; } = null;  //Has to be levelable to have custom points per level
+    public int? SpecialPointsPerLevel { get; set; }
 
-    public Progression? Progression { get; set; } = null; //Has to be levelable to have progression
+    public int? ProgressionId { get; set; }
 
-    
-    public bool? ProgressionReversed { get; set; } = null;
+    public bool? ProgressionReversed { get; set; }
 
+    public virtual ICollection<GenreCostPerLevel> GenreCostPerLevels { get; set; } = new List<GenreCostPerLevel>();
 
+    public virtual Progression? Progression { get; set; }
 
-    public ICollection<VariantDefinition>? Variants { get; set; } = null; //Has to be levelable to have variants?  Are all variants levelable???    
+    public virtual RPGElementDefinition RPGElementDefinition { get; set; } = null!;
 
-    public int? SpecialPointsPerLevel { get; set; } = null; //Must be levelable to have special points per level
+    public virtual ICollection<VariantDefinition> VariantDefinitions { get; set; } = new List<VariantDefinition>();
 }

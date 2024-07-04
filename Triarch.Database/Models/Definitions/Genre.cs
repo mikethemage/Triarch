@@ -1,16 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class Genre
+public partial class Genre
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(100)]
-    public string GenreName { get; set; } = null!;
+    public string GenreName { get; set; } = string.Empty;
 
     public int GenreOrder { get; set; }
 
-    public RPGSystem RPGSystem { get; set; } = null!;
+    public int RPGSystemId { get; set; }
+
+    public virtual ICollection<GenreCostPerLevel> GenreCostPerLevels { get; set; } = new List<GenreCostPerLevel>();
+
+    public virtual RPGSystem RPGSystem { get; set; } = null!;
 }

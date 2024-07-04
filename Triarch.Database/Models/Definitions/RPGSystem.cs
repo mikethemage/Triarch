@@ -1,29 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class RPGSystem
+public partial class RPGSystem
 {
-    [Key]
     public int Id { get; set; }
 
-    public CoreRuleset Ruleset { get; set; } = null!;
+    public int RulesetId { get; set; }
 
-    [MaxLength(60)]
     public string SystemName { get; set; } = null!;
 
-    [MaxLength(250)]
-    public string? DescriptiveName { get; set; } = null;
+    public string? DescriptiveName { get; set; }
 
-    public int OwnerUserId { get; set; } = 1;
+    public int OwnerUserId { get; set; }
 
-    public ICollection<RPGElementType> ElementTypes { get; set; } = null!;
-        
-    
-    public ICollection<RPGElementDefinition> ElementDefinitions { get; set; } = null!;
+    public virtual ICollection<Genre> Genres { get; set; } = new List<Genre>();
 
-    public ICollection<Genre> Genres { get; set; } = null!;
+    public virtual ICollection<Progression> Progressions { get; set; } = new List<Progression>();
 
-    public ICollection<Progression> Progressions { get; set; } = null!;
+    public virtual ICollection<RPGElementDefinition> RPGElementDefinitions { get; set; } = new List<RPGElementDefinition>();
+
+    public virtual ICollection<RPGElementType> RPGElementTypes { get; set; } = new List<RPGElementType>();
+
+    public virtual CoreRuleset Ruleset { get; set; } = null!;
 }

@@ -7,5 +7,5 @@ public interface IRPGSystemRepository
     Task<IEnumerable<RPGSystemHeadingDto>> GetAllAsync();
     Task<IEnumerable<RPGSystemHeadingDto>> GetAllByUserIdAsync(int userId);
     Task<RPGSystemDto> GetByIdAsync(int id);
-    Task SaveAsync(RPGSystemDto rPGSystemDto);
+    Task<RPGSystemDto> SaveAsync(RPGSystemDto rPGSystemDto);
 }

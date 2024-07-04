@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Triarch.Repositories;
 using Triarch.Dtos.Definitions;
+using Triarch.Repositories.Exceptions;
 
 namespace Triarch.Api.Controllers;
 
@@ -35,7 +36,7 @@ public class CoreRulesetsController : ControllerBase
         {
             return Ok(await _coreRuleSetRepository.GetByIdAsync(id));
         }
-        catch (Exception ex)
+        catch (CoreRulesetNotFoundException ex)
         {
             return NotFound(ex.Message);
         }
@@ -47,9 +48,9 @@ public class CoreRulesetsController : ControllerBase
     {
         try
         {
-            return Ok(await _coreRuleSetRepository.SaveAsync(coreRulesetDTO));
+            return CreatedAtAction(nameof(GetCoreRuleset),await _coreRuleSetRepository.SaveAsync(coreRulesetDTO));
         }
-        catch (Exception ex)
+        catch (CoreRulesetConflictException ex)
         {
             return BadRequest(ex.Message);
         }       
@@ -62,11 +63,11 @@ public class CoreRulesetsController : ControllerBase
         try
         {
             await _coreRuleSetRepository.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
-        catch (Exception ex)
+        catch (CoreRulesetNotFoundException ex)
         {
-            return BadRequest(ex.Message);
+            return NotFound(ex.Message);
         }       
     }    
 }

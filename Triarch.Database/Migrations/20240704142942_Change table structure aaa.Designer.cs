@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Triarch.Database;
 
@@ -11,9 +12,11 @@ using Triarch.Database;
 namespace Triarch.Database.Migrations
 {
     [DbContext(typeof(TriarchDbContext))]
-    partial class TriarchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240704142942_Change table structure aaa")]
+    partial class Changetablestructureaaa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,7 +118,7 @@ namespace Triarch.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CostPerLevel")
+                    b.Property<int>("CostPerLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("CostPerLevelDescription")
@@ -249,8 +252,6 @@ namespace Triarch.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ElementTypeId");
-
                     b.HasIndex("LevelableDataId")
                         .IsUnique()
                         .HasFilter("[LevelableDataId] IS NOT NULL");
@@ -267,9 +268,6 @@ namespace Triarch.Database.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("BuiltIn")
-                        .HasColumnType("bit");
 
                     b.Property<int>("RPGSystemId")
                         .HasColumnType("int");
@@ -461,12 +459,6 @@ namespace Triarch.Database.Migrations
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementDefinition", b =>
                 {
-                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementType", "ElementType")
-                        .WithMany()
-                        .HasForeignKey("ElementTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "LevelableData")
                         .WithOne("RPGElementDefinition")
                         .HasForeignKey("Triarch.Database.Models.Definitions.RPGElementDefinition", "LevelableDataId")
@@ -477,8 +469,6 @@ namespace Triarch.Database.Migrations
                         .HasForeignKey("RPGSystemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ElementType");
 
                     b.Navigation("LevelableData");
 

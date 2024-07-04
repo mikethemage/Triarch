@@ -37,6 +37,11 @@
       "id": 0,
       "typeName": "Skill",
       "typeOrder": 5
+    }    ,
+    {
+      "id": 0,
+      "typeName": "Character",
+      "typeOrder": 6
     }
   ],
   "elementDefinitions": [

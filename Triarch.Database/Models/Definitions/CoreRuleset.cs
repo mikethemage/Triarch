@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class CoreRuleset
+public partial class CoreRuleset
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(60)]
-    public string CoreRulesetName { get; set; } = null!;
+    public string CoreRulesetName { get; set; } = string.Empty;
 
-    public ICollection<RPGSystem> RPGSystems { get; set; } = null!;
+    public virtual ICollection<RPGSystem> RPGSystems { get; set; } = new List<RPGSystem>();
 }

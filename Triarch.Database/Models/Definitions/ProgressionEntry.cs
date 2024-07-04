@@ -1,16 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class ProgressionEntry
+public partial class ProgressionEntry
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(400)]
-    public string Text { get; set; } = null!;
+    public string Text { get; set; } = string.Empty;
 
     public int ProgressionLevel { get; set; }
 
-    public Progression Progression { get; set; } = null!;
+    public int ProgressionId { get; set; }
+
+    public virtual Progression Progression { get; set; } = null!;
 }

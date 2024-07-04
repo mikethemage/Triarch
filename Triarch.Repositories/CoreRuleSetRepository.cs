@@ -3,6 +3,8 @@ using Triarch.Database;
 using Triarch.Dtos.Definitions;
 using Triarch.Database.Models.Definitions;
 using Triarch.Repositories.Mappers;
+using Triarch.Repositories.Exceptions;
+
 
 namespace Triarch.Repositories;
 public class CoreRuleSetRepository : ICoreRuleSetRepository
@@ -16,45 +18,70 @@ public class CoreRuleSetRepository : ICoreRuleSetRepository
 
     public async Task<IEnumerable<CoreRulesetDto>> GetAllAsync()
     {
-        List<CoreRulesetDto> coreRulesetDtos = new List<CoreRulesetDto>();
-        List<CoreRuleset> rulesets = await _context.CoreRulesets.ToListAsync();
-        
+        List<CoreRulesetDto> output = new List<CoreRulesetDto>();
+        List<CoreRuleset> rulesets = await _context.CoreRulesets.ToListAsync();               
+
         foreach (CoreRuleset ruleset in rulesets)
         {
-            coreRulesetDtos.Add(ruleset.ToDto());
+            output.Add(ruleset.ToDto());
         }
 
-        return coreRulesetDtos;
+        return output;
     }
 
     public async Task<CoreRulesetDto> GetByIdAsync(int id)
     {
-        CoreRuleset? ruleset = await _context.CoreRulesets.Where(x=>x.Id==id).SingleOrDefaultAsync();
-        if(ruleset == null)
+        CoreRuleset? ruleset = await _context.CoreRulesets.Where(x => x.Id == id).SingleOrDefaultAsync();
+        if (ruleset == null)
         {
-            throw new Exception("Core Rule Set not found");
+            throw new CoreRulesetNotFoundException($"Core Rule Set not found: {id}", id);
         }
 
         return ruleset.ToDto();
     }
 
-    public async Task<CoreRulesetDto> SaveAsync(CoreRulesetDto coreRuleSetDto)
+    public async Task<CoreRulesetDto> SaveAsync(CoreRulesetDto input)
     {
-        if(coreRuleSetDto.Id!=0)
+        CoreRuleset? existing;
+
+        if (input.Id != 0)
         {
-            CoreRuleset? existing = await _context.CoreRulesets.Where(x => x.Id == coreRuleSetDto.Id).SingleOrDefaultAsync();
+            existing = await _context.CoreRulesets.Where(x => x.Id == input.Id).SingleOrDefaultAsync();
             if (existing != null)
             {
-                existing.CoreRulesetName = coreRuleSetDto.CoreRulesetName;
-                await _context.SaveChangesAsync();
+                if(existing.CoreRulesetName!=input.CoreRulesetName)
+                {
+                    //Rename existing Id
+                    CoreRuleset? conflicting = await _context.CoreRulesets.Where(x => x.Id != existing.Id && x.CoreRulesetName == input.CoreRulesetName).FirstOrDefaultAsync();
+                    if (conflicting != null)
+                    {
+                        //Errror - conflicting name found:
+                        throw new CoreRulesetConflictException($"Error: cannot save ruleset id: {input.Id} name: {input.CoreRulesetName}.  Conflict with id: {conflicting.Id}, name: {conflicting.CoreRulesetName}.",
+                                                               existing.Id,
+                                                               existing.CoreRulesetName,
+                                                               input.CoreRulesetName,
+                                                               conflicting.Id);
+                    }
+                    existing.CoreRulesetName = input.CoreRulesetName;
+                    await _context.SaveChangesAsync();                    
+                }
                 return existing.ToDto();
-            }
+            }            
         }
 
-        CoreRuleset newRuleset = coreRuleSetDto.ToModel();
-        _context.Add(newRuleset);
-        await _context.SaveChangesAsync();
-        return newRuleset.ToDto();
+        existing = await _context.CoreRulesets.Where(x => x.CoreRulesetName == input.CoreRulesetName).FirstOrDefaultAsync();
+        if (existing != null)
+        {
+            return existing.ToDto();
+        }
+        else
+        {
+            //Add new
+            var toAdd =input.ToModel();
+            _context.Add(toAdd);
+            await _context.SaveChangesAsync();
+            return toAdd.ToDto();
+        }        
     }
 
     public async Task DeleteAsync(int id)
@@ -62,7 +89,7 @@ public class CoreRuleSetRepository : ICoreRuleSetRepository
         CoreRuleset? existing = await _context.CoreRulesets.Where(x => x.Id == id).SingleOrDefaultAsync();
         if (existing == null)
         {
-            throw new Exception("Core Rule Set not found");
+            throw new CoreRulesetNotFoundException($"Core Rule Set not found: {id}", id);
         }
         else
         {

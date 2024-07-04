@@ -1,24 +1,29 @@
-﻿using Triarch.Database.Models.Definitions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Triarch.Database.Models.Definitions;
 using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories.Mappers;
-
 internal static class CoreRulesetExtensions
 {
-    public static CoreRulesetDto ToDto(this CoreRuleset coreRuleset)
+    public static CoreRulesetDto ToDto(this CoreRuleset model)
     {
         return new CoreRulesetDto
         {
-            Id = coreRuleset.Id,
-            CoreRulesetName = coreRuleset.CoreRulesetName
+            Id = model.Id,
+            CoreRulesetName = model.CoreRulesetName
         };
     }
-    public static CoreRuleset ToModel(this CoreRulesetDto coreRulesetDto)
+
+    public static CoreRuleset ToModel(this CoreRulesetDto dto)
     {
         return new CoreRuleset
         {
-            Id = coreRulesetDto.Id,
-            CoreRulesetName = coreRulesetDto.CoreRulesetName
+            Id = dto.Id,
+            CoreRulesetName = dto.CoreRulesetName
         };
     }
 }

@@ -1,15 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class GenreCostPerLevel
+public partial class GenreCostPerLevel
 {
-    [Key]
     public int Id { get; set; }
 
-    public Genre Genre { get; set; } = null!;
+    public int GenreId { get; set; }
 
-    public LevelableDefinition Levelable { get; set; } = null!;
+    public int LevelableId { get; set; }
 
     public int CostPerLevel { get; set; }
+
+    public virtual Genre Genre { get; set; } = null!;
+
+    public virtual LevelableDefinition Levelable { get; set; } = null!;
 }

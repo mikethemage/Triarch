@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Triarch.Repositories;
 using Triarch.Dtos.Definitions;
+using Triarch.Repositories.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -28,28 +29,53 @@ public class RPGSystemController : ControllerBase
         {
             return NotFound(ex.Message);
         }
-        
+
     }
 
     // GET api/<RPGSystemController>/5
     [HttpGet("{id}")]
-    public async Task<RPGSystemDto> Get(int id)
+    public async Task<ActionResult<RPGSystemDto>> Get(int id)
     {
-        return await _rPGSystemRepository.GetByIdAsync(id);
+        try
+        {
+            return Ok(await _rPGSystemRepository.GetByIdAsync(id));
+        }
+        catch (RPGSystemNotFoundException ex) 
+        {
+            return NotFound(ex.Message);
+        }
     }
 
     // POST api/<RPGSystemController>
     [HttpPost]
-    public async Task Post([FromBody] RPGSystemDto value)
+    public async Task<ActionResult<RPGSystemDto>> Post([FromBody] RPGSystemDto value)
     {
-        await _rPGSystemRepository.SaveAsync(value);
+        try
+        {
+            return CreatedAtAction(nameof(Get), await _rPGSystemRepository.SaveAsync(value));
+            
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        
     }
-    
+
 
     // DELETE api/<RPGSystemController>/5
     [HttpDelete("{id}")]
-    public async Task Delete(int id)
+    public async Task<ActionResult> Delete(int id)
     {
-        await _rPGSystemRepository.DeleteAsync(id);
+        try
+        {
+            await _rPGSystemRepository.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (RPGSystemNotFoundException ex)
+        {
+            return NotFound(ex.Message);  
+        }
+        
     }
 }

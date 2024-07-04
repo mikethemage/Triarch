@@ -350,10 +350,7 @@ namespace TriarchDbFirst.Migrations
                 table: "Rpgsystems",
                 column: "RulesetId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_VariantDefinitions_LevelableDefinitionId",
-                table: "VariantDefinitions",
-                column: "LevelableDefinitionId");
+            
         }
 
         /// <inheritdoc />

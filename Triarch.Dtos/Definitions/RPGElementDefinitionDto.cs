@@ -29,7 +29,7 @@ public class RPGElementDefinitionDto
       
     public List<string> AllowedChildrenNames { get; set; } = [];
 
-    public List<string> AllowedParentsNames { get; set; } = [];
+    
 
     public LevelableDefinitionDto? LevelableData { get; set; } = null;
 

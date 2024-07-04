@@ -1,23 +1,18 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class VariantDefinition
+public partial class VariantDefinition
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(100)]
     public string VariantName { get; set; } = null!;
 
     public int CostPerLevel { get; set; }
 
-    [MaxLength(250)]
-    public string? Description { get; set; } = null;
+    public string? Description { get; set; }
 
-    [DefaultValue(false)]
-    public bool IsDefault { get; set; } = false;
+    public bool IsDefault { get; set; }
 
-    public RPGElementDefinition ElementDefinition { get; set; } = null!;
+    public int LevelableDefinitionId { get; set; }
+
+    public virtual LevelableDefinition? LevelableDefinition { get; set; }
 }

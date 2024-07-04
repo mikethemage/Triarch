@@ -1,23 +1,20 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class Progression
+public partial class Progression
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(100)]
     public string ProgressionType { get; set; } = null!;
 
-    [DefaultValue(false)]
-    public bool CustomProgression { get; set; } = false;
+    public bool CustomProgression { get; set; }
 
-    [DefaultValue(false)]
-    public bool Linear { get; set; } = false;    
+    public int RPGSystemId { get; set; }
 
-    public ICollection<ProgressionEntry> Progressions { get; set; } = null!;
+    public bool Linear { get; set; }
 
-    public RPGSystem RPGSystem { get; set; } = null!;
+    public virtual ICollection<LevelableDefinition> LevelableDefinitions { get; set; } = new List<LevelableDefinition>();
+
+    public virtual ICollection<ProgressionEntry> ProgressionEntries { get; set; } = new List<ProgressionEntry>();
+
+    public virtual RPGSystem RPGSystem { get; set; } = null!;
 }
