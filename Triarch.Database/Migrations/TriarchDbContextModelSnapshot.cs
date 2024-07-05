@@ -122,7 +122,7 @@ namespace Triarch.Database.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("EnforceMaxLevel")
+                    b.Property<bool?>("EnforceMaxLevel")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
@@ -475,7 +475,7 @@ namespace Triarch.Database.Migrations
                     b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
                         .WithMany("RPGElementDefinitions")
                         .HasForeignKey("RPGSystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("ElementType");

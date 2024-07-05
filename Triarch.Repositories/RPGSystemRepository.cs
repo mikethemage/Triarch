@@ -27,6 +27,33 @@ public class RPGSystemRepository : IRPGSystemRepository
         return ConvertToHeadings(systems);
     }
 
+    private async Task HydrateSystem(RPGSystem system)
+    {
+        system.Genres = await _context.Genres.Where(x => x.RPGSystemId == system.Id).ToListAsync();
+        system.Progressions = await _context.Progressions.Where(x => x.RPGSystemId == system.Id).ToListAsync();
+        foreach (Progression progression in system.Progressions)
+        {
+            progression.ProgressionEntries = await _context.ProgressionEntries.Where(x => x.ProgressionId == progression.Id).ToListAsync();
+        }
+
+        system.RPGElementTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == system.Id).ToListAsync();
+
+        system.RPGElementDefinitions = await _context.RPGElementDefinitions.Where(x => x.RPGSystemId == system.Id)
+           .Include(x => x.LevelableData)
+           .Include(x => x.AllowedChildren)
+           .ToListAsync();
+
+        foreach (RPGElementDefinition elementDefinition in system.RPGElementDefinitions)
+        {
+            if (elementDefinition.LevelableData != null)
+            {
+                elementDefinition.LevelableData.VariantDefinitions = await _context.VariantDefinitions.Where(x => x.LevelableDefinitionId == elementDefinition.LevelableData.Id).ToListAsync();
+            }
+
+            elementDefinition.Freebies = await _context.RPGFreebies.Where(x => x.OwnerElementDefinitionId == elementDefinition.Id).ToListAsync();
+        }
+    }
+
     public async Task<RPGSystemDto> GetByIdAsync(int id)
     {
         RPGSystem? system = await _context.RPGSystems.Where(x => x.Id == id).Include(x => x.Ruleset).SingleOrDefaultAsync();
@@ -36,142 +63,12 @@ public class RPGSystemRepository : IRPGSystemRepository
             throw new RPGSystemNotFoundException($"RPG System not found: {id}");
         }
 
-        RPGSystemDto output = new RPGSystemDto
-        {
-            Id = system.Id,
-            SystemName = system.SystemName,
-            DescriptiveName = system.DescriptiveName,
-            OwnerUserId = system.OwnerUserId,
-            Ruleset = system.Ruleset.ToDto()
-        };
+        await HydrateSystem(system);
 
-        List<Genre> genres = await _context.Genres.Where(x => x.RPGSystemId == system.Id).ToListAsync();
-
-        output.Genres = genres.Select(x =>
-                new GenreDto
-                {
-                    Id = x.Id,
-                    GenreName = x.GenreName,
-                    GenreOrder = x.GenreOrder,
-                }
-            ).ToList();
-
-        List<ProgressionDto> progressionDtos = new List<ProgressionDto>();
-        List<Progression> progressions = await _context.Progressions.Where(x => x.RPGSystemId == system.Id).ToListAsync();
-        foreach (Progression progression in progressions)
-        {
-            List<ProgressionEntry> progressionEntries = await _context.ProgressionEntries.Where(x => x.ProgressionId == progression.Id).ToListAsync();
-
-            progressionDtos.Add(new ProgressionDto
-            {
-                Id = progression.Id,
-                ProgressionType = progression.ProgressionType,
-                CustomProgression = progression.CustomProgression,
-                Linear = progression.Linear,
-                Progressions = progressionEntries.Select(x => new ProgressionEntryDto
-                {
-                    Id = x.Id,
-                    ProgressionLevel = x.ProgressionLevel,
-                    Text = x.Text
-                }).ToList()
-            });
-        }
-
-        output.Progressions = progressionDtos;
-
-        List<RPGElementType> elementTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == system.Id).ToListAsync();
-        output.ElementTypes = elementTypes.Select(x => new RPGElementTypeDto
-        {
-            Id = x.Id,
-            TypeName = x.TypeName,
-            TypeOrder = x.TypeOrder
-        }).ToList();
-
-        List<RPGElementDefinitionDto> elementDefinitionDtos = new List<RPGElementDefinitionDto>();
-
-        List<RPGElementDefinition> elementDefinitions = await _context.RPGElementDefinitions.Where(x => x.RPGSystemId == system.Id)
-            .Include(x => x.LevelableData)
-            .Include(x => x.AllowedChildren)
-            .ToListAsync();
-
-        foreach (RPGElementDefinition elementDefinition in elementDefinitions)
-        {
-            RPGElementDefinitionDto elementDefinitionDto = new RPGElementDefinitionDto
-            {
-                Id = elementDefinition.Id,
-                ElementName = elementDefinition.ElementName,
-                ElementTypeName = elementTypes.Where(x => x.Id == elementDefinition.ElementTypeId).First().TypeName,
-                Description = elementDefinition.Description,
-                Human = elementDefinition.Human,
-                PageNumbers = elementDefinition.PageNumbers,
-                Stat = elementDefinition.Stat,
-                PointsContainerScale = elementDefinition.PointsContainerScale,
-                AllowedChildrenNames = new List<string>()
-            };
-
-            if (elementDefinition.LevelableData != null)
-            {
-                elementDefinitionDto.LevelableData = new LevelableDefinitionDto
-                {
-                    Id = elementDefinition.LevelableData.Id,
-                    CostPerLevel = elementDefinition.LevelableData.CostPerLevel,
-                    CostPerLevelDescription = elementDefinition.LevelableData.CostPerLevelDescription,
-                    EnforceMaxLevel = elementDefinition.LevelableData.EnforceMaxLevel,
-                    MaxLevel = elementDefinition.LevelableData.MaxLevel,
-                    ProgressionReversed = elementDefinition.LevelableData.ProgressionReversed,
-                    SpecialPointsPerLevel = elementDefinition.LevelableData.SpecialPointsPerLevel
-                };
-                if (elementDefinition.LevelableData.ProgressionId != null)
-                {
-                    elementDefinitionDto.LevelableData.ProgressionName =
-                         progressions.Where(x => x.Id == elementDefinition.LevelableData.ProgressionId).First().ProgressionType;
-                }
-                if (elementDefinition.LevelableData.VariantDefinitions != null)
-                {
-                    elementDefinitionDto.LevelableData.Variants = new List<VariantDefinitionDto>();
-
-                    foreach (VariantDefinition variantDefinition in elementDefinition.LevelableData.VariantDefinitions)
-                    {
-                        elementDefinitionDto.LevelableData.Variants.Add(new VariantDefinitionDto
-                        {
-                            Id = variantDefinition.Id,
-                            VariantName = variantDefinition.VariantName,
-                            Description = variantDefinition.Description,
-                            IsDefault = variantDefinition.IsDefault,
-                            CostPerLevel = variantDefinition.CostPerLevel
-                        });
-                    }
-                }
-            }
-
-            foreach (RPGElementDefinition allowedChild in elementDefinition.AllowedChildren)
-            {
-                elementDefinitionDto.AllowedChildrenNames.Add(allowedChild.ElementName);
-            }
-
-            List<RPGFreebie> Freebies = await _context.RPGFreebies.Where(x => x.OwnerElementDefinitionId == elementDefinition.Id).ToListAsync();
-            if (Freebies.Count > 0)
-            {
-                elementDefinitionDto.Freebies = new List<FreebieDto>();
-                foreach (RPGFreebie freebie in Freebies)
-                {
-                    elementDefinitionDto.Freebies.Add(new FreebieDto
-                    {
-                        Id = freebie.Id,
-                        FreeLevels = freebie.FreeLevels,
-                        RequiredLevels = freebie.RequiredLevels,
-                        FreebieElementDefinitionName = elementDefinitions.Where(x => x.Id == freebie.FreebieElementDefinitionId).First().ElementName
-                    });
-                }
-            }
-
-            elementDefinitionDtos.Add(elementDefinitionDto);
-        }
-
-        output.ElementDefinitions = elementDefinitionDtos;
-
-        return output;
+        return system.ToDto();
     }
+
+
 
     public async Task<RPGSystemDto> SaveAsync(RPGSystemDto input)
     {
@@ -204,10 +101,154 @@ public class RPGSystemRepository : IRPGSystemRepository
             existing = new RPGSystem
             {
                 OwnerUserId = input.OwnerUserId,
-                SystemName = input.SystemName
+                SystemName = input.SystemName,
+                DescriptiveName = input.DescriptiveName
             };
+            CoreRuleset? existingRuleset = await _context.CoreRulesets.Where(x => x.CoreRulesetName == input.Ruleset.CoreRulesetName).FirstOrDefaultAsync();
+            if (existingRuleset == null)
+            {
+                CoreRuleset coreRuleset = new CoreRuleset
+                {
+                    CoreRulesetName = input.Ruleset.CoreRulesetName,
+                    RPGSystems = new List<RPGSystem> { existing }
+                };
+                _context.CoreRulesets.Add(coreRuleset);
+                existing.Ruleset = coreRuleset;
+            }
+            else
+            {
+                existing.Ruleset = existingRuleset;
+            }
+            _context.RPGSystems.Add(existing);
 
-            _context.Add(existing);
+            existing.Genres = input.Genres.Select(x => new Genre
+            {
+                GenreName = x.GenreName,
+                GenreOrder = x.GenreOrder,
+                RPGSystem = existing
+            }).ToList();
+
+            _context.AddRange(existing.Genres);
+
+            foreach (ProgressionDto progressionDto in input.Progressions)
+            {
+                Progression progression = new Progression
+                {
+                    ProgressionType = progressionDto.ProgressionType,
+                    CustomProgression = progressionDto.CustomProgression,
+                    Linear = progressionDto.Linear,
+                    RPGSystem = existing
+                };
+
+                progression.ProgressionEntries = progressionDto.Progressions.Select(x => new ProgressionEntry
+                {
+                    Progression = progression,
+                    ProgressionLevel = x.ProgressionLevel,
+                    Text = x.Text
+                }).ToList();
+
+                existing.Progressions.Add(progression);
+            }
+            _context.AddRange(existing.Progressions);
+
+            existing.RPGElementTypes = input.ElementTypes.Select(x => new RPGElementType
+            {
+                RPGSystem = existing,
+                BuiltIn = x.BuiltIn,
+                TypeName = x.TypeName,
+                TypeOrder = x.TypeOrder
+            }).ToList();
+
+            _context.AddRange(existing.RPGElementTypes);
+
+            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions)
+            {
+                RPGElementDefinition elementDefinition = new RPGElementDefinition
+                {
+                    ElementName = elementDefinitionDto.ElementName,
+                    Description = elementDefinitionDto.Description,
+                    Human = elementDefinitionDto.Human,
+                    PageNumbers = elementDefinitionDto.PageNumbers,
+                    Stat = elementDefinitionDto.Stat,
+                    PointsContainerScale = elementDefinitionDto.PointsContainerScale,
+                    RPGSystem = existing
+                };
+
+                RPGElementType? elementType = existing.RPGElementTypes.Where(x => x.TypeName == elementDefinitionDto.ElementTypeName).FirstOrDefault();
+                if (elementType != null)
+                {
+                    elementDefinition.ElementType = elementType;
+                }
+
+                if (elementDefinitionDto.LevelableData != null)
+                {
+                    LevelableDefinition levelableDefinition = new LevelableDefinition
+                    {
+                        CostPerLevel = elementDefinitionDto.LevelableData.CostPerLevel,
+                        EnforceMaxLevel = elementDefinitionDto.LevelableData.EnforceMaxLevel,
+                        CostPerLevelDescription = elementDefinitionDto.LevelableData.CostPerLevelDescription,
+                        MaxLevel = elementDefinitionDto.LevelableData.MaxLevel,
+                        ProgressionReversed = elementDefinitionDto.LevelableData.ProgressionReversed,
+                        SpecialPointsPerLevel = elementDefinitionDto.LevelableData.SpecialPointsPerLevel,
+                        RPGElementDefinition = elementDefinition
+                    };
+
+                    if (elementDefinitionDto.LevelableData.ProgressionName != null)
+                    {
+                        Progression? progression = existing.Progressions.Where(x => x.ProgressionType == elementDefinitionDto.LevelableData.ProgressionName).FirstOrDefault();
+                        if (progression != null)
+                        {
+                            levelableDefinition.Progression = progression;
+                        }
+                    }
+                    if (elementDefinitionDto.LevelableData.MultiGenreCostPerLevels != null && elementDefinitionDto.LevelableData.MultiGenreCostPerLevels.Count > 0)
+                    {
+                        levelableDefinition.GenreCostPerLevels = new List<GenreCostPerLevel>();
+
+                        foreach (GenreCostPerLevelDto genreCostPerLevelDto in elementDefinitionDto.LevelableData.MultiGenreCostPerLevels)
+                        {
+                            GenreCostPerLevel genreCostPerLevel = new GenreCostPerLevel
+                            {
+                                CostPerLevel = genreCostPerLevelDto.CostPerLevel,
+                                Levelable = levelableDefinition
+                            };
+
+                            Genre? genre = existing.Genres.Where(x => x.GenreName == genreCostPerLevelDto.GenreName).FirstOrDefault();
+                            if (genre != null)
+                            {
+                                genreCostPerLevel.Genre = genre;
+                            }
+                            levelableDefinition.GenreCostPerLevels.Add(genreCostPerLevel);
+                        }
+                        _context.AddRange(levelableDefinition.GenreCostPerLevels);
+                    }
+
+                    if(elementDefinitionDto.LevelableData.Variants != null && elementDefinitionDto.LevelableData.Variants.Count>0)
+                    {
+                        levelableDefinition.VariantDefinitions = elementDefinitionDto.LevelableData.Variants.Select(x=>new VariantDefinition {
+                            VariantName=x.VariantName,
+                            Description=x.Description,
+                            CostPerLevel=x.CostPerLevel,
+                            IsDefault=x.IsDefault,
+                            LevelableDefinition= levelableDefinition
+                            
+                        }).ToList();
+
+                        _context.AddRange(levelableDefinition.VariantDefinitions);
+                    }
+
+                    elementDefinition.LevelableData = levelableDefinition;
+                }
+                _context.Add(elementDefinition);
+                existing.RPGElementDefinitions.Add(elementDefinition);
+            }
+
+            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x=>x.AllowedChildrenNames != null && x.AllowedChildrenNames.Count>0))
+            {
+                RPGElementDefinition parent = existing.RPGElementDefinitions.Where(x=>x.ElementName== elementDefinitionDto.ElementName).First();
+                List<RPGElementDefinition> children = existing.RPGElementDefinitions.Where(x=>elementDefinitionDto.AllowedChildrenNames.Contains(x.ElementName)).ToList();
+                parent.AllowedChildren= children;
+            }
         }
         else
         {
@@ -219,244 +260,13 @@ public class RPGSystemRepository : IRPGSystemRepository
                 x.Id != existing.Id).FirstOrDefaultAsync();
             if (conflict != null)
             {
-                throw new Exception($"Conflicting System found: {conflict.Id}");
+                throw new RPGSystemConflictException($"Conflicting System found: {conflict.Id}");
             }
         }
-
-        existing.DescriptiveName = input.DescriptiveName;
-
-        CoreRuleset? ruleset = null;
-        if (input.Ruleset.Id != 0)
-        {
-            ruleset = await _context.CoreRulesets.Where(x => x.Id == input.Ruleset.Id).FirstOrDefaultAsync();
-        }
-        if (ruleset == null || ruleset.CoreRulesetName != input.Ruleset.CoreRulesetName)
-        {
-            ruleset = await _context.CoreRulesets.Where(x => x.CoreRulesetName == input.Ruleset.CoreRulesetName).FirstOrDefaultAsync();
-        }
-        if (ruleset == null)
-        {
-            ruleset = new CoreRuleset
-            {
-                CoreRulesetName = input.Ruleset.CoreRulesetName,
-                RPGSystems = new List<RPGSystem> { existing }
-            };
-            _context.Add(ruleset);
-        }
-
-        existing.Ruleset = ruleset;
-        if (ruleset.Id != 0)
-        {
-            existing.RulesetId = ruleset.Id;
-        }
-
-        List<Genre> genres = new List<Genre>();
-
-        if (existing.Id != 0)
-        {
-            genres = await _context.Genres.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
-        }
-
-        List<GenreDto> genresToProcess = new List<GenreDto>(input.Genres);
-        foreach (GenreDto inputGenre in input.Genres.Where(x => x.Id != 0))
-        {
-            Genre? existingGenre = genres.Where(x => x.Id == inputGenre.Id).FirstOrDefault();
-            if (existingGenre != null)
-            {
-                existingGenre.GenreName = inputGenre.GenreName;
-                existingGenre.GenreOrder = inputGenre.GenreOrder;
-                genresToProcess.Remove(inputGenre);
-            }
-        }
-        foreach (GenreDto inputGenre in genresToProcess)
-        {
-            Genre? existingGenre = genres.Where(x => x.GenreName == inputGenre.GenreName).FirstOrDefault();
-            if (existingGenre != null)
-            {
-                existingGenre.GenreOrder = inputGenre.GenreOrder;
-            }
-            else
-            {
-                Genre newGenre = new Genre
-                {
-                    GenreName = inputGenre.GenreName,
-                    GenreOrder = inputGenre.GenreOrder,
-                    RPGSystem = existing
-                };
-                if (existing.Id != 0)
-                {
-                    newGenre.RPGSystemId = existing.Id;
-                }
-                _context.Add(newGenre);
-                existing.Genres.Add(newGenre);
-                genres.Add(newGenre);
-            }
-        }
-
-        List<RPGElementType> elementTypes = new List<RPGElementType>();
-        if (existing.Id != 0)
-        {
-            elementTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
-        }
-        List<RPGElementTypeDto> elementTypesToProcess = new List<RPGElementTypeDto>(input.ElementTypes);
-        foreach (RPGElementTypeDto inputElementType in input.ElementTypes.Where(x => x.Id != 0))
-        {
-            RPGElementType? existingElementType = elementTypes.Where(x => x.Id == inputElementType.Id).FirstOrDefault();
-            if (existingElementType != null)
-            {
-                existingElementType.TypeName = inputElementType.TypeName;
-                existingElementType.TypeOrder = inputElementType.TypeOrder;
-                elementTypesToProcess.Remove(inputElementType);
-            }
-        }
-
-        foreach (RPGElementTypeDto inputElementType in elementTypesToProcess)
-        {
-            RPGElementType? existingElementType = elementTypes.Where(x => x.TypeName == inputElementType.TypeName).FirstOrDefault();
-            if (existingElementType != null)
-            {
-                existingElementType.TypeOrder = inputElementType.TypeOrder;
-            }
-            else
-            {
-                RPGElementType newElementType = new RPGElementType
-                {
-                    TypeName = inputElementType.TypeName,
-                    TypeOrder = inputElementType.TypeOrder,
-                    RPGSystem = existing
-                };
-                if (existing.Id != 0)
-                {
-                    newElementType.RPGSystemId = existing.Id;
-                }
-                _context.Add(newElementType);
-                existing.RPGElementTypes.Add(newElementType);
-                elementTypes.Add(newElementType);
-            }
-        }
-
-        List<Progression> progressions = new List<Progression>();
-        if (existing.Id != 0)
-        {
-            progressions = await _context.Progressions.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
-        }
-        List<ProgressionDto> progressionsToProcess = new List<ProgressionDto>(input.Progressions);
-        foreach (ProgressionDto inputProgression in input.Progressions.Where(x => x.Id != 0))
-        {
-            Progression? existingProgression = progressions.Where(x => x.Id == inputProgression.Id).FirstOrDefault();
-            if (existingProgression != null)
-            {
-                existingProgression.ProgressionType = inputProgression.ProgressionType;
-                existingProgression.Linear = inputProgression.Linear;
-                existingProgression.CustomProgression = inputProgression.CustomProgression;
-                progressionsToProcess.Remove(inputProgression);
-                await UpdateProgressionEntries(existingProgression, inputProgression);
-            }
-        }
-        foreach (ProgressionDto inputProgression in progressionsToProcess)
-        {
-            Progression? existingProgression = progressions.Where(x => x.ProgressionType == inputProgression.ProgressionType).FirstOrDefault();
-            if (existingProgression != null)
-            {
-                existingProgression.Linear = inputProgression.Linear;
-                existingProgression.CustomProgression = inputProgression.CustomProgression;
-                await UpdateProgressionEntries(existingProgression, inputProgression);
-            }
-            else
-            {
-                Progression newProgression = new Progression
-                {
-                    ProgressionType = inputProgression.ProgressionType,
-                    Linear = inputProgression.Linear,
-                    CustomProgression = inputProgression.CustomProgression,
-                    RPGSystem = existing
-                };
-                if (existing.Id != 0)
-                {
-                    newProgression.RPGSystemId = existing.Id;
-                }
-                _context.Add(newProgression);
-                existing.Progressions.Add(newProgression);
-                progressions.Add(newProgression);
-                await UpdateProgressionEntries(newProgression, inputProgression);
-            }
-        }
-
-        List<RPGElementDefinition> elementDefinitions = new List<RPGElementDefinition>();
-        if (existing.Id != 0)
-        {
-            elementDefinitions = await _context.RPGElementDefinitions.Where(x => x.RPGSystemId == existing.Id)
-                .Include(x=>x.LevelableData)
-                .Include(x=>x.AllowedChildren)
-                .ToListAsync();
-        }
-
-        foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions)
-        {
-            RPGElementDefinition? existingElementDefinition = null;
-            if (elementDefinitionDto.Id!=0)
-            {
-                existingElementDefinition = elementDefinitions.Where(x => x.Id == elementDefinitionDto.Id).FirstOrDefault();
-            }
-            if (existingElementDefinition == null)
-            {
-                existingElementDefinition = elementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).FirstOrDefault();
-            }
-            if (existingElementDefinition == null)
-            {
-                existingElementDefinition = new RPGElementDefinition
-                {
-                    RPGSystem = existing,
-                    AllowedChildren = new List<RPGElementDefinition>()
-                };
-                if (existing.Id != 0)
-                {
-                    existingElementDefinition.RPGSystemId = existing.Id;
-                }
-                elementDefinitions.Add(existingElementDefinition);
-                _context.RPGElementDefinitions.Add(existingElementDefinition);
-                existing.RPGElementDefinitions.Add(existingElementDefinition);
-            }
-            
-            existingElementDefinition.ElementName= elementDefinitionDto.ElementName;
-            existingElementDefinition.PageNumbers = elementDefinitionDto.PageNumbers;
-            existingElementDefinition.Description = elementDefinitionDto.Description;
-            existingElementDefinition.ElementType = elementTypes.Where(x=>x.TypeName==elementDefinitionDto.ElementTypeName).First();
-            existingElementDefinition.Stat= elementDefinitionDto.Stat;
-            existingElementDefinition.Human= elementDefinitionDto.Human;
-            existingElementDefinition.PointsContainerScale= elementDefinitionDto.PointsContainerScale;
-            
-            if(elementDefinitionDto.LevelableData!=null)
-            {
-                if(existingElementDefinition.LevelableData==null)
-                {
-                    LevelableDefinition newLevelableData = new LevelableDefinition
-                    {
-                        RPGElementDefinition = existingElementDefinition                        
-                    };
-                    _context.Add(newLevelableData);
-                    existingElementDefinition.LevelableData = newLevelableData;
-                }
-                existingElementDefinition.LevelableData.CostPerLevel = elementDefinitionDto.LevelableData.CostPerLevel;
-                existingElementDefinition.LevelableData.MaxLevel = elementDefinitionDto.LevelableData.MaxLevel;
-                existingElementDefinition.LevelableData.EnforceMaxLevel = elementDefinitionDto.LevelableData.EnforceMaxLevel;
-                existingElementDefinition.LevelableData.CostPerLevelDescription = elementDefinitionDto.LevelableData.CostPerLevelDescription;
-                existingElementDefinition.LevelableData.ProgressionReversed=elementDefinitionDto.LevelableData.ProgressionReversed;
-                existingElementDefinition.LevelableData.SpecialPointsPerLevel= elementDefinitionDto.LevelableData.SpecialPointsPerLevel;               
-            }
-        }
-
 
         await _context.SaveChangesAsync();
 
-        return new RPGSystemDto 
-        {            
-            Id=existing.Id,
-            Ruleset = existing.Ruleset.ToDto(),
-            SystemName = existing.SystemName,
-            DescriptiveName = existing.DescriptiveName,       
-            OwnerUserId = existing.OwnerUserId
-        };
+        return existing.ToDto();
     }
 
     private async Task UpdateProgressionEntries(Progression progression, ProgressionDto inputProgression)
@@ -478,15 +288,15 @@ public class RPGSystemRepository : IRPGSystemRepository
             {
                 existing = progressionEntries.Where(x => x.ProgressionLevel == inputProgressionEntry.ProgressionLevel).FirstOrDefault();
             }
-            if(existing==null)
+            if (existing == null)
             {
-                existing = new ProgressionEntry 
-                { 
-                    Progression=progression                    
-                };
-                if(progression.Id!=0)
+                existing = new ProgressionEntry
                 {
-                    existing.ProgressionId = progression.Id;                
+                    Progression = progression
+                };
+                if (progression.Id != 0)
+                {
+                    existing.ProgressionId = progression.Id;
                 }
                 progression.ProgressionEntries.Add(existing);
                 progressionEntries.Add(existing);

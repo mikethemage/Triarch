@@ -73,8 +73,9 @@ namespace Triarch.Database.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProgressionType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CustomProgression = table.Column<bool>(type: "bit", nullable: false),
-                    RPGSystemId = table.Column<int>(type: "int", nullable: true)
+                    CustomProgression = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    RPGSystemId = table.Column<int>(type: "int", nullable: false),
+                    Linear = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +84,8 @@ namespace Triarch.Database.Migrations
                         name: "FK_Progressions_RPGSystems_RPGSystemId",
                         column: x => x.RPGSystemId,
                         principalTable: "RPGSystems",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,6 +96,7 @@ namespace Triarch.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TypeName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TypeOrder = table.Column<int>(type: "int", nullable: false),
+                    BuiltIn = table.Column<bool>(type: "bit", nullable: false),
                     RPGSystemId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -114,11 +117,12 @@ namespace Triarch.Database.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MaxLevel = table.Column<int>(type: "int", nullable: true),
-                    EnforceMaxLevel = table.Column<bool>(type: "bit", nullable: false),
-                    CostPerLevel = table.Column<int>(type: "int", nullable: false),
+                    EnforceMaxLevel = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
+                    CostPerLevel = table.Column<int>(type: "int", nullable: true),
                     CostPerLevelDescription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    SpecialPointsPerLevel = table.Column<int>(type: "int", nullable: true),
                     ProgressionId = table.Column<int>(type: "int", nullable: true),
-                    SpecialPointsPerLevel = table.Column<int>(type: "int", nullable: true)
+                    ProgressionReversed = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,7 +140,7 @@ namespace Triarch.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Text = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
                     ProgressionLevel = table.Column<int>(type: "int", nullable: false),
                     ProgressionId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -186,13 +190,13 @@ namespace Triarch.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ElementName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ElementTypeId = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(600)", maxLength: 600, nullable: true),
                     Stat = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PageNumbers = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
-                    Human = table.Column<bool>(type: "bit", nullable: false),
+                    Human = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     LevelableDataId = table.Column<int>(type: "int", nullable: true),
                     PointsContainerScale = table.Column<int>(type: "int", nullable: true),
-                    RPGSystemId = table.Column<int>(type: "int", nullable: true)
+                    RPGSystemId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,7 +205,8 @@ namespace Triarch.Database.Migrations
                         name: "FK_RPGElementDefinitions_LevelableDefinitions_LevelableDataId",
                         column: x => x.LevelableDataId,
                         principalTable: "LevelableDefinitions",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_RPGElementDefinitions_RPGElementTypes_ElementTypeId",
                         column: x => x.ElementTypeId,
@@ -216,24 +221,47 @@ namespace Triarch.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RPGElementDefinitionRPGElementDefinition",
+                name: "VariantDefinitions",
                 columns: table => new
                 {
-                    AllowedChildrenId = table.Column<int>(type: "int", nullable: false),
-                    AllowedParentsId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VariantName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    CostPerLevel = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    LevelableDefinitionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RPGElementDefinitionRPGElementDefinition", x => new { x.AllowedChildrenId, x.AllowedParentsId });
+                    table.PrimaryKey("PK_VariantDefinitions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RPGElementDefinitionRPGElementDefinition_RPGElementDefinitions_AllowedChildrenId",
-                        column: x => x.AllowedChildrenId,
+                        name: "FK_VariantDefinitions_LevelableDefinitions_LevelableDefinitionId",
+                        column: x => x.LevelableDefinitionId,
+                        principalTable: "LevelableDefinitions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ElementRelations",
+                columns: table => new
+                {
+                    ChildId = table.Column<int>(type: "int", nullable: false),
+                    ParentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ElementRelations", x => new { x.ChildId, x.ParentId });
+                    table.ForeignKey(
+                        name: "FK_ElementRelations_RPGElementDefinitions_ChildId",
+                        column: x => x.ChildId,
                         principalTable: "RPGElementDefinitions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RPGElementDefinitionRPGElementDefinition_RPGElementDefinitions_AllowedParentsId",
-                        column: x => x.AllowedParentsId,
+                        name: "FK_ElementRelations_RPGElementDefinitions_ParentId",
+                        column: x => x.ParentId,
                         principalTable: "RPGElementDefinitions",
                         principalColumn: "Id");
                 });
@@ -256,8 +284,7 @@ namespace Triarch.Database.Migrations
                         name: "FK_RPGFreebies_RPGElementDefinitions_FreebieElementDefinitionId",
                         column: x => x.FreebieElementDefinitionId,
                         principalTable: "RPGElementDefinitions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_RPGFreebies_RPGElementDefinitions_OwnerElementDefinitionId",
                         column: x => x.OwnerElementDefinitionId,
@@ -266,34 +293,10 @@ namespace Triarch.Database.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "VariantDefinitions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    VariantName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    CostPerLevel = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
-                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
-                    ElementDefinitionId = table.Column<int>(type: "int", nullable: false),
-                    LevelableDefinitionId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_VariantDefinitions", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_VariantDefinitions_LevelableDefinitions_LevelableDefinitionId",
-                        column: x => x.LevelableDefinitionId,
-                        principalTable: "LevelableDefinitions",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_VariantDefinitions_RPGElementDefinitions_ElementDefinitionId",
-                        column: x => x.ElementDefinitionId,
-                        principalTable: "RPGElementDefinitions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_ElementRelations_ParentId",
+                table: "ElementRelations",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GenreCostPerLevels_GenreId",
@@ -326,11 +329,6 @@ namespace Triarch.Database.Migrations
                 column: "RPGSystemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RPGElementDefinitionRPGElementDefinition_AllowedParentsId",
-                table: "RPGElementDefinitionRPGElementDefinition",
-                column: "AllowedParentsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RPGElementDefinitions_ElementTypeId",
                 table: "RPGElementDefinitions",
                 column: "ElementTypeId");
@@ -338,7 +336,9 @@ namespace Triarch.Database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RPGElementDefinitions_LevelableDataId",
                 table: "RPGElementDefinitions",
-                column: "LevelableDataId");
+                column: "LevelableDataId",
+                unique: true,
+                filter: "[LevelableDataId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RPGElementDefinitions_RPGSystemId",
@@ -366,11 +366,6 @@ namespace Triarch.Database.Migrations
                 column: "RulesetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VariantDefinitions_ElementDefinitionId",
-                table: "VariantDefinitions",
-                column: "ElementDefinitionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_VariantDefinitions_LevelableDefinitionId",
                 table: "VariantDefinitions",
                 column: "LevelableDefinitionId");
@@ -380,13 +375,13 @@ namespace Triarch.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ElementRelations");
+
+            migrationBuilder.DropTable(
                 name: "GenreCostPerLevels");
 
             migrationBuilder.DropTable(
                 name: "ProgressionEntries");
-
-            migrationBuilder.DropTable(
-                name: "RPGElementDefinitionRPGElementDefinition");
 
             migrationBuilder.DropTable(
                 name: "RPGFreebies");

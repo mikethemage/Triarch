@@ -105,7 +105,7 @@ public class TriarchDbContext : DbContext
                   .IsRequired(false)
                   .OnDelete(DeleteBehavior.SetNull);
 
-            entity.HasOne(d => d.RPGSystem).WithMany(p => p.RPGElementDefinitions).HasForeignKey(d => d.RPGSystemId);
+            entity.HasOne(d => d.RPGSystem).WithMany(p => p.RPGElementDefinitions).HasForeignKey(d => d.RPGSystemId).OnDelete(DeleteBehavior.NoAction);
 
             entity.HasMany(d => d.AllowedChildren).WithMany().UsingEntity<Dictionary<string, object>>(
                 "ElementRelations",

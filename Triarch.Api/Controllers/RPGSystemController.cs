@@ -25,7 +25,7 @@ public class RPGSystemController : ControllerBase
         {
             return Ok(await _rPGSystemRepository.GetAllAsync());
         }
-        catch (Exception ex)
+        catch (RPGSystemNotFoundException ex)
         {
             return NotFound(ex.Message);
         }
@@ -52,14 +52,15 @@ public class RPGSystemController : ControllerBase
     {
         try
         {
-            return CreatedAtAction(nameof(Get), await _rPGSystemRepository.SaveAsync(value));
-            
+            RPGSystemDto output = await _rPGSystemRepository.SaveAsync(value);
+            return CreatedAtAction(nameof(Get), new { id = output.Id }, output);
+
         }
-        catch (Exception ex)
+        catch (RPGSystemConflictException ex)
         {
             return BadRequest(ex.Message);
         }
-        
+
     }
 
 

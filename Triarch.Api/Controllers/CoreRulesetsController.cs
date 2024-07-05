@@ -48,7 +48,8 @@ public class CoreRulesetsController : ControllerBase
     {
         try
         {
-            return CreatedAtAction(nameof(GetCoreRuleset),await _coreRuleSetRepository.SaveAsync(coreRulesetDTO));
+            CoreRulesetDto output = await _coreRuleSetRepository.SaveAsync(coreRulesetDTO);
+            return CreatedAtAction(nameof(GetCoreRuleset), new { id = output.Id },output);
         }
         catch (CoreRulesetConflictException ex)
         {

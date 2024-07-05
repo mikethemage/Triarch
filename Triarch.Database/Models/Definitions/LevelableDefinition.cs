@@ -6,7 +6,7 @@ public partial class LevelableDefinition
 
     public int? MaxLevel { get; set; }
 
-    public bool EnforceMaxLevel { get; set; }
+    public bool? EnforceMaxLevel { get; set; }
 
     public int? CostPerLevel { get; set; }
 

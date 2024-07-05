@@ -9,8 +9,8 @@ public class LevelableDefinitionDto
 
     public int? MaxLevel { get; set; }
 
-    [DefaultValue(false)]
-    public bool EnforceMaxLevel { get; set; } = false;
+    
+    public bool? EnforceMaxLevel { get; set; }
 
     public int? CostPerLevel { get; set; }
 

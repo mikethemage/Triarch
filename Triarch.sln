@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Api", "Triarch.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TriarchJsonConverter", "TriarchJsonConverter\TriarchJsonConverter.csproj", "{70645A3D-9264-4D6C-BE83-4D37BCC12D6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriarchDbFirst", "TriarchDbFirst\TriarchDbFirst.csproj", "{C4C849A1-DFE7-45CE-8DFA-F519EFCF2EDA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{70645A3D-9264-4D6C-BE83-4D37BCC12D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70645A3D-9264-4D6C-BE83-4D37BCC12D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70645A3D-9264-4D6C-BE83-4D37BCC12D6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4C849A1-DFE7-45CE-8DFA-F519EFCF2EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4C849A1-DFE7-45CE-8DFA-F519EFCF2EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4C849A1-DFE7-45CE-8DFA-F519EFCF2EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4C849A1-DFE7-45CE-8DFA-F519EFCF2EDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
