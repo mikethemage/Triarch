@@ -97,7 +97,7 @@ public class TriarchDbContext : DbContext
             entity.Property(e => e.ElementName).HasMaxLength(100);
             entity.Property(e => e.PageNumbers).HasMaxLength(25);
             entity.Property(e => e.Stat).HasMaxLength(50);
-            entity.Property(e => e.Human).HasDefaultValue(true);
+            entity.Property(e => e.Human);
 
             entity.HasOne(d => d.LevelableData)
                   .WithOne(p => p.RPGElementDefinition)
