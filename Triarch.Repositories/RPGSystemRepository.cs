@@ -325,7 +325,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                 //Remove definition:
                 existing.RPGElementDefinitions.Remove(toDelete);
                 _context.Remove(toDelete);
-            }            
+            }
 
             List<RPGElementTypeDto> toAddTypes = new List<RPGElementTypeDto>(input.ElementTypes);
             List<RPGElementType> toDeleteTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
@@ -370,11 +370,91 @@ public class RPGSystemRepository : IRPGSystemRepository
                     TypeOrder = toAddDto.TypeOrder,
                     RPGSystem = existing
                 };
-                matchedTypes.Add(toAddDto,toAdd);
+                matchedTypes.Add(toAddDto, toAdd);
                 _context.Add(toAdd);
             }
 
-            
+            List<ProgressionDto> toAddProgressions = new List<ProgressionDto>(input.Progressions);
+            List<Progression> toDeleteProgressions = await _context.Progressions.Where(x => x.RPGSystemId == existing.Id).Include(x => x.ProgressionEntries).ToListAsync();
+            Dictionary<ProgressionDto, Progression> matchedProgressions = new Dictionary<ProgressionDto, Progression>();
+            foreach (ProgressionDto toAddDto in new List<ProgressionDto>(toAddProgressions))
+            {
+                Progression? toAdd = toDeleteProgressions.Where(x => x.Id == toAddDto.Id).FirstOrDefault();
+                if (toAdd != null)
+                {
+                    matchedProgressions.Add(toAddDto, toAdd);
+                    toAddProgressions.Remove(toAddDto);
+                    toDeleteProgressions.Remove(toAdd);
+                }
+            }
+            foreach (ProgressionDto toAddDto in new List<ProgressionDto>(toAddProgressions))
+            {
+                Progression? toAdd = toDeleteProgressions.Where(x => x.ProgressionType == toAddDto.ProgressionType).FirstOrDefault();
+                if (toAdd != null)
+                {
+                    matchedProgressions.Add(toAddDto, toAdd);
+                    toAddProgressions.Remove(toAddDto);
+                    toDeleteProgressions.Remove(toAdd);
+                }
+            }
+
+            foreach (KeyValuePair<ProgressionDto, Progression> matchedProgression in matchedProgressions)
+            {
+                if (matchedProgression.Key.ProgressionType != matchedProgression.Value.ProgressionType)
+                {
+                    //Update names for existing types:
+                    matchedProgression.Value.ProgressionType = matchedProgression.Key.ProgressionType;
+                }
+                if (matchedProgression.Key.Linear != matchedProgression.Value.Linear)
+                {
+                    //Update names for existing types:
+                    matchedProgression.Value.Linear = matchedProgression.Key.Linear;
+                }
+                if (matchedProgression.Key.CustomProgression != matchedProgression.Value.CustomProgression)
+                {
+                    //Update names for existing types:
+                    matchedProgression.Value.CustomProgression = matchedProgression.Key.CustomProgression;
+                }
+
+                List<int> validLevels = matchedProgression.Key.Progressions.Select(x => x.ProgressionLevel).ToList();
+                List<ProgressionEntry> progressionEntriesToRemove = matchedProgression.Value.ProgressionEntries.Where(x => !validLevels.Contains(x.ProgressionLevel)).ToList();
+                foreach (ProgressionEntry toRemove in progressionEntriesToRemove)
+                {
+                    matchedProgression.Value.ProgressionEntries.Remove(toRemove);
+                }
+
+                foreach (ProgressionEntry existingProgressionEntry in matchedProgression.Value.ProgressionEntries)
+                {
+                    ProgressionEntryDto? progressionEntryDto = matchedProgression.Key.Progressions.Where(x => x.ProgressionLevel == existingProgressionEntry.ProgressionLevel).FirstOrDefault();
+                    if(progressionEntryDto != null)
+                    {
+                        existingProgressionEntry.Text=progressionEntryDto.Text;
+                    }
+                }
+
+                List<int> existingProgressionEntries = matchedProgression.Value.ProgressionEntries.Select(x => x.ProgressionLevel).ToList();
+                List<ProgressionEntryDto> progresionEntriesToAddDtos = matchedProgression.Key.Progressions.Where(x => !existingProgressionEntries.Contains(x.ProgressionLevel)).ToList();
+                foreach (ProgressionEntryDto item in progresionEntriesToAddDtos)
+                {
+                    ProgressionEntry toAdd = new ProgressionEntry
+                    {
+                        Progression = matchedProgression.Value,
+                        ProgressionLevel = item.ProgressionLevel,
+                        Text = item.Text
+                    };
+
+                    matchedProgression.Value.ProgressionEntries.Add(
+                        new ProgressionEntry
+                        {
+                            Progression = matchedProgression.Value,
+                            ProgressionLevel = item.ProgressionLevel,
+                            Text = item.Text
+                        }
+                        );
+                    _context.Add(toAdd);
+                }
+            }
+
             foreach (KeyValuePair<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinition in matchedDefinitions)
             {
                 if (matchedDefinition.Key.ElementName != matchedDefinition.Value.ElementName)
@@ -384,19 +464,43 @@ public class RPGSystemRepository : IRPGSystemRepository
                 }
 
                 //Update all the element types:
-                RPGElementTypeDto? changedType = matchedTypes.Keys.Where(x=>x.TypeName==matchedDefinition.Key.ElementTypeName).FirstOrDefault();
-                if(changedType!=null)
+                RPGElementTypeDto? changedType = matchedTypes.Keys.Where(x => x.TypeName == matchedDefinition.Key.ElementTypeName).FirstOrDefault();
+                if (changedType != null)
                 {
-                    if (matchedDefinition.Value.ElementTypeId == 0 || matchedDefinition.Value.ElementTypeId != matchedTypes[changedType].Id) 
+                    if (matchedDefinition.Value.ElementTypeId == 0 || matchedDefinition.Value.ElementTypeId != matchedTypes[changedType].Id)
                     {
                         matchedDefinition.Value.ElementType = matchedTypes[changedType];
                     }
                 }
+
+                if(matchedDefinition.Key.LevelableData!=null)
+                {
+                    if(matchedDefinition.Value.LevelableData==null)
+                    {
+                        matchedDefinition.Value.LevelableData = new LevelableDefinition { RPGElementDefinition = matchedDefinition.Value };
+                        
+                    }
+
+                    ProgressionDto? changedProgression = matchedProgressions.Keys.Where(x => x.ProgressionType == matchedDefinition.Key.LevelableData.ProgressionName).FirstOrDefault();
+                    if (changedProgression != null)
+                    {
+                        if (matchedDefinition.Value.LevelableData.ProgressionId == 0 || matchedDefinition.Value.LevelableData.ProgressionId != matchedProgressions[changedProgression].Id)
+                        {
+                            matchedDefinition.Value.LevelableData.Progression = matchedProgressions[changedProgression];
+                        }
+                    }
+                }
+                
+            }
+
+            foreach (Progression toDelete in toDeleteProgressions)
+            {
+                _context.Remove(toDelete);
             }
 
             //Remove types:
             foreach (RPGElementType toDelete in toDeleteTypes)
-            {
+            {                
                 _context.Remove(toDelete);
             }
 

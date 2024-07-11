@@ -19753,12 +19753,12 @@
       "progressions": [
         {
           "id": 0,
-          "text": "The character\uFFFDs accessible Attribute Levels all drop by one-quarter (round up) when affected by the Vulnerability.",
+          "text": "The character\u0027s accessible Attribute Levels all drop by one-quarter (round up) when affected by the Vulnerability.",
           "progressionLevel": 1
         },
         {
           "id": 0,
-          "text": "The character\uFFFDs accessible Attribute Levels all drop by one-half (round up) when affected by the Vulnerability.",
+          "text": "The character\u0027s accessible Attribute Levels all drop by one-half (round up) when affected by the Vulnerability.",
           "progressionLevel": 2
         },
         {
