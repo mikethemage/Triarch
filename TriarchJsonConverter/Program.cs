@@ -35,8 +35,7 @@ internal class Program
             PopulateTypeList(inputData, outputSystem);
             PopulateGenreList(inputData, outputSystem);
             PopulateProgressionList(inputData, outputSystem);
-            PopulateAttributes(inputData, outputSystem);
-            //BuildParentLists(outputSystem);
+            PopulateAttributes(inputData, outputSystem);            
 
             Console.WriteLine("Conversion Complete");
 
@@ -44,37 +43,18 @@ internal class Program
 
             Console.WriteLine("Written data successfully!");
         }
-
     }
 
-    //private static void BuildParentLists(RPGSystemDto outputSystem)
-    //{
-    //    foreach (RPGElementDefinitionDto parent in outputSystem.ElementDefinitions.Where(x => x.AllowedChildrenNames.Count > 0))
-    //    {
-    //        foreach (string childName in parent.AllowedChildrenNames)
-    //        {
-    //            RPGElementDefinitionDto? child = outputSystem.ElementDefinitions.Where(x => x.ElementName == childName).FirstOrDefault();
-    //            if (child != null)
-    //            {
-    //                if (child.AllowedParentsNames == null)
-    //                {
-    //                    child.AllowedParentsNames = new List<string>();
-    //                }
-    //                child.AllowedParentsNames.Add(parent.ElementName);
-    //            }
-    //        }
-    //    }
-    //}
+    private readonly static JsonSerializerOptions _jsonOptions = new JsonSerializerOptions
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        WriteIndented = true
+    };
 
     private static void WriteOutOutputData(RPGSystemDto outputSystem)
-    {
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
-        };
-        string outputText = JsonSerializer.Serialize(outputSystem, options);
+    {         
+        string outputText = JsonSerializer.Serialize(outputSystem, _jsonOptions);
         File.WriteAllText("DataFiles\\NEW_BESM3E.json", outputText);
     }
 

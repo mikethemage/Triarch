@@ -349,7 +349,7 @@ public class RPGSystemRepository : IRPGSystemRepository
         await _context.SaveChangesAsync();
     }
 
-    private static IEnumerable<RPGSystemHeadingDto> ConvertToHeadings(List<RPGSystem> systems)
+    private static List<RPGSystemHeadingDto> ConvertToHeadings(List<RPGSystem> systems)
     {
         var systemDtos = new List<RPGSystemHeadingDto>();
         foreach (RPGSystem? system in systems)

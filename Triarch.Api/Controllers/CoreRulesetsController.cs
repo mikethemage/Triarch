@@ -23,6 +23,7 @@ public class CoreRulesetsController : ControllerBase
 
     // GET: api/CoreRulesets
     [HttpGet]
+    [ProducesResponseType<IEnumerable<CoreRulesetDto>>(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<CoreRulesetDto>>> GetCoreRulesets()
     {
         return Ok(await _coreRuleSetRepository.GetAllAsync());        
@@ -30,6 +31,8 @@ public class CoreRulesetsController : ControllerBase
 
     // GET: api/CoreRulesets/5
     [HttpGet("{id}")]
+    [ProducesResponseType<CoreRulesetDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CoreRulesetDto>> GetCoreRuleset(int id)
     {
         try
@@ -44,6 +47,8 @@ public class CoreRulesetsController : ControllerBase
 
     // POST: api/CoreRulesets
     [HttpPost]
+    [ProducesResponseType<CoreRulesetDto>(StatusCodes.Status201Created)]
+    [ProducesResponseType<string>(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CoreRulesetDto>> PostCoreRuleset(CoreRulesetDto coreRulesetDTO)
     {
         try
@@ -59,6 +64,8 @@ public class CoreRulesetsController : ControllerBase
 
     // DELETE: api/CoreRulesets/5
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
     public async Task<ActionResult> DeleteCoreRuleset(int id)
     {
         try

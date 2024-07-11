@@ -7,38 +7,21 @@ namespace TriarchJsonConverter.Serialization;
 
 public class MasterListingSerialized
 {
-    //Properties:
     public List<DataListingSerialized> AttributeList { get; set; } = null!;
     public List<TypeListingSerialized> TypeList { get; set; } = null!;
     public string ListingName { get; set; } = null!;
     public List<string> Genres { get; set; } = null!;
     public List<ProgressionListingSerialized> ProgressionList { get; set; } = null!;
 
-
-    //Fields:
-    private static readonly JsonSerializerOptions serializerOptions = new JsonSerializerOptions { DefaultIgnoreCondition=JsonIgnoreCondition.WhenWritingNull, WriteIndented=true };   
-
-
-    //Methods:
-    //public static MasterListingSerialized JSONLoader(ListingLocation listingLocation)
-    //{
-    //    MasterListingSerialized temp;
-
-    //    string input = File.ReadAllText(listingLocation.ListingPath);
-
-    //    //Load listing:
-    //    temp = JsonSerializer.Deserialize<MasterListingSerialized>(input);
-
-    //    return temp;
-    //}
+    private static readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { DefaultIgnoreCondition=JsonIgnoreCondition.WhenWritingNull, WriteIndented=true };   
 
     public void CreateJSON(string outputPath)
     {
         //Code to write out JSON data files.   
         //Should not be being called at present - debugging only:
-        string output = JsonSerializer.Serialize<MasterListingSerialized>(this, serializerOptions);
+        string output = JsonSerializer.Serialize<MasterListingSerialized>(this, _serializerOptions);
 
-        System.IO.File.WriteAllText(outputPath, output);
+        File.WriteAllText(outputPath, output);
 
     }
 }
