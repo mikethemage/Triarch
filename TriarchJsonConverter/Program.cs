@@ -240,17 +240,20 @@ internal class Program
                 ProgressionType = progressionListing.ProgressionType,
                 Progressions = new List<ProgressionEntryDto>(),
                 CustomProgression = false
-            };            
+            };
 
-            int j = 0;
-            foreach (string progressionEntry in progressionListing.ProgressionsList)
+            if (progressionListing.ProgressionsList != null)
             {
-                progressionDto.Progressions.Add(new ProgressionEntryDto
+                int j = 0;
+                foreach (string progressionEntry in progressionListing.ProgressionsList)
                 {
-                    ProgressionLevel = j,
-                    Text = progressionEntry
-                });
-                j++;
+                    progressionDto.Progressions.Add(new ProgressionEntryDto
+                    {
+                        ProgressionLevel = j,
+                        Text = progressionEntry
+                    });
+                    j++;
+                }
             }
 
             outputSystem.Progressions.Add(progressionDto);

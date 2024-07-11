@@ -8,11 +8,11 @@ namespace TriarchJsonConverter.Serialization;
 public class MasterListingSerialized
 {
     //Properties:
-    public List<DataListingSerialized> AttributeList { get; set; }
-    public List<TypeListingSerialized> TypeList { get; set; }
-    public string ListingName { get; set; }
-    public List<string> Genres { get; set; }
-    public List<ProgressionListingSerialized> ProgressionList { get; set; }
+    public List<DataListingSerialized> AttributeList { get; set; } = null!;
+    public List<TypeListingSerialized> TypeList { get; set; } = null!;
+    public string ListingName { get; set; } = null!;
+    public List<string> Genres { get; set; } = null!;
+    public List<ProgressionListingSerialized> ProgressionList { get; set; } = null!;
 
 
     //Fields:
