@@ -223,15 +223,16 @@ public class RPGSystemRepository : IRPGSystemRepository
                         _context.AddRange(levelableDefinition.GenreCostPerLevels);
                     }
 
-                    if(elementDefinitionDto.LevelableData.Variants != null && elementDefinitionDto.LevelableData.Variants.Count>0)
+                    if (elementDefinitionDto.LevelableData.Variants != null && elementDefinitionDto.LevelableData.Variants.Count > 0)
                     {
-                        levelableDefinition.VariantDefinitions = elementDefinitionDto.LevelableData.Variants.Select(x=>new VariantDefinition {
-                            VariantName=x.VariantName,
-                            Description=x.Description,
-                            CostPerLevel=x.CostPerLevel,
-                            IsDefault=x.IsDefault,
-                            LevelableDefinition= levelableDefinition
-                            
+                        levelableDefinition.VariantDefinitions = elementDefinitionDto.LevelableData.Variants.Select(x => new VariantDefinition
+                        {
+                            VariantName = x.VariantName,
+                            Description = x.Description,
+                            CostPerLevel = x.CostPerLevel,
+                            IsDefault = x.IsDefault,
+                            LevelableDefinition = levelableDefinition
+
                         }).ToList();
 
                         _context.AddRange(levelableDefinition.VariantDefinitions);
@@ -243,11 +244,11 @@ public class RPGSystemRepository : IRPGSystemRepository
                 existing.RPGElementDefinitions.Add(elementDefinition);
             }
 
-            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x=>x.AllowedChildrenNames != null && x.AllowedChildrenNames.Count>0))
+            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x => x.AllowedChildrenNames != null && x.AllowedChildrenNames.Count > 0))
             {
-                RPGElementDefinition parent = existing.RPGElementDefinitions.Where(x=>x.ElementName== elementDefinitionDto.ElementName).First();
-                List<RPGElementDefinition> children = existing.RPGElementDefinitions.Where(x=>elementDefinitionDto.AllowedChildrenNames.Contains(x.ElementName)).ToList();
-                parent.AllowedChildren= children;
+                RPGElementDefinition parent = existing.RPGElementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).First();
+                List<RPGElementDefinition> children = existing.RPGElementDefinitions.Where(x => elementDefinitionDto.AllowedChildrenNames.Contains(x.ElementName)).ToList();
+                parent.AllowedChildren = children;
             }
         }
         else
@@ -262,6 +263,145 @@ public class RPGSystemRepository : IRPGSystemRepository
             {
                 throw new RPGSystemConflictException($"Conflicting System found: {conflict.Id}");
             }
+
+            existing = await _context.RPGSystems.Where(x => x.Id == existing.Id).Include(x => x.Ruleset).SingleAsync();
+
+            if (input.Ruleset.CoreRulesetName != existing.Ruleset.CoreRulesetName)
+            {
+                CoreRuleset? existingRuleset = await _context.CoreRulesets.Where(x => x.CoreRulesetName == input.Ruleset.CoreRulesetName).FirstOrDefaultAsync();
+                if (existingRuleset == null)
+                {
+                    existingRuleset = new CoreRuleset
+                    {
+                        CoreRulesetName = input.Ruleset.CoreRulesetName,
+                        RPGSystems = [existing]
+                    };
+                    _context.CoreRulesets.Add(existingRuleset);
+                }
+                existing.Ruleset = existingRuleset;
+            }
+
+            Dictionary<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinitions = new Dictionary<RPGElementDefinitionDto, RPGElementDefinition>();
+            List<RPGElementDefinition> toDeleteDefinitions = await _context.RPGElementDefinitions
+                                                                .Where(x => x.RPGSystemId == existing.Id)
+                                                                .Include(x => x.LevelableData)
+                                                                .Include(x => x.AllowedChildren)
+                                                                .ToListAsync();
+            List<RPGElementDefinitionDto> toAddDefinitions = new List<RPGElementDefinitionDto>(input.ElementDefinitions);
+
+            //match on ID first:
+            foreach (RPGElementDefinitionDto toAddDto in new List<RPGElementDefinitionDto>(toAddDefinitions))
+            {
+                RPGElementDefinition? toAdd = toDeleteDefinitions.Where(x => x.Id == toAddDto.Id).FirstOrDefault();
+                if (toAdd != null)
+                {
+                    matchedDefinitions.Add(toAddDto, toAdd);
+                    toAddDefinitions.Remove(toAddDto);
+                    toDeleteDefinitions.Remove(toAdd);
+                }
+            }
+
+            //Match on Name second:
+            foreach (RPGElementDefinitionDto toAddDto in new List<RPGElementDefinitionDto>(toAddDefinitions))
+            {
+                RPGElementDefinition? toAdd = toDeleteDefinitions.Where(x => x.ElementName == toAddDto.ElementName).FirstOrDefault();
+                if (toAdd != null)
+                {
+                    matchedDefinitions.Add(toAddDto, toAdd);
+                    toAddDefinitions.Remove(toAddDto);
+                    toDeleteDefinitions.Remove(toAdd);
+                }
+            }
+
+            foreach (RPGElementDefinition toDelete in toDeleteDefinitions)
+            {
+                //Remove children first:
+                toDelete.AllowedChildren.Clear();
+                foreach (RPGElementDefinition toRemoveChild in matchedDefinitions.Values.Where(x => x.AllowedChildren.Contains(toDelete)).ToList())
+                {
+                    toRemoveChild.AllowedChildren.Remove(toDelete);
+                }
+
+                //Remove definition:
+                existing.RPGElementDefinitions.Remove(toDelete);
+                _context.Remove(toDelete);
+            }            
+
+            List<RPGElementTypeDto> toAddTypes = new List<RPGElementTypeDto>(input.ElementTypes);
+            List<RPGElementType> toDeleteTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
+            Dictionary<RPGElementTypeDto, RPGElementType> matchedTypes = new Dictionary<RPGElementTypeDto, RPGElementType>();
+            foreach (RPGElementTypeDto toAddDto in new List<RPGElementTypeDto>(toAddTypes))
+            {
+                RPGElementType? toAdd = toDeleteTypes.Where(x => x.Id == toAddDto.Id).FirstOrDefault();
+                if (toAdd != null)
+                {
+                    matchedTypes.Add(toAddDto, toAdd);
+                    toAddTypes.Remove(toAddDto);
+                    toDeleteTypes.Remove(toAdd);
+                }
+            }
+
+            foreach (RPGElementTypeDto toAddDto in new List<RPGElementTypeDto>(toAddTypes))
+            {
+                RPGElementType? toAdd = toDeleteTypes.Where(x => x.TypeName == toAddDto.TypeName).FirstOrDefault();
+                if (toAdd != null)
+                {
+                    matchedTypes.Add(toAddDto, toAdd);
+                    toAddTypes.Remove(toAddDto);
+                    toDeleteTypes.Remove(toAdd);
+                }
+            }
+
+            foreach (KeyValuePair<RPGElementTypeDto, RPGElementType> matchedType in matchedTypes)
+            {
+                if (matchedType.Key.TypeName != matchedType.Value.TypeName)
+                {
+                    //Update names for existing types:
+                    matchedType.Value.TypeName = matchedType.Key.TypeName;
+                }
+            }
+
+            foreach (RPGElementTypeDto toAddDto in toAddTypes)
+            {
+                RPGElementType toAdd = new RPGElementType
+                {
+                    TypeName = toAddDto.TypeName,
+                    BuiltIn = toAddDto.BuiltIn,
+                    TypeOrder = toAddDto.TypeOrder,
+                    RPGSystem = existing
+                };
+                matchedTypes.Add(toAddDto,toAdd);
+                _context.Add(toAdd);
+            }
+
+            
+            foreach (KeyValuePair<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinition in matchedDefinitions)
+            {
+                if (matchedDefinition.Key.ElementName != matchedDefinition.Value.ElementName)
+                {
+                    //Update names for existing elements
+                    matchedDefinition.Value.ElementName = matchedDefinition.Key.ElementName;
+                }
+
+                //Update all the element types:
+                RPGElementTypeDto? changedType = matchedTypes.Keys.Where(x=>x.TypeName==matchedDefinition.Key.ElementTypeName).FirstOrDefault();
+                if(changedType!=null)
+                {
+                    if (matchedDefinition.Value.ElementTypeId == 0 || matchedDefinition.Value.ElementTypeId != matchedTypes[changedType].Id) 
+                    {
+                        matchedDefinition.Value.ElementType = matchedTypes[changedType];
+                    }
+                }
+            }
+
+            //Remove types:
+            foreach (RPGElementType toDelete in toDeleteTypes)
+            {
+                _context.Remove(toDelete);
+            }
+
+
+            await HydrateSystem(existing);
         }
 
         await _context.SaveChangesAsync();
