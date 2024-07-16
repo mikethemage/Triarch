@@ -457,6 +457,22 @@ public class RPGSystemRepository : IRPGSystemRepository
                 }
             }
 
+            foreach (ProgressionDto toAddDto in toAddProgressions)
+            {
+                var toAdd = new Progression
+                {
+                    CustomProgression = toAddDto.CustomProgression,
+                    Linear = toAddDto.Linear,
+                    ProgressionType = toAddDto.ProgressionType,
+                    RPGSystem = existing,
+                    ProgressionEntries = toAddDto.Progressions.Select(x => new ProgressionEntry { ProgressionLevel = x.ProgressionLevel, Text = x.Text }).ToList()
+                };
+
+                matchedProgressions.Add(toAddDto,toAdd);
+                _context.Add(toAdd);
+                existing.Progressions.Add(toAdd);
+            }
+
             foreach (KeyValuePair<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinition in matchedDefinitions)
             {
                 if (matchedDefinition.Key.ElementName != matchedDefinition.Value.ElementName)

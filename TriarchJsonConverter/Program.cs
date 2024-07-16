@@ -102,26 +102,8 @@ internal class Program
                     SpecialPointsPerLevel = inputElement.SpecialPointsPerLevel
                 };
 
-                if (inputElement.Progression != null
-                    && inputElement.Progression != "")
-                {
-
-                    if(outputSystem.Progressions.Any(x=>x.ProgressionType==inputElement.Progression))
-                    {
-                        bool reversed = false;
-                        string progressionName = inputElement.Progression;
-
-                        if (progressionName.EndsWith(" Rev"))
-                        {
-                            reversed = true;
-                            progressionName = progressionName.Replace(" Rev", "");
-                        }
-
-                        levelableData.ProgressionName = progressionName;
-                        levelableData.ProgressionReversed = reversed;
-                    }                    
-                }
-                else if (inputElement.CustomProgression != null && inputElement.CustomProgression.Count > 0)
+                
+                if (inputElement.CustomProgression != null && inputElement.CustomProgression.Count > 0)
                 {
                     string customProgressionName = inputElement.Name + "Custom";
                     levelableData.ProgressionName = customProgressionName;
@@ -145,6 +127,25 @@ internal class Program
                     }
 
                     outputSystem.Progressions.Add(customProgression);
+                }
+                else if (inputElement.Progression != null
+                    && inputElement.Progression != "")
+                {
+
+                    if (outputSystem.Progressions.Any(x => x.ProgressionType == inputElement.Progression))
+                    {
+                        bool reversed = false;
+                        string progressionName = inputElement.Progression;
+
+                        if (progressionName.EndsWith(" Rev"))
+                        {
+                            reversed = true;
+                            progressionName = progressionName.Replace(" Rev", "");
+                        }
+
+                        levelableData.ProgressionName = progressionName;
+                        levelableData.ProgressionReversed = reversed;
+                    }
                 }
 
                 if (inputElement.Variants != null && inputElement.Variants.Count > 0)
