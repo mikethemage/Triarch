@@ -39,7 +39,7 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
         _context = context;
         _progression = progression;        
 
-        ProgressionDefinitionsList = new (_context.Entry(progression).Collection(x => x.Progressions).Query().OrderBy(x=>x.ProgressionLevel).Select(x=> new ProgressionDefinitionSelectItem { Id = x.Id, Name=x.Text, Level=x.ProgressionLevel}));
+        ProgressionDefinitionsList = new (_context.Entry(progression).Collection(x => x.ProgressionEntries).Query().OrderBy(x=>x.ProgressionLevel).Select(x=> new ProgressionDefinitionSelectItem { Id = x.Id, Name=x.Text, Level=x.ProgressionLevel}));
     }
 
     public void Edit()
@@ -58,9 +58,9 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
         if (CurrentlyEditingItem == null)
         {
             int NextOrder = 0;
-            if(_context.Entry(_progression).Collection(x => x.Progressions).Query().Any())
+            if(_context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().Any())
             {
-                NextOrder = _context.Entry(_progression).Collection(x => x.Progressions).Query().Max(x => x.ProgressionLevel);
+                NextOrder = _context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().Max(x => x.ProgressionLevel);
                 NextOrder++;
             }            
 
@@ -82,7 +82,7 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
                 _context.ProgressionEntries.Add(CurrentlyEditingItem);
             }
             _context.SaveChanges();
-            ProgressionDefinitionsList = new(_context.Entry(_progression).Collection(x => x.Progressions).Query().OrderBy(x => x.ProgressionLevel).Select(x => new ProgressionDefinitionSelectItem { Id = x.Id, Name = x.Text, Level=x.ProgressionLevel }));
+            ProgressionDefinitionsList = new(_context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().OrderBy(x => x.ProgressionLevel).Select(x => new ProgressionDefinitionSelectItem { Id = x.Id, Name = x.Text, Level=x.ProgressionLevel }));
             SelectedItem = ProgressionDefinitionsList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }

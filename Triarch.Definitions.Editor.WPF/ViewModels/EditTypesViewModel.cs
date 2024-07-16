@@ -38,7 +38,7 @@ internal class EditTypesViewModel : ObservableViewModel
         _context = context;
         _rPGSystem = rPGSystem;        
 
-        TypesList = new (_context.Entry(_rPGSystem).Collection(x => x.ElementTypes).Query().OrderBy(x=>x.TypeOrder).Select(x=> new RPGTypeSelectItem { Id = x.Id, Name=x.TypeName }));
+        TypesList = new (_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().OrderBy(x=>x.TypeOrder).Select(x=> new RPGTypeSelectItem { Id = x.Id, Name=x.TypeName }));
     }
 
     public void Edit()
@@ -57,9 +57,9 @@ internal class EditTypesViewModel : ObservableViewModel
         if (CurrentlyEditingItem == null)
         {
             int NextOrder = 0;
-            if(_context.Entry(_rPGSystem).Collection(x => x.ElementTypes).Query().Any())
+            if(_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().Any())
             {
-                NextOrder = _context.Entry(_rPGSystem).Collection(x => x.ElementTypes).Query().Max(x => x.TypeOrder);
+                NextOrder = _context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().Max(x => x.TypeOrder);
             }
             NextOrder++;
 
@@ -81,7 +81,7 @@ internal class EditTypesViewModel : ObservableViewModel
                 _context.RPGElementTypes.Add(CurrentlyEditingItem);
             }
             _context.SaveChanges();
-            TypesList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementTypes).Query().OrderBy(x => x.TypeOrder).Select(x => new RPGTypeSelectItem { Id = x.Id, Name = x.TypeName }));
+            TypesList = new(_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().OrderBy(x => x.TypeOrder).Select(x => new RPGTypeSelectItem { Id = x.Id, Name = x.TypeName }));
             SelectedItem = TypesList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }       

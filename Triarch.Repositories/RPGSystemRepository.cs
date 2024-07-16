@@ -250,6 +250,8 @@ public class RPGSystemRepository : IRPGSystemRepository
                 List<RPGElementDefinition> children = existing.RPGElementDefinitions.Where(x => elementDefinitionDto.AllowedChildrenNames.Contains(x.ElementName)).ToList();
                 parent.AllowedChildren = children;
             }
+
+            await _context.SaveChangesAsync();
         }
         else
         {
@@ -426,9 +428,9 @@ public class RPGSystemRepository : IRPGSystemRepository
                 foreach (ProgressionEntry existingProgressionEntry in matchedProgression.Value.ProgressionEntries)
                 {
                     ProgressionEntryDto? progressionEntryDto = matchedProgression.Key.Progressions.Where(x => x.ProgressionLevel == existingProgressionEntry.ProgressionLevel).FirstOrDefault();
-                    if(progressionEntryDto != null)
+                    if (progressionEntryDto != null)
                     {
-                        existingProgressionEntry.Text=progressionEntryDto.Text;
+                        existingProgressionEntry.Text = progressionEntryDto.Text;
                     }
                 }
 
@@ -473,13 +475,21 @@ public class RPGSystemRepository : IRPGSystemRepository
                     }
                 }
 
-                if(matchedDefinition.Key.LevelableData!=null)
+                if (matchedDefinition.Key.LevelableData != null)
                 {
-                    if(matchedDefinition.Value.LevelableData==null)
+                    if (matchedDefinition.Value.LevelableData == null)
                     {
-                        matchedDefinition.Value.LevelableData = new LevelableDefinition { RPGElementDefinition = matchedDefinition.Value };
-                        
+                        matchedDefinition.Value.LevelableData = new LevelableDefinition
+                        {
+                            RPGElementDefinition = matchedDefinition.Value
+                        };
                     }
+
+                    matchedDefinition.Value.LevelableData.CostPerLevel = matchedDefinition.Key.LevelableData.CostPerLevel;
+                    matchedDefinition.Value.LevelableData.CostPerLevelDescription = matchedDefinition.Key.LevelableData.CostPerLevelDescription;
+                    matchedDefinition.Value.LevelableData.MaxLevel = matchedDefinition.Key.LevelableData.MaxLevel;
+                    matchedDefinition.Value.LevelableData.EnforceMaxLevel= matchedDefinition.Key.LevelableData.EnforceMaxLevel;                    
+                    matchedDefinition.Value.LevelableData.SpecialPointsPerLevel= matchedDefinition.Key.LevelableData.SpecialPointsPerLevel;
 
                     ProgressionDto? changedProgression = matchedProgressions.Keys.Where(x => x.ProgressionType == matchedDefinition.Key.LevelableData.ProgressionName).FirstOrDefault();
                     if (changedProgression != null)
@@ -489,8 +499,85 @@ public class RPGSystemRepository : IRPGSystemRepository
                             matchedDefinition.Value.LevelableData.Progression = matchedProgressions[changedProgression];
                         }
                     }
+                    List<VariantDefinitionDto> VariantsToAdd;
+                    List<VariantDefinition> VariantsToDelete = await _context.VariantDefinitions.Where(x=>x.LevelableDefinitionId==matchedDefinition.Value.LevelableData.Id).ToListAsync();
+                    if(matchedDefinition.Key.LevelableData.Variants==null)
+                    {
+                        VariantsToAdd = new List<VariantDefinitionDto>();
+                    }
+                    else
+                    {
+                        VariantsToAdd = new List<VariantDefinitionDto>(matchedDefinition.Key.LevelableData.Variants);
+                    }
+
+                    Dictionary<VariantDefinitionDto, VariantDefinition> matchedVariants = new Dictionary<VariantDefinitionDto, VariantDefinition>();
+
+                    foreach (VariantDefinitionDto toAddDto in new List<VariantDefinitionDto>(VariantsToAdd))
+                    {
+                        VariantDefinition? toAdd = VariantsToDelete.Where(x=>x.Id==toAddDto.Id).FirstOrDefault();
+                        if(toAdd!=null)
+                        {
+                            matchedVariants.Add(toAddDto,toAdd);
+                            VariantsToAdd.Remove(toAddDto);
+                            VariantsToDelete.Remove(toAdd);
+                        }
+                    }
+
+                    foreach (VariantDefinitionDto toAddDto in new List<VariantDefinitionDto>(VariantsToAdd))
+                    {
+                        VariantDefinition? toAdd = VariantsToDelete.Where(x => x.VariantName == toAddDto.VariantName).FirstOrDefault();
+                        if (toAdd != null)
+                        {
+                            matchedVariants.Add(toAddDto, toAdd);
+                            VariantsToAdd.Remove(toAddDto);
+                            VariantsToDelete.Remove(toAdd);
+                        }
+                    }
+
+                    foreach (VariantDefinition toDelete in VariantsToDelete)
+                    {
+                        toDelete.LevelableDefinition = null;
+                        _context.Remove(toDelete);                        
+                    }
+
+                    foreach (KeyValuePair<VariantDefinitionDto, VariantDefinition> matchedVariant in matchedVariants)
+                    {
+                        if(matchedVariant.Value.VariantName!=matchedVariant.Key.VariantName)
+                        {
+                            matchedVariant.Value.VariantName = matchedVariant.Key.VariantName;
+                        }
+
+                        matchedVariant.Value.CostPerLevel = matchedVariant.Key.CostPerLevel;
+                        matchedVariant.Value.Description = matchedVariant.Key.Description;
+                        matchedVariant.Value.IsDefault = matchedVariant.Key.IsDefault;
+                    }
+
+                    foreach (VariantDefinitionDto toAddDto in VariantsToAdd)
+                    {
+                        VariantDefinition toAdd = new VariantDefinition
+                        {
+                            LevelableDefinition = matchedDefinition.Value.LevelableData,
+                            CostPerLevel = toAddDto.CostPerLevel,
+                            Description = toAddDto.Description,
+                            IsDefault = toAddDto.IsDefault,
+                            VariantName = toAddDto.VariantName
+                        };
+
+                        _context.Add(toAdd);
+                        matchedDefinition.Value.LevelableData.VariantDefinitions.Add(toAdd);
+                        matchedVariants.Add(toAddDto, toAdd);
+                    }
+
+
                 }
-                
+                else
+                {
+                    if (matchedDefinition.Value.LevelableData != null)
+                    {
+                        matchedDefinition.Value.LevelableData = null;
+                    }
+                }
+
             }
 
             foreach (Progression toDelete in toDeleteProgressions)
@@ -500,15 +587,17 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             //Remove types:
             foreach (RPGElementType toDelete in toDeleteTypes)
-            {                
+            {
                 _context.Remove(toDelete);
             }
 
+            await _context.SaveChangesAsync();
 
-            await HydrateSystem(existing);
-        }
+            RPGSystem newSystem = await _context.RPGSystems.Where(x=>x.Id==existing.Id).Include(x => x.Ruleset).SingleAsync();
 
-        await _context.SaveChangesAsync();
+            await HydrateSystem(newSystem);
+            existing = newSystem;
+        }        
 
         return existing.ToDto();
     }
