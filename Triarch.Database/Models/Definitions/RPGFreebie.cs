@@ -1,4 +1,4 @@
-﻿namespace TriarchDbFirst;
+﻿namespace Triarch.Database.Models.Definitions;
 
 public partial class RPGFreebie
 {

@@ -5,22 +5,22 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TriarchDbFirst;
+using Triarch.Database;
 
 #nullable disable
 
-namespace TriarchDbFirst.Migrations
+namespace Triarch.Database.Migrations
 {
-    [DbContext(typeof(TriarchContext))]
-    [Migration("20240703140933_Redefine Join Table")]
-    partial class RedefineJoinTable
+    [DbContext(typeof(TriarchDbContext))]
+    [Migration("20240707133817_Fixed bool Human default value error")]
+    partial class FixedboolHumandefaultvalueerror
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "7.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -40,7 +40,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("ElementRelations");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.CoreRuleset", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.CoreRuleset", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("CoreRulesets");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.Genre", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.GenreCostPerLevel", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.GenreCostPerLevel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,7 +110,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("GenreCostPerLevels");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.LevelableDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.LevelableDefinition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,14 +118,14 @@ namespace TriarchDbFirst.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CostPerLevel")
+                    b.Property<int?>("CostPerLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("CostPerLevelDescription")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("EnforceMaxLevel")
+                    b.Property<bool?>("EnforceMaxLevel")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
@@ -149,7 +149,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("LevelableDefinitions");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.Progression", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Progression", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -182,7 +182,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("Progressions");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.ProgressionEntry", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.ProgressionEntry", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -208,7 +208,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("ProgressionEntries");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGElementDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementDefinition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -229,9 +229,7 @@ namespace TriarchDbFirst.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("Human")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
+                        .HasColumnType("bit");
 
                     b.Property<int?>("LevelableDataId")
                         .HasColumnType("int");
@@ -252,6 +250,8 @@ namespace TriarchDbFirst.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ElementTypeId");
+
                     b.HasIndex("LevelableDataId")
                         .IsUnique()
                         .HasFilter("[LevelableDataId] IS NOT NULL");
@@ -261,13 +261,16 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("RPGElementDefinitions");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGElementType", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("BuiltIn")
+                        .HasColumnType("bit");
 
                     b.Property<int>("RPGSystemId")
                         .HasColumnType("int");
@@ -287,7 +290,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("RPGElementTypes");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGFreebie", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGFreebie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -316,7 +319,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("RPGFreebies");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGSystem", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGSystem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -346,7 +349,7 @@ namespace TriarchDbFirst.Migrations
                     b.ToTable("RPGSystems");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.VariantDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.VariantDefinition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -383,22 +386,22 @@ namespace TriarchDbFirst.Migrations
 
             modelBuilder.Entity("ElementRelations", b =>
                 {
-                    b.HasOne("TriarchDbFirst.RPGElementDefinition", null)
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", null)
                         .WithMany()
                         .HasForeignKey("ChildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TriarchDbFirst.RPGElementDefinition", null)
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", null)
                         .WithMany()
                         .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.Genre", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Genre", b =>
                 {
-                    b.HasOne("TriarchDbFirst.RPGSystem", "RPGSystem")
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
                         .WithMany("Genres")
                         .HasForeignKey("RPGSystemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -407,15 +410,15 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("RPGSystem");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.GenreCostPerLevel", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.GenreCostPerLevel", b =>
                 {
-                    b.HasOne("TriarchDbFirst.Genre", "Genre")
+                    b.HasOne("Triarch.Database.Models.Definitions.Genre", "Genre")
                         .WithMany("GenreCostPerLevels")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TriarchDbFirst.LevelableDefinition", "Levelable")
+                    b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "Levelable")
                         .WithMany("GenreCostPerLevels")
                         .HasForeignKey("LevelableId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -426,18 +429,18 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("Levelable");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.LevelableDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.LevelableDefinition", b =>
                 {
-                    b.HasOne("TriarchDbFirst.Progression", "Progression")
+                    b.HasOne("Triarch.Database.Models.Definitions.Progression", "Progression")
                         .WithMany("LevelableDefinitions")
                         .HasForeignKey("ProgressionId");
 
                     b.Navigation("Progression");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.Progression", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Progression", b =>
                 {
-                    b.HasOne("TriarchDbFirst.RPGSystem", "RPGSystem")
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
                         .WithMany("Progressions")
                         .HasForeignKey("RPGSystemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -446,9 +449,9 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("RPGSystem");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.ProgressionEntry", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.ProgressionEntry", b =>
                 {
-                    b.HasOne("TriarchDbFirst.Progression", "Progression")
+                    b.HasOne("Triarch.Database.Models.Definitions.Progression", "Progression")
                         .WithMany("ProgressionEntries")
                         .HasForeignKey("ProgressionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -457,27 +460,35 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("Progression");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGElementDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementDefinition", b =>
                 {
-                    b.HasOne("TriarchDbFirst.LevelableDefinition", "LevelableData")
-                        .WithOne("RPGElementDefinition")
-                        .HasForeignKey("TriarchDbFirst.RPGElementDefinition", "LevelableDataId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("TriarchDbFirst.RPGSystem", "RPGSystem")
-                        .WithMany("RPGElementDefinitions")
-                        .HasForeignKey("RPGSystemId")
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementType", "ElementType")
+                        .WithMany()
+                        .HasForeignKey("ElementTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "LevelableData")
+                        .WithOne("RPGElementDefinition")
+                        .HasForeignKey("Triarch.Database.Models.Definitions.RPGElementDefinition", "LevelableDataId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
+                        .WithMany("RPGElementDefinitions")
+                        .HasForeignKey("RPGSystemId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("ElementType");
 
                     b.Navigation("LevelableData");
 
                     b.Navigation("RPGSystem");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGElementType", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementType", b =>
                 {
-                    b.HasOne("TriarchDbFirst.RPGSystem", "RPGSystem")
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
                         .WithMany("RPGElementTypes")
                         .HasForeignKey("RPGSystemId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -486,15 +497,15 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("RPGSystem");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGFreebie", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGFreebie", b =>
                 {
-                    b.HasOne("TriarchDbFirst.RPGElementDefinition", "FreebieElementDefinition")
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "FreebieElementDefinition")
                         .WithMany()
                         .HasForeignKey("FreebieElementDefinitionId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("TriarchDbFirst.RPGElementDefinition", "OwnerElementDefinition")
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "OwnerElementDefinition")
                         .WithMany("Freebies")
                         .HasForeignKey("OwnerElementDefinitionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -505,9 +516,9 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("OwnerElementDefinition");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGSystem", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGSystem", b =>
                 {
-                    b.HasOne("TriarchDbFirst.CoreRuleset", "Ruleset")
+                    b.HasOne("Triarch.Database.Models.Definitions.CoreRuleset", "Ruleset")
                         .WithMany("RPGSystems")
                         .HasForeignKey("RulesetId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -516,9 +527,9 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("Ruleset");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.VariantDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.VariantDefinition", b =>
                 {
-                    b.HasOne("TriarchDbFirst.LevelableDefinition", "LevelableDefinition")
+                    b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "LevelableDefinition")
                         .WithMany("VariantDefinitions")
                         .HasForeignKey("LevelableDefinitionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -527,17 +538,17 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("LevelableDefinition");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.CoreRuleset", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.CoreRuleset", b =>
                 {
                     b.Navigation("RPGSystems");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.Genre", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Genre", b =>
                 {
                     b.Navigation("GenreCostPerLevels");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.LevelableDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.LevelableDefinition", b =>
                 {
                     b.Navigation("GenreCostPerLevels");
 
@@ -547,19 +558,19 @@ namespace TriarchDbFirst.Migrations
                     b.Navigation("VariantDefinitions");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.Progression", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Progression", b =>
                 {
                     b.Navigation("LevelableDefinitions");
 
                     b.Navigation("ProgressionEntries");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGElementDefinition", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementDefinition", b =>
                 {
                     b.Navigation("Freebies");
                 });
 
-            modelBuilder.Entity("TriarchDbFirst.RPGSystem", b =>
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGSystem", b =>
                 {
                     b.Navigation("Genres");
 

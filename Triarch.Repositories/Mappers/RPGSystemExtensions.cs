@@ -1,102 +1,140 @@
-﻿using Triarch.Database.Models.Definitions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Triarch.Database.Models.Definitions;
 using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories.Mappers;
-
 internal static class RPGSystemExtensions
 {
-    public static RPGSystemDto ToDto(this RPGSystem rpgSystem)
+    public static RPGSystemDto ToDto(this RPGSystem model)
     {
-        return new RPGSystemDto
+        RPGSystemDto output = new RPGSystemDto
         {
-            Id = rpgSystem.Id,
-            Ruleset = rpgSystem.Ruleset.ToDto(),
-            SystemName = rpgSystem.SystemName,
-            DescriptiveName = rpgSystem.DescriptiveName,
-            OwnerUserId = rpgSystem.OwnerUserId,
-            ElementTypes = rpgSystem.ElementTypes.Select(x => x.ToDto()).ToList(),
-            ElementDefinitions = rpgSystem.ElementDefinitions.Select(x => x.ToDto()).ToList(),
-            Genres = rpgSystem.Genres.Select(x => x.ToDto()).ToList(),
-            Progressions = rpgSystem.Progressions.Select(x => x.ToDto()).ToList()
-        };
-    }
-
-    public static RPGSystemHeadingDto ToHeadingDto(this RPGSystem rpgSystem)
-    {
-        return new RPGSystemHeadingDto
-        {
-            Id = rpgSystem.Id,
-            SystemName = rpgSystem.SystemName,
-            CoreRulesetName = rpgSystem.Ruleset.CoreRulesetName
-        };
-    }
-
-    public static RPGSystem ToModel(this RPGSystemDto rpgSystemDto)
-    {
-        RPGSystem model = new RPGSystem
-        {
-            Id = rpgSystemDto.Id,
-            Ruleset = rpgSystemDto.Ruleset.ToModel(),
-            SystemName = rpgSystemDto.SystemName,
-            DescriptiveName = rpgSystemDto.DescriptiveName,
-            OwnerUserId = rpgSystemDto.OwnerUserId,
-            ElementTypes = rpgSystemDto.ElementTypes.Select(x => x.ToModel()).ToList(),
-            ElementDefinitions = rpgSystemDto.ElementDefinitions.Select(x => x.ToModel()).ToList(),
-            Genres = rpgSystemDto.Genres.Select(x => x.ToModel()).ToList(),
-            Progressions = rpgSystemDto.Progressions.Select(x => x.ToModel()).ToList()
+            Id = model.Id,
+            SystemName = model.SystemName,
+            DescriptiveName = model.DescriptiveName,
+            OwnerUserId = model.OwnerUserId,
+            Ruleset = model.Ruleset.ToDto()
         };
 
-        foreach (RPGElementDefinition elementDefinition in model.ElementDefinitions)
+        output.Genres = model.Genres.Select(x =>
+                        new GenreDto
+                        {
+                            Id = x.Id,
+                            GenreName = x.GenreName,
+                            GenreOrder = x.GenreOrder,
+                        }
+                    ).ToList();
+
+        List<ProgressionDto> progressionDtos = new List<ProgressionDto>();
+
+        foreach (Progression progression in model.Progressions)
         {
-            string name = elementDefinition.ElementName;
-
-            RPGElementType? elementType = model.ElementTypes.Where(x => x.TypeName == rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).ElementTypeName).FirstOrDefault();
-
-            if (elementType != null)
+            progressionDtos.Add(new ProgressionDto
             {
-                elementDefinition.ElementType = elementType;
-            }
+                Id = progression.Id,
+                ProgressionType = progression.ProgressionType,
+                CustomProgression = progression.CustomProgression,
+                Linear = progression.Linear,
+                Progressions = progression.ProgressionEntries.Select(x => new ProgressionEntryDto
+                {
+                    Id = x.Id,
+                    ProgressionLevel = x.ProgressionLevel,
+                    Text = x.Text
+                }).ToList()
+            });
+        }
 
-            List<string> allowedChildrenNames = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).AllowedChildrenNames;
-            List<RPGElementDefinition> allowedChildren = model.ElementDefinitions.Where(x => allowedChildrenNames.Contains(x.ElementName)).ToList();
-            elementDefinition.AllowedChildren = allowedChildren;
+        output.Progressions = progressionDtos;
 
-            List<string> allowedParentsNames = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).AllowedParentsNames;
-            List<RPGElementDefinition> allowedParents = model.ElementDefinitions.Where(x => allowedParentsNames.Contains(x.ElementName)).ToList();
-            elementDefinition.AllowedParents = allowedParents;
+        output.ElementTypes = model.RPGElementTypes.Select(x => new RPGElementTypeDto
+        {
+            Id = x.Id,
+            TypeName = x.TypeName,
+            TypeOrder = x.TypeOrder
+        }).ToList();
+
+        List<RPGElementDefinitionDto> elementDefinitionDtos = new List<RPGElementDefinitionDto>();
+
+        foreach (RPGElementDefinition elementDefinition in model.RPGElementDefinitions)
+        {
+            RPGElementDefinitionDto elementDefinitionDto = new RPGElementDefinitionDto
+            {
+                Id = elementDefinition.Id,
+                ElementName = elementDefinition.ElementName,
+                ElementTypeName = model.RPGElementTypes.Where(x => x.Id == elementDefinition.ElementTypeId).First().TypeName,
+                Description = elementDefinition.Description,
+                Human = elementDefinition.Human,
+                PageNumbers = elementDefinition.PageNumbers,
+                Stat = elementDefinition.Stat,
+                PointsContainerScale = elementDefinition.PointsContainerScale,
+                AllowedChildrenNames = new List<string>()
+            };
 
             if (elementDefinition.LevelableData != null)
             {
-                string? progressionName = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).LevelableData?.ProgressionName;
-                if (progressionName != null)
+                elementDefinitionDto.LevelableData = new LevelableDefinitionDto
                 {
-                    elementDefinition.LevelableData.Progression = model.Progressions.First(x => x.ProgressionType == progressionName);
+                    Id = elementDefinition.LevelableData.Id,
+                    CostPerLevel = elementDefinition.LevelableData.CostPerLevel,
+                    CostPerLevelDescription = elementDefinition.LevelableData.CostPerLevelDescription,
+                    EnforceMaxLevel = elementDefinition.LevelableData.EnforceMaxLevel,
+                    MaxLevel = elementDefinition.LevelableData.MaxLevel,
+                    ProgressionReversed = elementDefinition.LevelableData.ProgressionReversed,
+                    SpecialPointsPerLevel = elementDefinition.LevelableData.SpecialPointsPerLevel
+                };
+                if (elementDefinition.LevelableData.ProgressionId != null)
+                {
+                    elementDefinitionDto.LevelableData.ProgressionName =
+                         model.Progressions.Where(x => x.Id == elementDefinition.LevelableData.ProgressionId).First().ProgressionType;
                 }
-
-                List<GenreCostPerLevelDto>? multiGenreData = rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).LevelableData?.MultiGenreCostPerLevels;
-                if (multiGenreData != null)
+                if (elementDefinition.LevelableData.VariantDefinitions != null && elementDefinition.LevelableData.VariantDefinitions.Count > 0)
                 {
-                    elementDefinition.LevelableData.MultiGenreCostPerLevels = new List<GenreCostPerLevel>();
-                    foreach (GenreCostPerLevelDto genreCostPerLevelDto in multiGenreData)
+                    elementDefinitionDto.LevelableData.Variants = new List<VariantDefinitionDto>();
+
+                    foreach (VariantDefinition variantDefinition in elementDefinition.LevelableData.VariantDefinitions)
                     {
-                        GenreCostPerLevel newGenreCostPerLevel = genreCostPerLevelDto.ToModel();
-                        newGenreCostPerLevel.Genre = model.Genres.First(x => x.GenreName == genreCostPerLevelDto.GenreName);
-                        elementDefinition.LevelableData.MultiGenreCostPerLevels.Add(newGenreCostPerLevel);
+                        elementDefinitionDto.LevelableData.Variants.Add(new VariantDefinitionDto
+                        {
+                            Id = variantDefinition.Id,
+                            VariantName = variantDefinition.VariantName,
+                            Description = variantDefinition.Description,
+                            IsDefault = variantDefinition.IsDefault,
+                            CostPerLevel = variantDefinition.CostPerLevel
+                        });
                     }
                 }
             }
 
-            if(rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).Freebies != null)
+            foreach (RPGElementDefinition allowedChild in elementDefinition.AllowedChildren)
             {
-                foreach (FreebieDto freebieDto in rpgSystemDto.ElementDefinitions.First(x => x.ElementName == name).Freebies!)
+                elementDefinitionDto.AllowedChildrenNames.Add(allowedChild.ElementName);
+            }
+
+
+            if (elementDefinition.Freebies.Count > 0)
+            {
+                elementDefinitionDto.Freebies = new List<FreebieDto>();
+                foreach (RPGFreebie freebie in elementDefinition.Freebies)
                 {
-                    elementDefinition.Freebies = new List<Freebie>();
-                    Freebie newFreebie =  freebieDto.ToModel();
-                    newFreebie.FreebieElementDefinition = model.ElementDefinitions.First(x => x.ElementName == freebieDto.FreebieElementDefinitionName);                
+                    elementDefinitionDto.Freebies.Add(new FreebieDto
+                    {
+                        Id = freebie.Id,
+                        FreeLevels = freebie.FreeLevels,
+                        RequiredLevels = freebie.RequiredLevels,
+                        FreebieElementDefinitionName = model.RPGElementDefinitions.Where(x => x.Id == freebie.FreebieElementDefinitionId).First().ElementName
+                    });
                 }
             }
+
+            elementDefinitionDtos.Add(elementDefinitionDto);
         }
 
-        return model;
+        output.ElementDefinitions = elementDefinitionDtos;
+
+        return output;
     }
 }

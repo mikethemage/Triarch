@@ -40,7 +40,7 @@ internal class EditElementsViewModel : ObservableViewModel
         _context = context;
         _rPGSystem = rPGSystem;
 
-        ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
+        ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.RPGElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
     }
 
     public void Edit()
@@ -72,7 +72,7 @@ internal class EditElementsViewModel : ObservableViewModel
             }
             _context.SaveChanges();
 
-            ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.ElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
+            ElementsList = new(_context.Entry(_rPGSystem).Collection(x => x.RPGElementDefinitions).Query().OrderBy(x => x.ElementType.TypeOrder).ThenBy(x => x.ElementName).Select(x => new ElementSelectItem { Id = x.Id, Name = x.ElementName, ElementType = x.ElementType.TypeName }));
             SelectedItem = ElementsList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }

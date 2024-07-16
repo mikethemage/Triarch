@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Triarch.Repositories;
 using Triarch.Dtos.Definitions;
+using Triarch.Repositories.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,38 +19,60 @@ public class RPGSystemController : ControllerBase
 
     // GET: api/<RPGSystemController>
     [HttpGet]
+    [ProducesResponseType<IEnumerable<RPGSystemHeadingDto>>(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<RPGSystemHeadingDto>>> GetRPGSystems()
     {
-        try
-        {
-            return Ok(await _rPGSystemRepository.GetAllAsync());
-        }
-        catch (Exception ex)
-        {
-            return NotFound(ex.Message);
-        }
-        
+        return Ok(await _rPGSystemRepository.GetAllAsync());
     }
 
     // GET api/<RPGSystemController>/5
     [HttpGet("{id}")]
-    public async Task<RPGSystemDto> Get(int id)
+    [ProducesResponseType<RPGSystemHeadingDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<RPGSystemDto>> Get(int id)
     {
-        return await _rPGSystemRepository.GetByIdAsync(id);
+        try
+        {
+            return Ok(await _rPGSystemRepository.GetByIdAsync(id));
+        }
+        catch (RPGSystemNotFoundException ex) 
+        {
+            return NotFound(ex.Message);
+        }
     }
 
     // POST api/<RPGSystemController>
     [HttpPost]
-    public async Task Post([FromBody] RPGSystemDto value)
+    [ProducesResponseType<RPGSystemDto>(StatusCodes.Status201Created)]
+    [ProducesResponseType<string>(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<RPGSystemDto>> Post([FromBody] RPGSystemDto value)
     {
-        await _rPGSystemRepository.SaveAsync(value);
+        try
+        {
+            RPGSystemDto output = await _rPGSystemRepository.SaveAsync(value);
+            return CreatedAtAction(nameof(Get), new { id = output.Id }, output);
+        }
+        catch (RPGSystemConflictException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
-    
 
     // DELETE api/<RPGSystemController>/5
     [HttpDelete("{id}")]
-    public async Task Delete(int id)
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> Delete(int id)
     {
-        await _rPGSystemRepository.DeleteAsync(id);
+        try
+        {
+            await _rPGSystemRepository.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (RPGSystemNotFoundException ex)
+        {
+            return NotFound(ex.Message);  
+        }
+        
     }
 }

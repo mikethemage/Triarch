@@ -1,16 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class RPGElementType
+public partial class RPGElementType
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(100)]
     public string TypeName { get; set; } = null!;
 
     public int TypeOrder { get; set; }
+    public bool BuiltIn { get; set; } = false;
 
-    public RPGSystem RPGSystem { get; set; } = null!;
+    public int RPGSystemId { get; set; }
+
+    public virtual RPGSystem RPGSystem { get; set; } = null!;
 }

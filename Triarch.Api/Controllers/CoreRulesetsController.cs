@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Triarch.Repositories;
 using Triarch.Dtos.Definitions;
+using Triarch.Repositories.Exceptions;
 
 namespace Triarch.Api.Controllers;
 
@@ -22,6 +23,7 @@ public class CoreRulesetsController : ControllerBase
 
     // GET: api/CoreRulesets
     [HttpGet]
+    [ProducesResponseType<IEnumerable<CoreRulesetDto>>(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<CoreRulesetDto>>> GetCoreRulesets()
     {
         return Ok(await _coreRuleSetRepository.GetAllAsync());        
@@ -29,13 +31,15 @@ public class CoreRulesetsController : ControllerBase
 
     // GET: api/CoreRulesets/5
     [HttpGet("{id}")]
+    [ProducesResponseType<CoreRulesetDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<CoreRulesetDto>> GetCoreRuleset(int id)
     {
         try
         {
             return Ok(await _coreRuleSetRepository.GetByIdAsync(id));
         }
-        catch (Exception ex)
+        catch (CoreRulesetNotFoundException ex)
         {
             return NotFound(ex.Message);
         }
@@ -43,13 +47,16 @@ public class CoreRulesetsController : ControllerBase
 
     // POST: api/CoreRulesets
     [HttpPost]
+    [ProducesResponseType<CoreRulesetDto>(StatusCodes.Status201Created)]
+    [ProducesResponseType<string>(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CoreRulesetDto>> PostCoreRuleset(CoreRulesetDto coreRulesetDTO)
     {
         try
         {
-            return Ok(await _coreRuleSetRepository.SaveAsync(coreRulesetDTO));
+            CoreRulesetDto output = await _coreRuleSetRepository.SaveAsync(coreRulesetDTO);
+            return CreatedAtAction(nameof(GetCoreRuleset), new { id = output.Id },output);
         }
-        catch (Exception ex)
+        catch (CoreRulesetConflictException ex)
         {
             return BadRequest(ex.Message);
         }       
@@ -57,16 +64,18 @@ public class CoreRulesetsController : ControllerBase
 
     // DELETE: api/CoreRulesets/5
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
     public async Task<ActionResult> DeleteCoreRuleset(int id)
     {
         try
         {
             await _coreRuleSetRepository.DeleteAsync(id);
-            return Ok();
+            return NoContent();
         }
-        catch (Exception ex)
+        catch (CoreRulesetNotFoundException ex)
         {
-            return BadRequest(ex.Message);
+            return NotFound(ex.Message);
         }       
     }    
 }

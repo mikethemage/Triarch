@@ -1,43 +1,33 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace Triarch.Database.Models.Definitions;
 
-namespace Triarch.Database.Models.Definitions;
-
-public class RPGElementDefinition
+public partial class RPGElementDefinition
 {
-    [Key]
     public int Id { get; set; }
 
-    [MaxLength(100)]
     public string ElementName { get; set; } = null!;
 
-    public RPGElementType ElementType { get; set; } = null!;
+    public int ElementTypeId { get; set; }
 
-    [MaxLength(600)]
-    public string? Description { get; set; } = null;  //Do we need a better name for this?  Used to reference description of effects
+    public string? Description { get; set; }
 
-    [MaxLength(50)]
-    public string? Stat { get; set; } = null;
+    public string? Stat { get; set; }
 
-    [MaxLength(25)]
-    public string? PageNumbers { get; set; } = null;
+    public string? PageNumbers { get; set; }
 
-    [DefaultValue(false)]
-    public bool Human { get; set; } = false;
+    public bool Human { get; set; }
 
-    //Needs Many-Many mapping:    
-    public ICollection<RPGElementDefinition> AllowedChildren { get; set; } = null!;
+    public int? LevelableDataId { get; set; }
 
-    public ICollection<RPGElementDefinition> AllowedParents { get; set; } = null!;
+    public int? PointsContainerScale { get; set; }
 
-    public LevelableDefinition? LevelableData { get; set; } = null;
+    public int RPGSystemId { get; set; }
 
-    public int? PointsContainerScale { get; set; } = null;
+    public virtual LevelableDefinition? LevelableData { get; set; }   
 
-    [InverseProperty(nameof(Freebie.OwnerElementDefinition))]
-    public ICollection<Freebie>? Freebies { get; set; } = null;
+    public virtual ICollection<RPGFreebie> Freebies { get; set; } = new List<RPGFreebie>();
 
-    
-    public RPGSystem RPGSystem { get; set; } = null!;
+    public virtual RPGSystem RPGSystem { get; set; } = null!;
+
+    public virtual ICollection<RPGElementDefinition> AllowedChildren { get; set; } = new List<RPGElementDefinition>();
+    public virtual RPGElementType ElementType { get; set; } = null!;
 }

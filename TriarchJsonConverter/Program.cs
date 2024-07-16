@@ -35,8 +35,7 @@ internal class Program
             PopulateTypeList(inputData, outputSystem);
             PopulateGenreList(inputData, outputSystem);
             PopulateProgressionList(inputData, outputSystem);
-            PopulateAttributes(inputData, outputSystem);
-            BuildParentLists(outputSystem);
+            PopulateAttributes(inputData, outputSystem);            
 
             Console.WriteLine("Conversion Complete");
 
@@ -44,37 +43,18 @@ internal class Program
 
             Console.WriteLine("Written data successfully!");
         }
-
     }
 
-    private static void BuildParentLists(RPGSystemDto outputSystem)
+    private readonly static JsonSerializerOptions _jsonOptions = new JsonSerializerOptions
     {
-        foreach (RPGElementDefinitionDto parent in outputSystem.ElementDefinitions.Where(x => x.AllowedChildrenNames.Count > 0))
-        {
-            foreach (string childName in parent.AllowedChildrenNames)
-            {
-                RPGElementDefinitionDto? child = outputSystem.ElementDefinitions.Where(x => x.ElementName == childName).FirstOrDefault();
-                if (child != null)
-                {
-                    if (child.AllowedParentsNames == null)
-                    {
-                        child.AllowedParentsNames = new List<string>();
-                    }
-                    child.AllowedParentsNames.Add(parent.ElementName);
-                }
-            }
-        }
-    }
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        WriteIndented = true
+    };
 
     private static void WriteOutOutputData(RPGSystemDto outputSystem)
-    {
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            WriteIndented = true
-        };
-        string outputText = JsonSerializer.Serialize(outputSystem, options);
+    {         
+        string outputText = JsonSerializer.Serialize(outputSystem, _jsonOptions);
         File.WriteAllText("DataFiles\\NEW_BESM3E.json", outputText);
     }
 
@@ -122,26 +102,8 @@ internal class Program
                     SpecialPointsPerLevel = inputElement.SpecialPointsPerLevel
                 };
 
-                if (inputElement.Progression != null
-                    && inputElement.Progression != "")
-                {
-
-                    if(outputSystem.Progressions.Any(x=>x.ProgressionType==inputElement.Progression))
-                    {
-                        bool reversed = false;
-                        string progressionName = inputElement.Progression;
-
-                        if (progressionName.EndsWith(" Rev"))
-                        {
-                            reversed = true;
-                            progressionName = progressionName.Replace(" Rev", "");
-                        }
-
-                        levelableData.ProgressionName = progressionName;
-                        levelableData.ProgressionReversed = reversed;
-                    }                    
-                }
-                else if (inputElement.CustomProgression != null && inputElement.CustomProgression.Count > 0)
+                
+                if (inputElement.CustomProgression != null && inputElement.CustomProgression.Count > 0)
                 {
                     string customProgressionName = inputElement.Name + "Custom";
                     levelableData.ProgressionName = customProgressionName;
@@ -165,6 +127,25 @@ internal class Program
                     }
 
                     outputSystem.Progressions.Add(customProgression);
+                }
+                else if (inputElement.Progression != null
+                    && inputElement.Progression != "")
+                {
+
+                    if (outputSystem.Progressions.Any(x => x.ProgressionType == inputElement.Progression))
+                    {
+                        bool reversed = false;
+                        string progressionName = inputElement.Progression;
+
+                        if (progressionName.EndsWith(" Rev"))
+                        {
+                            reversed = true;
+                            progressionName = progressionName.Replace(" Rev", "");
+                        }
+
+                        levelableData.ProgressionName = progressionName;
+                        levelableData.ProgressionReversed = reversed;
+                    }
                 }
 
                 if (inputElement.Variants != null && inputElement.Variants.Count > 0)
@@ -240,17 +221,20 @@ internal class Program
                 ProgressionType = progressionListing.ProgressionType,
                 Progressions = new List<ProgressionEntryDto>(),
                 CustomProgression = false
-            };            
+            };
 
-            int j = 0;
-            foreach (string progressionEntry in progressionListing.ProgressionsList)
+            if (progressionListing.ProgressionsList != null)
             {
-                progressionDto.Progressions.Add(new ProgressionEntryDto
+                int j = 0;
+                foreach (string progressionEntry in progressionListing.ProgressionsList)
                 {
-                    ProgressionLevel = j,
-                    Text = progressionEntry
-                });
-                j++;
+                    progressionDto.Progressions.Add(new ProgressionEntryDto
+                    {
+                        ProgressionLevel = j,
+                        Text = progressionEntry
+                    });
+                    j++;
+                }
             }
 
             outputSystem.Progressions.Add(progressionDto);

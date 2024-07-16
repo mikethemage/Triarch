@@ -12,8 +12,8 @@ using Triarch.Database;
 namespace Triarch.Database.Migrations
 {
     [DbContext(typeof(TriarchDbContext))]
-    [Migration("20240702145536_Increase Description Max Length")]
-    partial class IncreaseDescriptionMaxLength
+    [Migration("20240705134519_Initial Create")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,19 +25,19 @@ namespace Triarch.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RPGElementDefinitionRPGElementDefinition", b =>
+            modelBuilder.Entity("ElementRelations", b =>
                 {
-                    b.Property<int>("AllowedChildrenId")
+                    b.Property<int>("ChildId")
                         .HasColumnType("int");
 
-                    b.Property<int>("AllowedParentsId")
+                    b.Property<int>("ParentId")
                         .HasColumnType("int");
 
-                    b.HasKey("AllowedChildrenId", "AllowedParentsId");
+                    b.HasKey("ChildId", "ParentId");
 
-                    b.HasIndex("AllowedParentsId");
+                    b.HasIndex("ParentId");
 
-                    b.ToTable("RPGElementDefinitionRPGElementDefinition");
+                    b.ToTable("ElementRelations");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.CoreRuleset", b =>
@@ -56,35 +56,6 @@ namespace Triarch.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CoreRulesets");
-                });
-
-            modelBuilder.Entity("Triarch.Database.Models.Definitions.Freebie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("FreeLevels")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FreebieElementDefinitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OwnerElementDefinitionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequiredLevels")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FreebieElementDefinitionId");
-
-                    b.HasIndex("OwnerElementDefinitionId");
-
-                    b.ToTable("RPGFreebies");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.Genre", b =>
@@ -154,14 +125,19 @@ namespace Triarch.Database.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<bool>("EnforceMaxLevel")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("EnforceMaxLevel")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int?>("MaxLevel")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProgressionId")
                         .HasColumnType("int");
+
+                    b.Property<bool?>("ProgressionReversed")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("SpecialPointsPerLevel")
                         .HasColumnType("int");
@@ -182,7 +158,14 @@ namespace Triarch.Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("CustomProgression")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("Linear")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("ProgressionType")
                         .IsRequired()
@@ -215,8 +198,8 @@ namespace Triarch.Database.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.HasKey("Id");
 
@@ -246,7 +229,9 @@ namespace Triarch.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("Human")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int?>("LevelableDataId")
                         .HasColumnType("int");
@@ -269,7 +254,9 @@ namespace Triarch.Database.Migrations
 
                     b.HasIndex("ElementTypeId");
 
-                    b.HasIndex("LevelableDataId");
+                    b.HasIndex("LevelableDataId")
+                        .IsUnique()
+                        .HasFilter("[LevelableDataId] IS NOT NULL");
 
                     b.HasIndex("RPGSystemId");
 
@@ -283,6 +270,9 @@ namespace Triarch.Database.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("BuiltIn")
+                        .HasColumnType("bit");
 
                     b.Property<int>("RPGSystemId")
                         .HasColumnType("int");
@@ -300,6 +290,35 @@ namespace Triarch.Database.Migrations
                     b.HasIndex("RPGSystemId");
 
                     b.ToTable("RPGElementTypes");
+                });
+
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGFreebie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FreeLevels")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FreebieElementDefinitionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OwnerElementDefinitionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequiredLevels")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FreebieElementDefinitionId");
+
+                    b.HasIndex("OwnerElementDefinitionId");
+
+                    b.ToTable("RPGFreebies");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGSystem", b =>
@@ -347,13 +366,12 @@ namespace Triarch.Database.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int>("ElementDefinitionId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDefault")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
-                    b.Property<int?>("LevelableDefinitionId")
+                    b.Property<int>("LevelableDefinitionId")
                         .HasColumnType("int");
 
                     b.Property<string>("VariantName")
@@ -363,45 +381,24 @@ namespace Triarch.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ElementDefinitionId");
-
                     b.HasIndex("LevelableDefinitionId");
 
                     b.ToTable("VariantDefinitions");
                 });
 
-            modelBuilder.Entity("RPGElementDefinitionRPGElementDefinition", b =>
+            modelBuilder.Entity("ElementRelations", b =>
                 {
                     b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", null)
                         .WithMany()
-                        .HasForeignKey("AllowedChildrenId")
+                        .HasForeignKey("ChildId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", null)
                         .WithMany()
-                        .HasForeignKey("AllowedParentsId")
+                        .HasForeignKey("ParentId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Triarch.Database.Models.Definitions.Freebie", b =>
-                {
-                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "FreebieElementDefinition")
-                        .WithMany()
-                        .HasForeignKey("FreebieElementDefinitionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "OwnerElementDefinition")
-                        .WithMany("Freebies")
-                        .HasForeignKey("OwnerElementDefinitionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FreebieElementDefinition");
-
-                    b.Navigation("OwnerElementDefinition");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.Genre", b =>
@@ -418,13 +415,13 @@ namespace Triarch.Database.Migrations
             modelBuilder.Entity("Triarch.Database.Models.Definitions.GenreCostPerLevel", b =>
                 {
                     b.HasOne("Triarch.Database.Models.Definitions.Genre", "Genre")
-                        .WithMany()
+                        .WithMany("GenreCostPerLevels")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "Levelable")
-                        .WithMany("MultiGenreCostPerLevels")
+                        .WithMany("GenreCostPerLevels")
                         .HasForeignKey("LevelableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -437,7 +434,7 @@ namespace Triarch.Database.Migrations
             modelBuilder.Entity("Triarch.Database.Models.Definitions.LevelableDefinition", b =>
                 {
                     b.HasOne("Triarch.Database.Models.Definitions.Progression", "Progression")
-                        .WithMany()
+                        .WithMany("LevelableDefinitions")
                         .HasForeignKey("ProgressionId");
 
                     b.Navigation("Progression");
@@ -457,7 +454,7 @@ namespace Triarch.Database.Migrations
             modelBuilder.Entity("Triarch.Database.Models.Definitions.ProgressionEntry", b =>
                 {
                     b.HasOne("Triarch.Database.Models.Definitions.Progression", "Progression")
-                        .WithMany("Progressions")
+                        .WithMany("ProgressionEntries")
                         .HasForeignKey("ProgressionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -474,13 +471,14 @@ namespace Triarch.Database.Migrations
                         .IsRequired();
 
                     b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "LevelableData")
-                        .WithMany()
-                        .HasForeignKey("LevelableDataId");
+                        .WithOne("RPGElementDefinition")
+                        .HasForeignKey("Triarch.Database.Models.Definitions.RPGElementDefinition", "LevelableDataId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
-                        .WithMany("ElementDefinitions")
+                        .WithMany("RPGElementDefinitions")
                         .HasForeignKey("RPGSystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("ElementType");
@@ -493,12 +491,31 @@ namespace Triarch.Database.Migrations
             modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementType", b =>
                 {
                     b.HasOne("Triarch.Database.Models.Definitions.RPGSystem", "RPGSystem")
-                        .WithMany("ElementTypes")
+                        .WithMany("RPGElementTypes")
                         .HasForeignKey("RPGSystemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("RPGSystem");
+                });
+
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGFreebie", b =>
+                {
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "FreebieElementDefinition")
+                        .WithMany()
+                        .HasForeignKey("FreebieElementDefinitionId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "OwnerElementDefinition")
+                        .WithMany("Freebies")
+                        .HasForeignKey("OwnerElementDefinitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FreebieElementDefinition");
+
+                    b.Navigation("OwnerElementDefinition");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGSystem", b =>
@@ -514,17 +531,13 @@ namespace Triarch.Database.Migrations
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.VariantDefinition", b =>
                 {
-                    b.HasOne("Triarch.Database.Models.Definitions.RPGElementDefinition", "ElementDefinition")
-                        .WithMany()
-                        .HasForeignKey("ElementDefinitionId")
+                    b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", "LevelableDefinition")
+                        .WithMany("VariantDefinitions")
+                        .HasForeignKey("LevelableDefinitionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Triarch.Database.Models.Definitions.LevelableDefinition", null)
-                        .WithMany("Variants")
-                        .HasForeignKey("LevelableDefinitionId");
-
-                    b.Navigation("ElementDefinition");
+                    b.Navigation("LevelableDefinition");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.CoreRuleset", b =>
@@ -532,16 +545,26 @@ namespace Triarch.Database.Migrations
                     b.Navigation("RPGSystems");
                 });
 
+            modelBuilder.Entity("Triarch.Database.Models.Definitions.Genre", b =>
+                {
+                    b.Navigation("GenreCostPerLevels");
+                });
+
             modelBuilder.Entity("Triarch.Database.Models.Definitions.LevelableDefinition", b =>
                 {
-                    b.Navigation("MultiGenreCostPerLevels");
+                    b.Navigation("GenreCostPerLevels");
 
-                    b.Navigation("Variants");
+                    b.Navigation("RPGElementDefinition")
+                        .IsRequired();
+
+                    b.Navigation("VariantDefinitions");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.Progression", b =>
                 {
-                    b.Navigation("Progressions");
+                    b.Navigation("LevelableDefinitions");
+
+                    b.Navigation("ProgressionEntries");
                 });
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGElementDefinition", b =>
@@ -551,13 +574,13 @@ namespace Triarch.Database.Migrations
 
             modelBuilder.Entity("Triarch.Database.Models.Definitions.RPGSystem", b =>
                 {
-                    b.Navigation("ElementDefinitions");
-
-                    b.Navigation("ElementTypes");
-
                     b.Navigation("Genres");
 
                     b.Navigation("Progressions");
+
+                    b.Navigation("RPGElementDefinitions");
+
+                    b.Navigation("RPGElementTypes");
                 });
 #pragma warning restore 612, 618
         }
