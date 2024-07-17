@@ -4,7 +4,7 @@
     "id": 1,
     "coreRulesetName": "BESM3E"
   },
-  "systemName": "BESM3E",
+  "systemName": "BESM 3rd Edition",
   "descriptiveName": "Core Ruleset for BESM 3rd Edition",
   "ownerUserId": 1,
   "elementTypes": [
@@ -2398,6 +2398,7 @@
       },
       "freebies": [
         {
+          "id": 4,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 2,
           "requiredLevels": 0
@@ -2750,6 +2751,7 @@
       },
       "freebies": [
         {
+          "id": 3,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -2856,8 +2858,9 @@
           }
         ]
       },
-      "freebies": [        
+      "freebies": [
         {
+          "id": 5,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -2979,6 +2982,7 @@
       },
       "freebies": [
         {
+          "id": 6,
           "freebieElementDefinitionName": "Range",
           "freeLevels": 1,
           "requiredLevels": 0
@@ -5452,6 +5456,7 @@
       },
       "freebies": [
         {
+          "id": 2,
           "freebieElementDefinitionName": "Character",
           "freeLevels": 0,
           "requiredLevels": 0
@@ -5701,6 +5706,7 @@
       },
       "freebies": [
         {
+          "id": 7,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 1,
           "requiredLevels": 0
@@ -5927,6 +5933,7 @@
       },
       "freebies": [
         {
+          "id": 8,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -6385,11 +6392,13 @@
       },
       "freebies": [
         {
+          "id": 9,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 5,
           "requiredLevels": 0
         },
         {
+          "id": 10,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -6729,8 +6738,9 @@
         ],
         "specialPointsPerLevel": 10
       },
-      "freebies": [        
+      "freebies": [
         {
+          "id": 11,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -6792,8 +6802,9 @@
           }
         ]
       },
-      "freebies": [        
+      "freebies": [
         {
+          "id": 12,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -6910,8 +6921,9 @@
           }
         ]
       },
-      "freebies": [        
+      "freebies": [
         {
+          "id": 13,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -6959,8 +6971,9 @@
         "progressionName": "Fast",
         "progressionReversed": false
       },
-      "freebies": [        
+      "freebies": [
         {
+          "id": 14,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -7046,8 +7059,9 @@
         "progressionName": "Linear",
         "progressionReversed": false
       },
-      "freebies": [        
+      "freebies": [
         {
+          "id": 15,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -7097,11 +7111,13 @@
       },
       "freebies": [
         {
+          "id": 16,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 5,
           "requiredLevels": 0
-        },        
+        },
         {
+          "id": 17,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -7321,6 +7337,7 @@
       },
       "freebies": [
         {
+          "id": 18,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 2,
           "requiredLevels": 0
@@ -7406,6 +7423,7 @@
       },
       "freebies": [
         {
+          "id": 19,
           "freebieElementDefinitionName": "Area",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -7822,6 +7840,7 @@
       },
       "freebies": [
         {
+          "id": 20,
           "freebieElementDefinitionName": "Range",
           "freeLevels": 1,
           "requiredLevels": 0
@@ -7973,6 +7992,7 @@
       },
       "freebies": [
         {
+          "id": 21,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0
@@ -8059,6 +8079,7 @@
       },
       "freebies": [
         {
+          "id": 22,
           "freebieElementDefinitionName": "Duration",
           "freeLevels": 3,
           "requiredLevels": 0

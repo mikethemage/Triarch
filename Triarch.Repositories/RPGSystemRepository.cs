@@ -240,6 +240,7 @@ public class RPGSystemRepository : IRPGSystemRepository
 
                     elementDefinition.LevelableData = levelableDefinition;
                 }
+                
                 _context.Add(elementDefinition);
                 existing.RPGElementDefinitions.Add(elementDefinition);
             }
@@ -249,6 +250,30 @@ public class RPGSystemRepository : IRPGSystemRepository
                 RPGElementDefinition parent = existing.RPGElementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).First();
                 List<RPGElementDefinition> children = existing.RPGElementDefinitions.Where(x => elementDefinitionDto.AllowedChildrenNames.Contains(x.ElementName)).ToList();
                 parent.AllowedChildren = children;
+            }
+
+            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x=>x.Freebies!=null && x.Freebies.Count>0))
+            {
+                RPGElementDefinition? ownerElement = existing.RPGElementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).FirstOrDefault();
+                if(ownerElement != null)
+                {
+                    foreach (FreebieDto freebieDto in elementDefinitionDto.Freebies!)
+                    {
+                        RPGElementDefinition? freebieElement = existing.RPGElementDefinitions.Where(x => x.ElementName == freebieDto.FreebieElementDefinitionName).FirstOrDefault();
+                        if (freebieElement != null)
+                        {
+                            RPGFreebie freebie = new RPGFreebie
+                            {
+                                FreebieElementDefinition = freebieElement,
+                                FreeLevels = freebieDto.FreeLevels,
+                                RequiredLevels = freebieDto.RequiredLevels,
+                                OwnerElementDefinition = ownerElement
+                            };
+                            _context.Add(freebie);
+                            ownerElement.Freebies.Add(freebie);
+                        }
+                    }
+                }    
             }
 
             await _context.SaveChangesAsync();
@@ -285,9 +310,10 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             Dictionary<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinitions = new Dictionary<RPGElementDefinitionDto, RPGElementDefinition>();
             List<RPGElementDefinition> toDeleteDefinitions = await _context.RPGElementDefinitions
-                                                                .Where(x => x.RPGSystemId == existing.Id)
-                                                                .Include(x => x.LevelableData)
+                                                                .Where(x => x.RPGSystemId == existing.Id)                                                                
                                                                 .Include(x => x.AllowedChildren)
+                                                                .Include(x=>x.Freebies)
+                                                                .Include(x => x.LevelableData)                                                                
                                                                 .ToListAsync();
             List<RPGElementDefinitionDto> toAddDefinitions = new List<RPGElementDefinitionDto>(input.ElementDefinitions);
 
@@ -605,6 +631,48 @@ public class RPGSystemRepository : IRPGSystemRepository
             foreach (RPGElementType toDelete in toDeleteTypes)
             {
                 _context.Remove(toDelete);
+            }
+
+            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x => x.Freebies != null && x.Freebies.Count > 0))
+            {
+                RPGElementDefinition? ownerElement = existing.RPGElementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).FirstOrDefault();
+                if (ownerElement != null)
+                {
+                    foreach(RPGFreebie freebie in new List<RPGFreebie>(ownerElement.Freebies))
+                    {
+                        if(!elementDefinitionDto.Freebies!.Any(x=>x.FreebieElementDefinitionName==freebie.FreebieElementDefinition.ElementName))
+                        {
+                            ownerElement.Freebies.Remove(freebie);
+                            _context.Remove(freebie);
+                        }
+                    }
+
+                    foreach (FreebieDto freebieDto in elementDefinitionDto.Freebies!)
+                    {
+                        RPGElementDefinition? freebieElement = existing.RPGElementDefinitions.Where(x => x.ElementName == freebieDto.FreebieElementDefinitionName).FirstOrDefault();
+                        if (freebieElement != null)
+                        {
+                            RPGFreebie? freebie = ownerElement.Freebies.Where(x => x.FreebieElementDefinition.ElementName == freebieElement.ElementName).FirstOrDefault();
+                            if (freebie != null)
+                            {
+                                freebie.FreeLevels = freebieDto.FreeLevels;
+                                freebie.RequiredLevels = freebieDto.RequiredLevels;
+                            }
+                            else
+                            {
+                                freebie = new RPGFreebie
+                                {
+                                    FreebieElementDefinition = freebieElement,
+                                    FreeLevels = freebieDto.FreeLevels,
+                                    RequiredLevels = freebieDto.RequiredLevels,
+                                    OwnerElementDefinition = ownerElement
+                                };
+                                _context.Add(freebie);
+                                ownerElement.Freebies.Add(freebie);
+                            }
+                        }
+                    }
+                }
             }
 
             await _context.SaveChangesAsync();
