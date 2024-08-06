@@ -12,8 +12,7 @@ internal static class RPGSystemExtensions
     public static RPGSystemDto ToDto(this RPGSystem model)
     {
         RPGSystemDto output = new RPGSystemDto
-        {
-            Id = model.Id,
+        {            
             SystemName = model.SystemName,
             DescriptiveName = model.DescriptiveName,
             OwnerUserId = model.OwnerUserId,
@@ -22,8 +21,7 @@ internal static class RPGSystemExtensions
 
         output.Genres = model.Genres.Select(x =>
                         new GenreDto
-                        {
-                            Id = x.Id,
+                        {                           
                             GenreName = x.GenreName,
                             GenreOrder = x.GenreOrder,
                         }
@@ -34,14 +32,12 @@ internal static class RPGSystemExtensions
         foreach (Progression progression in model.Progressions)
         {
             progressionDtos.Add(new ProgressionDto
-            {
-                Id = progression.Id,
+            {                
                 ProgressionType = progression.ProgressionType,
                 CustomProgression = progression.CustomProgression,
                 Linear = progression.Linear,
                 Progressions = progression.ProgressionEntries.Select(x => new ProgressionEntryDto
-                {
-                    Id = x.Id,
+                {                    
                     ProgressionLevel = x.ProgressionLevel,
                     Text = x.Text
                 }).ToList()
@@ -51,8 +47,7 @@ internal static class RPGSystemExtensions
         output.Progressions = progressionDtos;
 
         output.ElementTypes = model.RPGElementTypes.Select(x => new RPGElementTypeDto
-        {
-            Id = x.Id,
+        {            
             TypeName = x.TypeName,
             TypeOrder = x.TypeOrder
         }).ToList();
@@ -62,8 +57,7 @@ internal static class RPGSystemExtensions
         foreach (RPGElementDefinition elementDefinition in model.RPGElementDefinitions)
         {
             RPGElementDefinitionDto elementDefinitionDto = new RPGElementDefinitionDto
-            {
-                Id = elementDefinition.Id,
+            {                
                 ElementName = elementDefinition.ElementName,
                 ElementTypeName = model.RPGElementTypes.Where(x => x.Id == elementDefinition.ElementTypeId).First().TypeName,
                 Description = elementDefinition.Description,
@@ -77,8 +71,7 @@ internal static class RPGSystemExtensions
             if (elementDefinition.LevelableData != null)
             {
                 elementDefinitionDto.LevelableData = new LevelableDefinitionDto
-                {
-                    Id = elementDefinition.LevelableData.Id,
+                {                    
                     CostPerLevel = elementDefinition.LevelableData.CostPerLevel,
                     CostPerLevelDescription = elementDefinition.LevelableData.CostPerLevelDescription,
                     EnforceMaxLevel = elementDefinition.LevelableData.EnforceMaxLevel,
@@ -98,8 +91,7 @@ internal static class RPGSystemExtensions
                     foreach (VariantDefinition variantDefinition in elementDefinition.LevelableData.VariantDefinitions)
                     {
                         elementDefinitionDto.LevelableData.Variants.Add(new VariantDefinitionDto
-                        {
-                            Id = variantDefinition.Id,
+                        {                            
                             VariantName = variantDefinition.VariantName,
                             Description = variantDefinition.Description,
                             IsDefault = variantDefinition.IsDefault,
@@ -121,8 +113,7 @@ internal static class RPGSystemExtensions
                 foreach (RPGFreebie freebie in elementDefinition.Freebies)
                 {
                     elementDefinitionDto.Freebies.Add(new FreebieDto
-                    {
-                        Id = freebie.Id,
+                    {                        
                         FreeLevels = freebie.FreeLevels,
                         RequiredLevels = freebie.RequiredLevels,
                         FreebieElementDefinitionName = model.RPGElementDefinitions.Where(x => x.Id == freebie.FreebieElementDefinitionId).First().ElementName

@@ -4,9 +4,7 @@ using System.ComponentModel;
 namespace Triarch.Dtos.Definitions;
 
 public class LevelableDefinitionDto
-{
-    public int Id { get; set; }
-
+{   
     public int? MaxLevel { get; set; }
 
     

@@ -12,8 +12,7 @@ internal static class CoreRulesetExtensions
     public static CoreRulesetDto ToDto(this CoreRuleset model)
     {
         return new CoreRulesetDto
-        {
-            Id = model.Id,
+        {            
             CoreRulesetName = model.CoreRulesetName
         };
     }
@@ -21,8 +20,7 @@ internal static class CoreRulesetExtensions
     public static CoreRuleset ToModel(this CoreRulesetDto dto)
     {
         return new CoreRuleset
-        {
-            Id = dto.Id,
+        {            
             CoreRulesetName = dto.CoreRulesetName
         };
     }

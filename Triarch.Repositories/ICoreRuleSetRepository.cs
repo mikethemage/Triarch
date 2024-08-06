@@ -3,8 +3,8 @@
 namespace Triarch.Repositories;
 public interface ICoreRuleSetRepository
 {
-    Task DeleteAsync(int id);
+    Task DeleteAsync(string name);
     Task<IEnumerable<CoreRulesetDto>> GetAllAsync();
-    Task<CoreRulesetDto> GetByIdAsync(int id);
+    Task<CoreRulesetDto> GetByNameAsync(string name);
     Task<CoreRulesetDto> SaveAsync(CoreRulesetDto coreRuleSetDto);
 }

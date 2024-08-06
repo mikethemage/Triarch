@@ -54,13 +54,13 @@ public class RPGSystemRepository : IRPGSystemRepository
         }
     }
 
-    public async Task<RPGSystemDto> GetByIdAsync(int id)
+    public async Task<RPGSystemDto> GetByNameAsync(string name, int userId)
     {
-        RPGSystem? system = await _context.RPGSystems.Where(x => x.Id == id).Include(x => x.Ruleset).SingleOrDefaultAsync();
+        RPGSystem? system = await _context.RPGSystems.Where(x => x.SystemName == name && x.OwnerUserId == userId).Include(x => x.Ruleset).SingleOrDefaultAsync();
 
         if (system == null)
         {
-            throw new RPGSystemNotFoundException($"RPG System not found: {id}");
+            throw new RPGSystemNotFoundException($"RPG System not found: {name}");
         }
 
         await HydrateSystem(system);
@@ -68,33 +68,9 @@ public class RPGSystemRepository : IRPGSystemRepository
         return system.ToDto();
     }
 
-
-
     public async Task<RPGSystemDto> SaveAsync(RPGSystemDto input)
     {
-        RPGSystem? existing = null;
-        if (input.Id != 0)
-        {
-            RPGSystem? existingById = await _context.RPGSystems.Where(x => x.Id == input.Id).FirstOrDefaultAsync();
-            if (existingById != null)
-            {
-                if (existingById.OwnerUserId == input.OwnerUserId)
-                {
-                    //Overwrite
-                    existing = existingById;
-                }
-            }
-        }
-
-        if (existing == null)
-        {
-            RPGSystem? existingByName = await _context.RPGSystems.Where(x => x.SystemName == input.SystemName && x.OwnerUserId == input.OwnerUserId).FirstOrDefaultAsync();
-            if (existingByName != null)
-            {
-                //Overwrite
-                existing = existingByName;
-            }
-        }
+        RPGSystem? existing = await _context.RPGSystems.Where(x => x.SystemName == input.SystemName && x.OwnerUserId == input.OwnerUserId).FirstOrDefaultAsync();       
 
         if (existing == null)
         {
@@ -315,21 +291,9 @@ public class RPGSystemRepository : IRPGSystemRepository
                                                                 .Include(x=>x.Freebies)
                                                                 .Include(x => x.LevelableData)                                                                
                                                                 .ToListAsync();
-            List<RPGElementDefinitionDto> toAddDefinitions = new List<RPGElementDefinitionDto>(input.ElementDefinitions);
+            List<RPGElementDefinitionDto> toAddDefinitions = new List<RPGElementDefinitionDto>(input.ElementDefinitions);            
 
-            //match on ID first:
-            foreach (RPGElementDefinitionDto toAddDto in new List<RPGElementDefinitionDto>(toAddDefinitions))
-            {
-                RPGElementDefinition? toAdd = toDeleteDefinitions.Where(x => x.Id == toAddDto.Id).FirstOrDefault();
-                if (toAdd != null)
-                {
-                    matchedDefinitions.Add(toAddDto, toAdd);
-                    toAddDefinitions.Remove(toAddDto);
-                    toDeleteDefinitions.Remove(toAdd);
-                }
-            }
-
-            //Match on Name second:
+            //Match on Name:
             foreach (RPGElementDefinitionDto toAddDto in new List<RPGElementDefinitionDto>(toAddDefinitions))
             {
                 RPGElementDefinition? toAdd = toDeleteDefinitions.Where(x => x.ElementName == toAddDto.ElementName).FirstOrDefault();
@@ -357,17 +321,7 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             List<RPGElementTypeDto> toAddTypes = new List<RPGElementTypeDto>(input.ElementTypes);
             List<RPGElementType> toDeleteTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
-            Dictionary<RPGElementTypeDto, RPGElementType> matchedTypes = new Dictionary<RPGElementTypeDto, RPGElementType>();
-            foreach (RPGElementTypeDto toAddDto in new List<RPGElementTypeDto>(toAddTypes))
-            {
-                RPGElementType? toAdd = toDeleteTypes.Where(x => x.Id == toAddDto.Id).FirstOrDefault();
-                if (toAdd != null)
-                {
-                    matchedTypes.Add(toAddDto, toAdd);
-                    toAddTypes.Remove(toAddDto);
-                    toDeleteTypes.Remove(toAdd);
-                }
-            }
+            Dictionary<RPGElementTypeDto, RPGElementType> matchedTypes = new Dictionary<RPGElementTypeDto, RPGElementType>();            
 
             foreach (RPGElementTypeDto toAddDto in new List<RPGElementTypeDto>(toAddTypes))
             {
@@ -405,16 +359,7 @@ public class RPGSystemRepository : IRPGSystemRepository
             List<ProgressionDto> toAddProgressions = new List<ProgressionDto>(input.Progressions);
             List<Progression> toDeleteProgressions = await _context.Progressions.Where(x => x.RPGSystemId == existing.Id).Include(x => x.ProgressionEntries).ToListAsync();
             Dictionary<ProgressionDto, Progression> matchedProgressions = new Dictionary<ProgressionDto, Progression>();
-            foreach (ProgressionDto toAddDto in new List<ProgressionDto>(toAddProgressions))
-            {
-                Progression? toAdd = toDeleteProgressions.Where(x => x.Id == toAddDto.Id).FirstOrDefault();
-                if (toAdd != null)
-                {
-                    matchedProgressions.Add(toAddDto, toAdd);
-                    toAddProgressions.Remove(toAddDto);
-                    toDeleteProgressions.Remove(toAdd);
-                }
-            }
+            
             foreach (ProgressionDto toAddDto in new List<ProgressionDto>(toAddProgressions))
             {
                 Progression? toAdd = toDeleteProgressions.Where(x => x.ProgressionType == toAddDto.ProgressionType).FirstOrDefault();
@@ -552,18 +497,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                         VariantsToAdd = new List<VariantDefinitionDto>(matchedDefinition.Key.LevelableData.Variants);
                     }
 
-                    Dictionary<VariantDefinitionDto, VariantDefinition> matchedVariants = new Dictionary<VariantDefinitionDto, VariantDefinition>();
-
-                    foreach (VariantDefinitionDto toAddDto in new List<VariantDefinitionDto>(VariantsToAdd))
-                    {
-                        VariantDefinition? toAdd = VariantsToDelete.Where(x=>x.Id==toAddDto.Id).FirstOrDefault();
-                        if(toAdd!=null)
-                        {
-                            matchedVariants.Add(toAddDto,toAdd);
-                            VariantsToAdd.Remove(toAddDto);
-                            VariantsToDelete.Remove(toAdd);
-                        }
-                    }
+                    Dictionary<VariantDefinitionDto, VariantDefinition> matchedVariants = new Dictionary<VariantDefinitionDto, VariantDefinition>();                    
 
                     foreach (VariantDefinitionDto toAddDto in new List<VariantDefinitionDto>(VariantsToAdd))
                     {
@@ -696,15 +630,8 @@ public class RPGSystemRepository : IRPGSystemRepository
 
         foreach (ProgressionEntryDto inputProgressionEntry in inputProgression.Progressions)
         {
-            ProgressionEntry? existing = null;
-            if (inputProgressionEntry.Id != 0)
-            {
-                existing = progressionEntries.Where(x => x.Id == inputProgressionEntry.Id).FirstOrDefault();
-            }
-            if (existing == null)
-            {
-                existing = progressionEntries.Where(x => x.ProgressionLevel == inputProgressionEntry.ProgressionLevel).FirstOrDefault();
-            }
+            ProgressionEntry? existing = progressionEntries.Where(x => x.ProgressionLevel == inputProgressionEntry.ProgressionLevel).FirstOrDefault();
+            
             if (existing == null)
             {
                 existing = new ProgressionEntry
@@ -725,12 +652,12 @@ public class RPGSystemRepository : IRPGSystemRepository
 
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(string name, int userId)
     {
-        RPGSystem? system = await _context.RPGSystems.FirstOrDefaultAsync(x => x.Id == id);
+        RPGSystem? system = await _context.RPGSystems.FirstOrDefaultAsync(x => x.SystemName == name && x.OwnerUserId == userId);
         if (system == null)
         {
-            throw new RPGSystemNotFoundException($"RPGSystem not found: {id}");
+            throw new RPGSystemNotFoundException($"RPGSystem not found: {name}");
         }
 
         List<RPGElementDefinition> elementDefinitions = await _context.RPGElementDefinitions
@@ -773,8 +700,7 @@ public class RPGSystemRepository : IRPGSystemRepository
         {
             systemDtos.Add(
                 new RPGSystemHeadingDto
-                {
-                    Id = system.Id,
+                {                    
                     CoreRulesetName = system.Ruleset.CoreRulesetName,
                     SystemName = system.SystemName
                 }

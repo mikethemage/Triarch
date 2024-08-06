@@ -30,14 +30,14 @@ public class CoreRulesetsController : ControllerBase
     }
 
     // GET: api/CoreRulesets/5
-    [HttpGet("{id}")]
+    [HttpGet("{name}")]
     [ProducesResponseType<CoreRulesetDto>(StatusCodes.Status200OK)]
     [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CoreRulesetDto>> GetCoreRuleset(int id)
+    public async Task<ActionResult<CoreRulesetDto>> GetCoreRuleset(string name)
     {
         try
         {
-            return Ok(await _coreRuleSetRepository.GetByIdAsync(id));
+            return Ok(await _coreRuleSetRepository.GetByNameAsync(name));
         }
         catch (CoreRulesetNotFoundException ex)
         {
@@ -54,7 +54,7 @@ public class CoreRulesetsController : ControllerBase
         try
         {
             CoreRulesetDto output = await _coreRuleSetRepository.SaveAsync(coreRulesetDTO);
-            return CreatedAtAction(nameof(GetCoreRuleset), new { id = output.Id },output);
+            return CreatedAtAction(nameof(GetCoreRuleset), new { name = output.CoreRulesetName },output);
         }
         catch (CoreRulesetConflictException ex)
         {
@@ -63,14 +63,14 @@ public class CoreRulesetsController : ControllerBase
     }
 
     // DELETE: api/CoreRulesets/5
-    [HttpDelete("{id}")]
+    [HttpDelete("{name}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult> DeleteCoreRuleset(int id)
+    public async Task<ActionResult> DeleteCoreRuleset(string name)
     {
         try
         {
-            await _coreRuleSetRepository.DeleteAsync(id);
+            await _coreRuleSetRepository.DeleteAsync(name);
             return NoContent();
         }
         catch (CoreRulesetNotFoundException ex)

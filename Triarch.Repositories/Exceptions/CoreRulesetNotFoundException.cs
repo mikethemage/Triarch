@@ -9,10 +9,10 @@ namespace Triarch.Repositories.Exceptions;
 public class CoreRulesetNotFoundException : Exception
 {
 
-    public CoreRulesetNotFoundException(string message, int id) : base(message)
+    public CoreRulesetNotFoundException(string message, string name) : base(message)
     {
-        Id = id;
+        Name = name;
     }
 
-    public int Id { get; private set; }
+    public string Name { get; private set; }
 }

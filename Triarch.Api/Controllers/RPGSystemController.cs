@@ -26,14 +26,14 @@ public class RPGSystemController : ControllerBase
     }
 
     // GET api/<RPGSystemController>/5
-    [HttpGet("{id}")]
+    [HttpGet("{name}")]
     [ProducesResponseType<RPGSystemHeadingDto>(StatusCodes.Status200OK)]
     [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<RPGSystemDto>> Get(int id)
+    public async Task<ActionResult<RPGSystemDto>> Get(string name)
     {
         try
         {
-            return Ok(await _rPGSystemRepository.GetByIdAsync(id));
+            return Ok(await _rPGSystemRepository.GetByNameAsync(name, 1));
         }
         catch (RPGSystemNotFoundException ex) 
         {
@@ -50,7 +50,7 @@ public class RPGSystemController : ControllerBase
         try
         {
             RPGSystemDto output = await _rPGSystemRepository.SaveAsync(value);
-            return CreatedAtAction(nameof(Get), new { id = output.Id }, output);
+            return CreatedAtAction(nameof(Get), new { name = output.SystemName }, output);
         }
         catch (RPGSystemConflictException ex)
         {
@@ -59,14 +59,14 @@ public class RPGSystemController : ControllerBase
     }
 
     // DELETE api/<RPGSystemController>/5
-    [HttpDelete("{id}")]
+    [HttpDelete("{name}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType<string>(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult> Delete(int id)
+    public async Task<ActionResult> Delete(string name)
     {
         try
         {
-            await _rPGSystemRepository.DeleteAsync(id);
+            await _rPGSystemRepository.DeleteAsync(name, 1);
             return NoContent();
         }
         catch (RPGSystemNotFoundException ex)

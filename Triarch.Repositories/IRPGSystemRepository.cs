@@ -3,9 +3,9 @@
 namespace Triarch.Repositories;
 public interface IRPGSystemRepository
 {
-    Task DeleteAsync(int id);
+    Task DeleteAsync(string name, int userId);
     Task<IEnumerable<RPGSystemHeadingDto>> GetAllAsync();
     Task<IEnumerable<RPGSystemHeadingDto>> GetAllByUserIdAsync(int userId);
-    Task<RPGSystemDto> GetByIdAsync(int id);
+    Task<RPGSystemDto> GetByNameAsync(string name, int userId);
     Task<RPGSystemDto> SaveAsync(RPGSystemDto rPGSystemDto);
 }
