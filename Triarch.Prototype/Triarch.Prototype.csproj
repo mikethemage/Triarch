@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.115" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Triarch.BusinessLogic\Triarch.BusinessLogic.csproj" />
   </ItemGroup>
 

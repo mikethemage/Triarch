@@ -32,7 +32,7 @@ public partial class MainWindow : Window
     {
         if(SystemSelector.Text=="BESM3E")
         {
-            MessageBox.Show("Test");
+            //MessageBox.Show("Test");
 
             string fileData = File.ReadAllText("DataFiles" + Path.DirectorySeparatorChar + SystemSelector.Text + ".json");
             RPGSystemDto? systemData = JsonSerializer.Deserialize<RPGSystemDto>(fileData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true});
@@ -62,12 +62,12 @@ public partial class MainWindow : Window
 
                         
 
-                        EntityDto outputDto = entityMapper.Serialize(entity);
-                        string outputText = JsonSerializer.Serialize(outputDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition=System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
+                        //EntityDto outputDto = entityMapper.Serialize(entity);
+                        //string outputText = JsonSerializer.Serialize(outputDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition=System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
 
-                        File.WriteAllText("D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test10.json", outputText);
+                        //File.WriteAllText("D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test10.json", outputText);
 
-                        EntityViewModel entityViewModel = new EntityViewModel(entity, "D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test10.json");
+                        EntityViewModel entityViewModel = new EntityViewModel(entity, "D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test9.json");
 
                         EntityEditor editorWindow = new EntityEditor(entityViewModel);
                         editorWindow.ShowDialog();

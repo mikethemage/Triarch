@@ -11,7 +11,7 @@ public class Levelable : RPGElement
     public int FreeLevels { get; set; } = 0;
 
     public VariantDefinition? Variant { get; set; } = null;
-    
+
     public override int BaseCost
     {
         get
@@ -20,13 +20,13 @@ public class Levelable : RPGElement
         }
     }
 
-    public virtual int PointsPerLevel 
-    { 
+    public virtual int PointsPerLevel
+    {
         get
         {
-            if(AssociatedDefinition is LevelableDefinition levelableDefinition)
+            if (AssociatedDefinition is LevelableDefinition levelableDefinition)
             {
-                if(levelableDefinition.Variants!=null && Variant != null)
+                if (levelableDefinition.Variants != null && Variant != null)
                 {
                     return Variant.CostPerLevel;
                 }
@@ -39,7 +39,7 @@ public class Levelable : RPGElement
             {
                 return 0;
             }
-        }  
+        }
     }
 
     public override int Points
@@ -47,15 +47,54 @@ public class Levelable : RPGElement
         get
         {
             return (PointsPerLevel * Level) + VariablesOrRestrictions;
-        }        
+        }
+    }
+
+    public string Description
+    {
+        get
+        {
+
+            string? description = AssociatedDefinition.Description ?? "";
+
+            string completedDescription = "";
+
+            while (description != null)
+            {
+                string[] pieces = description.Split('[', 2);
+                completedDescription += pieces[0];
+                if (pieces.Length > 1)
+                {
+                    description = pieces[1];
+                    pieces = description.Split(']', 2);
+
+                    completedDescription += ProcessDescriptionValue(pieces[0]);
+
+                    if (pieces.Length > 1)
+                    {
+                        description = pieces[1];
+                    }
+                    else
+                    {
+                        description = null;
+                    }
+                }
+                else
+                {
+                    description = null;
+                }
+            }
+
+            return completedDescription;
+        }
     }
 
     protected virtual string ProcessDescriptionValue(string valueToParse)
     {
-        if(AssociatedDefinition is LevelableDefinition levelableDefinition)
+        if (AssociatedDefinition is LevelableDefinition levelableDefinition)
         {
             if (levelableDefinition.Progression != null)
-            {                                
+            {
                 if (levelableDefinition.Progression.CustomProgression)
                 {
                     return levelableDefinition.Progression.Progressions[Level].Text;
@@ -91,16 +130,16 @@ public class Levelable : RPGElement
     public override int HealthAdj
     {
         get
-        {            
+        {
             if (!Children.Any(x => x.AssociatedDefinition.ElementType.TypeName == "Restriction") && AssociatedDefinition.ElementName == "Tough")
             {
                 return Level * 5;
-            }            
+            }
             return base.HealthAdj;
         }
     }
 
-    public override int EnergyAdj    
+    public override int EnergyAdj
     {
         get
         {

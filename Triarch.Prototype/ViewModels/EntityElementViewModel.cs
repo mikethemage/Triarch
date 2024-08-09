@@ -10,7 +10,7 @@ public class EntityElementViewModel : INotifyPropertyChanged
     {
         _element = element;
 
-        if(element is Levelable levelable)
+        if (element is Levelable levelable)
         {
             LevelableData = new LevelableDataViewModel(levelable);
             if (element.AssociatedDefinition is LevelableDefinition levelableDefinition)
@@ -65,5 +65,12 @@ public class EntityElementViewModel : INotifyPropertyChanged
     public CharacterDataViewModel? CharacterData { get; set; } = null;
     public LevelableDataViewModel? LevelableData { get; set; } = null;
 
-    public int Points { get { return _element.Points; } }
+    public string Notes
+    {
+        get { return _element.Notes; }
+        set
+        {
+            _element.Notes = value;
+        }
+    }
 }

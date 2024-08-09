@@ -14,5 +14,8 @@ public class LevelableDataViewModel
 
     public int Level { get; set; }
     public int PointsPerLevel { get { return _model.PointsPerLevel; } }
+    public int Points { get { return _model.Points; } }
+
+    public string Description { get { return _model.Description; } }
 
 }
