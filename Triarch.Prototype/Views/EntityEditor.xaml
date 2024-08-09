@@ -12,7 +12,8 @@
         >
     <Grid>
         <Grid.Resources>
-            <c:NullVisibilityConverter x:Key="NullToVisibilityConverter"/>            
+            <c:NullVisibilityConverter x:Key="NullToVisibilityConverter"/>
+            <c:NullVisibilityConverter x:Key="NullToBooleanConverter"/>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" MinHeight="250" />
@@ -63,7 +64,9 @@
                 </TreeView>
             </Grid>
             <StackPanel Grid.Column="1" Margin="10,5,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                
+                <Button x:Name="MoveUpButton" Content="Move Up" Margin="5,5,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=SelectedElement.MoveUpCommand, Converter={StaticResource NullToBooleanConverter}}"/>
+                <Button x:Name="MoveDownButton" Content="Move Down" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=SelectedElement.MoveDownCommand, Converter={StaticResource NullToBooleanConverter}}" />                
+                <Button x:Name="DelAttButton" Content="Delete" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=SelectedElement.DeleteCommand, Converter={StaticResource NullToBooleanConverter}}" />               
             </StackPanel>
 
             <Grid Grid.Column="2">
@@ -71,6 +74,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" DataContext="{Binding Path=SelectedElement.VariantList}" Visibility="{Binding Path=., Converter={StaticResource NullToVisibilityConverter}}" >
                     <Grid.RowDefinitions>
@@ -125,6 +129,7 @@
                         </Style>
                     </ListBox.ItemContainerStyle>
                 </ListBox>
+                <Button x:Name="AddAttButton" Content="Add" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=SelectedElement.AddCommand, Converter={StaticResource NullToBooleanConverter}}" Grid.Row="3" />
             </Grid>
         </Grid>
         <Grid Grid.Row="1">

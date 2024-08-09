@@ -26,6 +26,49 @@ public abstract class RPGElement
     public virtual int ACVAdj { get { return 0; } }
     public virtual int DCVAdj { get { return 0; } }
 
+    public bool CanMoveUp()
+    {
+        if(Parent==null)
+        {
+            return false;
+        }
+
+        if (Parent.Children.First() == this)
+        {
+            return false;
+        }
+
+        return true;            
+    }
+
+    public bool CanMoveDown()
+    {
+        if (Parent == null)
+        {
+            return false;
+        }
+
+        if (Parent.Children.Last() == this)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public bool CanDelete()
+    {
+        if (Parent == null)
+        {
+            return false;
+        }
+        if(IsFreebie)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public void AddFreebies()
     {
         foreach (Freebie freebie in AssociatedDefinition.Freebies)

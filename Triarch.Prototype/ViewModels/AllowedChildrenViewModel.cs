@@ -72,6 +72,19 @@ public class AllowedChildrenViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(SelectedChild));
         }
     }
+
+    public bool CanAdd()
+    {
+        if (SelectedChild != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public event PropertyChangedEventHandler? PropertyChanged;
 
     private void OnPropertyChanged(string propertyName)

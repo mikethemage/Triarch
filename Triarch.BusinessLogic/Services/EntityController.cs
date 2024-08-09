@@ -9,6 +9,40 @@ using Triarch.BusinessLogic.Models.Entities;
 namespace Triarch.BusinessLogic.Services;
 public class EntityController
 {
+    public bool MoveUpElement(RPGElement element)
+    {
+        if (element.Parent == null)
+        {
+            return false;
+        }
+        RPGElement parent = element.Parent;
+        if (parent.Children.First() == element)
+        {
+            return false;
+        }
+        int currentPosition = parent.Children.IndexOf(element);
+        parent.Children.Remove(element);
+        parent.Children.Insert(currentPosition-1, element);
+        return currentPosition != parent.Children.IndexOf(element);
+    }
+
+    public bool MoveDownElement(RPGElement element)
+    {
+        if (element.Parent == null)
+        {
+            return false;
+        }
+        RPGElement parent = element.Parent;
+        if (parent.Children.Last() == element)
+        {
+            return false;
+        }
+        int currentPosition = parent.Children.IndexOf(element);
+        parent.Children.Remove(element);
+        parent.Children.Insert(currentPosition + 1, element);
+        return currentPosition != parent.Children.IndexOf(element);
+    }
+
     public void AddElement(RPGElement parent, RPGElementDefinition definitionToAdd)
     {
         RPGElement elementToAdd = definitionToAdd.CreateNode(parent.Entity, "", false);
@@ -27,8 +61,9 @@ public class EntityController
         }
     }
 
-    public void DeleteElement(RPGElement elementToDelete)
+    public Stack<RPGElement> DeleteElement(RPGElement elementToDelete)
     {
+        Stack<RPGElement> deletedStack = new Stack<RPGElement>();
         if (elementToDelete.Parent != null)
         {
             Queue<RPGElement> tempQueue = new Queue<RPGElement>([elementToDelete]);
@@ -41,6 +76,7 @@ public class EntityController
                     tempQueue.Enqueue(child);
                 }
                 deletionStack.Push(current);
+                deletedStack.Push(current);
             }
 
             while (deletionStack.Count > 0)
@@ -53,6 +89,7 @@ public class EntityController
                 }                
             }
         }
+        return deletedStack;
     }
 
     public void UpdateLevel(Levelable levelable, int newLevel)
