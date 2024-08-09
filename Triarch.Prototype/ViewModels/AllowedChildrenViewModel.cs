@@ -4,7 +4,7 @@ using Triarch.BusinessLogic.Models.Definitions;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class AllowedChildrenViewModel : INotifyPropertyChanged
+public class AllowedChildrenViewModel : ViewModelBase
 {
     private ObservableCollection<FilterTypeViewModel> _filterList = new ObservableCollection<FilterTypeViewModel>();
     private FilterTypeViewModel _selectedFilter = null!;
@@ -83,12 +83,5 @@ public class AllowedChildrenViewModel : INotifyPropertyChanged
         {
             return false;
         }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    }    
 }

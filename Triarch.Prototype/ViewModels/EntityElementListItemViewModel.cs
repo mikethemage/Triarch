@@ -4,20 +4,18 @@ using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class EntityElementListItemViewModel : INotifyPropertyChanged
+public class EntityElementListItemViewModel : ViewModelBase
 {
     private string _displayText = "";
-    public string DisplayText { get { return _displayText; }
-        set {  
-            _displayText = value; 
+    public string DisplayText
+    {
+        get { return _displayText; }
+        set
+        {
+            _displayText = value;
             OnPropertyChanged(nameof(DisplayText));
         }
-    }
-
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    }    
 
     public RPGElement ElementData { get; private set; }
 
@@ -35,22 +33,21 @@ public class EntityElementListItemViewModel : INotifyPropertyChanged
     private bool _isSelected = false;
     private readonly EntityElementsListViewModel _owner;
 
-    public bool IsSelected 
-    { 
+    public bool IsSelected
+    {
         get
         { return _isSelected; }
         set
         {
             _isSelected = value;
             OnPropertyChanged(nameof(IsSelected));
-            if(value == true)
+            if (value == true)
             {
                 _owner.Selected = this;
-            }            
+            }
         }
     }
 
     public ObservableCollection<EntityElementListItemViewModel> Children { get; set; } = new ObservableCollection<EntityElementListItemViewModel>();
-
-    public event PropertyChangedEventHandler? PropertyChanged;
 }
+    

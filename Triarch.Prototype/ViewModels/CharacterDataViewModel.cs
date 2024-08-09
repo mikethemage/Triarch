@@ -2,7 +2,7 @@
 
 namespace Triarch.Prototype.ViewModels;
 
-public class CharacterDataViewModel
+public class CharacterDataViewModel : ViewModelBase
 {
     public CharacterDataViewModel(Character model)
     {

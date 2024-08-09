@@ -5,7 +5,7 @@ using Triarch.BusinessLogic.Services;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class EntityElementViewModel : INotifyPropertyChanged
+public class EntityElementViewModel : ViewModelBase
 {
     public EntityElementViewModel(RPGElement element)
     {
@@ -78,12 +78,7 @@ public class EntityElementViewModel : INotifyPropertyChanged
     private readonly RPGElement _element;
     private VariantListViewModel? _variantList = null;
     private AllowedChildrenViewModel _allowedChildrenList = null!;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    
     public VariantListViewModel? VariantList
     {
         get

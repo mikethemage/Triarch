@@ -5,7 +5,7 @@ using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class VariantListViewModel : INotifyPropertyChanged
+public class VariantListViewModel : ViewModelBase
 {
     private ObservableCollection<VariantListItemViewModel> _variantList = new ObservableCollection<VariantListItemViewModel>();
 
@@ -44,12 +44,6 @@ public class VariantListViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(VariantList));
         }
     }
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 
-    public VariantListItemViewModel Selected {  get; set; } = null!;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public VariantListItemViewModel Selected {  get; set; } = null!;    
 }

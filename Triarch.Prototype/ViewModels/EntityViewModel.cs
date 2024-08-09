@@ -10,7 +10,7 @@ using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class EntityViewModel : INotifyPropertyChanged
+public class EntityViewModel : ViewModelBase
 {
     public string FileName
     {
@@ -25,20 +25,14 @@ public class EntityViewModel : INotifyPropertyChanged
                 return Path.GetFileName(_filePath);
             }
         }
-    }
-
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
+    }    
 
     private readonly RPGEntity _entity;
     private string _filePath;
     private EntityElementViewModel? _selectedElement = null;
     private ObservableCollection<GenreListItem> _genreList = new ObservableCollection<GenreListItem>();
     private GenreListItem _selectedGenre = null!;
-
-    public event PropertyChangedEventHandler? PropertyChanged;
+    
     public ObservableCollection<GenreListItem> GenreList
     {
         get
