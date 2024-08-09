@@ -1,0 +1,79 @@
+﻿<Window x:Class="Triarch.Prototype.Views.EntityEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Triarch.Prototype.Views"
+        xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
+        mc:Ignorable="d"
+        Title="EntityEditor" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance Type=vm:EntityViewModel}"
+        >
+    <Grid>
+        <TreeView x:Name="CharacterTreeView"  Margin="10,10,484,10" ItemsSource="{Binding Path=EntityElements.RootElements}" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="x:Type vm:EntityElementListItemViewModel" ItemsSource="{Binding Path=Children}">
+                    <TextBlock Text="{Binding Path=DisplayText}"  />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="True" />
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+        <local:GenericElementDataView DataContext="{Binding SelectedElement}" HorizontalAlignment="Left" Margin="321,342,0,0" VerticalAlignment="Top" Height="82" Width="469"/>
+        <ListBox x:Name="listBox" ItemsSource="{Binding SelectedElement.VariantList.VariantList}" SelectedItem="{Binding SelectedElement.VariantList.Selected}" Margin="517,10,10,298">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=DisplayText}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ComboBox x:Name="comboBox" ItemsSource="{Binding SelectedElement.AllowedChildrenList.FilterList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedFilter}"  HorizontalAlignment="Left" Margin="534,141,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=DisplayName}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        <ListBox x:Name="listBox1" ItemsSource="{Binding SelectedElement.AllowedChildrenList.AllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Margin="517,168,39,97">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=DisplayName}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ComboBox x:Name="comboBox1" ItemsSource="{Binding Path=GenreList}" SelectedItem="{Binding Path=SelectedGenre}" HorizontalAlignment="Left" Margin="349,39,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=DisplayText}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+
+
+
+    </Grid>
+</Window>
