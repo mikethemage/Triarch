@@ -6,8 +6,12 @@ using Triarch.BusinessLogic.Services;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class EntityViewModel : ViewModelBase
+public class EntityViewModel : ViewModelBase, IPageViewModel
 {
+    public required MainWindowViewModel Parent {  get; set; }
+
+    public RelayCommand? BackCommand { get; set; }
+
     public RelayCommand? AddCommand
     {
         get; private set;
@@ -77,7 +81,19 @@ public class EntityViewModel : ViewModelBase
         DeleteCommand = new RelayCommand(Delete, CanDelete);
         MoveUpCommand = new RelayCommand(MoveUp, CanMoveUp);
         MoveDownCommand = new RelayCommand(MoveDown, CanMoveDown);
+        BackCommand = new RelayCommand(Back, CanBack);
     }
+
+    public void Back()
+    {
+        Parent.CurrentPage = new MainMenuViewModel { Parent = Parent };
+    }
+
+    public bool CanBack()
+    {
+        return true;
+    }
+
     public RelayCommand? DeleteCommand
     {
         get; private set;

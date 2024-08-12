@@ -22,7 +22,7 @@ public class AllowedChildrenViewModel : ViewModelBase
 
         var collectionViewSource = new CollectionViewSource { Source = AllowedChildrenList };
         collectionViewSource.GroupDescriptions.Add(new PropertyGroupDescription("TypeName"));
-        GroupedAllowedChildrenList = collectionViewSource.View;
+        _groupedAllowedChildrenList = collectionViewSource.View;
 
         FilterList = new ObservableCollection<FilterTypeViewModel>(_allAllowedChildren.Select(x=>x.ElementType).Distinct().OrderBy(x=>x.TypeOrder).Select(x=>new FilterTypeViewModel { DisplayName=x.TypeName, IsSelected=false, Model=x}).ToList());
         FilterList.Insert(0, new FilterTypeViewModel { DisplayName = "ALL", IsSelected = false, Model=null });
