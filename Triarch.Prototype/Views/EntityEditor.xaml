@@ -115,9 +115,18 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
                 </Grid>
-                
 
-                <ListBox x:Name="AddChildListBox" ItemsSource="{Binding SelectedElement.AllowedChildrenList.AllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Grid.Row="2" MouseDoubleClick="AddChildListBox_MouseDoubleClick">
+
+                <ListBox x:Name="AddChildListBox" ItemsSource="{Binding SelectedElement.AllowedChildrenList.GroupedAllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Grid.Row="2" MouseDoubleClick="AddChildListBox_MouseDoubleClick" KeyDown="AddChildListBox_KeyDown">
+                    <ListBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListBox.GroupStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=DisplayName}" />

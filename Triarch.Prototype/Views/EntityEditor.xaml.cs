@@ -32,4 +32,15 @@ public partial class EntityEditor : Window
             ((EntityViewModel)DataContext).Add();
         }
     }
+
+    private void AddChildListBox_KeyDown(object sender, KeyEventArgs e)
+    {
+        if(e.Key == Key.Return)
+        {
+            if (((EntityViewModel)DataContext).CanAdd())
+            {
+                ((EntityViewModel)DataContext).Add();
+            }
+        }
+    }
 }

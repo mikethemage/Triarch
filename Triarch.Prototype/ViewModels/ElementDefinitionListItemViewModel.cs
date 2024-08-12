@@ -7,6 +7,7 @@ public class ElementDefinitionListItemViewModel : ViewModelBase
     private bool _isSelected = false;
 
     public string DisplayName { get; set; } = null!;
+    public string TypeName { get; set; } = null!;
     public RPGElementDefinition Model { get; set; } = null!;
     public bool IsSelected
     {
