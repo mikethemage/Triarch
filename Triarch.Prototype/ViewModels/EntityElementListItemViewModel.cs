@@ -26,7 +26,9 @@ public class EntityElementListItemViewModel : ViewModelBase
         DisplayText = element.Name;
         foreach (RPGElement child in element.Children)
         {
-            Children.Add(new EntityElementListItemViewModel(child, owner));
+            EntityElementListItemViewModel newElement = new EntityElementListItemViewModel(child, owner);
+            Children.Add(newElement);
+            owner.ElementList.Add(child, newElement);
         }
     }
 

@@ -30,16 +30,16 @@ public partial class MainWindow : Window
 
     private void button_Click(object sender, RoutedEventArgs e)
     {
-        if(SystemSelector.Text=="BESM3E")
+        if (SystemSelector.Text == "BESM3E")
         {
             //MessageBox.Show("Test");
 
             string fileData = File.ReadAllText("DataFiles" + Path.DirectorySeparatorChar + SystemSelector.Text + ".json");
-            RPGSystemDto? systemData = JsonSerializer.Deserialize<RPGSystemDto>(fileData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true});
+            RPGSystemDto? systemData = JsonSerializer.Deserialize<RPGSystemDto>(fileData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (systemData != null)
             {
-                RPGSystemMapper mapper =  new RPGSystemMapper();
+                RPGSystemMapper mapper = new RPGSystemMapper();
                 RPGSystem loadedSystem = mapper.Deserialize(systemData);
 
                 if (loadedSystem != null)
@@ -48,31 +48,37 @@ public partial class MainWindow : Window
                     RPGSystemProvider rPGSystemProvider = new RPGSystemProvider();
                     rPGSystemProvider.AddSystem("BESM 3rd Edition", loadedSystem);
 
-                    string characterData = File.ReadAllText("D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test9.json");
-                    EntityDto? characterDto = JsonSerializer.Deserialize<EntityDto>(characterData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                    if (characterDto != null)
+                    //string characterData = File.ReadAllText("D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test9.json");
+                    //EntityDto? characterDto = JsonSerializer.Deserialize<EntityDto>(characterData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                    //if (characterDto != null)
+                    //{
+
+                    //    RPGEntityMapper entityMapper = new RPGEntityMapper(rPGSystemProvider);
+                    RPGEntity entity = new RPGEntity
                     {
+                        RPGSystem = loadedSystem,
+                        EntityName = "New Character",
+                        EntityType = "Character",
+                        Genre = loadedSystem.Genres[0]
 
-                        RPGEntityMapper entityMapper = new RPGEntityMapper(rPGSystemProvider);
-                        RPGEntity entity = entityMapper.Deserialize(characterDto);
+                    };//entityMapper.Deserialize(characterDto);
+                    entity.RootElement = loadedSystem.ElementDefinitions.Where(x => x.ElementName == "Character").First().CreateNode(entity, "", false);
 
 
-                        EntityController controller = new EntityController();
-                        controller.AddElement(entity.RootElement, loadedSystem.ElementDefinitions.Where(x => x.ElementName == "Companion").First());
 
-                        
 
-                        //EntityDto outputDto = entityMapper.Serialize(entity);
-                        //string outputText = JsonSerializer.Serialize(outputDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition=System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
 
-                        //File.WriteAllText("D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test10.json", outputText);
+                    //EntityDto outputDto = entityMapper.Serialize(entity);
+                    //string outputText = JsonSerializer.Serialize(outputDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition=System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull });
 
-                        EntityViewModel entityViewModel = new EntityViewModel(entity, "D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test9.json");
+                    //File.WriteAllText("D:\\Stuff\\RPGs\\BESM\\BESM 3rd Edition\\BESM Characters\\Converted\\test10.json", outputText);
 
-                        EntityEditor editorWindow = new EntityEditor(entityViewModel);
-                        editorWindow.ShowDialog();
+                    EntityViewModel entityViewModel = new EntityViewModel(entity);
 
-                    }
+                    EntityEditor editorWindow = new EntityEditor(entityViewModel);
+                    editorWindow.ShowDialog();
+
+                    //}
                 }
 
             }

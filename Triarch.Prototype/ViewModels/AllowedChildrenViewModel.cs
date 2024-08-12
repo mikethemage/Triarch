@@ -17,7 +17,7 @@ public class AllowedChildrenViewModel : ViewModelBase
     public AllowedChildrenViewModel(List<RPGElementDefinition> allowedChildren)
     {
         _allAllowedChildren = allowedChildren.Where(x => x.ElementType.BuiltIn == false).ToList();
-        AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Select(x=>new ElementDefinitionListItemViewModel { Model=x, DisplayName=x.ElementName,IsSelected=false} ).ToList());
+        AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Select(x=>new ElementDefinitionListItemViewModel { Model=x, DisplayName=x.ElementName,IsSelected=false} ).OrderBy(x=>x.Model.ElementType.TypeOrder).ThenBy(x=>x.DisplayName).ToList());
 
         FilterList = new ObservableCollection<FilterTypeViewModel>(_allAllowedChildren.Select(x=>x.ElementType).Distinct().OrderBy(x=>x.TypeOrder).Select(x=>new FilterTypeViewModel { DisplayName=x.TypeName, IsSelected=false, Model=x}).ToList());
         FilterList.Insert(0, new FilterTypeViewModel { DisplayName = "ALL", IsSelected = false, Model=null });
@@ -44,7 +44,7 @@ public class AllowedChildrenViewModel : ViewModelBase
         set
         {
             _selectedFilter = value;
-            AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Where(x=>x.ElementType==_selectedFilter.Model).Select(x => new ElementDefinitionListItemViewModel { Model = x, DisplayName = x.ElementName, IsSelected = false }).ToList());
+            AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Where(x=>x.ElementType==_selectedFilter.Model).Select(x => new ElementDefinitionListItemViewModel { Model = x, DisplayName = x.ElementName, IsSelected = false }).OrderBy(x => x.Model.ElementType.TypeOrder).ThenBy(x => x.DisplayName).ToList());
             OnPropertyChanged(nameof(SelectedFilter));
         }
     }
@@ -73,15 +73,5 @@ public class AllowedChildrenViewModel : ViewModelBase
         }
     }
 
-    public bool CanAdd()
-    {
-        if (SelectedChild != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }    
+      
 }

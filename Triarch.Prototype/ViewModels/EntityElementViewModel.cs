@@ -29,53 +29,16 @@ public class EntityElementViewModel : ViewModelBase
 
         AllowedChildrenList = new AllowedChildrenViewModel(element.AssociatedDefinition.AllowedChildren);
 
-        MoveUpCommand = new RelayCommand(MoveUp, _element.CanMoveUp);
-        MoveDownCommand = new RelayCommand(MoveDown, _element.CanMoveDown);
-        DeleteCommand = new RelayCommand(Delete, _element.CanDelete);
-        AddCommand = new RelayCommand(Add, AllowedChildrenList.CanAdd);
+        
+        
+        
     }
-
-    public RelayCommand? DeleteCommand
-    {
-        get; private set;
-    }
-    public RelayCommand? MoveUpCommand
-    {
-        get; private set;
-    }
-    public RelayCommand? MoveDownCommand
-    {
-        get; private set;
-    }
-    public RelayCommand? AddCommand
-    {
-        get; private set;
-    }
-
-    public void MoveUp()
-    {
-        EntityController entityController = new EntityController();
-        if(entityController.MoveUpElement(_element))
-        {
-
-        }
-    }
-    public void MoveDown()
-    {
-
-    }
-    public void Delete()
-    {
-
-    }
-    public void Add()
-    {
-
-    }
-
     
 
     private readonly RPGElement _element;
+
+    public RPGElement Element { get { return _element; } }
+
     private VariantListViewModel? _variantList = null;
     private AllowedChildrenViewModel _allowedChildrenList = null!;
     

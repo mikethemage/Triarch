@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Triarch.BusinessLogic.Models.Entities;
+using Triarch.BusinessLogic.Services;
 
 namespace Triarch.Prototype.ViewModels;
 
 public class EntityViewModel : ViewModelBase
 {
+    public RelayCommand? AddCommand
+    {
+        get; private set;
+    }
+
     public string FileName
     {
         get
@@ -25,14 +26,14 @@ public class EntityViewModel : ViewModelBase
                 return Path.GetFileName(_filePath);
             }
         }
-    }    
+    }
 
     private readonly RPGEntity _entity;
     private string _filePath;
     private EntityElementViewModel? _selectedElement = null;
     private ObservableCollection<GenreListItem> _genreList = new ObservableCollection<GenreListItem>();
     private GenreListItem _selectedGenre = null!;
-    
+
     public ObservableCollection<GenreListItem> GenreList
     {
         get
@@ -64,9 +65,90 @@ public class EntityViewModel : ViewModelBase
         _entity = entity;
         _filePath = filePath;
         EntityElements = new EntityElementsListViewModel(_entity, this);
-        GenreList = new ObservableCollection<GenreListItem>(entity.RPGSystem.Genres.Select(x=>new GenreListItem { DisplayText=x.GenreName, IsSelected=false, Model=x}).ToList());
-        SelectedGenre = GenreList.Where(x=>x.Model==entity.Genre).First();
+        GenreList = new ObservableCollection<GenreListItem>(entity.RPGSystem.Genres.Select(x => new GenreListItem { DisplayText = x.GenreName, IsSelected = false, Model = x }).ToList());
+        SelectedGenre = GenreList.Where(x => x.Model == entity.Genre).First();
         OnPropertyChanged(nameof(EntityElements));
+        AddCommand = new RelayCommand(Add, CanAdd);
+        DeleteCommand = new RelayCommand(Delete, CanDelete);
+        MoveUpCommand = new RelayCommand(MoveUp, CanMoveUp);
+        MoveDownCommand = new RelayCommand(MoveDown, CanMoveDown);
+    }
+    public RelayCommand? DeleteCommand
+    {
+        get; private set;
+    }
+    public void Delete()
+    {
+        if (SelectedElement != null && SelectedElement.Element.Parent != null)
+        {
+            EntityElementListItemViewModel parent = EntityElements.ElementList[SelectedElement.Element.Parent];
+
+            EntityController entityController = new EntityController();
+            Stack<RPGElement> deletedElements = entityController.DeleteElement(SelectedElement.Element);
+            while (deletedElements.Count > 0)
+            {
+                RPGElement toRemove = deletedElements.Pop();
+                EntityElements.ElementList.Remove(toRemove);
+            }
+            int previousIndex = parent.Children.IndexOf(EntityElements.Selected);
+            parent.Children.Remove(EntityElements.Selected);
+
+            if (parent.Children.Count == 0)
+            {
+                parent.IsSelected = true;
+            }
+            else
+            {
+                if (previousIndex < parent.Children.Count)
+                {
+                    parent.Children[previousIndex].IsSelected = true;
+                }
+                else
+                {
+                    parent.Children[parent.Children.Count - 1].IsSelected = true;
+                }
+            }
+            MoveUpCommand?.RaiseCanExecuteChanged();
+            MoveDownCommand?.RaiseCanExecuteChanged();
+        }
+
+    }
+
+    public bool CanDelete()
+    {
+        if (SelectedElement == null)
+        {
+            return false;
+        }
+        else
+        {
+            return SelectedElement.Element.CanDelete();
+        }
+
+    }
+
+    public void Add()
+    {
+        if (SelectedElement?.AllowedChildrenList.SelectedChild != null)
+        {
+            EntityController entityController = new EntityController();
+            RPGElement addedElement = entityController.AddElement(SelectedElement.Element, SelectedElement.AllowedChildrenList.SelectedChild.Model);
+            EntityElementListItemViewModel addedElementViewModel = new(addedElement, EntityElements);
+            EntityElements.Selected.Children.Add(addedElementViewModel);
+            EntityElements.ElementList.Add(addedElement, addedElementViewModel);
+        }
+    }
+
+    public bool CanAdd()
+    {
+        if (SelectedElement?.AllowedChildrenList.SelectedChild != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public EntityElementsListViewModel EntityElements { get; private set; }
@@ -79,8 +161,91 @@ public class EntityViewModel : ViewModelBase
         }
         set
         {
+            if (_selectedElement != null)
+            {
+                _selectedElement.AllowedChildrenList.PropertyChanged -= OnAllowedChildrenListPropertyChanged;
+            }
             _selectedElement = value;
             OnPropertyChanged(nameof(SelectedElement));
+            if (_selectedElement != null)
+            {
+                _selectedElement.AllowedChildrenList.PropertyChanged += OnAllowedChildrenListPropertyChanged;
+            }
+
+            AddCommand?.RaiseCanExecuteChanged(); // Ensure CanAdd is re-evaluated when SelectedElement changes
+            DeleteCommand?.RaiseCanExecuteChanged();
+            MoveUpCommand?.RaiseCanExecuteChanged();
+            MoveDownCommand?.RaiseCanExecuteChanged();
         }
+    }
+
+    private void OnAllowedChildrenListPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(AllowedChildrenViewModel.SelectedChild))
+        {
+            AddCommand?.RaiseCanExecuteChanged();
+        }
+    }
+
+    public RelayCommand? MoveUpCommand
+    {
+        get; private set;
+    }
+    public RelayCommand? MoveDownCommand
+    {
+        get; private set;
+    }
+
+
+    public void MoveUp()
+    {
+        if(SelectedElement!=null && SelectedElement.Element.Parent != null)
+        {
+            EntityController entityController = new EntityController();
+            if (entityController.MoveUpElement(SelectedElement.Element))
+            {
+                int currentIndex = EntityElements.ElementList[SelectedElement.Element.Parent].Children.IndexOf(EntityElements.ElementList[SelectedElement.Element]);
+                var parent = EntityElements.ElementList[SelectedElement.Element.Parent];
+                var child = EntityElements.ElementList[SelectedElement.Element];
+                parent.Children.Remove(child);
+                parent.Children.Insert(currentIndex-1, child);
+                EntityElements.Selected = child;
+            }
+        }
+        
+    }
+    public void MoveDown()
+    {
+        if (SelectedElement != null && SelectedElement.Element.Parent != null)
+        {
+            EntityController entityController = new EntityController();
+            if (entityController.MoveDownElement(SelectedElement.Element))
+            {
+                int currentIndex = EntityElements.ElementList[SelectedElement.Element.Parent].Children.IndexOf(EntityElements.ElementList[SelectedElement.Element]);
+                var parent = EntityElements.ElementList[SelectedElement.Element.Parent];
+                var child = EntityElements.ElementList[SelectedElement.Element];
+                parent.Children.Remove(child);
+                parent.Children.Insert(currentIndex + 1, child);
+                EntityElements.Selected = child;
+            }
+        }
+    }
+
+    public bool CanMoveUp()
+    {
+        if (SelectedElement == null)
+        {
+            return false;
+        }
+        return SelectedElement.Element.CanMoveUp();
+    }
+
+    public bool CanMoveDown()
+    {
+        if (SelectedElement == null)
+        {
+            return false;
+        }
+        return SelectedElement.Element.CanMoveDown();
     }
 }

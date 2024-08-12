@@ -43,22 +43,14 @@ public class EntityController
         return currentPosition != parent.Children.IndexOf(element);
     }
 
-    public void AddElement(RPGElement parent, RPGElementDefinition definitionToAdd)
+    public RPGElement AddElement(RPGElement parent, RPGElementDefinition definitionToAdd)
     {
         RPGElement elementToAdd = definitionToAdd.CreateNode(parent.Entity, "", false);
         parent.Children.Add(elementToAdd);
+        elementToAdd.Parent = parent;
+        elementToAdd.AddFreebies();
 
-        foreach (Freebie freebieDefinition in definitionToAdd.Freebies)
-        {
-            if (freebieDefinition.FreebieElementDefinition is LevelableDefinition levelableFreebieDefinition)
-            {
-                elementToAdd.Children.Add(levelableFreebieDefinition.CreateNode(elementToAdd.Entity, "", freebieDefinition.FreeLevels + freebieDefinition.RequiredLevels, true, freebieDefinition.FreeLevels, freebieDefinition.RequiredLevels));
-            }
-            else
-            {
-                elementToAdd.Children.Add(freebieDefinition.FreebieElementDefinition.CreateNode(elementToAdd.Entity, "", true));
-            }
-        }
+        return elementToAdd;
     }
 
     public Stack<RPGElement> DeleteElement(RPGElement elementToDelete)

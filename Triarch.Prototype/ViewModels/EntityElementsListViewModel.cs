@@ -10,12 +10,16 @@ public class EntityElementsListViewModel : ViewModelBase
     {
         _owner = owner;
         RootElements.Add(new EntityElementListItemViewModel(entity.RootElement, this));
+        ElementList.Add(entity.RootElement, RootElements[0]);
         RootElements[0].IsSelected = true;
         _selected = RootElements[0];        
     }    
 
     public ObservableCollection<EntityElementListItemViewModel> RootElements { get; private set; } = new ObservableCollection<EntityElementListItemViewModel>();
 
+    public Dictionary<RPGElement, EntityElementListItemViewModel> ElementList { get; set; } = new Dictionary<RPGElement, EntityElementListItemViewModel>();
+
+   
     private EntityElementListItemViewModel _selected;
     private readonly EntityViewModel _owner;
 

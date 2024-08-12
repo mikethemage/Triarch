@@ -73,14 +73,18 @@ public abstract class RPGElement
     {
         foreach (Freebie freebie in AssociatedDefinition.Freebies)
         {
-            if(freebie.FreebieElementDefinition is LevelableDefinition levelableFreebie)
+            RPGElement freebieToAdd;
+            if (freebie.FreebieElementDefinition is LevelableDefinition levelableFreebie)
             {
-                Children.Add(levelableFreebie.CreateNode(Entity, "", freebie.FreeLevels + freebie.RequiredLevels, true, freebie.FreeLevels, freebie.RequiredLevels));
+                freebieToAdd = levelableFreebie.CreateNode(Entity, "", freebie.FreeLevels + freebie.RequiredLevels, true, freebie.FreeLevels, freebie.RequiredLevels);
+                
             }
             else
             {
-                Children.Add(freebie.FreebieElementDefinition.CreateNode(Entity, "", true));
-            }            
+                freebieToAdd = freebie.FreebieElementDefinition.CreateNode(Entity, "", true);
+            }
+            Children.Add(freebieToAdd);
+            freebieToAdd.Parent = this;
         }
     }
 
