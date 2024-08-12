@@ -44,32 +44,35 @@ public class RPGSystemMapper
             }
             else if (elementDefinitionDto.LevelableData != null)
             {
+                LevelableDefinition levelableDefinition;
                 if (elementDefinitionDto.ElementTypeName == "Companion")
                 {
-                    elementDefinition = new LevelableDefinition();
+                    levelableDefinition = new LevelableDefinition();
                 }
                 else if (elementDefinitionDto.LevelableData.SpecialPointsPerLevel != null)
                 {
-                    elementDefinition = new SpecialContainerDefinition { SpecialPointsPerLevel = (int)elementDefinitionDto.LevelableData.SpecialPointsPerLevel };
+                    levelableDefinition = new SpecialContainerDefinition { SpecialPointsPerLevel = (int)elementDefinitionDto.LevelableData.SpecialPointsPerLevel };
                 }
                 else if (elementDefinitionDto.LevelableData.MultiGenreCostPerLevels != null)
                 {
-                    elementDefinition = new MultiGenreDefinition { MultiGenreCostPerLevels = elementDefinitionDto.LevelableData.MultiGenreCostPerLevels.Select(x => new GenreCostPerLevel { Genre = output.Genres.Where(y => y.GenreName == x.GenreName).First(), CostPerLevel = x.CostPerLevel }).ToList() };
+                    levelableDefinition = new MultiGenreDefinition { MultiGenreCostPerLevels = elementDefinitionDto.LevelableData.MultiGenreCostPerLevels.Select(x => new GenreCostPerLevel { Genre = output.Genres.Where(y => y.GenreName == x.GenreName).First(), CostPerLevel = x.CostPerLevel }).ToList() };
                 }
                 else
                 {
-                    elementDefinition = new LevelableDefinition();
+                    levelableDefinition = new LevelableDefinition();
                 }
-                ((LevelableDefinition)elementDefinition).MaxLevel = elementDefinitionDto.LevelableData.MaxLevel;
-                ((LevelableDefinition)elementDefinition).EnforceMaxLevel = elementDefinitionDto.LevelableData.EnforceMaxLevel;
-                ((LevelableDefinition)elementDefinition).CostPerLevel = elementDefinitionDto.LevelableData.CostPerLevel;
-                ((LevelableDefinition)elementDefinition).CostPerLevelDescription = elementDefinitionDto.LevelableData.CostPerLevelDescription;
+                elementDefinition= levelableDefinition;
+                levelableDefinition.MaxLevel = elementDefinitionDto.LevelableData.MaxLevel ?? int.MaxValue;
+                levelableDefinition.MinLevel = elementDefinitionDto.ElementName == "Weapon" ? 0 : 1;
+                levelableDefinition.EnforceMaxLevel = elementDefinitionDto.LevelableData.EnforceMaxLevel ?? false;
+                levelableDefinition.CostPerLevel = elementDefinitionDto.LevelableData.CostPerLevel;
+                levelableDefinition.CostPerLevelDescription = elementDefinitionDto.LevelableData.CostPerLevelDescription;
 
-                ((LevelableDefinition)elementDefinition).Progression = output.Progressions.Where(x => x.ProgressionType == elementDefinitionDto.LevelableData.ProgressionName).FirstOrDefault();
-                ((LevelableDefinition)elementDefinition).ProgressionReversed = elementDefinitionDto.LevelableData.ProgressionReversed;
+                levelableDefinition.Progression = output.Progressions.Where(x => x.ProgressionType == elementDefinitionDto.LevelableData.ProgressionName).FirstOrDefault();
+                levelableDefinition.ProgressionReversed = elementDefinitionDto.LevelableData.ProgressionReversed;
                 if(elementDefinitionDto.LevelableData.Variants!=null)
                 {
-                    ((LevelableDefinition)elementDefinition).Variants = elementDefinitionDto.LevelableData.Variants.Select(x => new VariantDefinition { VariantName = x.VariantName, CostPerLevel = x.CostPerLevel, Description = x.Description ?? "", IsDefault = x.IsDefault }).ToList();
+                    levelableDefinition.Variants = elementDefinitionDto.LevelableData.Variants.Select(x => new VariantDefinition { VariantName = x.VariantName, CostPerLevel = x.CostPerLevel, Description = x.Description ?? "", IsDefault = x.IsDefault }).ToList();
                 }               
             }
             else
@@ -148,11 +151,16 @@ public class RPGSystemMapper
                 elementDefinitionDto.LevelableData = new LevelableDefinitionDto
                 {
                     CostPerLevel = levelableDefinition.CostPerLevel,
-                    CostPerLevelDescription= levelableDefinition.CostPerLevelDescription,
-                    EnforceMaxLevel= levelableDefinition.EnforceMaxLevel,
-                    MaxLevel= levelableDefinition.MaxLevel,
+                    CostPerLevelDescription = levelableDefinition.CostPerLevelDescription,
+                    
                     ProgressionReversed= levelableDefinition.ProgressionReversed                    
                 };
+
+                if (levelableDefinition.EnforceMaxLevel || levelableDefinition.MaxLevel < int.MaxValue)
+                {
+                    elementDefinitionDto.LevelableData.MaxLevel = levelableDefinition.MaxLevel;
+                    elementDefinitionDto.LevelableData.EnforceMaxLevel = levelableDefinition.EnforceMaxLevel;
+                }
 
                 if (levelableDefinition.Progression != null)
                 {

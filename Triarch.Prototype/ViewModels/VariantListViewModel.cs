@@ -7,11 +7,14 @@ namespace Triarch.Prototype.ViewModels;
 
 public class VariantListViewModel : ViewModelBase
 {
+    private readonly EntityElementViewModel _owner;
     private ObservableCollection<VariantListItemViewModel> _variantList = new ObservableCollection<VariantListItemViewModel>();
+    private VariantListItemViewModel _selected = null!;
 
-    public VariantListViewModel(Levelable model)
+    public VariantListViewModel(Levelable model, EntityElementViewModel owner)
     {
-        if(model.AssociatedDefinition is LevelableDefinition levelableDefinition &&
+        _owner = owner;
+        if (model.AssociatedDefinition is LevelableDefinition levelableDefinition &&
             levelableDefinition.Variants != null &&
             levelableDefinition.Variants.Count > 0)
         {
@@ -29,7 +32,7 @@ public class VariantListViewModel : ViewModelBase
         else
         {
             throw new Exception("Variant list error!");
-        }
+        }        
     }
 
     public ObservableCollection<VariantListItemViewModel> VariantList
@@ -45,5 +48,17 @@ public class VariantListViewModel : ViewModelBase
         }
     }
 
-    public VariantListItemViewModel Selected {  get; set; } = null!;    
+    public VariantListItemViewModel Selected
+    {
+        get
+        {
+            return _selected;
+        }
+        set
+        {
+            _selected = value;
+            _owner.SetVariant(_selected.VariantDefinitionData);
+            OnPropertyChanged(nameof(Selected));
+        }
+    }
 }

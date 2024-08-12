@@ -4,6 +4,34 @@ using org.mariuszgromada.math.mxparser;
 namespace Triarch.BusinessLogic.Models.Entities;
 public class Levelable : RPGElement
 {
+    public int MinLevel { get
+        {
+            if (AssociatedDefinition is LevelableDefinition levelableDefinition)
+            {
+                return levelableDefinition.MinLevel;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    public int MaxLevel
+    {
+        get
+        {
+            if (AssociatedDefinition is LevelableDefinition levelableDefinition)
+            {
+                return levelableDefinition.MaxLevel;
+            }
+            else
+            {
+                return int.MaxValue;
+            }
+        }
+    }
+
     public int Level { get; set; } = 1;
 
     public int RequiredLevels { get; set; } = 0;

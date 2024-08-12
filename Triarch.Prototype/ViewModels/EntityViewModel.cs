@@ -56,7 +56,12 @@ public class EntityViewModel : ViewModelBase
         set
         {
             _selectedGenre = value;
+            _entity.Genre = _selectedGenre.Model;
             OnPropertyChanged(nameof(SelectedGenre));
+            if(SelectedElement?.LevelableData != null)
+            {
+                SelectedElement.LevelableData.RefreshProperties();
+            }
         }
     }
 
@@ -136,6 +141,16 @@ public class EntityViewModel : ViewModelBase
             EntityElementListItemViewModel addedElementViewModel = new(addedElement, EntityElements);
             EntityElements.Selected.Children.Add(addedElementViewModel);
             EntityElements.ElementList.Add(addedElement, addedElementViewModel);
+
+            if (SelectedElement?.CharacterData != null)
+            {
+                SelectedElement.CharacterData.RefreshProperties();
+            }
+
+            if (SelectedElement?.LevelableData != null)
+            {
+                SelectedElement.LevelableData.RefreshProperties();
+            }
         }
     }
 
@@ -204,12 +219,18 @@ public class EntityViewModel : ViewModelBase
             EntityController entityController = new EntityController();
             if (entityController.MoveUpElement(SelectedElement.Element))
             {
-                int currentIndex = EntityElements.ElementList[SelectedElement.Element.Parent].Children.IndexOf(EntityElements.ElementList[SelectedElement.Element]);
                 var parent = EntityElements.ElementList[SelectedElement.Element.Parent];
                 var child = EntityElements.ElementList[SelectedElement.Element];
-                parent.Children.Remove(child);
-                parent.Children.Insert(currentIndex-1, child);
-                EntityElements.Selected = child;
+
+                int currentIndex = parent.Children.IndexOf(child);
+                int previousIndex = currentIndex - 1;
+                var previous = parent.Children[previousIndex];
+
+                parent.Children[currentIndex] = previous;
+                parent.Children[previousIndex] = child;
+
+                MoveUpCommand?.RaiseCanExecuteChanged();
+                MoveDownCommand?.RaiseCanExecuteChanged();                
             }
         }
         
@@ -221,12 +242,18 @@ public class EntityViewModel : ViewModelBase
             EntityController entityController = new EntityController();
             if (entityController.MoveDownElement(SelectedElement.Element))
             {
-                int currentIndex = EntityElements.ElementList[SelectedElement.Element.Parent].Children.IndexOf(EntityElements.ElementList[SelectedElement.Element]);
                 var parent = EntityElements.ElementList[SelectedElement.Element.Parent];
                 var child = EntityElements.ElementList[SelectedElement.Element];
-                parent.Children.Remove(child);
-                parent.Children.Insert(currentIndex + 1, child);
-                EntityElements.Selected = child;
+
+                int currentIndex = parent.Children.IndexOf(child);
+                int nextIndex = currentIndex + 1;
+                var next = parent.Children[nextIndex];
+
+                parent.Children[currentIndex] = next;
+                parent.Children[nextIndex] = child;
+
+                MoveDownCommand?.RaiseCanExecuteChanged();
+                MoveUpCommand?.RaiseCanExecuteChanged();
             }
         }
     }

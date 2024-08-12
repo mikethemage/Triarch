@@ -24,4 +24,12 @@ public partial class EntityEditor : Window
         InitializeComponent();
         DataContext = viewModel;
     }
+
+    private void AddChildListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        if(((EntityViewModel)DataContext).CanAdd())
+        {
+            ((EntityViewModel)DataContext).Add();
+        }
+    }
 }

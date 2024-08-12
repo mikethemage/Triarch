@@ -7,19 +7,73 @@ public class CharacterDataViewModel : ViewModelBase
     public CharacterDataViewModel(Character model)
     {
         _model = model;
-        Body = _model.Body;
-        Mind = _model.Mind;
-        Soul = _model.Soul;
+
     }
 
-    public int Body { get; set; }
-    public int Mind { get; set; }
-    public int Soul { get; set; }
+    public int Body
+    {
+        get
+        {
+            return _model.Body;
+        }
+        set
+        {
+            _model.Body = value;
+            OnPropertyChanged(nameof(Body));
+            OnPropertyChanged(nameof(Health));
+            OnPropertyChanged(nameof(ACV));
+            OnPropertyChanged(nameof(DCV));
 
-    public int ACV { get; set; }
-    public int DCV { get; set; }
-    public int Health { get; set; }
-    public int Energy { get; set; }
+        }
+    }
+    public int Mind
+    {
+        get
+        {
+            return _model.Mind;
+        }
+        set
+        {
+            _model.Mind = value;
+            OnPropertyChanged(nameof(Mind));
+            OnPropertyChanged(nameof(Energy));
+            OnPropertyChanged(nameof(ACV));
+            OnPropertyChanged(nameof(DCV));
+        }
+    }
+    public int Soul
+    {
+        get
+        {
+            return _model.Soul;
+        }
+        set
+        {
+            _model.Soul = value;
+            OnPropertyChanged(nameof(Soul));
+            OnPropertyChanged(nameof(Health));
+            OnPropertyChanged(nameof(Energy));
+            OnPropertyChanged(nameof(ACV));
+            OnPropertyChanged(nameof(DCV));
+        }
+    }
+
+    public void RefreshProperties()
+    {
+        OnPropertyChanged(nameof(Soul));
+        OnPropertyChanged(nameof(Health));
+        OnPropertyChanged(nameof(Energy));
+        OnPropertyChanged(nameof(ACV));
+        OnPropertyChanged(nameof(DCV));
+    }
+
+    public int ACV
+    {
+        get { return _model.ACV; }
+    }
+    public int DCV { get { return _model.DCV; } }
+    public int Health { get { return _model.Health; } }
+    public int Energy { get { return _model.Energy; } }
 
     private Character _model;
 

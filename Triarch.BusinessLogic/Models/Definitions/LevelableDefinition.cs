@@ -11,9 +11,10 @@ using Triarch.Dtos.Definitions;
 namespace Triarch.BusinessLogic.Models.Definitions;
 public class LevelableDefinition : RPGElementDefinition
 {
-    public int? MaxLevel { get; set; }
+    public int MaxLevel { get; set; }
+    public int MinLevel { get; set; }
 
-    public bool? EnforceMaxLevel { get; set; }
+    public bool EnforceMaxLevel { get; set; }
 
     public int? CostPerLevel { get; set; }
     

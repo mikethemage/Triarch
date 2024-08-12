@@ -12,20 +12,34 @@ public class LevelableDataViewModel : ViewModelBase
     }
 
     private readonly Levelable _model;
+    
 
-    public int Level { get; set; }
-    public int PointsPerLevel { get { return _model.PointsPerLevel; } }
-    public int Points { get { return _model.Points; } }
-
-    public int MaxLevel
+    public int Level
     {
         get
         {
-            return ((LevelableDefinition)_model.AssociatedDefinition).MaxLevel ?? int.MaxValue;
+            return _model.Level;
+        }
+        set
+        {
+            _model.Level = value;
+            OnPropertyChanged(nameof(Level));
+            OnPropertyChanged(nameof(Points));
+            OnPropertyChanged(nameof(Description));
         }
     }
 
-    public int MinLevel { get { return 0; } }
+    public void RefreshProperties()
+    {
+        OnPropertyChanged(nameof(PointsPerLevel));
+        OnPropertyChanged(nameof(Level));
+        OnPropertyChanged(nameof(Points));
+        OnPropertyChanged(nameof(Description));
+    }
+    public int PointsPerLevel { get { return _model.PointsPerLevel; } }
+    public int Points { get { return _model.Points; } }    
+
+    public Levelable Model { get { return _model; } }
 
     public string Description { get { return _model.Description; } }
 

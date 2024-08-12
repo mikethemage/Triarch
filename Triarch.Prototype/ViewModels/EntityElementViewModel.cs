@@ -1,7 +1,5 @@
-﻿using System.ComponentModel;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Models.Entities;
-using Triarch.BusinessLogic.Services;
 
 namespace Triarch.Prototype.ViewModels;
 
@@ -18,7 +16,7 @@ public class EntityElementViewModel : ViewModelBase
             {
                 if (levelableDefinition.Variants != null && levelableDefinition.Variants.Count > 0)
                 {
-                    VariantList = new VariantListViewModel(levelable);
+                    VariantList = new VariantListViewModel(levelable, this);
                 }
             }
         }
@@ -27,13 +25,8 @@ public class EntityElementViewModel : ViewModelBase
             CharacterData = new CharacterDataViewModel(character);
         }
 
-        AllowedChildrenList = new AllowedChildrenViewModel(element.AssociatedDefinition.AllowedChildren);
-
-        
-        
-        
+        AllowedChildrenList = new AllowedChildrenViewModel(element.AssociatedDefinition.AllowedChildren);           
     }
-    
 
     private readonly RPGElement _element;
 
@@ -75,6 +68,15 @@ public class EntityElementViewModel : ViewModelBase
         set
         {
             _element.Notes = value;
+        }
+    }
+
+    public void SetVariant(VariantDefinition variantDefinitionData)
+    {
+        if(_element is Levelable levelable)
+        {
+            levelable.Variant = variantDefinitionData;
+            LevelableData?.RefreshProperties();
         }
     }
 }

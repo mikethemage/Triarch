@@ -117,7 +117,7 @@
                 </Grid>
                 
 
-                <ListBox x:Name="listBox1" ItemsSource="{Binding SelectedElement.AllowedChildrenList.AllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Grid.Row="2">
+                <ListBox x:Name="AddChildListBox" ItemsSource="{Binding SelectedElement.AllowedChildrenList.AllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Grid.Row="2" MouseDoubleClick="AddChildListBox_MouseDoubleClick">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=DisplayName}" />
