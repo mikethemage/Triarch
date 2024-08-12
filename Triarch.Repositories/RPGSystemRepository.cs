@@ -48,6 +48,8 @@ public class RPGSystemRepository : IRPGSystemRepository
             if (elementDefinition.LevelableData != null)
             {
                 elementDefinition.LevelableData.VariantDefinitions = await _context.VariantDefinitions.Where(x => x.LevelableDefinitionId == elementDefinition.LevelableData.Id).ToListAsync();
+            
+                elementDefinition.LevelableData.GenreCostPerLevels=await _context.GenreCostPerLevels.Where(x=>x.LevelableId==elementDefinition.LevelableData.Id).ToListAsync();
             }
 
             elementDefinition.Freebies = await _context.RPGFreebies.Where(x => x.OwnerElementDefinitionId == elementDefinition.Id).ToListAsync();
@@ -446,11 +448,11 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             foreach (KeyValuePair<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinition in matchedDefinitions)
             {
-                if (matchedDefinition.Key.ElementName != matchedDefinition.Value.ElementName)
-                {
-                    //Update names for existing elements
-                    matchedDefinition.Value.ElementName = matchedDefinition.Key.ElementName;
-                }
+                matchedDefinition.Value.Description = matchedDefinition.Key.Description;
+                matchedDefinition.Value.Human=matchedDefinition.Key.Human;
+                matchedDefinition.Value.PageNumbers = matchedDefinition.Key.PageNumbers;
+                matchedDefinition.Value.PointsContainerScale = matchedDefinition.Key.PointsContainerScale;
+                matchedDefinition.Value.Stat=matchedDefinition.Key.Stat;
 
                 //Update all the element types:
                 RPGElementTypeDto? changedType = matchedTypes.Keys.Where(x => x.TypeName == matchedDefinition.Key.ElementTypeName).FirstOrDefault();
@@ -477,6 +479,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                     matchedDefinition.Value.LevelableData.MaxLevel = matchedDefinition.Key.LevelableData.MaxLevel;
                     matchedDefinition.Value.LevelableData.EnforceMaxLevel= matchedDefinition.Key.LevelableData.EnforceMaxLevel;                    
                     matchedDefinition.Value.LevelableData.SpecialPointsPerLevel= matchedDefinition.Key.LevelableData.SpecialPointsPerLevel;
+                    matchedDefinition.Value.LevelableData.ProgressionReversed=matchedDefinition.Key.LevelableData.ProgressionReversed;
 
                     ProgressionDto? changedProgression = matchedProgressions.Keys.Where(x => x.ProgressionType == matchedDefinition.Key.LevelableData.ProgressionName).FirstOrDefault();
                     if (changedProgression != null)

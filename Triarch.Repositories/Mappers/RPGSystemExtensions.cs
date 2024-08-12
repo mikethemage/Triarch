@@ -99,6 +99,18 @@ internal static class RPGSystemExtensions
                         });
                     }
                 }
+                if(elementDefinition.LevelableData.GenreCostPerLevels!=null && elementDefinition.LevelableData.GenreCostPerLevels.Count > 0)
+                {
+                    elementDefinitionDto.LevelableData.MultiGenreCostPerLevels = new List<GenreCostPerLevelDto>();
+                    foreach (GenreCostPerLevel genreCostPerLevel in elementDefinition.LevelableData.GenreCostPerLevels)
+                    {
+                        elementDefinitionDto.LevelableData.MultiGenreCostPerLevels.Add(new GenreCostPerLevelDto
+                        {
+                            GenreName = genreCostPerLevel.Genre.GenreName,
+                            CostPerLevel = genreCostPerLevel.CostPerLevel
+                        });
+                    }
+                }
             }
 
             foreach (RPGElementDefinition allowedChild in elementDefinition.AllowedChildren)

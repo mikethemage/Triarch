@@ -86,7 +86,7 @@
         "enforceMaxLevel": false,
         "costPerLevel": 1,
         "costPerLevelDescription": "1",
-        "progressionName":  "Linear"
+        "progressionName": "Linear"
       }
     },
     {
@@ -413,7 +413,7 @@
         "enforceMaxLevel": false,
         "costPerLevel": 1,
         "costPerLevelDescription": "1",
-        "progressionName":  "Linear"
+        "progressionName": "Linear"
       }
     },
     {
@@ -808,7 +808,7 @@
         "enforceMaxLevel": false,
         "costPerLevel": 1,
         "costPerLevelDescription": "1",
-        "progressionName":  "Linear"
+        "progressionName": "Linear"
       }
     },
     {
@@ -905,7 +905,7 @@
         "enforceMaxLevel": false,
         "costPerLevel": 1,
         "costPerLevelDescription": "1",
-        "progressionName":  "Linear"
+        "progressionName": "Linear"
       }
     },
     {
@@ -1032,7 +1032,7 @@
         "costPerLevel": 1,
         "costPerLevelDescription": "1",
         "progressionName": "Growth",
-        "progressionReversed":  true
+        "progressionReversed": true
       }
     },
     {
@@ -2172,8 +2172,7 @@
         "costPerLevel": 20,
         "costPerLevelDescription": "20",
         "progressionName": "Time",
-        "progressionReversed":  true
-
+        "progressionReversed": true
       },
       "freebies": [
         {
@@ -2659,7 +2658,7 @@
         "costPerLevel": 0,
         "costPerLevelDescription": "5 / 10",
         "progressionName": "Time",
-        "progressionReversed":  true,
+        "progressionReversed": true,
         "variants": [
           {
             "variantName": "Difficult to Stop",
@@ -3372,7 +3371,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 3,
-        "costPerLevelDescription": "3"
+        "costPerLevelDescription": "3",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 3
+          }
+        ]
       }
     },
     {
@@ -3387,7 +3508,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3402,7 +3645,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3417,7 +3782,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3432,7 +3919,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3447,7 +4056,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3462,7 +4193,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3477,7 +4330,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3492,7 +4467,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3507,7 +4604,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3522,7 +4741,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3537,7 +4878,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3552,7 +5015,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3567,7 +5152,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3582,7 +5289,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 3
+          }
+        ]
       }
     },
     {
@@ -3597,7 +5426,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3612,7 +5563,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3627,7 +5700,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3642,7 +5837,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3657,7 +5974,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3672,7 +6111,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3687,7 +6248,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3702,7 +6385,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3717,7 +6522,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3732,7 +6659,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3747,7 +6796,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3762,7 +6933,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3777,7 +7070,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3792,7 +7207,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3807,7 +7344,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3822,7 +7481,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3837,7 +7618,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3852,7 +7755,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3867,7 +7892,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 3
+          }
+        ]
       }
     },
     {
@@ -3882,7 +8029,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3897,7 +8166,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3912,7 +8303,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 3,
-        "costPerLevelDescription": "3"
+        "costPerLevelDescription": "3",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3927,7 +8440,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3942,7 +8577,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -3957,7 +8714,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3972,7 +8851,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -3987,7 +8988,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -4002,7 +9125,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 3,
-        "costPerLevelDescription": "3"
+        "costPerLevelDescription": "3",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -4017,7 +9262,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 2,
-        "costPerLevelDescription": "2"
+        "costPerLevelDescription": "2",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 2
+          }
+        ]
       }
     },
     {
@@ -4032,7 +9399,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -4062,7 +9551,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -4077,7 +9688,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -4092,7 +9825,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -4107,7 +9962,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 3
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
@@ -4122,7 +10099,129 @@
         "maxLevel": 6,
         "enforceMaxLevel": false,
         "costPerLevel": 1,
-        "costPerLevelDescription": "1"
+        "costPerLevelDescription": "1",
+        "multiGenreCostPerLevels": [
+          {
+            "genreName": "Multi-Genre All Campaigns",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Action Adventure",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Animal Adventures",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Conspiracy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Law Enforcement",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Loony Cartoons",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Occult / Horror",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Pulp",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Reality TV",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Romantic Comedy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Soap Opera",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Superhero",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Modern Day Urban Fantasy",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical 20th Century War",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Age of Pirates",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient China / Japan",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Egypt",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Ancient Rome / Greece",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Middle Ages",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Old West",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Historical Steampunk",
+            "costPerLevel": 2
+          },
+          {
+            "genreName": "Historical Stone Age",
+            "costPerLevel": 0
+          },
+          {
+            "genreName": "Fantasy High Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Fantasy Low Fantasy",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Cyberpunk / Biopunk",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Hard SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Mecha",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Post Apocalyptic",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Soft SF",
+            "costPerLevel": 1
+          },
+          {
+            "genreName": "Futuristic Space Opera",
+            "costPerLevel": 1
+          }
+        ]
       }
     },
     {
