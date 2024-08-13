@@ -24,11 +24,16 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
         EditNewEntityCommand = new RelayCommand(EditNewEntity, CanEditNewEntity);
         EditExistingSystemCommand = new RelayCommand(EditExistingSystem, CanEditExistingSystem);
         ExitCommand = new RelayCommand(Exit, CanExit);
+        ImportOldFormatEntityCommand = new RelayCommand(ImportOldFormatEntity, CanImportOldFormatEntity);
         SystemSelector = new ObservableCollection<SystemListItem>(_rPGSystemProvider.ListSystems());
         if (SystemSelector.Count > 0)
         {
             SelectedSystem = SystemSelector[0];
         }
+    }
+    private bool CanImportOldFormatEntity()
+    {
+        return true;
     }
 
     private void EditExistingSystem()
@@ -60,6 +65,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
     public RelayCommand EditNewEntityCommand { get; set; }
     public RelayCommand EditExistingSystemCommand { get; set; }
     public RelayCommand ExitCommand { get; set; }
+    public RelayCommand ImportOldFormatEntityCommand { get; set; }
 
     public ObservableCollection<SystemListItem> SystemSelector { get; set; }
 
@@ -135,5 +141,42 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
                 MessageBox.Show($"Error loading file {openDialog.FileName}", "File Open Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+    }
+
+    private void ImportOldFormatEntity()
+    {
+        const string oldSystemName = "BESM 3rd Edition";
+        if (!_rPGSystemProvider.ListSystems().Any(x=>x.SystemName== oldSystemName))
+        {
+            throw new Exception("No available systems to import old format files!");
+        }
+
+        RPGSystem loadedSystem = _rPGSystemProvider.LoadSystem(oldSystemName);
+
+        OpenFileDialog openDialog = new OpenFileDialog
+        {
+            RestoreDirectory = false,
+            Filter = "BESM3CA" + " Files(*.xml)|*.xml|All Files (*.*)|*.*",
+            FilterIndex = 1
+        };
+
+        if (openDialog.ShowDialog() ?? false)
+        {
+            try
+            {
+                string fileText = File.ReadAllText(openDialog.FileName);
+                RPGEntityOldFormatLoader rPGEntityOldFormatLoader = new RPGEntityOldFormatLoader();
+                RPGEntity? entity = rPGEntityOldFormatLoader.Load(fileText, loadedSystem);
+                if (entity != null)
+                {
+                    Parent.CurrentPage = new EntityEditorViewModel(entity, "") { Parent = Parent, ChangesSaved = true };
+                }
+            }
+            catch
+            {
+                MessageBox.Show($"Error loading file {openDialog.FileName}", "File Open Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

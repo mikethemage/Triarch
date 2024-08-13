@@ -38,17 +38,17 @@
         <xctk:IntegerUpDown Grid.Row="1" Grid.Column="5" Margin="2,2,2,2" Text="{Binding Path=Soul, Delay=100, UpdateSourceTrigger=PropertyChanged}" Minimum="1" />
 
         <Label x:Name="ACVLabel" Content="ACV" Margin="0 10 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" />
-        <TextBox x:Name="ACVTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" IsEnabled="False" Text="{Binding Path=ACV,Mode=OneWay}" />
+        <TextBox x:Name="ACVTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="0" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path=ACV,Mode=OneWay}" />
 
         <Label x:Name="DCVLabel" Content="DCV" Margin="0 10 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2"/>
-        <TextBox x:Name="DCVTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" IsEnabled="False" Text="{Binding Path=DCV,Mode=OneWay}"/>
+        <TextBox x:Name="DCVTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path=DCV,Mode=OneWay}"/>
 
 
         <Label x:Name="HealthLabel" Content="Health" Margin="0 10 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="4"/>
-        <TextBox x:Name="HealthTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="4" VerticalAlignment="Stretch" IsEnabled="False" Text="{Binding Path=Health,Mode=OneWay}"/>
+        <TextBox x:Name="HealthTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="4" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path=Health,Mode=OneWay}"/>
 
         <Label x:Name="EnergyLabel" Content="Energy" Margin="0 10 0 0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="6"/>
-        <TextBox x:Name="EnergyTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="6" VerticalAlignment="Stretch" IsEnabled="False" Text="{Binding Path=Energy,Mode=OneWay}"/>
+        <TextBox x:Name="EnergyTextBox" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="6" VerticalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path=Energy,Mode=OneWay}"/>
 
     </Grid>
 </UserControl>
