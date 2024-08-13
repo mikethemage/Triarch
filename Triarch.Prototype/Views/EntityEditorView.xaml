@@ -21,9 +21,9 @@
             <RowDefinition Height="170" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Margin="5,5,5,5" Height="35" Content="Back" HorizontalAlignment="Stretch" Command="{Binding Path=BackCommand}" />
-            <Button Margin="5,5,5,5" Height="35" Content="Save" HorizontalAlignment="Stretch"/>
-            <Button Margin="5,5,5,5" Height="35" Content="Save As" HorizontalAlignment="Stretch"/>
+            <Button Margin="5,5,5,10" Height="35" Width="80" Content="Back" HorizontalAlignment="Stretch" Command="{Binding Path=BackCommand}" />
+            <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save" HorizontalAlignment="Stretch"/>
+            <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save As" HorizontalAlignment="Stretch"/>
         </StackPanel>
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>

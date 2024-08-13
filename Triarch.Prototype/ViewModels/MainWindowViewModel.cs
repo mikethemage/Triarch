@@ -27,4 +27,11 @@ public class MainWindowViewModel : ViewModelBase
         _currentPage = new MainMenuViewModel { Parent = this };
       
     }
+
+    public Action CloseAction { get; set; }
+
+    internal void Exit()
+    {
+        CloseAction?.Invoke();
+    }
 }
