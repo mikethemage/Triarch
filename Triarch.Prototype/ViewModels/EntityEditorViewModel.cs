@@ -7,6 +7,7 @@ using System.Windows;
 using Triarch.BusinessLogic.Models.Entities;
 using Triarch.BusinessLogic.Services;
 using Triarch.Dtos.Entities;
+using System.Text.Json.Serialization;
 
 namespace Triarch.Prototype.ViewModels;
 
@@ -125,7 +126,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         rPGSystemProvider.AddSystem(_entity.RPGSystem.SystemName, _entity.RPGSystem);
         RPGEntityMapper rPGEntityMapper = new RPGEntityMapper(rPGSystemProvider);
         EntityDto entityDto = rPGEntityMapper.Serialize(_entity);
-        File.WriteAllText(filename, JsonSerializer.Serialize(entityDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }));
+        File.WriteAllText(filename, JsonSerializer.Serialize(entityDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull }));
         ChangesSaved = true;
     }
 
