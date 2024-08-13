@@ -1,20 +1,18 @@
-﻿using System.ComponentModel;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Triarch.BusinessLogic.OldXmlFormatDtos;
 
 [Serializable()]
-[DesignerCategory("code")]
 [XmlType(AnonymousType = true)]
-public partial class TreeViewNodeNodeBESM3CAAttributeData
+public class AttributeData
 {
-    public TreeViewNodeNodeBESM3CAAttributeDataAdditionalData AdditionalData { get ; set ; }
+    public AttributeAdditionalData AdditionalData { get; set; } = null!;
 
-    public string Notes { get ; set ; }
+    public string Notes { get; set; } = null!;
 
     [XmlAttribute()]
-    public string Name { get ; set ; }
-    
+    public string Name { get; set; } = null!;
+
     [XmlAttribute()]
-    public int ID { get ; set ; }
+    public int ID { get; set; }
 }

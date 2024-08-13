@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.BusinessLogic.Services;
@@ -27,7 +22,7 @@ public class TextExporter
         var indent = new string('\t', indentLevel);
         exportComponents.Add($"{indent}{element.Name} ({element.Points} Points)");
 
-        if (element is PointsContainer container)
+        if (element is PointsContainer)
         {
             exportComponents.Add($"{indent}(");
         }
@@ -39,23 +34,23 @@ public class TextExporter
         {
             exportComponents.Add($"{indent}Mind: {character.Mind}");
             exportComponents.Add($"{indent}Body: {character.Body}");
-            exportComponents.Add($"{indent}Soul: {character.Soul}");            
+            exportComponents.Add($"{indent}Soul: {character.Soul}");
             exportComponents.Add($"{indent}ACV: {character.ACV}");
             exportComponents.Add($"{indent}DCV: {character.DCV}");
             exportComponents.Add($"{indent}Health: {character.Health}");
-            exportComponents.Add($"{indent}Energy: {character.Energy}");                  
+            exportComponents.Add($"{indent}Energy: {character.Energy}");
         }
         if (element is Levelable levelable)
         {
             exportComponents.Add($"{indent}Level {levelable.Level} x {levelable.PointsPerLevel} = {levelable.BaseCost}");
             exportComponents.Add($"{indent}Description: {levelable.Description}");
         }
-        
-        if(!string.IsNullOrWhiteSpace(element.Notes))
+
+        if (!string.IsNullOrWhiteSpace(element.Notes))
         {
             exportComponents.Add($"{indent}[Notes: {element.Notes}]");
         }
-        
+
         exportComponents.Add("");
         foreach (RPGElement child in element.Children)
         {

@@ -22,7 +22,7 @@ public class AllowedChildrenViewModel : ViewModelBase
 
     private ElementDefinitionListItemViewModel? _selectedChild = null;
 
-    private List<RPGElementDefinition> _allAllowedChildren = new List<RPGElementDefinition>();
+    private readonly List<RPGElementDefinition> _allAllowedChildren = new List<RPGElementDefinition>();
 
     private ICollectionView _groupedAllowedChildrenList;
 

@@ -3,7 +3,7 @@
 namespace Triarch.BusinessLogic.Services;
 public class RPGSystemProvider : IRPGSystemProvider
 {
-    private Dictionary<string, RPGSystem> _systemList = new();
+    private readonly Dictionary<string, RPGSystem> _systemList = new();
 
     public RPGSystem LoadSystem(string name)
     {

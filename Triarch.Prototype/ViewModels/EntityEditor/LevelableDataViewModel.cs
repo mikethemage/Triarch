@@ -10,7 +10,7 @@ public class LevelableDataViewModel : ViewModelBase
         _model = model;
     }
 
-    private EntityEditorViewModel _parent;
+    private readonly EntityEditorViewModel _parent;
 
     private readonly Levelable _model;
 

@@ -10,9 +10,9 @@ public class CharacterDataViewModel : ViewModelBase
         _parent = parent;
     }
 
-    private Character _model;
+    private readonly Character _model;
 
-    private EntityEditorViewModel _parent;
+    private readonly EntityEditorViewModel _parent;
 
     public int Body
     {

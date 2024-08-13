@@ -5,7 +5,7 @@ using Triarch.Dtos.Entities;
 namespace Triarch.BusinessLogic.Services;
 public class RPGEntityMapper
 {
-    IRPGSystemProvider _rPGSystemProvider;
+    private readonly IRPGSystemProvider _rPGSystemProvider;
 
     public RPGEntityMapper(IRPGSystemProvider rPGSystemProvider)
     {
