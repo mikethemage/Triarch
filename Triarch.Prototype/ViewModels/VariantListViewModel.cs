@@ -25,7 +25,7 @@ public class VariantListViewModel : ViewModelBase
                 if (selected != null)
                 {
                     selected.IsSelected = true;
-                    Selected = selected;
+                    _selected = selected;
                 }                
             }
         }

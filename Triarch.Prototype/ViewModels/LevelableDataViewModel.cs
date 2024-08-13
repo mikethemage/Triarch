@@ -1,20 +1,20 @@
-﻿using Triarch.BusinessLogic.Models.Definitions;
-using Triarch.BusinessLogic.Models.Entities;
+﻿using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.Prototype.ViewModels;
 
 public class LevelableDataViewModel : ViewModelBase
 {
-    private EntityEditorViewModel _parent;
     public LevelableDataViewModel(Levelable model, EntityEditorViewModel parent)
     {
         _parent = parent;
         _model = model;
-       
     }
 
+    private EntityEditorViewModel _parent;    
+
     private readonly Levelable _model;
-    
+
+    public Levelable Model { get { return _model; } }
 
     public int Level
     {
@@ -31,6 +31,12 @@ public class LevelableDataViewModel : ViewModelBase
             _parent.ChangesSaved = false;
         }
     }
+    
+    public int PointsPerLevel { get { return _model.PointsPerLevel; } }
+
+    public int Points { get { return _model.Points; } }    
+
+    public string Description { get { return _model.Description; } }
 
     public void RefreshProperties()
     {
@@ -39,11 +45,4 @@ public class LevelableDataViewModel : ViewModelBase
         OnPropertyChanged(nameof(Points));
         OnPropertyChanged(nameof(Description));
     }
-    public int PointsPerLevel { get { return _model.PointsPerLevel; } }
-    public int Points { get { return _model.Points; } }    
-
-    public Levelable Model { get { return _model; } }
-
-    public string Description { get { return _model.Description; } }
-
 }

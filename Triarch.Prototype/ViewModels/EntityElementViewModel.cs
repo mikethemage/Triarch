@@ -4,8 +4,7 @@ using Triarch.BusinessLogic.Models.Entities;
 namespace Triarch.Prototype.ViewModels;
 
 public class EntityElementViewModel : ViewModelBase
-{
-    private readonly EntityEditorViewModel _parent;
+{    
     public EntityElementViewModel(RPGElement element, EntityEditorViewModel parent)
     {
         _parent = parent;
@@ -24,18 +23,19 @@ public class EntityElementViewModel : ViewModelBase
         }
         if (element is Character character)
         {
-            CharacterData = new CharacterDataViewModel(character);
+            CharacterData = new CharacterDataViewModel(character, _parent);
         }
 
         AllowedChildrenList = new AllowedChildrenViewModel(element.AssociatedDefinition.AllowedChildren);           
     }
+
+    private readonly EntityEditorViewModel _parent;
 
     private readonly RPGElement _element;
 
     public RPGElement Element { get { return _element; } }
 
     private VariantListViewModel? _variantList = null;
-    private AllowedChildrenViewModel _allowedChildrenList = null!;
     
     public VariantListViewModel? VariantList
     {
@@ -49,6 +49,9 @@ public class EntityElementViewModel : ViewModelBase
             OnPropertyChanged(nameof(VariantList));
         }
     }
+
+    private AllowedChildrenViewModel _allowedChildrenList = null!;
+
     public AllowedChildrenViewModel AllowedChildrenList
     {
         get
@@ -66,10 +69,15 @@ public class EntityElementViewModel : ViewModelBase
 
     public string Notes
     {
-        get { return _element.Notes; }
+        get 
+        { 
+            return _element.Notes; 
+        }
         set
         {
             _element.Notes = value;
+            OnPropertyChanged(nameof(Notes));
+            _parent.ChangesSaved = false;
         }
     }
 
@@ -79,6 +87,7 @@ public class EntityElementViewModel : ViewModelBase
         {
             levelable.Variant = variantDefinitionData;
             LevelableData?.RefreshProperties();
+            _parent.ChangesSaved = false;
         }
     }
 }

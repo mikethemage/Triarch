@@ -4,11 +4,15 @@ namespace Triarch.Prototype.ViewModels;
 
 public class CharacterDataViewModel : ViewModelBase
 {
-    public CharacterDataViewModel(Character model)
+    public CharacterDataViewModel(Character model, EntityEditorViewModel parent)
     {
         _model = model;
-
+        _parent = parent;
     }
+
+    private Character _model;
+
+    private EntityEditorViewModel _parent;
 
     public int Body
     {
@@ -23,9 +27,10 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(Health));
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
-
+            _parent.ChangesSaved = false;
         }
     }
+
     public int Mind
     {
         get
@@ -39,8 +44,10 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(Energy));
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
+            _parent.ChangesSaved = false;
         }
     }
+
     public int Soul
     {
         get
@@ -55,8 +62,20 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(Energy));
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
+            _parent.ChangesSaved = false;
         }
+    }    
+
+    public int ACV
+    {
+        get { return _model.ACV; }
     }
+
+    public int DCV { get { return _model.DCV; } }
+
+    public int Health { get { return _model.Health; } }
+
+    public int Energy { get { return _model.Energy; } }    
 
     public void RefreshProperties()
     {
@@ -66,15 +85,4 @@ public class CharacterDataViewModel : ViewModelBase
         OnPropertyChanged(nameof(ACV));
         OnPropertyChanged(nameof(DCV));
     }
-
-    public int ACV
-    {
-        get { return _model.ACV; }
-    }
-    public int DCV { get { return _model.DCV; } }
-    public int Health { get { return _model.Health; } }
-    public int Energy { get { return _model.Energy; } }
-
-    private Character _model;
-
 }

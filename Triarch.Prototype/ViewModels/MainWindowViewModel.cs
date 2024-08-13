@@ -24,11 +24,10 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        _currentPage = new MainMenuViewModel { Parent = this };
-      
+        _currentPage = new MainMenuViewModel { Parent = this };      
     }
 
-    public Action CloseAction { get; set; }
+    public Action? CloseAction { get; set; }
 
     internal void Exit()
     {
