@@ -12,7 +12,7 @@ namespace Triarch.Prototype.ViewModels;
 
 public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 {
-    public required MainWindowViewModel Parent {  get; set; }
+    public required MainWindowViewModel Parent { get; set; }
 
     public bool ChangesSaved { get; set; } = false;
 
@@ -99,15 +99,15 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 
     public void SaveAs()
     {
-        SaveFileDialog saveFileDialog = new SaveFileDialog 
+        SaveFileDialog saveFileDialog = new SaveFileDialog
         {
-            RestoreDirectory = false,            
+            RestoreDirectory = false,
             Filter = "Triarch" + " Files(*.json)|*.json|All Files (*.*)|*.*",
             FilterIndex = 1
         };
 
-        if(saveFileDialog.ShowDialog() ?? false)
-        {            
+        if (saveFileDialog.ShowDialog() ?? false)
+        {
             WriteEntityToFile(saveFileDialog.FileName);
             _filePath = saveFileDialog.FileName;
         }
@@ -115,7 +115,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 
     public void Save()
     {
-        if(_filePath == "")
+        if (_filePath == "")
         {
             SaveAs();
         }
@@ -147,12 +147,12 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 
     public void Back()
     {
-        if(!ChangesSaved)
+        if (!ChangesSaved)
         {
-            if(MessageBox.Show("Save changes before closing?", "Unsaved Changes", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+            if (MessageBox.Show("Save changes before closing?", "Unsaved Changes", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Save();
-                if(!ChangesSaved)
+                if (!ChangesSaved)
                 {
                     return;
                 }
@@ -304,7 +304,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 
     public void MoveUp()
     {
-        if(SelectedElement!=null && SelectedElement.Element.Parent != null)
+        if (SelectedElement != null && SelectedElement.Element.Parent != null)
         {
             EntityController entityController = new EntityController();
             if (entityController.MoveUpElement(SelectedElement.Element))
@@ -322,10 +322,10 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
                 ChangesSaved = false;
 
                 MoveUpCommand?.RaiseCanExecuteChanged();
-                MoveDownCommand?.RaiseCanExecuteChanged();                
+                MoveDownCommand?.RaiseCanExecuteChanged();
             }
         }
-        
+
     }
     public void MoveDown()
     {

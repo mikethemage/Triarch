@@ -1,10 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Triarch.Dtos.Definitions;
 
 public class RPGElementDefinitionDto
-{  
+{
     [MaxLength(100)]
     [Required]
     public string ElementName { get; set; } = null!;
@@ -24,14 +24,14 @@ public class RPGElementDefinitionDto
     [DefaultValue(false)]
     public bool Human { get; set; } = false;
 
-      
+
     public List<string> AllowedChildrenNames { get; set; } = [];
 
-    
+
 
     public LevelableDefinitionDto? LevelableData { get; set; } = null;
 
     public int? PointsContainerScale { get; set; } = null;
-    
-    public List<FreebieDto>? Freebies { get; set; } = null;    
+
+    public List<FreebieDto>? Freebies { get; set; } = null;
 }

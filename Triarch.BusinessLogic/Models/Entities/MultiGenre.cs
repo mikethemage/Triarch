@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 
 namespace Triarch.BusinessLogic.Models.Entities;
 public class MultiGenre : Levelable
@@ -21,7 +16,7 @@ public class MultiGenre : Levelable
                 else
                 {
                     GenreCostPerLevel? genreCost = multiGenreDefinition.MultiGenreCostPerLevels.Where(x => x.Genre == Entity.Genre).FirstOrDefault();
-                    if(genreCost != null)
+                    if (genreCost != null)
                     {
                         return genreCost.CostPerLevel;
                     }

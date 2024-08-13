@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 
 namespace Triarch.BusinessLogic.Models.Entities;
 public class PointsContainer : RPGElement
@@ -11,11 +6,11 @@ public class PointsContainer : RPGElement
 
     public override int Points
     {
-        get 
+        get
         {
             int tempPoints = VariablesOrRestrictions;
 
-            if(AssociatedDefinition is PointsContainerDefinition pointsContainerDefinition)
+            if (AssociatedDefinition is PointsContainerDefinition pointsContainerDefinition)
             {
                 if (pointsContainerDefinition.PointsContainerScale != 0)
                 {

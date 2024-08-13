@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Triarch.Dtos.Definitions;
-
-
-namespace Triarch.BusinessLogic.Models.Definitions;
+﻿namespace Triarch.BusinessLogic.Models.Definitions;
 
 public class RPGSystem
 {
@@ -17,5 +11,5 @@ public class RPGSystem
 
     public List<Genre> Genres { get; set; } = new();
 
-    public List<Progression> Progressions { get; set; } = new();    
+    public List<Progression> Progressions { get; set; } = new();
 }

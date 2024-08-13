@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.Prototype.ViewModels;
@@ -15,7 +14,7 @@ public class EntityElementListItemViewModel : ViewModelBase
             _displayText = value;
             OnPropertyChanged(nameof(DisplayText));
         }
-    }    
+    }
 
     public RPGElement ElementData { get; private set; }
 
@@ -52,4 +51,3 @@ public class EntityElementListItemViewModel : ViewModelBase
 
     public ObservableCollection<EntityElementListItemViewModel> Children { get; set; } = new ObservableCollection<EntityElementListItemViewModel>();
 }
-    

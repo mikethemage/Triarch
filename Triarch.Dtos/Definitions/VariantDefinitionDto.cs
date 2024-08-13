@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Triarch.Dtos.Definitions;
 
@@ -15,5 +15,5 @@ public class VariantDefinitionDto
     public string? Description { get; set; } = null;
 
     [DefaultValue(false)]
-    public bool IsDefault { get; set; } = false;    
+    public bool IsDefault { get; set; } = false;
 }

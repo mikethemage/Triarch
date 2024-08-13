@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Triarch.Prototype.ViewModels;
+﻿namespace Triarch.Prototype.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private IPageViewModel _currentPage;
@@ -24,7 +18,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        _currentPage = new MainMenuViewModel { Parent = this };      
+        _currentPage = new MainMenuViewModel { Parent = this };
     }
 
     public Action? CloseAction { get; set; }

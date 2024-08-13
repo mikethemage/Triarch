@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Triarch.BusinessLogic.Models.Entities;
+﻿namespace Triarch.BusinessLogic.Models.Entities;
 public class Companion : Levelable
 {
-    
+
     public override int BaseCost
     {
         get

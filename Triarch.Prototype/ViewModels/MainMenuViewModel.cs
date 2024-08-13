@@ -6,7 +6,6 @@ using System.Windows;
 using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Models.Entities;
 using Triarch.BusinessLogic.Services;
-using Triarch.Dtos.Definitions;
 using Triarch.Dtos.Entities;
 using Triarch.Prototype.Models;
 using Triarch.Prototype.Services;
@@ -26,11 +25,11 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
         EditExistingSystemCommand = new RelayCommand(EditExistingSystem, CanEditExistingSystem);
         ExitCommand = new RelayCommand(Exit, CanExit);
         SystemSelector = new ObservableCollection<SystemListItem>(_rPGSystemProvider.ListSystems());
-        if(SystemSelector.Count > 0)
+        if (SystemSelector.Count > 0)
         {
             SelectedSystem = SystemSelector[0];
         }
-    }    
+    }
 
     private void EditExistingSystem()
     {
@@ -50,12 +49,12 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
     private bool CanEditExistingSystem()
     {
         return false; // SelectedSystem != null;
-    }    
+    }
 
     private bool CanEditExistingEntity()
     {
         return true;
-    }    
+    }
 
     public RelayCommand EditExistingEntityCommand { get; set; }
     public RelayCommand EditNewEntityCommand { get; set; }
@@ -91,7 +90,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
         if (SelectedSystem is not null)
         {
             RPGSystem loadedSystem = _rPGSystemProvider.LoadSystem(SelectedSystem.SystemName);
-                                            
+
             RPGEntity entity = new RPGEntity
             {
                 RPGSystem = loadedSystem,
@@ -102,7 +101,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
             };
             entity.RootElement = loadedSystem.ElementDefinitions.Where(x => x.ElementName == "Character").First().CreateNode(entity, "", false);
 
-            Parent.CurrentPage = new EntityEditorViewModel(entity) { Parent = Parent };                
+            Parent.CurrentPage = new EntityEditorViewModel(entity) { Parent = Parent };
         }
     }
 

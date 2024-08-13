@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 
 namespace Triarch.BusinessLogic.Models.Entities;
 public class SpecialContainer : Levelable
@@ -12,7 +7,7 @@ public class SpecialContainer : Levelable
     {
         get
         {
-            if(AssociatedDefinition is SpecialContainerDefinition specialContainerDefinition)
+            if (AssociatedDefinition is SpecialContainerDefinition specialContainerDefinition)
             {
                 return Level * specialContainerDefinition.SpecialPointsPerLevel;
             }
@@ -28,7 +23,7 @@ public class SpecialContainer : Levelable
         }
     }
 
-    
+
 
     public int SpecialPointsRemaining
     {
@@ -37,5 +32,5 @@ public class SpecialContainer : Levelable
             return SpecialPointsTotal - SpecialPointsUsed;
         }
     }
-    
+
 }

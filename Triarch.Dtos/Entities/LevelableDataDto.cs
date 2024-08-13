@@ -8,7 +8,7 @@ public class LevelableDataDto
     public int Level { get; set; }
 
     public string? VariantName { get; set; }
-    
+
     public int? FreeLevels { get; set; }
     public int? RequiredLevels { get; set; }
 }

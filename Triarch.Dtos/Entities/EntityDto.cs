@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Triarch.Dtos.Entities;
 public class EntityDto
 {
     [Required]
     public string RPGSystemName { get; set; } = null!;
-    
+
     public string? GenreName { get; set; }
 
     [Required]

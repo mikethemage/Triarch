@@ -10,7 +10,7 @@ public class LevelableDataViewModel : ViewModelBase
         _model = model;
     }
 
-    private EntityEditorViewModel _parent;    
+    private EntityEditorViewModel _parent;
 
     private readonly Levelable _model;
 
@@ -31,10 +31,10 @@ public class LevelableDataViewModel : ViewModelBase
             _parent.ChangesSaved = false;
         }
     }
-    
+
     public int PointsPerLevel { get { return _model.PointsPerLevel; } }
 
-    public int Points { get { return _model.Points; } }    
+    public int Points { get { return _model.Points; } }
 
     public string Description { get { return _model.Description; } }
 

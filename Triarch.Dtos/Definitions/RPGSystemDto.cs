@@ -3,11 +3,11 @@
 namespace Triarch.Dtos.Definitions;
 
 public class RPGSystemDto
-{    
-    public CoreRulesetDto Ruleset { get; set; } = null!; 
-    
+{
+    public CoreRulesetDto Ruleset { get; set; } = null!;
+
     [MaxLength(60)]
-    public string SystemName { get; set; } = null!;  
+    public string SystemName { get; set; } = null!;
 
     [MaxLength(250)]
     public string? DescriptiveName { get; set; } = null;

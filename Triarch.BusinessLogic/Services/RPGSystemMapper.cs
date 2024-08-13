@@ -61,7 +61,7 @@ public class RPGSystemMapper
                 {
                     levelableDefinition = new LevelableDefinition();
                 }
-                elementDefinition= levelableDefinition;
+                elementDefinition = levelableDefinition;
                 levelableDefinition.MaxLevel = elementDefinitionDto.LevelableData.MaxLevel ?? int.MaxValue;
                 levelableDefinition.MinLevel = elementDefinitionDto.ElementName == "Weapon" ? 0 : 1;
                 levelableDefinition.EnforceMaxLevel = elementDefinitionDto.LevelableData.EnforceMaxLevel ?? false;
@@ -70,35 +70,36 @@ public class RPGSystemMapper
 
                 levelableDefinition.Progression = output.Progressions.Where(x => x.ProgressionType == elementDefinitionDto.LevelableData.ProgressionName).FirstOrDefault();
                 levelableDefinition.ProgressionReversed = elementDefinitionDto.LevelableData.ProgressionReversed;
-                if(elementDefinitionDto.LevelableData.Variants!=null)
+                if (elementDefinitionDto.LevelableData.Variants != null)
                 {
                     levelableDefinition.Variants = elementDefinitionDto.LevelableData.Variants.Select(x => new VariantDefinition { VariantName = x.VariantName, CostPerLevel = x.CostPerLevel, Description = x.Description ?? "", IsDefault = x.IsDefault }).ToList();
-                }               
+                }
             }
             else
             {
                 throw new Exception("Unexpected definition");
             }
 
-            elementDefinition.ElementName= elementDefinitionDto.ElementName;
-            elementDefinition.ElementType = output.ElementTypes.Where(x => x.TypeName==elementDefinitionDto.ElementTypeName).First();
-            elementDefinition.Stat= elementDefinitionDto.Stat;
-            elementDefinition.Human=elementDefinitionDto.Human;
-            elementDefinition.Description= elementDefinitionDto.Description;
-            elementDefinition.PageNumbers= elementDefinitionDto.PageNumbers;            
+            elementDefinition.ElementName = elementDefinitionDto.ElementName;
+            elementDefinition.ElementType = output.ElementTypes.Where(x => x.TypeName == elementDefinitionDto.ElementTypeName).First();
+            elementDefinition.Stat = elementDefinitionDto.Stat;
+            elementDefinition.Human = elementDefinitionDto.Human;
+            elementDefinition.Description = elementDefinitionDto.Description;
+            elementDefinition.PageNumbers = elementDefinitionDto.PageNumbers;
 
             output.ElementDefinitions.Add(elementDefinition);
         }
 
-        foreach(RPGElementDefinitionDto elementDefinitionDtoWithFreebies in input.ElementDefinitions.Where(x=> x.Freebies != null && x.Freebies.Count > 0))
+        foreach (RPGElementDefinitionDto elementDefinitionDtoWithFreebies in input.ElementDefinitions.Where(x => x.Freebies != null && x.Freebies.Count > 0))
         {
             RPGElementDefinition? elementDefinitionWithFreebies = output.ElementDefinitions.Where(x => x.ElementName == elementDefinitionDtoWithFreebies.ElementName).FirstOrDefault();
             if (elementDefinitionWithFreebies != null)
             {
-                elementDefinitionWithFreebies.Freebies = elementDefinitionDtoWithFreebies.Freebies!.Select(x => new Freebie {
-                    FreebieElementDefinition = output.ElementDefinitions.Where(y=>y.ElementName==x.FreebieElementDefinitionName).First(), 
-                    FreeLevels = x.FreeLevels, 
-                    RequiredLevels = x.RequiredLevels 
+                elementDefinitionWithFreebies.Freebies = elementDefinitionDtoWithFreebies.Freebies!.Select(x => new Freebie
+                {
+                    FreebieElementDefinition = output.ElementDefinitions.Where(y => y.ElementName == x.FreebieElementDefinitionName).First(),
+                    FreeLevels = x.FreeLevels,
+                    RequiredLevels = x.RequiredLevels
                 }).ToList();
             }
         }
@@ -108,7 +109,7 @@ public class RPGSystemMapper
             RPGElementDefinition? elementDefinitionWithChildren = output.ElementDefinitions.Where(x => x.ElementName == elementDefinitionDtoWithChildren.ElementName).FirstOrDefault();
             if (elementDefinitionWithChildren != null)
             {
-                elementDefinitionWithChildren.AllowedChildren = elementDefinitionDtoWithChildren.AllowedChildrenNames.Select(x=>output.ElementDefinitions.Where(y=>y.ElementName==x).First()).ToList();
+                elementDefinitionWithChildren.AllowedChildren = elementDefinitionDtoWithChildren.AllowedChildrenNames.Select(x => output.ElementDefinitions.Where(y => y.ElementName == x).First()).ToList();
             }
         }
 
@@ -117,15 +118,16 @@ public class RPGSystemMapper
 
     public RPGSystemDto Serialize(RPGSystem input)
     {
-        RPGSystemDto output = new RPGSystemDto {
-            SystemName = input.SystemName            
+        RPGSystemDto output = new RPGSystemDto
+        {
+            SystemName = input.SystemName
         };
 
-        output.ElementTypes = input.ElementTypes.Select(x=>new RPGElementTypeDto { TypeName=x.TypeName, TypeOrder=x.TypeOrder, BuiltIn = x.BuiltIn}).ToList();
+        output.ElementTypes = input.ElementTypes.Select(x => new RPGElementTypeDto { TypeName = x.TypeName, TypeOrder = x.TypeOrder, BuiltIn = x.BuiltIn }).ToList();
 
-        output.Genres = input.Genres.Select(x=>new GenreDto { GenreName=x.GenreName,GenreOrder=x.GenreOrder }).ToList();
+        output.Genres = input.Genres.Select(x => new GenreDto { GenreName = x.GenreName, GenreOrder = x.GenreOrder }).ToList();
 
-        output.Progressions = input.Progressions.Select(x=>new ProgressionDto { ProgressionType=x.ProgressionType,Linear=x.Linear,CustomProgression=x.CustomProgression, Progressions = x.Progressions.Select(y=>new ProgressionEntryDto { ProgressionLevel=y.ProgressionLevel, Text=y.Text}).ToList()}).ToList();
+        output.Progressions = input.Progressions.Select(x => new ProgressionDto { ProgressionType = x.ProgressionType, Linear = x.Linear, CustomProgression = x.CustomProgression, Progressions = x.Progressions.Select(y => new ProgressionEntryDto { ProgressionLevel = y.ProgressionLevel, Text = y.Text }).ToList() }).ToList();
 
         output.ElementDefinitions = new List<RPGElementDefinitionDto>();
 
@@ -133,12 +135,12 @@ public class RPGSystemMapper
         {
             RPGElementDefinitionDto elementDefinitionDto = new RPGElementDefinitionDto
             {
-                ElementName= elementDefinition.ElementName,
-                Description= elementDefinition.Description,
-                ElementTypeName=elementDefinition.ElementType.TypeName,
-                Human= elementDefinition.Human,
-                PageNumbers= elementDefinition.PageNumbers,
-                Stat = elementDefinition.Stat                
+                ElementName = elementDefinition.ElementName,
+                Description = elementDefinition.Description,
+                ElementTypeName = elementDefinition.ElementType.TypeName,
+                Human = elementDefinition.Human,
+                PageNumbers = elementDefinition.PageNumbers,
+                Stat = elementDefinition.Stat
             };
 
             if (elementDefinition is PointsContainerDefinition pointsContainerDefinition)
@@ -152,8 +154,8 @@ public class RPGSystemMapper
                 {
                     CostPerLevel = levelableDefinition.CostPerLevel,
                     CostPerLevelDescription = levelableDefinition.CostPerLevelDescription,
-                    
-                    ProgressionReversed= levelableDefinition.ProgressionReversed                    
+
+                    ProgressionReversed = levelableDefinition.ProgressionReversed
                 };
 
                 if (levelableDefinition.EnforceMaxLevel || levelableDefinition.MaxLevel < int.MaxValue)
@@ -169,26 +171,26 @@ public class RPGSystemMapper
 
                 if (levelableDefinition.Variants != null && levelableDefinition.Variants.Count > 0)
                 {
-                    elementDefinitionDto.LevelableData.Variants = levelableDefinition.Variants.Select(x => new VariantDefinitionDto { VariantName=x.VariantName, CostPerLevel=x.CostPerLevel, Description = x.Description, IsDefault=x.IsDefault }).ToList();
+                    elementDefinitionDto.LevelableData.Variants = levelableDefinition.Variants.Select(x => new VariantDefinitionDto { VariantName = x.VariantName, CostPerLevel = x.CostPerLevel, Description = x.Description, IsDefault = x.IsDefault }).ToList();
                 }
 
-                if(levelableDefinition is SpecialContainerDefinition specialContainerDefinition)
+                if (levelableDefinition is SpecialContainerDefinition specialContainerDefinition)
                 {
                     elementDefinitionDto.LevelableData.SpecialPointsPerLevel = specialContainerDefinition.SpecialPointsPerLevel;
                 }
 
-                if(levelableDefinition is MultiGenreDefinition multiGenreDefinition)
+                if (levelableDefinition is MultiGenreDefinition multiGenreDefinition)
                 {
-                    elementDefinitionDto.LevelableData.MultiGenreCostPerLevels = multiGenreDefinition.MultiGenreCostPerLevels.Select(x=>new GenreCostPerLevelDto { GenreName=x.Genre.GenreName, CostPerLevel=x.CostPerLevel }).ToList();
+                    elementDefinitionDto.LevelableData.MultiGenreCostPerLevels = multiGenreDefinition.MultiGenreCostPerLevels.Select(x => new GenreCostPerLevelDto { GenreName = x.Genre.GenreName, CostPerLevel = x.CostPerLevel }).ToList();
                 }
             }
 
             if (elementDefinition.Freebies.Count > 0)
             {
-                elementDefinitionDto.Freebies = elementDefinition.Freebies.Select(x=>new FreebieDto { FreebieElementDefinitionName=x.FreebieElementDefinition.ElementName, FreeLevels=x.FreeLevels, RequiredLevels=x.RequiredLevels}).ToList();
+                elementDefinitionDto.Freebies = elementDefinition.Freebies.Select(x => new FreebieDto { FreebieElementDefinitionName = x.FreebieElementDefinition.ElementName, FreeLevels = x.FreeLevels, RequiredLevels = x.RequiredLevels }).ToList();
             }
 
-            elementDefinitionDto.AllowedChildrenNames = elementDefinition.AllowedChildren.Select(x=>x.ElementName).ToList();
+            elementDefinitionDto.AllowedChildrenNames = elementDefinition.AllowedChildren.Select(x => x.ElementName).ToList();
 
             output.ElementDefinitions.Add(elementDefinitionDto);
         }

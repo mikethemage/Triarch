@@ -3,7 +3,7 @@
 namespace Triarch.Dtos.Definitions;
 
 public class GenreCostPerLevelDto
-{   
+{
     [Required]
     public string GenreName { get; set; } = null!;
 

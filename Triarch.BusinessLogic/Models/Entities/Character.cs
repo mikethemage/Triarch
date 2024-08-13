@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Triarch.BusinessLogic.Models.Entities;
+﻿namespace Triarch.BusinessLogic.Models.Entities;
 public class Character : RPGElement
 {
     public string CharacterName { get; set; } = string.Empty;
@@ -86,6 +80,6 @@ public class Character : RPGElement
         get
         {
             return BaseCost + ChildPoints;
-        }        
+        }
     }
 }

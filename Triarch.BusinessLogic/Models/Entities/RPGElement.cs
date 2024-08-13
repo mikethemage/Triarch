@@ -1,34 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 
 namespace Triarch.BusinessLogic.Models.Entities;
 public abstract class RPGElement
 {
     public RPGEntity Entity { get; set; } = null!;
     public required virtual RPGElementDefinition AssociatedDefinition { get; init; }
-    public virtual string Name { get {return AssociatedDefinition.ElementName; } }
+    public virtual string Name { get { return AssociatedDefinition.ElementName; } }
     public bool IsFreebie { get; set; } = false;
     public virtual int BaseCost { get { return 0; } }
     public virtual int Points { get; protected set; } = 0;
     public string Notes { get; set; } = string.Empty;
     public RPGElement? Parent { get; set; } = null;
     public List<RPGElement> Children { get; init; } = new List<RPGElement>();
-    public List<RPGElementDefinition> PotentialChildren { get { 
-            return AssociatedDefinition.AllowedChildren.Where(x=>x.ElementType.BuiltIn == false).ToList();
-        } } 
+    public List<RPGElementDefinition> PotentialChildren
+    {
+        get
+        {
+            return AssociatedDefinition.AllowedChildren.Where(x => x.ElementType.BuiltIn == false).ToList();
+        }
+    }
 
-    public virtual int HealthAdj { get {  return 0; } }
+    public virtual int HealthAdj { get { return 0; } }
     public virtual int EnergyAdj { get { return 0; } }
     public virtual int ACVAdj { get { return 0; } }
     public virtual int DCVAdj { get { return 0; } }
 
     public bool CanMoveUp()
     {
-        if(Parent==null)
+        if (Parent == null)
         {
             return false;
         }
@@ -38,7 +37,7 @@ public abstract class RPGElement
             return false;
         }
 
-        return true;            
+        return true;
     }
 
     public bool CanMoveDown()
@@ -62,7 +61,7 @@ public abstract class RPGElement
         {
             return false;
         }
-        if(IsFreebie)
+        if (IsFreebie)
         {
             return false;
         }
@@ -77,7 +76,7 @@ public abstract class RPGElement
             if (freebie.FreebieElementDefinition is LevelableDefinition levelableFreebie)
             {
                 freebieToAdd = levelableFreebie.CreateNode(Entity, "", freebie.FreeLevels + freebie.RequiredLevels, true, freebie.FreeLevels, freebie.RequiredLevels);
-                
+
             }
             else
             {

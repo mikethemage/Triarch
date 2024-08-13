@@ -1,10 +1,12 @@
-﻿using Triarch.BusinessLogic.Models.Definitions;
-using org.mariuszgromada.math.mxparser;
+﻿using org.mariuszgromada.math.mxparser;
+using Triarch.BusinessLogic.Models.Definitions;
 
 namespace Triarch.BusinessLogic.Models.Entities;
 public class Levelable : RPGElement
 {
-    public int MinLevel { get
+    public int MinLevel
+    {
+        get
         {
             if (AssociatedDefinition is LevelableDefinition levelableDefinition)
             {

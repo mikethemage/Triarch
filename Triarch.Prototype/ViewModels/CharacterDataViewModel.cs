@@ -64,7 +64,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
         }
-    }    
+    }
 
     public int ACV
     {
@@ -75,7 +75,7 @@ public class CharacterDataViewModel : ViewModelBase
 
     public int Health { get { return _model.Health; } }
 
-    public int Energy { get { return _model.Energy; } }    
+    public int Energy { get { return _model.Energy; } }
 
     public void RefreshProperties()
     {

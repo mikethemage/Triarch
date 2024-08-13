@@ -4,7 +4,7 @@ using Triarch.BusinessLogic.Models.Entities;
 namespace Triarch.Prototype.ViewModels;
 
 public class EntityElementViewModel : ViewModelBase
-{    
+{
     public EntityElementViewModel(RPGElement element, EntityEditorViewModel parent)
     {
         _parent = parent;
@@ -26,7 +26,7 @@ public class EntityElementViewModel : ViewModelBase
             CharacterData = new CharacterDataViewModel(character, _parent);
         }
 
-        AllowedChildrenList = new AllowedChildrenViewModel(element.AssociatedDefinition.AllowedChildren);           
+        AllowedChildrenList = new AllowedChildrenViewModel(element.AssociatedDefinition.AllowedChildren);
     }
 
     private readonly EntityEditorViewModel _parent;
@@ -36,7 +36,7 @@ public class EntityElementViewModel : ViewModelBase
     public RPGElement Element { get { return _element; } }
 
     private VariantListViewModel? _variantList = null;
-    
+
     public VariantListViewModel? VariantList
     {
         get
@@ -69,9 +69,9 @@ public class EntityElementViewModel : ViewModelBase
 
     public string Notes
     {
-        get 
-        { 
-            return _element.Notes; 
+        get
+        {
+            return _element.Notes;
         }
         set
         {
@@ -83,7 +83,7 @@ public class EntityElementViewModel : ViewModelBase
 
     public void SetVariant(VariantDefinition variantDefinitionData)
     {
-        if(_element is Levelable levelable)
+        if (_element is Levelable levelable)
         {
             levelable.Variant = variantDefinitionData;
             LevelableData?.RefreshProperties();

@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Triarch.Dtos.Definitions;
 
@@ -13,7 +13,7 @@ public class ProgressionDto
     public bool CustomProgression { get; set; } = false;
 
     [DefaultValue(false)]
-    public bool Linear { get; set; } = false;    
+    public bool Linear { get; set; } = false;
 
     public List<ProgressionEntryDto> Progressions { get; set; } = [];
 }

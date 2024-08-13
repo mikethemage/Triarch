@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Entities;
-using Triarch.Dtos.Definitions;
+﻿using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.BusinessLogic.Models.Definitions;
 public class LevelableDefinition : RPGElementDefinition
@@ -17,14 +9,14 @@ public class LevelableDefinition : RPGElementDefinition
     public bool EnforceMaxLevel { get; set; }
 
     public int? CostPerLevel { get; set; }
-    
-    public string? CostPerLevelDescription { get; set; } = null;    
+
+    public string? CostPerLevelDescription { get; set; } = null;
 
     public Progression? Progression { get; set; } = null;
 
     public bool? ProgressionReversed { get; set; } = null;
 
-    public List<VariantDefinition>? Variants { get; set; } = null;    
+    public List<VariantDefinition>? Variants { get; set; } = null;
 
     public override RPGElement CreateNode(RPGEntity ownerEntity, string notes, bool isFreebie = false)
     {
@@ -44,12 +36,12 @@ public class LevelableDefinition : RPGElementDefinition
     {
         VariantDefinition? defaultVariant = null;
 
-        if(Variants!=null)
+        if (Variants != null)
         {
-            defaultVariant = Variants.Where(x=>x.IsDefault).FirstOrDefault();
-        }        
+            defaultVariant = Variants.Where(x => x.IsDefault).FirstOrDefault();
+        }
 
-        if(ElementName=="Companion")
+        if (ElementName == "Companion")
         {
             return new Companion
             {
@@ -62,7 +54,7 @@ public class LevelableDefinition : RPGElementDefinition
                 RequiredLevels = requiredLevels,
                 Variant = defaultVariant
             };
-        }        
+        }
         else
         {
             return new Levelable

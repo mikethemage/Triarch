@@ -15,8 +15,8 @@ public class RPGEntityMapper
     public RPGEntity Deserialize(EntityDto input)
     {
         RPGSystem rPGSystem = _rPGSystemProvider.LoadSystem(input.RPGSystemName);
-        RPGEntity output = new RPGEntity { RPGSystem = rPGSystem, EntityName=input.EntityName, EntityType=input.EntityType};
-        output.Genre = rPGSystem.Genres.Where(x=>x.GenreName==input.GenreName).FirstOrDefault() ?? rPGSystem.Genres.First();
+        RPGEntity output = new RPGEntity { RPGSystem = rPGSystem, EntityName = input.EntityName, EntityType = input.EntityType };
+        output.Genre = rPGSystem.Genres.Where(x => x.GenreName == input.GenreName).FirstOrDefault() ?? rPGSystem.Genres.First();
 
         output.RootElement = DeserializeElement(input.RootElement, rPGSystem, output);
 
@@ -28,16 +28,16 @@ public class RPGEntityMapper
         RPGElementDefinition associatedDefinition = rPGSystem.ElementDefinitions.Where(x => x.ElementName == input.ElementName).First();
         RPGElement output = associatedDefinition.CreateNode(owningEntity, input.Notes, input.IsFreebie);
 
-        if(output is Character character && input.CharacterData!=null)
+        if (output is Character character && input.CharacterData != null)
         {
-            character.Body=input.CharacterData.Body;
+            character.Body = input.CharacterData.Body;
             character.Mind = input.CharacterData.Mind;
             character.Soul = input.CharacterData.Soul;
         }
 
-        if (output is Levelable levelable && input.LevelableData!=null) 
+        if (output is Levelable levelable && input.LevelableData != null)
         {
-            if(input.LevelableData.FreeLevels!=null)
+            if (input.LevelableData.FreeLevels != null)
             {
                 levelable.FreeLevels = (int)input.LevelableData.FreeLevels;
             }
@@ -47,15 +47,15 @@ public class RPGEntityMapper
                 levelable.RequiredLevels = (int)input.LevelableData.RequiredLevels;
             }
 
-            levelable.Level=input.LevelableData.Level;
+            levelable.Level = input.LevelableData.Level;
 
-            if(input.LevelableData.VariantName!=null && associatedDefinition is LevelableDefinition levelableDefinition && levelableDefinition.Variants != null)
+            if (input.LevelableData.VariantName != null && associatedDefinition is LevelableDefinition levelableDefinition && levelableDefinition.Variants != null)
             {
-                levelable.Variant = levelableDefinition.Variants.Where(x=>x.VariantName==input.LevelableData.VariantName).FirstOrDefault();
+                levelable.Variant = levelableDefinition.Variants.Where(x => x.VariantName == input.LevelableData.VariantName).FirstOrDefault();
             }
         }
 
-        if(input.Children!=null)
+        if (input.Children != null)
         {
             foreach (RPGElementDto childDto in input.Children)
             {
@@ -68,7 +68,7 @@ public class RPGEntityMapper
         return output;
     }
 
-    
+
 
     public EntityDto Serialize(RPGEntity input)
     {
@@ -111,26 +111,26 @@ public class RPGEntityMapper
                 Level = levelable.Level
             };
 
-            if(levelable.IsFreebie)
+            if (levelable.IsFreebie)
             {
                 output.LevelableData.RequiredLevels = levelable.RequiredLevels;
                 output.LevelableData.FreeLevels = levelable.FreeLevels;
             }
 
-            if (levelable.Variant!=null)
+            if (levelable.Variant != null)
             {
-                output.LevelableData.VariantName=levelable.Variant.VariantName;
-            }                
+                output.LevelableData.VariantName = levelable.Variant.VariantName;
+            }
         }
 
-        if(input.Children.Count>0)
+        if (input.Children.Count > 0)
         {
             output.Children = new List<RPGElementDto>();
             foreach (RPGElement child in input.Children)
             {
                 output.Children.Add(SerializeElement(child));
             }
-        }       
+        }
 
         return output;
     }

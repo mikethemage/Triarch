@@ -8,7 +8,7 @@ public class RPGElementDto
     [Required]
     public string ElementName { get; set; } = null!;
 
-    public CharacterDataDto? CharacterData { get; set; }    
+    public CharacterDataDto? CharacterData { get; set; }
 
     public LevelableDataDto? LevelableData { get; set; }
 

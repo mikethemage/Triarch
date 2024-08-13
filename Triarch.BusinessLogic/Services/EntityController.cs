@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Definitions;
+﻿using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.BusinessLogic.Services;
@@ -22,7 +17,7 @@ public class EntityController
         }
         int currentPosition = parent.Children.IndexOf(element);
         parent.Children.Remove(element);
-        parent.Children.Insert(currentPosition-1, element);
+        parent.Children.Insert(currentPosition - 1, element);
         return currentPosition != parent.Children.IndexOf(element);
     }
 
@@ -74,11 +69,11 @@ public class EntityController
             while (deletionStack.Count > 0)
             {
                 RPGElement current = deletionStack.Pop();
-                if(current.Parent != null)
+                if (current.Parent != null)
                 {
                     current.Parent.Children.Remove(current);
                     current.Parent = null;
-                }                
+                }
             }
         }
         return deletedStack;

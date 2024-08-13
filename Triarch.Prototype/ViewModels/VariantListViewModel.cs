@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Models.Entities;
 
@@ -18,21 +17,21 @@ public class VariantListViewModel : ViewModelBase
             levelableDefinition.Variants != null &&
             levelableDefinition.Variants.Count > 0)
         {
-            VariantList = new ObservableCollection<VariantListItemViewModel>(levelableDefinition.Variants.Select(x=>new VariantListItemViewModel(x)).ToList());
-            if(model.Variant!=null)
+            VariantList = new ObservableCollection<VariantListItemViewModel>(levelableDefinition.Variants.Select(x => new VariantListItemViewModel(x)).ToList());
+            if (model.Variant != null)
             {
                 var selected = VariantList.Where(x => x.VariantDefinitionData == model.Variant).FirstOrDefault();
                 if (selected != null)
                 {
                     selected.IsSelected = true;
                     _selected = selected;
-                }                
+                }
             }
         }
         else
         {
             throw new Exception("Variant list error!");
-        }        
+        }
     }
 
     public ObservableCollection<VariantListItemViewModel> VariantList

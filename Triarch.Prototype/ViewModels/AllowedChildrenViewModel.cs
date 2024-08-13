@@ -18,14 +18,14 @@ public class AllowedChildrenViewModel : ViewModelBase
     public AllowedChildrenViewModel(List<RPGElementDefinition> allowedChildren)
     {
         _allAllowedChildren = allowedChildren.Where(x => x.ElementType.BuiltIn == false).ToList();
-        AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Select(x=>new ElementDefinitionListItemViewModel { Model=x, TypeName=x.ElementType.TypeName, DisplayName=x.ElementName,IsSelected=false} ).OrderBy(x=>x.Model.ElementType.TypeOrder).ThenBy(x=>x.DisplayName).ToList());
+        AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Select(x => new ElementDefinitionListItemViewModel { Model = x, TypeName = x.ElementType.TypeName, DisplayName = x.ElementName, IsSelected = false }).OrderBy(x => x.Model.ElementType.TypeOrder).ThenBy(x => x.DisplayName).ToList());
 
         var collectionViewSource = new CollectionViewSource { Source = AllowedChildrenList };
         collectionViewSource.GroupDescriptions.Add(new PropertyGroupDescription("TypeName"));
         _groupedAllowedChildrenList = collectionViewSource.View;
 
-        FilterList = new ObservableCollection<FilterTypeViewModel>(_allAllowedChildren.Select(x=>x.ElementType).Distinct().OrderBy(x=>x.TypeOrder).Select(x=>new FilterTypeViewModel { DisplayName=x.TypeName, IsSelected=false, Model=x}).ToList());
-        FilterList.Insert(0, new FilterTypeViewModel { DisplayName = "ALL", IsSelected = false, Model=null });
+        FilterList = new ObservableCollection<FilterTypeViewModel>(_allAllowedChildren.Select(x => x.ElementType).Distinct().OrderBy(x => x.TypeOrder).Select(x => new FilterTypeViewModel { DisplayName = x.TypeName, IsSelected = false, Model = x }).ToList());
+        FilterList.Insert(0, new FilterTypeViewModel { DisplayName = "ALL", IsSelected = false, Model = null });
 
     }
 
@@ -50,7 +50,7 @@ public class AllowedChildrenViewModel : ViewModelBase
         set
         {
             _selectedFilter = value;
-            if(_selectedFilter.DisplayName == "ALL")
+            if (_selectedFilter.DisplayName == "ALL")
             {
                 AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Select(x => new ElementDefinitionListItemViewModel { Model = x, TypeName = x.ElementType.TypeName, DisplayName = x.ElementName, IsSelected = false }).OrderBy(x => x.Model.ElementType.TypeOrder).ThenBy(x => x.DisplayName).ToList());
 
@@ -59,9 +59,9 @@ public class AllowedChildrenViewModel : ViewModelBase
             {
                 AllowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>(_allAllowedChildren.Where(x => x.ElementType == _selectedFilter.Model).Select(x => new ElementDefinitionListItemViewModel { Model = x, TypeName = x.ElementType.TypeName, DisplayName = x.ElementName, IsSelected = false }).OrderBy(x => x.Model.ElementType.TypeOrder).ThenBy(x => x.DisplayName).ToList());
             }
-            
+
             OnPropertyChanged(nameof(SelectedFilter));
-            
+
         }
     }
     public ObservableCollection<ElementDefinitionListItemViewModel> AllowedChildrenList
@@ -107,5 +107,5 @@ public class AllowedChildrenViewModel : ViewModelBase
         }
     }
 
-      
+
 }

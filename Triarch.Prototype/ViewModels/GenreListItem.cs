@@ -6,7 +6,7 @@ public class GenreListItem : ViewModelBase
 {
     private bool _isSelected = false;
 
-    public string DisplayText {  get; set; } = string.Empty;
+    public string DisplayText { get; set; } = string.Empty;
     public bool IsSelected
     {
         get

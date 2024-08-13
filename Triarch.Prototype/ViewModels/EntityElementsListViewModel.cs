@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.Prototype.ViewModels;
@@ -12,22 +11,25 @@ public class EntityElementsListViewModel : ViewModelBase
         RootElements.Add(new EntityElementListItemViewModel(entity.RootElement, this));
         ElementList.Add(entity.RootElement, RootElements[0]);
         RootElements[0].IsSelected = true;
-        _selected = RootElements[0];        
-    }    
+        _selected = RootElements[0];
+    }
 
     public ObservableCollection<EntityElementListItemViewModel> RootElements { get; private set; } = new ObservableCollection<EntityElementListItemViewModel>();
 
     public Dictionary<RPGElement, EntityElementListItemViewModel> ElementList { get; set; } = new Dictionary<RPGElement, EntityElementListItemViewModel>();
 
-   
+
     private EntityElementListItemViewModel _selected;
     private readonly EntityEditorViewModel _owner;
 
-    public EntityElementListItemViewModel Selected { get { return _selected; } set
-        { 
+    public EntityElementListItemViewModel Selected
+    {
+        get { return _selected; }
+        set
+        {
             _selected = value;
             _owner.SelectedElement = new EntityElementViewModel(value.ElementData, _owner);
             OnPropertyChanged(nameof(Selected));
-        } 
-    }    
+        }
+    }
 }

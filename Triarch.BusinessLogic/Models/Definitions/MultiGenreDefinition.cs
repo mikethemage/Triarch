@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.BusinessLogic.Models.Entities;
+﻿using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.BusinessLogic.Models.Definitions;
 public class MultiGenreDefinition : LevelableDefinition

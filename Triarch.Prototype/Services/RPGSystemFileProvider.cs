@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Services;
 using Triarch.Dtos.Definitions;
@@ -26,15 +21,15 @@ internal class RPGSystemFileProvider : IRPGSystemProvider
             RefreshSystemList();
         }
 
-        string? systemFileName = _systemList?.Where(x=>x.SystemName == name).Select(x=>x.FileName).FirstOrDefault();
+        string? systemFileName = _systemList?.Where(x => x.SystemName == name).Select(x => x.FileName).FirstOrDefault();
         if (systemFileName == null)
         {
             throw new Exception($"Unable to find System: {name}");
         }
-                
+
         string systemText = File.ReadAllText(systemFileName);
-        RPGSystemDto? outputSystemDto = JsonSerializer.Deserialize<RPGSystemDto>(systemText, new JsonSerializerOptions { PropertyNameCaseInsensitive=true});
-        if (outputSystemDto == null) 
+        RPGSystemDto? outputSystemDto = JsonSerializer.Deserialize<RPGSystemDto>(systemText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        if (outputSystemDto == null)
         {
             throw new Exception($"Unable to load file: {systemFileName}");
         }
@@ -46,8 +41,8 @@ internal class RPGSystemFileProvider : IRPGSystemProvider
         {
             throw new Exception($"Unable to load file: {systemFileName}");
         }
-        
-        return loadedSystem;       
+
+        return loadedSystem;
     }
 
     public List<SystemListItem> ListSystems()
@@ -63,7 +58,7 @@ internal class RPGSystemFileProvider : IRPGSystemProvider
     private void RefreshSystemList()
     {
         string systemListText = File.ReadAllText("Datafiles" + Path.DirectorySeparatorChar + "SystemList.json");
-        _systemList = JsonSerializer.Deserialize<List<SystemListItem>>(systemListText, new JsonSerializerOptions { PropertyNameCaseInsensitive=true});
+        _systemList = JsonSerializer.Deserialize<List<SystemListItem>>(systemListText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         if (_systemList is null)
         {
             throw new Exception("Failed to load system list");
