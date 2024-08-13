@@ -28,6 +28,29 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         BackCommand = new RelayCommand(Back, CanBack);
         SaveCommand = new RelayCommand(Save, CanSave);
         SaveAsCommand = new RelayCommand(SaveAs, CanSaveAs);
+        ExportTextCommand = new RelayCommand(ExportText, CanExportText);
+    }
+
+    private bool CanExportText()
+    {
+        return true;
+    }
+
+    private void ExportText()
+    {
+        SaveFileDialog exportFileDialog = new SaveFileDialog
+        {
+            RestoreDirectory = false,
+            Filter = "Text" + " Files(*.txt)|*.txt|All Files (*.*)|*.*",
+            FilterIndex = 1
+        };
+
+        if (exportFileDialog.ShowDialog() ?? false)
+        {
+            TextExporter textExporter = new TextExporter();
+            string exportedText = textExporter.Export(_entity);
+            File.WriteAllText(exportFileDialog.FileName, exportedText);
+        }
     }
 
     public required MainWindowViewModel Parent { get; set; }
@@ -38,6 +61,8 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
     public RelayCommand? SaveAsCommand { get; set; }
     public RelayCommand? BackCommand { get; set; }
     public RelayCommand? AddCommand { get; private set; }
+
+    public RelayCommand? ExportTextCommand { get; set; }
 
     public string FileName
     {

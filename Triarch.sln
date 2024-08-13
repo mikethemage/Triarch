@@ -20,11 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triarch.Prototype", "Triarch.Prototype\Triarch.Prototype.csproj", "{0DC970BC-6562-4F2D-9176-57DD6B197ED4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED0942FC-6D96-4344-BE22-602C1C38C7B1}"
-	ProjectSection(SolutionItems) = preProject
-		NEW_BESM3E.json = NEW_BESM3E.json
-		NEW_BESM3E_Get_result.json = NEW_BESM3E_Get_result.json
-		NEW_BESM3E_Get_result2.json = NEW_BESM3E_Get_result2.json
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

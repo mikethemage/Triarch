@@ -96,11 +96,7 @@ public abstract class RPGElement
             foreach (RPGElement child in Children)
             {
                 if (child.AssociatedDefinition.ElementType.TypeName != "Restriction" && child.AssociatedDefinition.ElementType.TypeName != "Variable")
-                {
-
-                }
-                else
-                {
+                {                
                     childPoints += child.Points;
                 }
             }

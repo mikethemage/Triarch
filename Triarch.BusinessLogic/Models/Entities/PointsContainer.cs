@@ -3,7 +3,6 @@
 namespace Triarch.BusinessLogic.Models.Entities;
 public class PointsContainer : RPGElement
 {
-
     public override int Points
     {
         get

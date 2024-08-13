@@ -24,6 +24,7 @@
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Back" HorizontalAlignment="Stretch" Command="{Binding Path=BackCommand}" />
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save" HorizontalAlignment="Stretch" Command="{Binding Path=SaveCommand}"/>
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save As..." HorizontalAlignment="Stretch" Command="{Binding Path=SaveAsCommand}"/>
+            <Button Margin="5,5,5,10" Height="35" Width="80" Content="Export to Text..." HorizontalAlignment="Stretch" Command="{Binding Path=ExportTextCommand}"/>
         </StackPanel>
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
