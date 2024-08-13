@@ -298,7 +298,7 @@
     {
       "elementName": "Concealment",
       "elementTypeName": "Special",
-      "description": "The character�s weapons will not be noticed by anything short of an actual physical search (at -6 penalty).",
+      "description": "The character's weapons will not be noticed by anything short of an actual physical search (at -6 penalty).",
       "stat": "",
       "pageNumbers": "22",
       "human": false,
@@ -388,7 +388,7 @@
     {
       "elementName": "Fast",
       "elementTypeName": "Special",
-      "description": "The character�s Body Stat is doubled for each assignment of this Attribute when calculating running speed.",
+      "description": "The character's Body Stat is doubled for each assignment of this Attribute when calculating running speed.",
       "stat": "",
       "pageNumbers": "53",
       "human": false,
@@ -403,7 +403,7 @@
     {
       "elementName": "Hardboiled",
       "elementTypeName": "Special",
-      "description": "The character�s Shock Value is increased by +[n*10]. This may not increase Shock Value to a higher value than one-half the Health Points total.",
+      "description": "The character's Shock Value is increased by +[n*10]. This may not increase Shock Value to a higher value than one-half the Health Points total.",
       "stat": "",
       "pageNumbers": "22",
       "human": false,
@@ -705,7 +705,7 @@
     {
       "elementName": "Zen Direction",
       "elementTypeName": "Special",
-      "description": "When the character opens his or her mind to the natural world, he or she will always move in the �right� direction.",
+      "description": "When the character opens his or her mind to the natural world, he or she will always move in the 'right' direction.",
       "stat": "",
       "pageNumbers": "53",
       "human": false,
@@ -3123,7 +3123,7 @@
     {
       "elementName": "Not So Tough",
       "elementTypeName": "Defect",
-      "description": "The character�s Health Points are decreased by [5*n] Points.",
+      "description": "The character's Health Points are decreased by [5*n] Points.",
       "stat": "",
       "pageNumbers": "100",
       "human": true,
@@ -14849,11 +14849,11 @@
       "linear": false,
       "progressions": [
         {
-          "text": "The character�s accessible Attribute Levels all drop by one-quarter (round up) when affected by the Vulnerability.",
+          "text": "The character's accessible Attribute Levels all drop by one-quarter (round up) when affected by the Vulnerability.",
           "progressionLevel": 1
         },
         {
-          "text": "The character�s accessible Attribute Levels all drop by one-half (round up) when affected by the Vulnerability.",
+          "text": "The character's accessible Attribute Levels all drop by one-half (round up) when affected by the Vulnerability.",
           "progressionLevel": 2
         },
         {
@@ -15025,15 +15025,15 @@
       "linear": false,
       "progressions": [
         {
-          "text": "The Attribute�s use can be detected using 1-2 methods.",
+          "text": "The Attribute's use can be detected using 1-2 methods.",
           "progressionLevel": 1
         },
         {
-          "text": "The Attribute�s use can be detected using 3-5 methods.",
+          "text": "The Attribute's use can be detected using 3-5 methods.",
           "progressionLevel": 2
         },
         {
-          "text": "The Attribute�s use can be detected using 6-9 methods.",
+          "text": "The Attribute's use can be detected using 6-9 methods.",
           "progressionLevel": 3
         }
       ]
@@ -15139,15 +15139,15 @@
       "linear": false,
       "progressions": [
         {
-          "text": "The Item�s Attribute still provides significant benefit to the character.",
+          "text": "The Item's Attribute still provides significant benefit to the character.",
           "progressionLevel": 1
         },
         {
-          "text": "The Item�s Attribute only provides slight benefit to the character.",
+          "text": "The Item's Attribute only provides slight benefit to the character.",
           "progressionLevel": 2
         },
         {
-          "text": "The Item�s Attribute hardly provides any benefit to the character.",
+          "text": "The Item's Attribute hardly provides any benefit to the character.",
           "progressionLevel": 3
         }
       ]
@@ -15181,11 +15181,11 @@
           "progressionLevel": 1
         },
         {
-          "text": "The character must succeed with a difficult roll (Target Number 15). In non-combat situations, the character cannot attempt to use the Attribute again for 10 � 30 minutes.",
+          "text": "The character must succeed with a difficult roll (Target Number 15). In non-combat situations, the character cannot attempt to use the Attribute again for 10 - 30 minutes.",
           "progressionLevel": 2
         },
         {
-          "text": "The character must succeed with a challenging roll (Target Number 18). In non-combat situations, the character cannot attempt to use the Attribute again for 30 minutes � 2 hours.",
+          "text": "The character must succeed with a challenging roll (Target Number 18). In non-combat situations, the character cannot attempt to use the Attribute again for 30 minutes ' 2 hours.",
           "progressionLevel": 3
         }
       ]
@@ -15309,43 +15309,43 @@
       "linear": false,
       "progressions": [
         {
-          "text": "Height: 3 � 4 metres, Mass: 200 � 1,200 kg",
+          "text": "Height: 3 - 4 metres, Mass: 200 - 1,200 kg",
           "progressionLevel": 1
         },
         {
-          "text": "Height: 5 � 8 metres, Mass: 1.5 � 8 tonnes",
+          "text": "Height: 5 - 8 metres, Mass: 1.5 - 8 tonnes",
           "progressionLevel": 2
         },
         {
-          "text": "Height: 9 � 15 metres, Mass: 10 � 60 tonnes",
+          "text": "Height: 9 - 15 metres, Mass: 10 - 60 tonnes",
           "progressionLevel": 3
         },
         {
-          "text": "Height: 16 � 30 metres, Mass: 75 � 500 tonnes",
+          "text": "Height: 16 - 30 metres, Mass: 75 - 500 tonnes",
           "progressionLevel": 4
         },
         {
-          "text": "Height: 31 � 60 metres, Mass: 550 � 4,000 tonnes",
+          "text": "Height: 31 - 60 metres, Mass: 550 - 4,000 tonnes",
           "progressionLevel": 5
         },
         {
-          "text": "Height: 61 � 125 metres, Mass: 4 k � 30 k tonnes",
+          "text": "Height: 61 - 125 metres, Mass: 4 k - 30 k tonnes",
           "progressionLevel": 6
         },
         {
-          "text": "Height: 126 � 250 metres, Mass: 40 k � 250 k tonnes",
+          "text": "Height: 126 - 250 metres, Mass: 40 k - 250 k tonnes",
           "progressionLevel": 7
         },
         {
-          "text": "Height: 251 � 500 metres, Mass: 300 k � 2 M tonnes",
+          "text": "Height: 251 - 500 metres, Mass: 300 k - 2 M tonnes",
           "progressionLevel": 8
         },
         {
-          "text": "Height: 501 � 1,000 metres, Mass: 2 M � 15 M tonnes",
+          "text": "Height: 501 - 1,000 metres, Mass: 2 M - 15 M tonnes",
           "progressionLevel": 9
         },
         {
-          "text": "Height: 1,000 � 2,000 metres, Mass: 2 M � 125 M tonnes",
+          "text": "Height: 1,000 - 2,000 metres, Mass: 2 M - 125 M tonnes",
           "progressionLevel": 10
         }
       ]
@@ -15375,15 +15375,15 @@
       "linear": false,
       "progressions": [
         {
-          "text": "Mild conditions are imposed on the objects� ownership and usage.",
+          "text": "Mild conditions are imposed on the objects' ownership and usage.",
           "progressionLevel": 1
         },
         {
-          "text": "Strict conditions are imposed on the objects� ownership and usage.",
+          "text": "Strict conditions are imposed on the objects' ownership and usage.",
           "progressionLevel": 2
         },
         {
-          "text": "Severe conditions are imposed on the objects� ownership and usage.",
+          "text": "Severe conditions are imposed on the objects' ownership and usage.",
           "progressionLevel": 3
         }
       ]
@@ -15573,7 +15573,7 @@
           "progressionLevel": 2
         },
         {
-          "text": "Under most circumstances, the mark cannot be concealed because it affects the character�s entire body.",
+          "text": "Under most circumstances, the mark cannot be concealed because it affects the character's entire body.",
           "progressionLevel": 3
         }
       ]
@@ -15660,15 +15660,15 @@
       "linear": false,
       "progressions": [
         {
-          "text": "The nightmares occur infrequently and have a slight effect on the character�s lifestyle.",
+          "text": "The nightmares occur infrequently and have a slight effect on the character's lifestyle.",
           "progressionLevel": 1
         },
         {
-          "text": "The nightmares occur frequently and have a moderate effect on the character�s lifestyle.",
+          "text": "The nightmares occur frequently and have a moderate effect on the character's lifestyle.",
           "progressionLevel": 2
         },
         {
-          "text": "The nightmares occur constantly and have a severe effect on the character�s lifestyle.",
+          "text": "The nightmares occur constantly and have a severe effect on the character's lifestyle.",
           "progressionLevel": 3
         }
       ]
@@ -15706,7 +15706,7 @@
           "progressionLevel": 2
         },
         {
-          "text": "The character�s Damage Multiplier (page 105) is reduced by 1.",
+          "text": "The character's Damage Multiplier (page 105) is reduced by 1.",
           "progressionLevel": 3
         }
       ]
@@ -15755,15 +15755,15 @@
       "linear": false,
       "progressions": [
         {
-          "text": "The Skeleton is difficult to discover, and/or the consequences of discovery are slight, and/or the character�s reputation will be impacted slightly.",
+          "text": "The Skeleton is difficult to discover, and/or the consequences of discovery are slight, and/or the character's reputation will be impacted slightly.",
           "progressionLevel": 1
         },
         {
-          "text": "The Skeleton is relatively easy to discover, and/or the consequences of discovery are moderate, and/or the character�s reputation will be seriously impacted.",
+          "text": "The Skeleton is relatively easy to discover, and/or the consequences of discovery are moderate, and/or the character's reputation will be seriously impacted.",
           "progressionLevel": 2
         },
         {
-          "text": "The Skeleton is very easy to discover, and/or the consequences of discovery are severe, and/or the character�s reputation will be devastated.",
+          "text": "The Skeleton is very easy to discover, and/or the consequences of discovery are severe, and/or the character's reputation will be devastated.",
           "progressionLevel": 3
         }
       ]
