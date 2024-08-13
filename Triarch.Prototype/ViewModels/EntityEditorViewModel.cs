@@ -12,20 +12,31 @@ namespace Triarch.Prototype.ViewModels;
 
 public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 {
+    public EntityEditorViewModel(RPGEntity entity, string filePath = "")
+    {
+        _entity = entity;
+        _filePath = filePath;
+        EntityElements = new EntityElementsListViewModel(_entity, this);
+        GenreList = new ObservableCollection<GenreListItem>(entity.RPGSystem.Genres.Select(x => new GenreListItem { DisplayText = x.GenreName, IsSelected = false, Model = x }).ToList());
+        _selectedGenre = GenreList.Where(x => x.Model == entity.Genre).First();
+        OnPropertyChanged(nameof(EntityElements));
+        AddCommand = new RelayCommand(Add, CanAdd);
+        DeleteCommand = new RelayCommand(Delete, CanDelete);
+        MoveUpCommand = new RelayCommand(MoveUp, CanMoveUp);
+        MoveDownCommand = new RelayCommand(MoveDown, CanMoveDown);
+        BackCommand = new RelayCommand(Back, CanBack);
+        SaveCommand = new RelayCommand(Save, CanSave);
+        SaveAsCommand = new RelayCommand(SaveAs, CanSaveAs);
+    }
+
     public required MainWindowViewModel Parent { get; set; }
 
     public bool ChangesSaved { get; set; } = false;
 
     public RelayCommand? SaveCommand { get; set; }
     public RelayCommand? SaveAsCommand { get; set; }
-
-
     public RelayCommand? BackCommand { get; set; }
-
-    public RelayCommand? AddCommand
-    {
-        get; private set;
-    }
+    public RelayCommand? AddCommand { get; private set; }
 
     public string FileName
     {
@@ -78,24 +89,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
                 SelectedElement.LevelableData.RefreshProperties();
             }
         }
-    }
-
-    public EntityEditorViewModel(RPGEntity entity, string filePath = "")
-    {
-        _entity = entity;
-        _filePath = filePath;
-        EntityElements = new EntityElementsListViewModel(_entity, this);
-        GenreList = new ObservableCollection<GenreListItem>(entity.RPGSystem.Genres.Select(x => new GenreListItem { DisplayText = x.GenreName, IsSelected = false, Model = x }).ToList());
-        _selectedGenre = GenreList.Where(x => x.Model == entity.Genre).First();
-        OnPropertyChanged(nameof(EntityElements));
-        AddCommand = new RelayCommand(Add, CanAdd);
-        DeleteCommand = new RelayCommand(Delete, CanDelete);
-        MoveUpCommand = new RelayCommand(MoveUp, CanMoveUp);
-        MoveDownCommand = new RelayCommand(MoveDown, CanMoveDown);
-        BackCommand = new RelayCommand(Back, CanBack);
-        SaveCommand = new RelayCommand(Save, CanSave);
-        SaveAsCommand = new RelayCommand(SaveAs, CanSaveAs);
-    }
+    }    
 
     public void SaveAs()
     {
@@ -205,7 +199,6 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
             MoveUpCommand?.RaiseCanExecuteChanged();
             MoveDownCommand?.RaiseCanExecuteChanged();
         }
-
     }
 
     public bool CanDelete()
@@ -218,7 +211,6 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         {
             return SelectedElement.Element.CanDelete();
         }
-
     }
 
     public void Add()
@@ -301,7 +293,6 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         get; private set;
     }
 
-
     public void MoveUp()
     {
         if (SelectedElement != null && SelectedElement.Element.Parent != null)
@@ -325,8 +316,8 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
                 MoveDownCommand?.RaiseCanExecuteChanged();
             }
         }
-
     }
+
     public void MoveDown()
     {
         if (SelectedElement != null && SelectedElement.Element.Parent != null)

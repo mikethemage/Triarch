@@ -7,14 +7,6 @@ namespace Triarch.Prototype.ViewModels;
 
 public class AllowedChildrenViewModel : ViewModelBase
 {
-    private ObservableCollection<FilterTypeViewModel> _filterList = new ObservableCollection<FilterTypeViewModel>();
-    private FilterTypeViewModel _selectedFilter = null!;
-    private ObservableCollection<ElementDefinitionListItemViewModel> _allowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>();
-    private ElementDefinitionListItemViewModel? _selectedChild = null;
-
-    private List<RPGElementDefinition> _allAllowedChildren = new List<RPGElementDefinition>();
-    private ICollectionView _groupedAllowedChildrenList;
-
     public AllowedChildrenViewModel(List<RPGElementDefinition> allowedChildren)
     {
         _allAllowedChildren = allowedChildren.Where(x => x.ElementType.BuiltIn == false).ToList();
@@ -26,8 +18,15 @@ public class AllowedChildrenViewModel : ViewModelBase
 
         FilterList = new ObservableCollection<FilterTypeViewModel>(_allAllowedChildren.Select(x => x.ElementType).Distinct().OrderBy(x => x.TypeOrder).Select(x => new FilterTypeViewModel { DisplayName = x.TypeName, IsSelected = false, Model = x }).ToList());
         FilterList.Insert(0, new FilterTypeViewModel { DisplayName = "ALL", IsSelected = false, Model = null });
-
     }
+
+    private ElementDefinitionListItemViewModel? _selectedChild = null;
+
+    private List<RPGElementDefinition> _allAllowedChildren = new List<RPGElementDefinition>();
+
+    private ICollectionView _groupedAllowedChildrenList;
+
+    private ObservableCollection<FilterTypeViewModel> _filterList = new ObservableCollection<FilterTypeViewModel>();
 
     public ObservableCollection<FilterTypeViewModel> FilterList
     {
@@ -41,6 +40,9 @@ public class AllowedChildrenViewModel : ViewModelBase
             OnPropertyChanged(nameof(FilterList));
         }
     }
+
+    private FilterTypeViewModel _selectedFilter = null!;
+
     public FilterTypeViewModel SelectedFilter
     {
         get
@@ -61,9 +63,11 @@ public class AllowedChildrenViewModel : ViewModelBase
             }
 
             OnPropertyChanged(nameof(SelectedFilter));
-
         }
     }
+
+    private ObservableCollection<ElementDefinitionListItemViewModel> _allowedChildrenList = new ObservableCollection<ElementDefinitionListItemViewModel>();
+
     public ObservableCollection<ElementDefinitionListItemViewModel> AllowedChildrenList
     {
         get
@@ -93,7 +97,6 @@ public class AllowedChildrenViewModel : ViewModelBase
         }
     }
 
-
     public ElementDefinitionListItemViewModel? SelectedChild
     {
         get
@@ -106,6 +109,4 @@ public class AllowedChildrenViewModel : ViewModelBase
             OnPropertyChanged(nameof(SelectedChild));
         }
     }
-
-
 }
