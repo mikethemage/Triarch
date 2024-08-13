@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Triarch.Prototype.Views"
-             xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
+             xmlns:vmmm="clr-namespace:Triarch.Prototype.ViewModels.MainMenu"
              d:Background="White"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance Type=vm:MainMenuViewModel}">
+             d:DataContext="{d:DesignInstance Type=vmmm:MainMenuViewModel}">
     <StackPanel Orientation="Vertical" Margin="10">
         <TextBlock FontSize="25" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 5 0 20" >Triarch - Tri-Stat RPG Editor</TextBlock>
         <Button x:Name="LoadCharacter" Content="Load Character" Command="{Binding Path=EditExistingEntityCommand}" Margin="10" Height="28" Width="150" />

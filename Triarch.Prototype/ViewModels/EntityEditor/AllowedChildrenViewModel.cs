@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using Triarch.BusinessLogic.Models.Definitions;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class AllowedChildrenViewModel : ViewModelBase
 {

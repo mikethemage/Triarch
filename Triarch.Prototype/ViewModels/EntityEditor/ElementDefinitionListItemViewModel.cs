@@ -1,13 +1,15 @@
 ﻿using Triarch.BusinessLogic.Models.Definitions;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.EntityEditor;
 
-public class FilterTypeViewModel : ViewModelBase
+public class ElementDefinitionListItemViewModel : ViewModelBase
 {
+    public string DisplayName { get; set; } = null!;
+    public string TypeName { get; set; } = null!;
+    public RPGElementDefinition Model { get; set; } = null!;
+
     private bool _isSelected = false;
 
-    public string DisplayName { get; set; } = null!;
-    public RPGElementType? Model { get; set; } = null;
     public bool IsSelected
     {
         get

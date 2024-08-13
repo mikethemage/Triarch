@@ -1,6 +1,6 @@
 ﻿using Triarch.BusinessLogic.Models.Definitions;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class VariantListItemViewModel : ViewModelBase
 {

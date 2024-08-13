@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
+             xmlns:vmee="clr-namespace:Triarch.Prototype.ViewModels.EntityEditor"
              xmlns:local="clr-namespace:Triarch.Prototype.Views"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:Background="White"
-             d:DataContext="{d:DesignInstance Type=vm:LevelableDataViewModel}">
+             d:DataContext="{d:DesignInstance Type=vmee:LevelableDataViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -23,17 +23,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="LevelLabel" Content="Level" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0"/>
-        <xctk:IntegerUpDown Height="28" x:Name="LevelTextBox" Text="{Binding Path=Level, Delay=100, UpdateSourceTrigger=PropertyChanged}" Minimum="{Binding Path=Model.MinLevel}" Maximum="{Binding Path=Model.MaxLevel}" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" />
+        <Label x:Name="LevelLabel" Content="Level" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0"/>
+        <xctk:IntegerUpDown Height="28" x:Name="LevelTextBox" VerticalContentAlignment="Center" Text="{Binding Path=Level, Delay=100, UpdateSourceTrigger=PropertyChanged}" Minimum="{Binding Path=Model.MinLevel}" Maximum="{Binding Path=Model.MaxLevel}" Margin="5,0,5,5"  Grid.Row="1" Grid.Column="0"  />
 
         <Label x:Name="PointsPerLevelLabel" Content="Points Per Level" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox Height="28" x:Name="PointsPerLevelTextBox" Text="{Binding Path=PointsPerLevel, Mode=OneWay}" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" IsReadOnly="True" />
+        <TextBox Height="28" x:Name="PointsPerLevelTextBox" VerticalContentAlignment="Center" Text="{Binding Path=PointsPerLevel, Mode=OneWay}" Margin="5,0,5,5"  Grid.Row="1" Grid.Column="1"  IsReadOnly="True" />
 
         <Label x:Name="PointCostLabel" Content="Point Cost" HorizontalAlignment="Left" Visibility="Visible" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="2"/>
-        <TextBox Height="28" x:Name="PointCostTextBox" Margin="5,0,5,5" Text="{Binding Path=Points, Mode=OneWay}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="2" VerticalAlignment="Stretch" IsReadOnly="True" />
+        <TextBox Height="28" x:Name="PointCostTextBox" Margin="5,0,5,5" Text="{Binding Path=Points, Mode=OneWay}" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="2" IsReadOnly="True" />
 
         <Label x:Name="DescriptionLabel" Content="Description" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <TextBox x:Name="DescriptionTextBox" Text="{Binding Path=Description, Mode=OneWay}" Visibility="Visible" Margin="5,0,5,5" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" VerticalAlignment="Stretch" IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
+        <TextBox x:Name="DescriptionTextBox" Text="{Binding Path=Description, Mode=OneWay}" Visibility="Visible" Margin="5,0,5,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6"  IsReadOnly="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" />
 
 
     </Grid>

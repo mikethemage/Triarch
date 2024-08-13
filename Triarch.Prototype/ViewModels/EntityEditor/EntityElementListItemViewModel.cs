@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Triarch.BusinessLogic.Models.Entities;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class EntityElementListItemViewModel : ViewModelBase
 {

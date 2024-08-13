@@ -3,17 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
+        xmlns:vmee="clr-namespace:Triarch.Prototype.ViewModels.EntityEditor"
+        xmlns:vmmm="clr-namespace:Triarch.Prototype.ViewModels.MainMenu"
         xmlns:v="clr-namespace:Triarch.Prototype.Views"
         xmlns:local="clr-namespace:Triarch.Prototype"
         mc:Ignorable="d"
         Title="Triarch" Height="550" Width="800">
     <Grid>
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type vm:EntityEditorViewModel}">
+            <DataTemplate DataType="{x:Type vmee:EntityEditorViewModel}">
                 <v:EntityEditorView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">
+            <DataTemplate DataType="{x:Type vmmm:MainMenuViewModel}">
                 <v:MainMenuView />
             </DataTemplate>
         </Grid.Resources>

@@ -1,4 +1,7 @@
-﻿namespace Triarch.Prototype.ViewModels;
+﻿using Triarch.Prototype.ViewModels.EntityEditor;
+using Triarch.Prototype.ViewModels.MainMenu;
+
+namespace Triarch.Prototype.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private IPageViewModel _currentPage;

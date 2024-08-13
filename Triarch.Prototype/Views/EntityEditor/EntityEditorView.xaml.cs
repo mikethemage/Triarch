@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using Triarch.Prototype.ViewModels;
+using Triarch.Prototype.ViewModels.EntityEditor;
 
 namespace Triarch.Prototype.Views;
 /// <summary>

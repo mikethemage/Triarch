@@ -9,8 +9,9 @@ using Triarch.BusinessLogic.Services;
 using Triarch.Dtos.Entities;
 using Triarch.Prototype.Models;
 using Triarch.Prototype.Services;
+using Triarch.Prototype.ViewModels.EntityEditor;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.MainMenu;
 
 public class MainMenuViewModel : ViewModelBase, IPageViewModel
 {
@@ -159,7 +160,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
     private void ImportOldFormatEntity()
     {
         const string oldSystemName = "BESM 3rd Edition";
-        if (!_rPGSystemProvider.ListSystems().Any(x=>x.SystemName== oldSystemName))
+        if (!_rPGSystemProvider.ListSystems().Any(x => x.SystemName == oldSystemName))
         {
             throw new Exception("No available systems to import old format files!");
         }

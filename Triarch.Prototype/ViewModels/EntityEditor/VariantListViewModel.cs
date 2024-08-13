@@ -2,7 +2,7 @@
 using Triarch.BusinessLogic.Models.Definitions;
 using Triarch.BusinessLogic.Models.Entities;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class VariantListViewModel : ViewModelBase
 {

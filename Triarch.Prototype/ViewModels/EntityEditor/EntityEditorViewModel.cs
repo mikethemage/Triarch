@@ -8,8 +8,9 @@ using Triarch.BusinessLogic.Models.Entities;
 using Triarch.BusinessLogic.Services;
 using Triarch.Dtos.Entities;
 using System.Text.Json.Serialization;
+using Triarch.Prototype.ViewModels.MainMenu;
 
-namespace Triarch.Prototype.ViewModels;
+namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 {
@@ -115,7 +116,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
                 SelectedElement.LevelableData.RefreshProperties();
             }
         }
-    }    
+    }
 
     public void SaveAs()
     {
