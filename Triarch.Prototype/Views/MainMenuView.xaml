@@ -16,7 +16,7 @@
         <ComboBox x:Name="SystemSelector" ItemsSource="{Binding Path=SystemSelector}" SelectedItem="{Binding Path=SelectedSystem}" Margin="10 2 10 10" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=.}"/>
+                    <TextBlock Text="{Binding Path=SystemName}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

@@ -5,13 +5,15 @@ namespace Triarch.Prototype.ViewModels;
 
 public class EntityElementViewModel : ViewModelBase
 {
-    public EntityElementViewModel(RPGElement element)
+    private readonly EntityEditorViewModel _parent;
+    public EntityElementViewModel(RPGElement element, EntityEditorViewModel parent)
     {
+        _parent = parent;
         _element = element;
 
         if (element is Levelable levelable)
         {
-            LevelableData = new LevelableDataViewModel(levelable);
+            LevelableData = new LevelableDataViewModel(levelable, _parent);
             if (element.AssociatedDefinition is LevelableDefinition levelableDefinition)
             {
                 if (levelableDefinition.Variants != null && levelableDefinition.Variants.Count > 0)

@@ -1,14 +1,24 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.Win32;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Text.Json;
+using System.Windows;
 using Triarch.BusinessLogic.Models.Entities;
 using Triarch.BusinessLogic.Services;
+using Triarch.Dtos.Entities;
 
 namespace Triarch.Prototype.ViewModels;
 
-public class EntityViewModel : ViewModelBase, IPageViewModel
+public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 {
     public required MainWindowViewModel Parent {  get; set; }
+
+    public bool ChangesSaved { get; set; } = false;
+
+    public RelayCommand? SaveCommand { get; set; }
+    public RelayCommand? SaveAsCommand { get; set; }
+
 
     public RelayCommand? BackCommand { get; set; }
 
@@ -62,30 +72,92 @@ public class EntityViewModel : ViewModelBase, IPageViewModel
             _selectedGenre = value;
             _entity.Genre = _selectedGenre.Model;
             OnPropertyChanged(nameof(SelectedGenre));
-            if(SelectedElement?.LevelableData != null)
+            ChangesSaved = false;
+            if (SelectedElement?.LevelableData != null)
             {
                 SelectedElement.LevelableData.RefreshProperties();
             }
         }
     }
 
-    public EntityViewModel(RPGEntity entity, string filePath = "")
+    public EntityEditorViewModel(RPGEntity entity, string filePath = "")
     {
         _entity = entity;
         _filePath = filePath;
         EntityElements = new EntityElementsListViewModel(_entity, this);
         GenreList = new ObservableCollection<GenreListItem>(entity.RPGSystem.Genres.Select(x => new GenreListItem { DisplayText = x.GenreName, IsSelected = false, Model = x }).ToList());
-        SelectedGenre = GenreList.Where(x => x.Model == entity.Genre).First();
+        _selectedGenre = GenreList.Where(x => x.Model == entity.Genre).First();
         OnPropertyChanged(nameof(EntityElements));
         AddCommand = new RelayCommand(Add, CanAdd);
         DeleteCommand = new RelayCommand(Delete, CanDelete);
         MoveUpCommand = new RelayCommand(MoveUp, CanMoveUp);
         MoveDownCommand = new RelayCommand(MoveDown, CanMoveDown);
         BackCommand = new RelayCommand(Back, CanBack);
+        SaveCommand = new RelayCommand(Save, CanSave);
+        SaveAsCommand = new RelayCommand(SaveAs, CanSaveAs);
+    }
+
+    public void SaveAs()
+    {
+        SaveFileDialog saveFileDialog = new SaveFileDialog 
+        {
+            RestoreDirectory = false,            
+            Filter = "Triarch" + " Files(*.json)|*.json|All Files (*.*)|*.*",
+            FilterIndex = 1
+        };
+
+        if(saveFileDialog.ShowDialog() ?? false)
+        {            
+            WriteEntityToFile(saveFileDialog.FileName);
+            _filePath = saveFileDialog.FileName;
+        }
+    }
+
+    public void Save()
+    {
+        if(_filePath == "")
+        {
+            SaveAs();
+        }
+        else
+        {
+            WriteEntityToFile(_filePath);
+        }
+    }
+
+    private void WriteEntityToFile(string filename)
+    {
+        RPGSystemProvider rPGSystemProvider = new RPGSystemProvider();
+        rPGSystemProvider.AddSystem(_entity.RPGSystem.SystemName, _entity.RPGSystem);
+        RPGEntityMapper rPGEntityMapper = new RPGEntityMapper(rPGSystemProvider);
+        EntityDto entityDto = rPGEntityMapper.Serialize(_entity);
+        File.WriteAllText(filename, JsonSerializer.Serialize(entityDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }));
+        ChangesSaved = true;
+    }
+
+    public bool CanSave()
+    {
+        return true;
+    }
+
+    public bool CanSaveAs()
+    {
+        return true;
     }
 
     public void Back()
     {
+        if(!ChangesSaved)
+        {
+            if(MessageBox.Show("Save changes before closing?", "Unsaved Changes", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+            {
+                Save();
+                if(!ChangesSaved)
+                {
+                    return;
+                }
+            }
+        }
         Parent.CurrentPage = new MainMenuViewModel { Parent = Parent };
     }
 
@@ -113,6 +185,7 @@ public class EntityViewModel : ViewModelBase, IPageViewModel
             }
             int previousIndex = parent.Children.IndexOf(EntityElements.Selected);
             parent.Children.Remove(EntityElements.Selected);
+            ChangesSaved = false;
 
             if (parent.Children.Count == 0)
             {
@@ -157,6 +230,7 @@ public class EntityViewModel : ViewModelBase, IPageViewModel
             EntityElementListItemViewModel addedElementViewModel = new(addedElement, EntityElements);
             EntityElements.Selected.Children.Add(addedElementViewModel);
             EntityElements.ElementList.Add(addedElement, addedElementViewModel);
+            ChangesSaved = false;
 
             if (SelectedElement?.CharacterData != null)
             {
@@ -245,6 +319,8 @@ public class EntityViewModel : ViewModelBase, IPageViewModel
                 parent.Children[currentIndex] = previous;
                 parent.Children[previousIndex] = child;
 
+                ChangesSaved = false;
+
                 MoveUpCommand?.RaiseCanExecuteChanged();
                 MoveDownCommand?.RaiseCanExecuteChanged();                
             }
@@ -267,6 +343,7 @@ public class EntityViewModel : ViewModelBase, IPageViewModel
 
                 parent.Children[currentIndex] = next;
                 parent.Children[nextIndex] = child;
+                ChangesSaved = false;
 
                 MoveDownCommand?.RaiseCanExecuteChanged();
                 MoveUpCommand?.RaiseCanExecuteChanged();

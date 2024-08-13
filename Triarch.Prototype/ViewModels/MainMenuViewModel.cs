@@ -8,12 +8,16 @@ using Triarch.BusinessLogic.Models.Entities;
 using Triarch.BusinessLogic.Services;
 using Triarch.Dtos.Definitions;
 using Triarch.Dtos.Entities;
+using Triarch.Prototype.Models;
+using Triarch.Prototype.Services;
 
 namespace Triarch.Prototype.ViewModels;
 
 public class MainMenuViewModel : ViewModelBase, IPageViewModel
 {
-    private string? _selectedSystem;
+    private SystemListItem? _selectedSystem;
+
+    private RPGSystemFileProvider _rPGSystemProvider { get; set; } = new RPGSystemFileProvider();
 
     public MainMenuViewModel()
     {
@@ -21,37 +25,12 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
         EditNewEntityCommand = new RelayCommand(EditNewEntity, CanEditNewEntity);
         EditExistingSystemCommand = new RelayCommand(EditExistingSystem, CanEditExistingSystem);
         ExitCommand = new RelayCommand(Exit, CanExit);
-    }
-
-    private void EditExistingEntity()
-    {
-        OpenFileDialog openDialog = new OpenFileDialog
-            {
-                RestoreDirectory = false,
-                Filter = "Triarch" + " Files(*.json)|*.json|All Files (*.*)|*.*",
-                FilterIndex = 1
-            };
-
-        if(openDialog.ShowDialog() ?? false)
+        SystemSelector = new ObservableCollection<SystemListItem>(_rPGSystemProvider.ListSystems());
+        if(SystemSelector.Count > 0)
         {
-            try
-            {
-                string fileText = File.ReadAllText(openDialog.FileName);
-                EntityDto? entity = JsonSerializer.Deserialize<EntityDto>(fileText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                if (entity != null)
-                {
-                    MessageBox.Show("Loaded Entity to Dto");
-                    
-                }
-            }
-            catch 
-            {
-                MessageBox.Show($"Error loading file {openDialog.FileName}","File Open Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            
+            SelectedSystem = SystemSelector[0];
         }
-    }
+    }    
 
     private void EditExistingSystem()
     {
@@ -70,7 +49,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
 
     private bool CanEditExistingSystem()
     {
-        return SelectedSystem != null;
+        return false; // SelectedSystem != null;
     }    
 
     private bool CanEditExistingEntity()
@@ -83,8 +62,9 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
     public RelayCommand EditExistingSystemCommand { get; set; }
     public RelayCommand ExitCommand { get; set; }
 
-    public ObservableCollection<string> SystemSelector { get; set; } = new ObservableCollection<string> { "BESM3E" };
-    public string? SelectedSystem
+    public ObservableCollection<SystemListItem> SystemSelector { get; set; }
+
+    public SystemListItem? SelectedSystem
     {
         get
         {
@@ -103,39 +83,57 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
 
     public bool CanEditNewEntity()
     {
-        return SelectedSystem is not null && SelectedSystem != "";
+        return SelectedSystem is not null;
     }
 
     public void EditNewEntity()
     {
-        if (SelectedSystem is not null && SelectedSystem != "")
-        {   
-            string fileData = File.ReadAllText("DataFiles" + Path.DirectorySeparatorChar + SelectedSystem + ".json");
-            RPGSystemDto? systemData = JsonSerializer.Deserialize<RPGSystemDto>(fileData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-            if (systemData != null)
+        if (SelectedSystem is not null)
+        {
+            RPGSystem loadedSystem = _rPGSystemProvider.LoadSystem(SelectedSystem.SystemName);
+                                            
+            RPGEntity entity = new RPGEntity
             {
-                RPGSystemMapper mapper = new RPGSystemMapper();
-                RPGSystem loadedSystem = mapper.Deserialize(systemData);
+                RPGSystem = loadedSystem,
+                EntityName = "New Character",
+                EntityType = "Character",
+                Genre = loadedSystem.Genres[0]
 
-                if (loadedSystem != null)
+            };
+            entity.RootElement = loadedSystem.ElementDefinitions.Where(x => x.ElementName == "Character").First().CreateNode(entity, "", false);
+
+            Parent.CurrentPage = new EntityEditorViewModel(entity) { Parent = Parent };                
+        }
+    }
+
+    private void EditExistingEntity()
+    {
+        OpenFileDialog openDialog = new OpenFileDialog
+        {
+            RestoreDirectory = false,
+            Filter = "Triarch" + " Files(*.json)|*.json|All Files (*.*)|*.*",
+            FilterIndex = 1
+        };
+
+        if (openDialog.ShowDialog() ?? false)
+        {
+            try
+            {
+                string fileText = File.ReadAllText(openDialog.FileName);
+                EntityDto? entityDto = JsonSerializer.Deserialize<EntityDto>(fileText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                if (entityDto != null)
                 {
+                    string systemName = entityDto.RPGSystemName;
+                    RPGSystem loadedSystem = _rPGSystemProvider.LoadSystem(systemName);
+                    RPGEntityMapper rPGEntityMapper = new RPGEntityMapper(_rPGSystemProvider);
+                    RPGEntity entity = rPGEntityMapper.Deserialize(entityDto);
 
-                    RPGSystemProvider rPGSystemProvider = new RPGSystemProvider();
-                    rPGSystemProvider.AddSystem("BESM 3rd Edition", loadedSystem);
-                    
-                    RPGEntity entity = new RPGEntity
-                    {
-                        RPGSystem = loadedSystem,
-                        EntityName = "New Character",
-                        EntityType = "Character",
-                        Genre = loadedSystem.Genres[0]
-
-                    };
-                    entity.RootElement = loadedSystem.ElementDefinitions.Where(x => x.ElementName == "Character").First().CreateNode(entity, "", false);
-
-                    Parent.CurrentPage = new EntityViewModel(entity) { Parent = Parent }; 
+                    Parent.CurrentPage = new EntityEditorViewModel(entity, openDialog.FileName) { Parent = Parent, ChangesSaved = true };
                 }
+            }
+            catch
+            {
+                MessageBox.Show($"Error loading file {openDialog.FileName}", "File Open Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

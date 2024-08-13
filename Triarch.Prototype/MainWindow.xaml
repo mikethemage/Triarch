@@ -10,7 +10,7 @@
         Title="MainWindow" Height="550" Width="800">
     <Grid>
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type vm:EntityViewModel}">
+            <DataTemplate DataType="{x:Type vm:EntityEditorViewModel}">
                 <v:EntityEditorView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:MainMenuViewModel}">

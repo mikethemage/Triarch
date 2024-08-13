@@ -27,9 +27,9 @@ public partial class EntityEditorView : UserControl
 
     private void AddChildListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        if (((EntityViewModel)DataContext).CanAdd())
+        if (((EntityEditorViewModel)DataContext).CanAdd())
         {
-            ((EntityViewModel)DataContext).Add();
+            ((EntityEditorViewModel)DataContext).Add();
         }
     }
 
@@ -37,9 +37,9 @@ public partial class EntityEditorView : UserControl
     {
         if (e.Key == Key.Return)
         {
-            if (((EntityViewModel)DataContext).CanAdd())
+            if (((EntityEditorViewModel)DataContext).CanAdd())
             {
-                ((EntityViewModel)DataContext).Add();
+                ((EntityEditorViewModel)DataContext).Add();
             }
         }
     }

@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0">Notes:</TextBlock>
-        <TextBox x:Name="textBox" Margin="10,10,10,10" TextWrapping="Wrap" Text="{Binding Path=Notes, Mode=TwoWay}" Grid.Row="1"/>
+        <TextBlock Margin="10 10 10 5" Grid.Row="0">Notes:</TextBlock>
+        <TextBox x:Name="textBox" Margin="10,0,10,10" TextWrapping="Wrap" Text="{Binding Path=Notes, Mode=TwoWay}" Grid.Row="1"/>
     </Grid>
 </UserControl>

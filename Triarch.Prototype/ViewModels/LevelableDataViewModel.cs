@@ -5,10 +5,12 @@ namespace Triarch.Prototype.ViewModels;
 
 public class LevelableDataViewModel : ViewModelBase
 {
-    public LevelableDataViewModel(Levelable model)
+    private EntityEditorViewModel _parent;
+    public LevelableDataViewModel(Levelable model, EntityEditorViewModel parent)
     {
+        _parent = parent;
         _model = model;
-        Level = _model.Level;
+       
     }
 
     private readonly Levelable _model;
@@ -26,6 +28,7 @@ public class LevelableDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(Level));
             OnPropertyChanged(nameof(Points));
             OnPropertyChanged(nameof(Description));
+            _parent.ChangesSaved = false;
         }
     }
 

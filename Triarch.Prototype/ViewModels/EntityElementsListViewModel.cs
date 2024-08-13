@@ -6,7 +6,7 @@ namespace Triarch.Prototype.ViewModels;
 
 public class EntityElementsListViewModel : ViewModelBase
 {
-    public EntityElementsListViewModel(RPGEntity entity, EntityViewModel owner)
+    public EntityElementsListViewModel(RPGEntity entity, EntityEditorViewModel owner)
     {
         _owner = owner;
         RootElements.Add(new EntityElementListItemViewModel(entity.RootElement, this));
@@ -21,12 +21,12 @@ public class EntityElementsListViewModel : ViewModelBase
 
    
     private EntityElementListItemViewModel _selected;
-    private readonly EntityViewModel _owner;
+    private readonly EntityEditorViewModel _owner;
 
     public EntityElementListItemViewModel Selected { get { return _selected; } set
         { 
             _selected = value;
-            _owner.SelectedElement = new EntityElementViewModel(value.ElementData);
+            _owner.SelectedElement = new EntityElementViewModel(value.ElementData, _owner);
             OnPropertyChanged(nameof(Selected));
         } 
     }    
