@@ -16,7 +16,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
 {
     private SystemListItem? _selectedSystem;
 
-    private RPGSystemFileProvider _rPGSystemProvider { get; set; } = new RPGSystemFileProvider();
+    private readonly RPGSystemFileProvider _rPGSystemProvider = new RPGSystemFileProvider();
 
     public MainMenuViewModel()
     {
@@ -25,12 +25,24 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
         EditExistingSystemCommand = new RelayCommand(EditExistingSystem, CanEditExistingSystem);
         ExitCommand = new RelayCommand(Exit, CanExit);
         ImportOldFormatEntityCommand = new RelayCommand(ImportOldFormatEntity, CanImportOldFormatEntity);
+        EditNewSystemCommand = new RelayCommand(EditNewSystem, CanEditNewSystem);
         SystemSelector = new ObservableCollection<SystemListItem>(_rPGSystemProvider.ListSystems());
         if (SystemSelector.Count > 0)
         {
             SelectedSystem = SystemSelector[0];
         }
     }
+
+    private bool CanEditNewSystem()
+    {
+        return false;
+    }
+
+    private void EditNewSystem()
+    {
+        throw new NotImplementedException();
+    }
+
     private bool CanImportOldFormatEntity()
     {
         return true;
@@ -66,6 +78,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
     public RelayCommand EditExistingSystemCommand { get; set; }
     public RelayCommand ExitCommand { get; set; }
     public RelayCommand ImportOldFormatEntityCommand { get; set; }
+    public RelayCommand EditNewSystemCommand { get; set; }
 
     public ObservableCollection<SystemListItem> SystemSelector { get; set; }
 
