@@ -19,11 +19,11 @@ internal class EditTypesViewModel : ObservableViewModel
     {
         get
         {
-            return currentlyEditingItem;
+            return _currentlyEditingItem;
         }
         set
         {
-            currentlyEditingItem = value;
+            _currentlyEditingItem = value;
             OnPropertyChanged(nameof(CurrentlyEditingItem));
             OnPropertyChanged(nameof(EditItemShouldBeVisible));
         }
@@ -87,34 +87,34 @@ internal class EditTypesViewModel : ObservableViewModel
         }       
     }
 
-    private RPGTypeSelectItem? selectedItem;
+    private RPGTypeSelectItem? _selectedItem;
 
     public RPGTypeSelectItem? SelectedItem
     {
         get
         {
-            return selectedItem;
+            return _selectedItem;
         }
         set
         {
-            selectedItem = value;
+            _selectedItem = value;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }
 
-    private ObservableCollection<RPGTypeSelectItem> typesList = null!;
+    private ObservableCollection<RPGTypeSelectItem> _typesList = null!;
 
-    private RPGElementType? currentlyEditingItem;
+    private RPGElementType? _currentlyEditingItem;
 
     public ObservableCollection<RPGTypeSelectItem> TypesList
     {
         get
         {
-            return typesList;
+            return _typesList;
         }
         set
         {
-            typesList = value;
+            _typesList = value;
             OnPropertyChanged(nameof(TypesList));
         }
     }

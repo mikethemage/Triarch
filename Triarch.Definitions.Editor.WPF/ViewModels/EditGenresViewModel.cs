@@ -20,11 +20,11 @@ internal class EditGenresViewModel : ObservableViewModel
     {
         get
         {
-            return currentlyEditingItem;
+            return _currentlyEditingItem;
         }
         set
         {
-            currentlyEditingItem = value;
+            _currentlyEditingItem = value;
             OnPropertyChanged(nameof(CurrentlyEditingItem));
             OnPropertyChanged(nameof(EditItemShouldBeVisible));
         }
@@ -88,34 +88,34 @@ internal class EditGenresViewModel : ObservableViewModel
         }
     }
 
-    private RPGGenreSelectItem? selectedItem;
+    private RPGGenreSelectItem? _selectedItem;
 
     public RPGGenreSelectItem? SelectedItem
     {
         get
         {
-            return selectedItem;
+            return _selectedItem;
         }
         set
         {
-            selectedItem = value;
+            _selectedItem = value;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }
 
-    private ObservableCollection<RPGGenreSelectItem> genresList = null!;
+    private ObservableCollection<RPGGenreSelectItem> _genresList = null!;
     
-    private Genre? currentlyEditingItem;
+    private Genre? _currentlyEditingItem;
 
     public ObservableCollection<RPGGenreSelectItem> GenresList
     {
         get
         {
-            return genresList;
+            return _genresList;
         }
         set
         {
-            genresList = value;
+            _genresList = value;
             OnPropertyChanged(nameof(GenresList));
         }
     }

@@ -9,7 +9,7 @@ namespace Triarch.Definitions.Editor.WPF.ViewModels;
 public class CreateSystemRulesetPromptViewModel : ObservableViewModel
 {
     private TriarchDbContext _context = new();
-    private CoreRulesetSelectItem? selectedItem = null;
+    private CoreRulesetSelectItem? _selectedItem = null;
 
     public ObservableCollection<CoreRulesetSelectItem> RulesetList { get; set; }
 
@@ -19,11 +19,11 @@ public class CreateSystemRulesetPromptViewModel : ObservableViewModel
     {
         get
         {
-            return selectedItem;
+            return _selectedItem;
         }
         set
         {
-            selectedItem = value;
+            _selectedItem = value;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }

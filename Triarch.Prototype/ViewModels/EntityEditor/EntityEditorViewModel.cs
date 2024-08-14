@@ -14,6 +14,8 @@ namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 {
+    private readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition=JsonIgnoreCondition.WhenWritingNull };
+
     public EntityEditorViewModel(RPGEntity entity, string filePath = "")
     {
         _entity = entity;
@@ -174,7 +176,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         rPGSystemProvider.AddSystem(_entity.RPGSystem.SystemName, _entity.RPGSystem);
         RPGEntityMapper rPGEntityMapper = new RPGEntityMapper(rPGSystemProvider);
         EntityDto entityDto = rPGEntityMapper.Serialize(_entity);
-        File.WriteAllText(filename, JsonSerializer.Serialize(entityDto, new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull }));
+        File.WriteAllText(filename, JsonSerializer.Serialize(entityDto, _serializerOptions));
         ChangesSaved = true;
     }
 
@@ -242,7 +244,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
                 }
                 else
                 {
-                    parent.Children[parent.Children.Count - 1].IsSelected = true;
+                    parent.Children[^1].IsSelected = true;
                 }
             }
             MoveUpCommand?.RaiseCanExecuteChanged();

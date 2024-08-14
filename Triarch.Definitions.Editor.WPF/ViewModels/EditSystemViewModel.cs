@@ -9,17 +9,17 @@ public class EditSystemViewModel : ObservableViewModel
 {
     private TriarchDbContext _context;
 
-    private bool saved = false;
+    private bool _saved = false;
 
     public bool Saved
     {
         get
         {
-            return saved;
+            return _saved;
         }
         private set
         {
-            saved = value;
+            _saved = value;
             OnPropertyChanged(nameof(Saved));
         }
     }
@@ -36,56 +36,56 @@ public class EditSystemViewModel : ObservableViewModel
     public EditSystemViewModel(TriarchDbContext context, int existingRPGSystemId)
     {
         _context = context;
-        rPGSystem = _context.RPGSystems.Include(x => x.Ruleset).FirstOrDefault(x => x.Id == existingRPGSystemId)!;
+        _rPGSystem = _context.RPGSystems.Include(x => x.Ruleset).FirstOrDefault(x => x.Id == existingRPGSystemId)!;
         Saved=true;
     }
 
     public EditSystemViewModel(TriarchDbContext context, CoreRuleset createFromCoreRuleset)
     {
         _context = context;
-        rPGSystem = new RPGSystem
+        _rPGSystem = new RPGSystem
         {
             Ruleset = createFromCoreRuleset
         };
         OnPropertyChanged(nameof(CoreRuleset));
-        _context.Add(rPGSystem);
+        _context.Add(_rPGSystem);
         Saved = false;
     }
 
-    private RPGSystem rPGSystem = null!;
+    private RPGSystem _rPGSystem = null!;
     
     public void CreateEditTypes()
     {
-        if(saved)
+        if(_saved)
         {
-            EditTypesViewModel a = new(_context, rPGSystem);
+            EditTypesViewModel a = new(_context, _rPGSystem);
             a.ShowWindow();
         }
     }
 
     public void CreateEditElements()
     {
-        if (saved)
+        if (_saved)
         {
-            EditElementsViewModel a = new(_context, rPGSystem);
+            EditElementsViewModel a = new(_context, _rPGSystem);
             a.ShowWindow();
         }
     }
 
     public void CreateEditGenres()
     {
-        if (saved)
+        if (_saved)
         {
-            EditGenresViewModel a = new(_context, rPGSystem);
+            EditGenresViewModel a = new(_context, _rPGSystem);
             a.ShowWindow();
         }
     }
     
     public void CreateEditProgressions()
     {
-        if (saved)
+        if (_saved)
         {
-            EditProgressionsViewModel a = new(_context, rPGSystem);
+            EditProgressionsViewModel a = new(_context, _rPGSystem);
             a.ShowWindow();
         }
     }
@@ -94,13 +94,13 @@ public class EditSystemViewModel : ObservableViewModel
     {
         get
         {
-            return rPGSystem.SystemName;
+            return _rPGSystem.SystemName;
         }
         set
         {
-            if (rPGSystem.SystemName != value)
+            if (_rPGSystem.SystemName != value)
             {
-                rPGSystem.SystemName = value;
+                _rPGSystem.SystemName = value;
                 OnPropertyChanged(nameof(SystemName));
                 Saved = false;
             }
@@ -111,7 +111,7 @@ public class EditSystemViewModel : ObservableViewModel
     {
         get
         {
-            return rPGSystem.Ruleset.CoreRulesetName;
+            return _rPGSystem.Ruleset.CoreRulesetName;
         }        
     }
 
@@ -119,25 +119,25 @@ public class EditSystemViewModel : ObservableViewModel
     {
         get
         {
-            return rPGSystem.DescriptiveName ?? "";
+            return _rPGSystem.DescriptiveName ?? "";
         }
         set
         {
-            rPGSystem.DescriptiveName = string.IsNullOrWhiteSpace(value) ? null : value;
+            _rPGSystem.DescriptiveName = string.IsNullOrWhiteSpace(value) ? null : value;
             OnPropertyChanged(nameof(Description));
         }
     }
 
     // ... (existing code)
 
-    private bool isFormLocked = false;
+    private bool _isFormLocked = false;
 
     public bool IsFormLocked
     {
-        get => isFormLocked;
+        get => _isFormLocked;
         private set
         {
-            isFormLocked = value;
+            _isFormLocked = value;
             OnPropertyChanged(nameof(IsFormLocked));
         }
     }

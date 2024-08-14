@@ -11,19 +11,19 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
     private RPGElementDefinition _elementDefinition;
 
     private TriarchDbContext _context;
-    private bool saved;
-    private bool levelable;
-    private LevelableViewModel? levelableData;
+    private bool _saved;
+    private bool _levelable;
+    private LevelableViewModel? _levelableData;
 
     public LevelableViewModel? LevelableData
     {
         get
         {
-            return levelableData;
+            return _levelableData;
         }
         set
         {
-            levelableData = value;
+            _levelableData = value;
             OnPropertyChanged(nameof(LevelableData));
         }
     }
@@ -131,11 +131,11 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
     {
         get
         {
-            return levelable;
+            return _levelable;
         }
         set
         {
-            levelable = value;
+            _levelable = value;
 
             if(value==true && LevelableData==null)
             {
@@ -230,11 +230,11 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
     {
         get
         {
-            return saved;
+            return _saved;
         }
         set
         {
-            saved = value;
+            _saved = value;
             OnPropertyChanged(nameof(Saved));
         }
     }

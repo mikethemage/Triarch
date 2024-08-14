@@ -8,6 +8,8 @@ using Triarch.Prototype.Models;
 namespace Triarch.Prototype.Services;
 internal class RPGSystemFileProvider : IRPGSystemProvider
 {
+    private readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
     List<SystemListItem>? _systemList;
     public void AddSystem(string name, RPGSystem system)
     {
@@ -28,7 +30,7 @@ internal class RPGSystemFileProvider : IRPGSystemProvider
         }
 
         string systemText = File.ReadAllText(systemFileName);
-        RPGSystemDto? outputSystemDto = JsonSerializer.Deserialize<RPGSystemDto>(systemText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        RPGSystemDto? outputSystemDto = JsonSerializer.Deserialize<RPGSystemDto>(systemText, _serializerOptions);
         if (outputSystemDto == null)
         {
             throw new Exception($"Unable to load file: {systemFileName}");
@@ -58,7 +60,7 @@ internal class RPGSystemFileProvider : IRPGSystemProvider
     private void RefreshSystemList()
     {
         string systemListText = File.ReadAllText("Datafiles" + Path.DirectorySeparatorChar + "SystemList.json");
-        _systemList = JsonSerializer.Deserialize<List<SystemListItem>>(systemListText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        _systemList = JsonSerializer.Deserialize<List<SystemListItem>>(systemListText, _serializerOptions);
         if (_systemList is null)
         {
             throw new Exception("Failed to load system list");

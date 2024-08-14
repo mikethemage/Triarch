@@ -21,11 +21,11 @@ internal class EditElementsViewModel : ObservableViewModel
     {
         get
         {
-            return currentlyEditingItem;
+            return _currentlyEditingItem;
         }
         set
         {
-            currentlyEditingItem = value;
+            _currentlyEditingItem = value;
             OnPropertyChanged(nameof(CurrentlyEditingItem));
             OnPropertyChanged(nameof(EditItemShouldBeVisible));
         }
@@ -78,34 +78,34 @@ internal class EditElementsViewModel : ObservableViewModel
         }
     }
 
-    private ElementSelectItem? selectedItem;
+    private ElementSelectItem? _selectedItem;
 
     public ElementSelectItem? SelectedItem
     {
         get
         {
-            return selectedItem;
+            return _selectedItem;
         }
         set
         {
-            selectedItem = value;
+            _selectedItem = value;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }
 
-    private ObservableCollection<ElementSelectItem> elementsList = null!;
+    private ObservableCollection<ElementSelectItem> _elementsList = null!;
 
-    private RPGElementDefinition? currentlyEditingItem;
+    private RPGElementDefinition? _currentlyEditingItem;
 
     public ObservableCollection<ElementSelectItem> ElementsList
     {
         get
         {
-            return elementsList;
+            return _elementsList;
         }
         set
         {
-            elementsList = value;
+            _elementsList = value;
             OnPropertyChanged(nameof(ElementsList));
         }
     }

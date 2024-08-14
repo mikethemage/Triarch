@@ -20,11 +20,11 @@ internal class EditProgressionsViewModel : ObservableViewModel
     {
         get
         {
-            return currentlyEditingItem;
+            return _currentlyEditingItem;
         }
         set
         {
-            currentlyEditingItem = value;
+            _currentlyEditingItem = value;
             OnPropertyChanged(nameof(CurrentlyEditingItem));
             OnPropertyChanged(nameof(EditItemShouldBeVisible));
         }
@@ -82,34 +82,34 @@ internal class EditProgressionsViewModel : ObservableViewModel
         }
     }
 
-    private ProgressionSelectItem? selectedItem;
+    private ProgressionSelectItem? _selectedItem;
 
     public ProgressionSelectItem? SelectedItem
     {
         get
         {
-            return selectedItem;
+            return _selectedItem;
         }
         set
         {
-            selectedItem = value;
+            _selectedItem = value;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }
 
-    private ObservableCollection<ProgressionSelectItem> progressionsList = null!;
+    private ObservableCollection<ProgressionSelectItem> _progressionsList = null!;
 
-    private Progression? currentlyEditingItem;
+    private Progression? _currentlyEditingItem;
 
     public ObservableCollection<ProgressionSelectItem> ProgressionsList
     {
         get
         {
-            return progressionsList;
+            return _progressionsList;
         }
         set
         {
-            progressionsList = value;
+            _progressionsList = value;
             OnPropertyChanged(nameof(ProgressionsList));
         }
     }

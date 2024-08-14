@@ -10,20 +10,20 @@ public class RPGSystemSelectViewModel : ObservableViewModel
     {
         get
         {
-            return rPGSystemList;
+            return _rPGSystemList;
         }
         set
         {
-            rPGSystemList = value;
+            _rPGSystemList = value;
             OnPropertyChanged(nameof(RPGSystemList));
         }
     }
 
     private TriarchDbContext _context = new();
 
-    private RPGSystemSelectItem? selectedItem;
+    private RPGSystemSelectItem? _selectedItem;
 
-    private ObservableCollection<RPGSystemSelectItem> rPGSystemList = null!;
+    private ObservableCollection<RPGSystemSelectItem> _rPGSystemList = null!;
 
     public TriarchDbContext GetDbContext() => _context;
 
@@ -41,20 +41,20 @@ public class RPGSystemSelectViewModel : ObservableViewModel
     {
         get
         {
-            return selectedItem;
+            return _selectedItem;
         }
         set
         {
-            selectedItem = value;
+            _selectedItem = value;
             OnPropertyChanged(nameof(SelectedItem));
         }
     }
 
     public void Delete()
     {
-        if (selectedItem != null)
+        if (_selectedItem != null)
         {
-            var toRemove = _context.RPGSystems.FirstOrDefault(x => x.Id == selectedItem.Id);
+            var toRemove = _context.RPGSystems.FirstOrDefault(x => x.Id == _selectedItem.Id);
             if (toRemove != null)
             {
                 _context.Remove(toRemove);

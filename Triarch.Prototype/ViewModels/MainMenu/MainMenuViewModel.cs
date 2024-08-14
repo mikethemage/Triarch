@@ -15,6 +15,8 @@ namespace Triarch.Prototype.ViewModels.MainMenu;
 
 public class MainMenuViewModel : ViewModelBase, IPageViewModel
 {
+    private readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
     private SystemListItem? _selectedSystem;
 
     private readonly RPGSystemFileProvider _rPGSystemProvider = new RPGSystemFileProvider();
@@ -139,7 +141,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
             try
             {
                 string fileText = File.ReadAllText(openDialog.FileName);
-                EntityDto? entityDto = JsonSerializer.Deserialize<EntityDto>(fileText, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                EntityDto? entityDto = JsonSerializer.Deserialize<EntityDto>(fileText, _serializerOptions);
                 if (entityDto != null)
                 {
                     string systemName = entityDto.RPGSystemName;

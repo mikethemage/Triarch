@@ -2,6 +2,7 @@
 using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.BusinessLogic.Services;
+
 public class EntityController
 {
     public bool MoveUpElement(RPGElement element)
