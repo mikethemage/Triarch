@@ -1,13 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 
 internal class EditGenresViewModel : ObservableViewModel
-{  
+{
     public bool EditItemShouldBeVisible
     {
         get
@@ -31,15 +31,15 @@ internal class EditGenresViewModel : ObservableViewModel
     }
 
     private TriarchDbContext _context;
-    
+
     private RPGSystem _rPGSystem;
 
     public EditGenresViewModel(TriarchDbContext context, RPGSystem rPGSystem)
     {
         _context = context;
-        _rPGSystem = rPGSystem;        
+        _rPGSystem = rPGSystem;
 
-        GenresList = new (_context.Entry(_rPGSystem).Collection(x => x.Genres).Query().OrderBy(x=>x.GenreOrder).Select(x=> new RPGGenreSelectItem { Id = x.Id, Name=x.GenreName}));
+        GenresList = new(_context.Entry(_rPGSystem).Collection(x => x.Genres).Query().OrderBy(x => x.GenreOrder).Select(x => new RPGGenreSelectItem { Id = x.Id, Name = x.GenreName }));
     }
 
     public void Edit()
@@ -50,7 +50,7 @@ internal class EditGenresViewModel : ObservableViewModel
             {
                 CurrentlyEditingItem = _context.Genres.FirstOrDefault(x => x.Id == SelectedItem.Id);
             }
-        }              
+        }
     }
 
     public void Create()
@@ -58,7 +58,7 @@ internal class EditGenresViewModel : ObservableViewModel
         if (CurrentlyEditingItem == null)
         {
             int NextOrder = 0;
-            if(_context.Entry(_rPGSystem).Collection(x => x.Genres).Query().Any())
+            if (_context.Entry(_rPGSystem).Collection(x => x.Genres).Query().Any())
             {
                 NextOrder = _context.Entry(_rPGSystem).Collection(x => x.Genres).Query().Max(x => x.GenreOrder);
             }
@@ -77,7 +77,7 @@ internal class EditGenresViewModel : ObservableViewModel
     {
         if (CurrentlyEditingItem != null)
         {
-            if(CurrentlyEditingItem.Id == 0)
+            if (CurrentlyEditingItem.Id == 0)
             {
                 _context.Genres.Add(CurrentlyEditingItem);
             }
@@ -104,7 +104,7 @@ internal class EditGenresViewModel : ObservableViewModel
     }
 
     private ObservableCollection<RPGGenreSelectItem> _genresList = null!;
-    
+
     private Genre? _currentlyEditingItem;
 
     public ObservableCollection<RPGGenreSelectItem> GenresList
@@ -129,7 +129,7 @@ internal class EditGenresViewModel : ObservableViewModel
 
     public void MoveUp()
     {
-        if(SelectedItem != null)
+        if (SelectedItem != null)
         {
             RPGGenreSelectItem aaa = SelectedItem;
             int currentIndex = GenresList.IndexOf(aaa);
@@ -140,9 +140,9 @@ internal class EditGenresViewModel : ObservableViewModel
                 _context.Genres.First(x => x.Id == aaa.Id).GenreOrder--;
                 _context.Genres.First(x => x.Id == temp.Id).GenreOrder++;
                 _context.SaveChanges();
-                
-                
-                GenresList[currentIndex - 1]= aaa;
+
+
+                GenresList[currentIndex - 1] = aaa;
                 GenresList[currentIndex] = temp;
                 OnPropertyChanged(nameof(GenresList));
                 SelectedItem = aaa;
@@ -177,12 +177,12 @@ internal class EditGenresViewModel : ObservableViewModel
         if (SelectedItem != null)
         {
             Genre? toRemove = _context.Genres.FirstOrDefault(x => x.Id == SelectedItem.Id);
-            if(toRemove != null)
+            if (toRemove != null)
             {
                 int orderRemoved = toRemove.GenreOrder;
                 _context.Remove(toRemove);
 
-                foreach(var item in _context.Genres.Where(x => x.RPGSystem==_rPGSystem && x.GenreOrder > orderRemoved))
+                foreach (var item in _context.Genres.Where(x => x.RPGSystem == _rPGSystem && x.GenreOrder > orderRemoved))
                 {
                     item.GenreOrder--;
                 }
@@ -190,13 +190,13 @@ internal class EditGenresViewModel : ObservableViewModel
                 _context.SaveChanges();
                 GenresList.Remove(SelectedItem);
                 SelectedItem = null;
-            }               
-        }        
+            }
+        }
     }
 
     internal void CancelEdit()
     {
-        CurrentlyEditingItem=null;
+        CurrentlyEditingItem = null;
     }
 }
 

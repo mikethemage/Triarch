@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 public class EditSystemViewModel : ObservableViewModel
@@ -26,9 +26,9 @@ public class EditSystemViewModel : ObservableViewModel
 
     public void ShowWindow()
     {
-       EditSystemView a = new();
-       a.DataContext = this;
-       a.ShowDialog();
+        EditSystemView a = new();
+        a.DataContext = this;
+        a.ShowDialog();
     }
 
     public TriarchDbContext GetDbContext() => _context;
@@ -37,7 +37,7 @@ public class EditSystemViewModel : ObservableViewModel
     {
         _context = context;
         _rPGSystem = _context.RPGSystems.Include(x => x.Ruleset).FirstOrDefault(x => x.Id == existingRPGSystemId)!;
-        Saved=true;
+        Saved = true;
     }
 
     public EditSystemViewModel(TriarchDbContext context, CoreRuleset createFromCoreRuleset)
@@ -53,10 +53,10 @@ public class EditSystemViewModel : ObservableViewModel
     }
 
     private RPGSystem _rPGSystem = null!;
-    
+
     public void CreateEditTypes()
     {
-        if(_saved)
+        if (_saved)
         {
             EditTypesViewModel a = new(_context, _rPGSystem);
             a.ShowWindow();
@@ -80,7 +80,7 @@ public class EditSystemViewModel : ObservableViewModel
             a.ShowWindow();
         }
     }
-    
+
     public void CreateEditProgressions()
     {
         if (_saved)
@@ -112,7 +112,7 @@ public class EditSystemViewModel : ObservableViewModel
         get
         {
             return _rPGSystem.Ruleset.CoreRulesetName;
-        }        
+        }
     }
 
     public string Description

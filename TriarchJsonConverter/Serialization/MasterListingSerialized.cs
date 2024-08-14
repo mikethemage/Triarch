@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace TriarchJsonConverter.Serialization;
@@ -13,7 +11,7 @@ public class MasterListingSerialized
     public List<string> Genres { get; set; } = null!;
     public List<ProgressionListingSerialized> ProgressionList { get; set; } = null!;
 
-    private static readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { DefaultIgnoreCondition=JsonIgnoreCondition.WhenWritingNull, WriteIndented=true };   
+    private static readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = true };
 
     public void CreateJSON(string outputPath)
     {

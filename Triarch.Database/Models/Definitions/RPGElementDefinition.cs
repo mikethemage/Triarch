@@ -22,7 +22,7 @@ public partial class RPGElementDefinition
 
     public int RPGSystemId { get; set; }
 
-    public virtual LevelableDefinition? LevelableData { get; set; }   
+    public virtual LevelableDefinition? LevelableData { get; set; }
 
     public virtual ICollection<RPGFreebie> Freebies { get; set; } = new List<RPGFreebie>();
 

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 internal class EditElementDefinitionViewModel : ObservableViewModel
-{   
+{
     private RPGElementDefinition _elementDefinition;
 
     private TriarchDbContext _context;
@@ -32,16 +32,16 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
     {
         _context = context;
         _elementDefinition = existingElementDefinition;
-        TypeList = new ObservableCollection<RPGElementType>(_context.RPGElementTypes.Where(x=>x.RPGSystem==_elementDefinition.RPGSystem).OrderBy(x=>x.TypeName));
-        
-        if(_elementDefinition.LevelableData != null)
+        TypeList = new ObservableCollection<RPGElementType>(_context.RPGElementTypes.Where(x => x.RPGSystem == _elementDefinition.RPGSystem).OrderBy(x => x.TypeName));
+
+        if (_elementDefinition.LevelableData != null)
         {
             LevelableData = new(_context, _elementDefinition.LevelableData);
             Levelable = true;
         }
         else
         {
-            LevelableData=null;
+            LevelableData = null;
             Levelable = false;
         }
 
@@ -81,7 +81,7 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
         }
         set
         {
-            _elementDefinition.Description = value; 
+            _elementDefinition.Description = value;
             OnPropertyChanged(nameof(Description));
             Saved = false;
         }
@@ -94,8 +94,8 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
             return _elementDefinition.Stat ?? "";
         }
         set
-        { 
-            _elementDefinition.Stat = value; 
+        {
+            _elementDefinition.Stat = value;
             OnPropertyChanged(nameof(Stat));
             Saved = false;
         }
@@ -109,7 +109,7 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
         }
         set
         {
-            _elementDefinition.PageNumbers= value;
+            _elementDefinition.PageNumbers = value;
             OnPropertyChanged(nameof(PageNumbers));
             Saved = false;
         }
@@ -118,7 +118,7 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
     public bool Human
     {
         get
-        { return _elementDefinition.Human; }    
+        { return _elementDefinition.Human; }
         set
         {
             _elementDefinition.Human = value;
@@ -137,14 +137,14 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
         {
             _levelable = value;
 
-            if(value==true && LevelableData==null)
+            if (value == true && LevelableData == null)
             {
-                if(_elementDefinition.LevelableData==null)
+                if (_elementDefinition.LevelableData == null)
                 {
                     _elementDefinition.LevelableData = new();
-                    _context.Add(_elementDefinition.LevelableData);                    
+                    _context.Add(_elementDefinition.LevelableData);
                 }
-                
+
                 LevelableData = new(_context, _elementDefinition.LevelableData);
             }
 
@@ -156,7 +156,7 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
     {
         get
         {
-            if(_elementDefinition.Freebies == null )
+            if (_elementDefinition.Freebies == null)
             {
                 return new ObservableCollection<string>();
             }
@@ -164,8 +164,8 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
             {
                 return new ObservableCollection<string>(_elementDefinition.Freebies.Select(x => x.FreebieElementDefinition.ElementName));
             }
-            
-        }        
+
+        }
     }
 
     public bool PointsContainer
@@ -204,9 +204,9 @@ internal class EditElementDefinitionViewModel : ObservableViewModel
 
     public void Save()
     {
-        if (Saved == false && !string.IsNullOrEmpty(Name) && SelectedType!=null)
+        if (Saved == false && !string.IsNullOrEmpty(Name) && SelectedType != null)
         {
-            if(!Levelable)
+            if (!Levelable)
             {
                 if (_elementDefinition.LevelableData != null)
                 {

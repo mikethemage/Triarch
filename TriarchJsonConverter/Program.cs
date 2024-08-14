@@ -35,7 +35,7 @@ internal class Program
             PopulateTypeList(inputData, outputSystem);
             PopulateGenreList(inputData, outputSystem);
             PopulateProgressionList(inputData, outputSystem);
-            PopulateAttributes(inputData, outputSystem);            
+            PopulateAttributes(inputData, outputSystem);
 
             Console.WriteLine("Conversion Complete");
 
@@ -53,7 +53,7 @@ internal class Program
     };
 
     private static void WriteOutOutputData(RPGSystemDto outputSystem)
-    {         
+    {
         string outputText = JsonSerializer.Serialize(outputSystem, _jsonOptions);
         File.WriteAllText("DataFiles\\NEW_BESM3E.json", outputText);
     }
@@ -102,7 +102,7 @@ internal class Program
                     SpecialPointsPerLevel = inputElement.SpecialPointsPerLevel
                 };
 
-                
+
                 if (inputElement.CustomProgression != null && inputElement.CustomProgression.Count > 0)
                 {
                     string customProgressionName = inputElement.Name + "Custom";
@@ -165,7 +165,7 @@ internal class Program
                     }
                 }
 
-                if (inputElement.MultiGenre == true && inputElement.GenrePoints!=null)
+                if (inputElement.MultiGenre == true && inputElement.GenrePoints != null)
                 {
                     levelableData.MultiGenreCostPerLevels = new List<GenreCostPerLevelDto>();
                     for (int i = 0; i < inputElement.GenrePoints.Count; i++)

@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 
@@ -31,7 +31,7 @@ internal class EditElementsViewModel : ObservableViewModel
         }
     }
 
-    private TriarchDbContext _context;       
+    private TriarchDbContext _context;
 
     private RPGSystem _rPGSystem;
 

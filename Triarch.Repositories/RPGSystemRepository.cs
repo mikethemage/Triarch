@@ -48,8 +48,8 @@ public class RPGSystemRepository : IRPGSystemRepository
             if (elementDefinition.LevelableData != null)
             {
                 elementDefinition.LevelableData.VariantDefinitions = await _context.VariantDefinitions.Where(x => x.LevelableDefinitionId == elementDefinition.LevelableData.Id).ToListAsync();
-            
-                elementDefinition.LevelableData.GenreCostPerLevels=await _context.GenreCostPerLevels.Where(x=>x.LevelableId==elementDefinition.LevelableData.Id).ToListAsync();
+
+                elementDefinition.LevelableData.GenreCostPerLevels = await _context.GenreCostPerLevels.Where(x => x.LevelableId == elementDefinition.LevelableData.Id).ToListAsync();
             }
 
             elementDefinition.Freebies = await _context.RPGFreebies.Where(x => x.OwnerElementDefinitionId == elementDefinition.Id).ToListAsync();
@@ -72,7 +72,7 @@ public class RPGSystemRepository : IRPGSystemRepository
 
     public async Task<RPGSystemDto> SaveAsync(RPGSystemDto input)
     {
-        RPGSystem? existing = await _context.RPGSystems.Where(x => x.SystemName == input.SystemName && x.OwnerUserId == input.OwnerUserId).FirstOrDefaultAsync();       
+        RPGSystem? existing = await _context.RPGSystems.Where(x => x.SystemName == input.SystemName && x.OwnerUserId == input.OwnerUserId).FirstOrDefaultAsync();
 
         if (existing == null)
         {
@@ -218,7 +218,7 @@ public class RPGSystemRepository : IRPGSystemRepository
 
                     elementDefinition.LevelableData = levelableDefinition;
                 }
-                
+
                 _context.Add(elementDefinition);
                 existing.RPGElementDefinitions.Add(elementDefinition);
             }
@@ -230,10 +230,10 @@ public class RPGSystemRepository : IRPGSystemRepository
                 parent.AllowedChildren = children;
             }
 
-            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x=>x.Freebies!=null && x.Freebies.Count>0))
+            foreach (RPGElementDefinitionDto elementDefinitionDto in input.ElementDefinitions.Where(x => x.Freebies != null && x.Freebies.Count > 0))
             {
                 RPGElementDefinition? ownerElement = existing.RPGElementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).FirstOrDefault();
-                if(ownerElement != null)
+                if (ownerElement != null)
                 {
                     foreach (FreebieDto freebieDto in elementDefinitionDto.Freebies!)
                     {
@@ -251,7 +251,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                             ownerElement.Freebies.Add(freebie);
                         }
                     }
-                }    
+                }
             }
 
             await _context.SaveChangesAsync();
@@ -288,12 +288,12 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             Dictionary<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinitions = new Dictionary<RPGElementDefinitionDto, RPGElementDefinition>();
             List<RPGElementDefinition> toDeleteDefinitions = await _context.RPGElementDefinitions
-                                                                .Where(x => x.RPGSystemId == existing.Id)                                                                
+                                                                .Where(x => x.RPGSystemId == existing.Id)
                                                                 .Include(x => x.AllowedChildren)
-                                                                .Include(x=>x.Freebies)
-                                                                .Include(x => x.LevelableData)                                                                
+                                                                .Include(x => x.Freebies)
+                                                                .Include(x => x.LevelableData)
                                                                 .ToListAsync();
-            List<RPGElementDefinitionDto> toAddDefinitions = new List<RPGElementDefinitionDto>(input.ElementDefinitions);            
+            List<RPGElementDefinitionDto> toAddDefinitions = new List<RPGElementDefinitionDto>(input.ElementDefinitions);
 
             //Match on Name:
             foreach (RPGElementDefinitionDto toAddDto in new List<RPGElementDefinitionDto>(toAddDefinitions))
@@ -323,7 +323,7 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             List<RPGElementTypeDto> toAddTypes = new List<RPGElementTypeDto>(input.ElementTypes);
             List<RPGElementType> toDeleteTypes = await _context.RPGElementTypes.Where(x => x.RPGSystemId == existing.Id).ToListAsync();
-            Dictionary<RPGElementTypeDto, RPGElementType> matchedTypes = new Dictionary<RPGElementTypeDto, RPGElementType>();            
+            Dictionary<RPGElementTypeDto, RPGElementType> matchedTypes = new Dictionary<RPGElementTypeDto, RPGElementType>();
 
             foreach (RPGElementTypeDto toAddDto in new List<RPGElementTypeDto>(toAddTypes))
             {
@@ -361,7 +361,7 @@ public class RPGSystemRepository : IRPGSystemRepository
             List<ProgressionDto> toAddProgressions = new List<ProgressionDto>(input.Progressions);
             List<Progression> toDeleteProgressions = await _context.Progressions.Where(x => x.RPGSystemId == existing.Id).Include(x => x.ProgressionEntries).ToListAsync();
             Dictionary<ProgressionDto, Progression> matchedProgressions = new Dictionary<ProgressionDto, Progression>();
-            
+
             foreach (ProgressionDto toAddDto in new List<ProgressionDto>(toAddProgressions))
             {
                 Progression? toAdd = toDeleteProgressions.Where(x => x.ProgressionType == toAddDto.ProgressionType).FirstOrDefault();
@@ -441,7 +441,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                     ProgressionEntries = toAddDto.Progressions.Select(x => new ProgressionEntry { ProgressionLevel = x.ProgressionLevel, Text = x.Text }).ToList()
                 };
 
-                matchedProgressions.Add(toAddDto,toAdd);
+                matchedProgressions.Add(toAddDto, toAdd);
                 _context.Add(toAdd);
                 existing.Progressions.Add(toAdd);
             }
@@ -449,10 +449,10 @@ public class RPGSystemRepository : IRPGSystemRepository
             foreach (KeyValuePair<RPGElementDefinitionDto, RPGElementDefinition> matchedDefinition in matchedDefinitions)
             {
                 matchedDefinition.Value.Description = matchedDefinition.Key.Description;
-                matchedDefinition.Value.Human=matchedDefinition.Key.Human;
+                matchedDefinition.Value.Human = matchedDefinition.Key.Human;
                 matchedDefinition.Value.PageNumbers = matchedDefinition.Key.PageNumbers;
                 matchedDefinition.Value.PointsContainerScale = matchedDefinition.Key.PointsContainerScale;
-                matchedDefinition.Value.Stat=matchedDefinition.Key.Stat;
+                matchedDefinition.Value.Stat = matchedDefinition.Key.Stat;
 
                 //Update all the element types:
                 RPGElementTypeDto? changedType = matchedTypes.Keys.Where(x => x.TypeName == matchedDefinition.Key.ElementTypeName).FirstOrDefault();
@@ -477,9 +477,9 @@ public class RPGSystemRepository : IRPGSystemRepository
                     matchedDefinition.Value.LevelableData.CostPerLevel = matchedDefinition.Key.LevelableData.CostPerLevel;
                     matchedDefinition.Value.LevelableData.CostPerLevelDescription = matchedDefinition.Key.LevelableData.CostPerLevelDescription;
                     matchedDefinition.Value.LevelableData.MaxLevel = matchedDefinition.Key.LevelableData.MaxLevel;
-                    matchedDefinition.Value.LevelableData.EnforceMaxLevel= matchedDefinition.Key.LevelableData.EnforceMaxLevel;                    
-                    matchedDefinition.Value.LevelableData.SpecialPointsPerLevel= matchedDefinition.Key.LevelableData.SpecialPointsPerLevel;
-                    matchedDefinition.Value.LevelableData.ProgressionReversed=matchedDefinition.Key.LevelableData.ProgressionReversed;
+                    matchedDefinition.Value.LevelableData.EnforceMaxLevel = matchedDefinition.Key.LevelableData.EnforceMaxLevel;
+                    matchedDefinition.Value.LevelableData.SpecialPointsPerLevel = matchedDefinition.Key.LevelableData.SpecialPointsPerLevel;
+                    matchedDefinition.Value.LevelableData.ProgressionReversed = matchedDefinition.Key.LevelableData.ProgressionReversed;
 
                     ProgressionDto? changedProgression = matchedProgressions.Keys.Where(x => x.ProgressionType == matchedDefinition.Key.LevelableData.ProgressionName).FirstOrDefault();
                     if (changedProgression != null)
@@ -490,8 +490,8 @@ public class RPGSystemRepository : IRPGSystemRepository
                         }
                     }
                     List<VariantDefinitionDto> VariantsToAdd;
-                    List<VariantDefinition> VariantsToDelete = await _context.VariantDefinitions.Where(x=>x.LevelableDefinitionId==matchedDefinition.Value.LevelableData.Id).ToListAsync();
-                    if(matchedDefinition.Key.LevelableData.Variants==null)
+                    List<VariantDefinition> VariantsToDelete = await _context.VariantDefinitions.Where(x => x.LevelableDefinitionId == matchedDefinition.Value.LevelableData.Id).ToListAsync();
+                    if (matchedDefinition.Key.LevelableData.Variants == null)
                     {
                         VariantsToAdd = new List<VariantDefinitionDto>();
                     }
@@ -500,7 +500,7 @@ public class RPGSystemRepository : IRPGSystemRepository
                         VariantsToAdd = new List<VariantDefinitionDto>(matchedDefinition.Key.LevelableData.Variants);
                     }
 
-                    Dictionary<VariantDefinitionDto, VariantDefinition> matchedVariants = new Dictionary<VariantDefinitionDto, VariantDefinition>();                    
+                    Dictionary<VariantDefinitionDto, VariantDefinition> matchedVariants = new Dictionary<VariantDefinitionDto, VariantDefinition>();
 
                     foreach (VariantDefinitionDto toAddDto in new List<VariantDefinitionDto>(VariantsToAdd))
                     {
@@ -516,12 +516,12 @@ public class RPGSystemRepository : IRPGSystemRepository
                     foreach (VariantDefinition toDelete in VariantsToDelete)
                     {
                         toDelete.LevelableDefinition = null;
-                        _context.Remove(toDelete);                        
+                        _context.Remove(toDelete);
                     }
 
                     foreach (KeyValuePair<VariantDefinitionDto, VariantDefinition> matchedVariant in matchedVariants)
                     {
-                        if(matchedVariant.Value.VariantName!=matchedVariant.Key.VariantName)
+                        if (matchedVariant.Value.VariantName != matchedVariant.Key.VariantName)
                         {
                             matchedVariant.Value.VariantName = matchedVariant.Key.VariantName;
                         }
@@ -575,9 +575,9 @@ public class RPGSystemRepository : IRPGSystemRepository
                 RPGElementDefinition? ownerElement = existing.RPGElementDefinitions.Where(x => x.ElementName == elementDefinitionDto.ElementName).FirstOrDefault();
                 if (ownerElement != null)
                 {
-                    foreach(RPGFreebie freebie in new List<RPGFreebie>(ownerElement.Freebies))
+                    foreach (RPGFreebie freebie in new List<RPGFreebie>(ownerElement.Freebies))
                     {
-                        if(!elementDefinitionDto.Freebies!.Any(x=>x.FreebieElementDefinitionName==freebie.FreebieElementDefinition.ElementName))
+                        if (!elementDefinitionDto.Freebies!.Any(x => x.FreebieElementDefinitionName == freebie.FreebieElementDefinition.ElementName))
                         {
                             ownerElement.Freebies.Remove(freebie);
                             _context.Remove(freebie);
@@ -614,11 +614,11 @@ public class RPGSystemRepository : IRPGSystemRepository
 
             await _context.SaveChangesAsync();
 
-            RPGSystem newSystem = await _context.RPGSystems.Where(x=>x.Id==existing.Id).Include(x => x.Ruleset).SingleAsync();
+            RPGSystem newSystem = await _context.RPGSystems.Where(x => x.Id == existing.Id).Include(x => x.Ruleset).SingleAsync();
 
             await HydrateSystem(newSystem);
             existing = newSystem;
-        }        
+        }
 
         return existing.ToDto();
     }
@@ -634,7 +634,7 @@ public class RPGSystemRepository : IRPGSystemRepository
         foreach (ProgressionEntryDto inputProgressionEntry in inputProgression.Progressions)
         {
             ProgressionEntry? existing = progressionEntries.Where(x => x.ProgressionLevel == inputProgressionEntry.ProgressionLevel).FirstOrDefault();
-            
+
             if (existing == null)
             {
                 existing = new ProgressionEntry
@@ -703,7 +703,7 @@ public class RPGSystemRepository : IRPGSystemRepository
         {
             systemDtos.Add(
                 new RPGSystemHeadingDto
-                {                    
+                {
                     CoreRulesetName = system.Ruleset.CoreRulesetName,
                     SystemName = system.SystemName
                 }

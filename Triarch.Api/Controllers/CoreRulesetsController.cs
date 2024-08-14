@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Triarch.Repositories;
+﻿using Microsoft.AspNetCore.Mvc;
 using Triarch.Dtos.Definitions;
+using Triarch.Repositories;
 using Triarch.Repositories.Exceptions;
 
 namespace Triarch.Api.Controllers;
@@ -26,7 +21,7 @@ public class CoreRulesetsController : ControllerBase
     [ProducesResponseType<IEnumerable<CoreRulesetDto>>(StatusCodes.Status200OK)]
     public async Task<ActionResult<IEnumerable<CoreRulesetDto>>> GetCoreRulesets()
     {
-        return Ok(await _coreRuleSetRepository.GetAllAsync());        
+        return Ok(await _coreRuleSetRepository.GetAllAsync());
     }
 
     // GET: api/CoreRulesets/5
@@ -43,7 +38,7 @@ public class CoreRulesetsController : ControllerBase
         {
             return NotFound(ex.Message);
         }
-    }    
+    }
 
     // POST: api/CoreRulesets
     [HttpPost]
@@ -54,12 +49,12 @@ public class CoreRulesetsController : ControllerBase
         try
         {
             CoreRulesetDto output = await _coreRuleSetRepository.SaveAsync(coreRulesetDTO);
-            return CreatedAtAction(nameof(GetCoreRuleset), new { name = output.CoreRulesetName },output);
+            return CreatedAtAction(nameof(GetCoreRuleset), new { name = output.CoreRulesetName }, output);
         }
         catch (CoreRulesetConflictException ex)
         {
             return BadRequest(ex.Message);
-        }       
+        }
     }
 
     // DELETE: api/CoreRulesets/5
@@ -76,6 +71,6 @@ public class CoreRulesetsController : ControllerBase
         catch (CoreRulesetNotFoundException ex)
         {
             return NotFound(ex.Message);
-        }       
-    }    
+        }
+    }
 }

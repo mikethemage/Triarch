@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 
@@ -13,7 +13,7 @@ public class CreateSystemRulesetPromptViewModel : ObservableViewModel
 
     public ObservableCollection<CoreRulesetSelectItem> RulesetList { get; set; }
 
-    public TriarchDbContext GetDbContext() => _context;     
+    public TriarchDbContext GetDbContext() => _context;
 
     public CoreRulesetSelectItem? SelectedItem
     {
@@ -34,20 +34,20 @@ public class CreateSystemRulesetPromptViewModel : ObservableViewModel
             return null;
 
         return _context.CoreRulesets.FirstOrDefault(x => x.Id == SelectedItem.Id);
-    }    
+    }
 
     public void ShowWindow()
     {
         CreateSystemRulesetPromptView a = new();
         a.DataContext = this;
-        a.ShowDialog();        
+        a.ShowDialog();
     }
 
-    public CreateSystemRulesetPromptViewModel(TriarchDbContext context) 
-    { 
+    public CreateSystemRulesetPromptViewModel(TriarchDbContext context)
+    {
         _context = context;
         RulesetList = new ObservableCollection<CoreRulesetSelectItem>(_context.CoreRulesets.Select(x => new CoreRulesetSelectItem { Id = x.Id, Name = x.CoreRulesetName }).OrderBy(x => x.Name));
-        SelectedItem = RulesetList.FirstOrDefault();        
+        SelectedItem = RulesetList.FirstOrDefault();
     }
 }
 

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace TriarchJsonConverter.Serialization;
+﻿namespace TriarchJsonConverter.Serialization;
 
 public class DataListingSerialized
 {

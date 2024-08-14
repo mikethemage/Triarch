@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 internal class EditTypesViewModel : ObservableViewModel
@@ -29,16 +29,16 @@ internal class EditTypesViewModel : ObservableViewModel
         }
     }
 
-    private TriarchDbContext _context;    
+    private TriarchDbContext _context;
 
     private RPGSystem _rPGSystem;
 
     public EditTypesViewModel(TriarchDbContext context, RPGSystem rPGSystem)
     {
         _context = context;
-        _rPGSystem = rPGSystem;        
+        _rPGSystem = rPGSystem;
 
-        TypesList = new (_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().OrderBy(x=>x.TypeOrder).Select(x=> new RPGTypeSelectItem { Id = x.Id, Name=x.TypeName }));
+        TypesList = new(_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().OrderBy(x => x.TypeOrder).Select(x => new RPGTypeSelectItem { Id = x.Id, Name = x.TypeName }));
     }
 
     public void Edit()
@@ -49,7 +49,7 @@ internal class EditTypesViewModel : ObservableViewModel
             {
                 CurrentlyEditingItem = _context.RPGElementTypes.FirstOrDefault(x => x.Id == SelectedItem.Id);
             }
-        }              
+        }
     }
 
     public void Create()
@@ -57,7 +57,7 @@ internal class EditTypesViewModel : ObservableViewModel
         if (CurrentlyEditingItem == null)
         {
             int NextOrder = 0;
-            if(_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().Any())
+            if (_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().Any())
             {
                 NextOrder = _context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().Max(x => x.TypeOrder);
             }
@@ -76,7 +76,7 @@ internal class EditTypesViewModel : ObservableViewModel
     {
         if (CurrentlyEditingItem != null)
         {
-            if(CurrentlyEditingItem.Id == 0)
+            if (CurrentlyEditingItem.Id == 0)
             {
                 _context.RPGElementTypes.Add(CurrentlyEditingItem);
             }
@@ -84,7 +84,7 @@ internal class EditTypesViewModel : ObservableViewModel
             TypesList = new(_context.Entry(_rPGSystem).Collection(x => x.RPGElementTypes).Query().OrderBy(x => x.TypeOrder).Select(x => new RPGTypeSelectItem { Id = x.Id, Name = x.TypeName }));
             SelectedItem = TypesList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
-        }       
+        }
     }
 
     private RPGTypeSelectItem? _selectedItem;
@@ -128,7 +128,7 @@ internal class EditTypesViewModel : ObservableViewModel
 
     public void MoveUp()
     {
-        if(SelectedItem != null)
+        if (SelectedItem != null)
         {
             RPGTypeSelectItem aaa = SelectedItem;
             int currentIndex = TypesList.IndexOf(aaa);
@@ -139,8 +139,8 @@ internal class EditTypesViewModel : ObservableViewModel
                 _context.RPGElementTypes.First(x => x.Id == aaa.Id).TypeOrder--;
                 _context.RPGElementTypes.First(x => x.Id == temp.Id).TypeOrder++;
                 _context.SaveChanges();
-                
-                TypesList[currentIndex - 1]= aaa;
+
+                TypesList[currentIndex - 1] = aaa;
                 TypesList[currentIndex] = temp;
                 OnPropertyChanged(nameof(TypesList));
                 SelectedItem = aaa;
@@ -175,7 +175,7 @@ internal class EditTypesViewModel : ObservableViewModel
         if (SelectedItem != null)
         {
             var toRemove = _context.RPGElementTypes.FirstOrDefault(x => x.Id == SelectedItem.Id);
-            if(toRemove != null)
+            if (toRemove != null)
             {
                 int orderRemoved = toRemove.TypeOrder;
                 _context.Remove(toRemove);
@@ -187,13 +187,13 @@ internal class EditTypesViewModel : ObservableViewModel
                 _context.SaveChanges();
                 TypesList.Remove(SelectedItem);
                 SelectedItem = null;
-            }               
-        }        
+            }
+        }
     }
 
     internal void CancelEdit()
     {
-        CurrentlyEditingItem=null;
+        CurrentlyEditingItem = null;
     }
 }
 

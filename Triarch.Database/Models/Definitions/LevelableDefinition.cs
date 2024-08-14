@@ -10,7 +10,7 @@ public partial class LevelableDefinition
 
     public int? CostPerLevel { get; set; }
 
-    public string? CostPerLevelDescription { get; set; }   
+    public string? CostPerLevelDescription { get; set; }
 
     public int? SpecialPointsPerLevel { get; set; }
 

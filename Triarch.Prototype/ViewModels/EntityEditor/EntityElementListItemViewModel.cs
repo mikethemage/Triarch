@@ -7,10 +7,10 @@ public class EntityElementListItemViewModel : ViewModelBase
 {
     public string DisplayText
     {
-        get 
-        { 
-            return ElementData.DisplayText; 
-        }        
+        get
+        {
+            return ElementData.DisplayText;
+        }
     }
 
     public RPGElement ElementData { get; private set; }
@@ -19,7 +19,7 @@ public class EntityElementListItemViewModel : ViewModelBase
     {
         ElementData = element;
         _owner = owner;
-        
+
         foreach (RPGElement child in element.Children)
         {
             EntityElementListItemViewModel newElement = new EntityElementListItemViewModel(child, owner);

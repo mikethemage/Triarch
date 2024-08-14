@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Triarch.Repositories;
 using Triarch.Dtos.Definitions;
+using Triarch.Repositories;
 using Triarch.Repositories.Exceptions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,7 +35,7 @@ public class RPGSystemController : ControllerBase
         {
             return Ok(await _rPGSystemRepository.GetByNameAsync(name, 1));
         }
-        catch (RPGSystemNotFoundException ex) 
+        catch (RPGSystemNotFoundException ex)
         {
             return NotFound(ex.Message);
         }
@@ -71,8 +71,8 @@ public class RPGSystemController : ControllerBase
         }
         catch (RPGSystemNotFoundException ex)
         {
-            return NotFound(ex.Message);  
+            return NotFound(ex.Message);
         }
-        
+
     }
 }

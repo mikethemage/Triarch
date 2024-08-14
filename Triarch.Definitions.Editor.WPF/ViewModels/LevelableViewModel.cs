@@ -5,7 +5,7 @@ namespace Triarch.Definitions.Editor.WPF.ViewModels;
 public class LevelableViewModel : ObservableViewModel
 {
     private TriarchDbContext _context;
-    private LevelableDefinition _levelableDefinition;    
+    private LevelableDefinition _levelableDefinition;
 
     //public LevelableViewModel(TriarchDbContext context) 
     //{ 
@@ -16,7 +16,7 @@ public class LevelableViewModel : ObservableViewModel
     public LevelableViewModel(TriarchDbContext context, LevelableDefinition existingLevelableDefinition)
     {
         _context = context;
-        _levelableDefinition= existingLevelableDefinition;
+        _levelableDefinition = existingLevelableDefinition;
     }
 
     public int? MaxLevel

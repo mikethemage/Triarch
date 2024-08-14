@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 
@@ -30,16 +30,16 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
         }
     }
 
-    private TriarchDbContext _context;    
+    private TriarchDbContext _context;
 
     private Progression _progression;
 
     public EditProgressionDefinitionViewModel(TriarchDbContext context, Progression progression)
     {
         _context = context;
-        _progression = progression;        
+        _progression = progression;
 
-        ProgressionDefinitionsList = new (_context.Entry(progression).Collection(x => x.ProgressionEntries).Query().OrderBy(x=>x.ProgressionLevel).Select(x=> new ProgressionDefinitionSelectItem { Id = x.Id, Name=x.Text, Level=x.ProgressionLevel}));
+        ProgressionDefinitionsList = new(_context.Entry(progression).Collection(x => x.ProgressionEntries).Query().OrderBy(x => x.ProgressionLevel).Select(x => new ProgressionDefinitionSelectItem { Id = x.Id, Name = x.Text, Level = x.ProgressionLevel }));
     }
 
     public void Edit()
@@ -50,7 +50,7 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
             {
                 CurrentlyEditingItem = _context.ProgressionEntries.FirstOrDefault(x => x.Id == SelectedItem.Id);
             }
-        }              
+        }
     }
 
     public void Create()
@@ -58,16 +58,16 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
         if (CurrentlyEditingItem == null)
         {
             int NextOrder = 0;
-            if(_context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().Any())
+            if (_context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().Any())
             {
                 NextOrder = _context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().Max(x => x.ProgressionLevel);
                 NextOrder++;
-            }            
+            }
 
             CurrentlyEditingItem = new ProgressionEntry
             {
                 Id = 0,
-                Progression=_progression,
+                Progression = _progression,
                 ProgressionLevel = NextOrder
             };
         }
@@ -77,17 +77,17 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
     {
         if (CurrentlyEditingItem != null)
         {
-            if(CurrentlyEditingItem.Id == 0)
+            if (CurrentlyEditingItem.Id == 0)
             {
                 _context.ProgressionEntries.Add(CurrentlyEditingItem);
             }
             _context.SaveChanges();
-            ProgressionDefinitionsList = new(_context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().OrderBy(x => x.ProgressionLevel).Select(x => new ProgressionDefinitionSelectItem { Id = x.Id, Name = x.Text, Level=x.ProgressionLevel }));
+            ProgressionDefinitionsList = new(_context.Entry(_progression).Collection(x => x.ProgressionEntries).Query().OrderBy(x => x.ProgressionLevel).Select(x => new ProgressionDefinitionSelectItem { Id = x.Id, Name = x.Text, Level = x.ProgressionLevel }));
             SelectedItem = ProgressionDefinitionsList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
         }
-        
-       
+
+
     }
 
     private ProgressionDefinitionSelectItem? _selectedItem;
@@ -131,7 +131,7 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
 
     public void MoveUp()
     {
-        if(SelectedItem != null)
+        if (SelectedItem != null)
         {
             ProgressionDefinitionSelectItem aaa = SelectedItem;
             int currentIndex = ProgressionDefinitionsList.IndexOf(aaa);
@@ -142,8 +142,8 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
                 _context.ProgressionEntries.First(x => x.Id == aaa.Id).ProgressionLevel--;
                 _context.ProgressionEntries.First(x => x.Id == temp.Id).ProgressionLevel++;
                 _context.SaveChanges();
-                
-                ProgressionDefinitionsList[currentIndex - 1]= aaa;
+
+                ProgressionDefinitionsList[currentIndex - 1] = aaa;
                 ProgressionDefinitionsList[currentIndex] = temp;
                 OnPropertyChanged(nameof(ProgressionDefinitionsList));
                 SelectedItem = aaa;
@@ -178,12 +178,12 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
         if (SelectedItem != null)
         {
             ProgressionEntry? toRemove = _context.ProgressionEntries.FirstOrDefault(x => x.Id == SelectedItem.Id);
-            if(toRemove != null)
+            if (toRemove != null)
             {
                 int orderRemoved = toRemove.ProgressionLevel;
                 _context.Remove(toRemove);
 
-                foreach(var item in _context.ProgressionEntries.Where(x => x.Progression==_progression && x.ProgressionLevel > orderRemoved))
+                foreach (var item in _context.ProgressionEntries.Where(x => x.Progression == _progression && x.ProgressionLevel > orderRemoved))
                 {
                     item.ProgressionLevel--;
                 }
@@ -191,13 +191,13 @@ internal class EditProgressionDefinitionViewModel : ObservableViewModel
                 _context.SaveChanges();
                 ProgressionDefinitionsList.Remove(SelectedItem);
                 SelectedItem = null;
-            }               
-        }        
+            }
+        }
     }
 
     internal void CancelEdit()
     {
-        CurrentlyEditingItem=null;
+        CurrentlyEditingItem = null;
     }
 }
 

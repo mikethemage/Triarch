@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using Triarch.Definitions.Editor.WPF.Views;
 using Triarch.Database;
 using Triarch.Database.Models.Definitions;
+using Triarch.Definitions.Editor.WPF.Views;
 
 namespace Triarch.Definitions.Editor.WPF.ViewModels;
 
@@ -30,7 +30,7 @@ internal class EditProgressionsViewModel : ObservableViewModel
         }
     }
 
-    private TriarchDbContext _context;    
+    private TriarchDbContext _context;
 
     private RPGSystem _rPGSystem;
 
@@ -39,7 +39,7 @@ internal class EditProgressionsViewModel : ObservableViewModel
         _context = context;
         _rPGSystem = rPGSystem;
 
-        ProgressionsList = new(_context.Entry(_rPGSystem).Collection(x => x.Progressions).Query().Where(x => x.CustomProgression==false).OrderBy(x => x.ProgressionType).Select(x => new ProgressionSelectItem { Id = x.Id, Name = x.ProgressionType }));
+        ProgressionsList = new(_context.Entry(_rPGSystem).Collection(x => x.Progressions).Query().Where(x => x.CustomProgression == false).OrderBy(x => x.ProgressionType).Select(x => new ProgressionSelectItem { Id = x.Id, Name = x.ProgressionType }));
     }
 
     public void Edit()
@@ -56,7 +56,7 @@ internal class EditProgressionsViewModel : ObservableViewModel
     public void Create()
     {
         if (CurrentlyEditingItem == null)
-        {           
+        {
             CurrentlyEditingItem = new Progression
             {
                 Id = 0,
@@ -75,7 +75,7 @@ internal class EditProgressionsViewModel : ObservableViewModel
                 _context.Progressions.Add(CurrentlyEditingItem);
             }
             _context.SaveChanges();
-            
+
             ProgressionsList = new(_context.Entry(_rPGSystem).Collection(x => x.Progressions).Query().Where(x => x.CustomProgression == false).OrderBy(x => x.ProgressionType).Select(x => new ProgressionSelectItem { Id = x.Id, Name = x.ProgressionType }));
             SelectedItem = ProgressionsList.FirstOrDefault(x => x.Id == CurrentlyEditingItem.Id);
             CurrentlyEditingItem = null;
@@ -143,15 +143,15 @@ internal class EditProgressionsViewModel : ObservableViewModel
 
     internal void EditDefinitions()
     {
-        if(SelectedItem!=null)
+        if (SelectedItem != null)
         {
             var b = _context.Progressions.FirstOrDefault(x => x.Id == SelectedItem.Id);
             if (b != null)
             {
                 var a = new EditProgressionDefinitionViewModel(_context, b);
                 a.ShowWindow();
-            }            
-        }        
+            }
+        }
     }
 }
 

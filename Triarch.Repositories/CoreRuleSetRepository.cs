@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Triarch.Database;
-using Triarch.Dtos.Definitions;
 using Triarch.Database.Models.Definitions;
-using Triarch.Repositories.Mappers;
+using Triarch.Dtos.Definitions;
 using Triarch.Repositories.Exceptions;
-using System.Xml.Linq;
+using Triarch.Repositories.Mappers;
 
 
 namespace Triarch.Repositories;
@@ -20,7 +19,7 @@ public class CoreRuleSetRepository : ICoreRuleSetRepository
     public async Task<IEnumerable<CoreRulesetDto>> GetAllAsync()
     {
         List<CoreRulesetDto> output = new List<CoreRulesetDto>();
-        List<CoreRuleset> rulesets = await _context.CoreRulesets.ToListAsync();               
+        List<CoreRuleset> rulesets = await _context.CoreRulesets.ToListAsync();
 
         foreach (CoreRuleset ruleset in rulesets)
         {
@@ -28,7 +27,7 @@ public class CoreRuleSetRepository : ICoreRuleSetRepository
         }
 
         return output;
-    }       
+    }
 
     public async Task<CoreRulesetDto> GetByNameAsync(string name)
     {
@@ -51,11 +50,11 @@ public class CoreRuleSetRepository : ICoreRuleSetRepository
         else
         {
             //Add new
-            var toAdd =input.ToModel();
+            var toAdd = input.ToModel();
             _context.Add(toAdd);
             await _context.SaveChangesAsync();
             return toAdd.ToDto();
-        }        
+        }
     }
 
     public async Task DeleteAsync(string name)

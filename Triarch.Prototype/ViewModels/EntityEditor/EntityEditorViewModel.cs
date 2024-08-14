@@ -14,7 +14,7 @@ namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class EntityEditorViewModel : ViewModelBase, IPageViewModel
 {
-    private readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition=JsonIgnoreCondition.WhenWritingNull };
+    private readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
     public EntityEditorViewModel(RPGEntity entity, string filePath = "")
     {
@@ -34,12 +34,12 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         ExportTextCommand = new RelayCommand(ExportText, CanExportText);
     }
 
-    public string EntityNameLabelText 
-    { 
+    public string EntityNameLabelText
+    {
         get
         {
             return $"{_entity.EntityType} Name:";
-        } 
+        }
     }
 
     public string EntityName
@@ -52,7 +52,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         {
             _entity.EntityName = value;
             OnPropertyChanged(nameof(EntityName));
-            ChangesSaved=false;
+            ChangesSaved = false;
         }
     }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Triarch.Database.Models.Definitions;
+﻿using Triarch.Database.Models.Definitions;
 using Triarch.Dtos.Definitions;
 
 namespace Triarch.Repositories.Mappers;
@@ -12,7 +7,7 @@ internal static class RPGSystemExtensions
     public static RPGSystemDto ToDto(this RPGSystem model)
     {
         RPGSystemDto output = new RPGSystemDto
-        {            
+        {
             SystemName = model.SystemName,
             DescriptiveName = model.DescriptiveName,
             OwnerUserId = model.OwnerUserId,
@@ -21,7 +16,7 @@ internal static class RPGSystemExtensions
 
         output.Genres = model.Genres.Select(x =>
                         new GenreDto
-                        {                           
+                        {
                             GenreName = x.GenreName,
                             GenreOrder = x.GenreOrder,
                         }
@@ -32,12 +27,12 @@ internal static class RPGSystemExtensions
         foreach (Progression progression in model.Progressions)
         {
             progressionDtos.Add(new ProgressionDto
-            {                
+            {
                 ProgressionType = progression.ProgressionType,
                 CustomProgression = progression.CustomProgression,
                 Linear = progression.Linear,
                 Progressions = progression.ProgressionEntries.Select(x => new ProgressionEntryDto
-                {                    
+                {
                     ProgressionLevel = x.ProgressionLevel,
                     Text = x.Text
                 }).ToList()
@@ -47,7 +42,7 @@ internal static class RPGSystemExtensions
         output.Progressions = progressionDtos;
 
         output.ElementTypes = model.RPGElementTypes.Select(x => new RPGElementTypeDto
-        {            
+        {
             TypeName = x.TypeName,
             TypeOrder = x.TypeOrder
         }).ToList();
@@ -57,7 +52,7 @@ internal static class RPGSystemExtensions
         foreach (RPGElementDefinition elementDefinition in model.RPGElementDefinitions)
         {
             RPGElementDefinitionDto elementDefinitionDto = new RPGElementDefinitionDto
-            {                
+            {
                 ElementName = elementDefinition.ElementName,
                 ElementTypeName = model.RPGElementTypes.Where(x => x.Id == elementDefinition.ElementTypeId).First().TypeName,
                 Description = elementDefinition.Description,
@@ -71,7 +66,7 @@ internal static class RPGSystemExtensions
             if (elementDefinition.LevelableData != null)
             {
                 elementDefinitionDto.LevelableData = new LevelableDefinitionDto
-                {                    
+                {
                     CostPerLevel = elementDefinition.LevelableData.CostPerLevel,
                     CostPerLevelDescription = elementDefinition.LevelableData.CostPerLevelDescription,
                     EnforceMaxLevel = elementDefinition.LevelableData.EnforceMaxLevel,
@@ -91,7 +86,7 @@ internal static class RPGSystemExtensions
                     foreach (VariantDefinition variantDefinition in elementDefinition.LevelableData.VariantDefinitions)
                     {
                         elementDefinitionDto.LevelableData.Variants.Add(new VariantDefinitionDto
-                        {                            
+                        {
                             VariantName = variantDefinition.VariantName,
                             Description = variantDefinition.Description,
                             IsDefault = variantDefinition.IsDefault,
@@ -99,7 +94,7 @@ internal static class RPGSystemExtensions
                         });
                     }
                 }
-                if(elementDefinition.LevelableData.GenreCostPerLevels!=null && elementDefinition.LevelableData.GenreCostPerLevels.Count > 0)
+                if (elementDefinition.LevelableData.GenreCostPerLevels != null && elementDefinition.LevelableData.GenreCostPerLevels.Count > 0)
                 {
                     elementDefinitionDto.LevelableData.MultiGenreCostPerLevels = new List<GenreCostPerLevelDto>();
                     foreach (GenreCostPerLevel genreCostPerLevel in elementDefinition.LevelableData.GenreCostPerLevels)
@@ -125,7 +120,7 @@ internal static class RPGSystemExtensions
                 foreach (RPGFreebie freebie in elementDefinition.Freebies)
                 {
                     elementDefinitionDto.Freebies.Add(new FreebieDto
-                    {                        
+                    {
                         FreeLevels = freebie.FreeLevels,
                         RequiredLevels = freebie.RequiredLevels,
                         FreebieElementDefinitionName = model.RPGElementDefinitions.Where(x => x.Id == freebie.FreebieElementDefinitionId).First().ElementName
