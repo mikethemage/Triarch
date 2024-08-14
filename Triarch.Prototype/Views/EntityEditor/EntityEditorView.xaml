@@ -90,7 +90,7 @@
                     </Grid.RowDefinitions>
 
                     <Label x:Name="VariantLabel" Content="Variant:" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" />
-                    <ListBox x:Name="VariantListBox" Margin="5" ItemsSource="{Binding VariantList}" SelectedItem="{Binding Selected}" Grid.Row="1">
+                    <ListBox x:Name="VariantListBox" IsTextSearchEnabled="True" TextSearch.TextPath="DisplayText" Margin="5" ItemsSource="{Binding VariantList}" SelectedItem="{Binding Selected}" Grid.Row="1">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Path=DisplayText}" />
@@ -124,7 +124,7 @@
                 </Grid>
 
 
-                <ListBox x:Name="AddChildListBox" Margin="5" ItemsSource="{Binding SelectedElement.AllowedChildrenList.GroupedAllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Grid.Row="2" MouseDoubleClick="AddChildListBox_MouseDoubleClick" KeyDown="AddChildListBox_KeyDown">
+                <ListBox IsTextSearchEnabled="True" TextSearch.TextPath="DisplayName" x:Name="AddChildListBox" Margin="5" ItemsSource="{Binding SelectedElement.AllowedChildrenList.GroupedAllowedChildrenList}" SelectedItem="{Binding SelectedElement.AllowedChildrenList.SelectedChild}" Grid.Row="2" MouseDoubleClick="AddChildListBox_MouseDoubleClick" KeyDown="AddChildListBox_KeyDown">
                     <ListBox.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>

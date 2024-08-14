@@ -110,6 +110,15 @@ public class Levelable : RPGElement
                 description = Variant.Description;
             }
 
+            if (AssociatedDefinition is LevelableDefinition levelableDefinition && levelableDefinition.Progression !=null && levelableDefinition.Progression.CustomProgression)
+            {
+                ProgressionEntry? progressionEntry = levelableDefinition.Progression.Progressions.Where(x=>x.ProgressionLevel==Level).FirstOrDefault();
+                if (progressionEntry != null)
+                {
+                    return progressionEntry.Text;
+                }
+            }         
+
             string completedDescription = "";
 
             while (description != "")
@@ -148,25 +157,31 @@ public class Levelable : RPGElement
         {
             if (levelableDefinition.Progression != null)
             {
-                if (levelableDefinition.Progression.CustomProgression)
-                {
-                    return levelableDefinition.Progression.Progressions[Level].Text;
-                }
-                else if (!levelableDefinition.Progression.Linear)
+                if (!levelableDefinition.Progression.Linear)
                 {
                     string[] replacers = ["fn", "mn", "sn", "tn", "trn", "an", "rn", "tgn", "grn"];
                     foreach (var item in replacers)
                     {
                         if (int.TryParse(valueToParse.Replace(item, ""), out int i))
                         {
+                            int progressionLevel;
                             if (levelableDefinition.ProgressionReversed ?? false)
                             {
-                                return levelableDefinition.Progression.Progressions[i - (Level - 1)].Text;
+                                progressionLevel = i - (Level - 1);                                
                             }
                             else
                             {
-                                return levelableDefinition.Progression.Progressions[i - 1 + Level].Text;
+                                progressionLevel = i - 1 + Level;                               
                             }
+                            ProgressionEntry? progressionEntry = levelableDefinition.Progression.Progressions.Where(x=>x.ProgressionLevel==progressionLevel).FirstOrDefault();
+                            if (progressionEntry != null)
+                            {
+                                return progressionEntry.Text;
+                            }
+                            else
+                            {
+                                return "MISSING PROGRESSION";
+                            }                                                       
                         }
                     }
                 }
