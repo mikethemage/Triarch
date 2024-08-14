@@ -10,7 +10,7 @@ public class Levelable : RPGElement
         {
             if (Variant != null)
             {
-                return $"{Name} [{Variant.VariantName}] ({Points})";
+                return $"{Name} [{Variant.VariantName}] ({Points} Points)";
             }
             return base.DisplayText;
         }
@@ -107,7 +107,15 @@ public class Levelable : RPGElement
     {
         get
         {
-            return (PointsPerLevel * Level) + VariablesOrRestrictions;
+            int points = (PointsPerLevel * Level) + VariablesOrRestrictions;
+            if (AssociatedDefinition is LevelableDefinition levelableDefinition && levelableDefinition.Variants != null && Variant != null)
+            {
+                if(levelableDefinition.ElementName == "Weapon" && Variant.VariantName=="Alternate Attack")
+                {
+                    points /= 2;
+                }                
+            }
+            return points;
         }
     }
 

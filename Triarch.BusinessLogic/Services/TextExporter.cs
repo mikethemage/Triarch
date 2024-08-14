@@ -20,7 +20,7 @@ public class TextExporter
     private void AddElement(RPGElement element, List<string> exportComponents, int indentLevel)
     {
         var indent = new string('\t', indentLevel);
-        exportComponents.Add($"{indent}{element.Name} ({element.Points} Points)");
+        exportComponents.Add($"{indent}{element.DisplayText}");
 
         if (element is PointsContainer)
         {
@@ -51,7 +51,11 @@ public class TextExporter
             exportComponents.Add($"{indent}[Notes: {element.Notes}]");
         }
 
-        exportComponents.Add("");
+        if (element is not PointsContainer)
+        {
+            exportComponents.Add("");
+        }            
+
         foreach (RPGElement child in element.Children)
         {
             AddElement(child, exportComponents, indentLevel);
@@ -63,5 +67,7 @@ public class TextExporter
             indent = new string('\t', indentLevel);
             exportComponents.Add($"{indent}) / {((PointsContainerDefinition)element.AssociatedDefinition).PointsContainerScale}");
         }
+
+        
     }
 }

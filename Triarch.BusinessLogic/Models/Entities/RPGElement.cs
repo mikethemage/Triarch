@@ -14,7 +14,7 @@ public abstract class RPGElement
     {
         get
         {
-            return $"{Name} ({Points})";
+            return $"{Name} ({Points} Points)";
         }
     }
 

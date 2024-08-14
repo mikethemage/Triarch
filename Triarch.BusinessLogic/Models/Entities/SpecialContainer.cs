@@ -16,7 +16,7 @@ public class SpecialContainer : Levelable
             {
                 mainText = base.DisplayText;
             }
-            return $"{mainText} [{SpecialPointsRemaining} Remaining]";
+            return $"{mainText} ({SpecialPointsRemaining} Left)";
         }
     }
 
