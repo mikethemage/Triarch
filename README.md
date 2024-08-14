@@ -1,4 +1,4 @@
-# Triarch - Tri-stat RPG Character Assistant
+# Triarch - An Unofficial Editor for Tri-Stat System RPGs
 
 **Triarch** is a character creator for roleplaying games (RPGs) using Tri-Stat based systems.  Currently it only supports the 3rd edition of the Big Eyes, Small Mouth (BESM) RPG. 
 
