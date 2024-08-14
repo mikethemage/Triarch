@@ -3,6 +3,23 @@
 namespace Triarch.BusinessLogic.Models.Entities;
 public class SpecialContainer : Levelable
 {
+    public override string DisplayText
+    {
+        get
+        {
+            string mainText;
+            if (Variant != null)
+            {
+                mainText = $"{Name} [{Variant.VariantName}] ({Points})";
+            }
+            else
+            {
+                mainText = base.DisplayText;
+            }
+            return $"{mainText} [{SpecialPointsRemaining} Remaining]";
+        }
+    }
+
     public int SpecialPointsTotal
     {
         get

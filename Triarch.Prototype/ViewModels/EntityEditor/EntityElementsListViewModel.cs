@@ -32,4 +32,21 @@ public class EntityElementsListViewModel : ViewModelBase
             OnPropertyChanged(nameof(Selected));
         }
     }
+
+    internal void RefreshDisplayText()
+    {
+        var currentElement = Selected;
+        while (currentElement != null)
+        {
+            currentElement.RefreshDisplayText();
+            if (currentElement.ElementData.Parent == null)
+            {
+                currentElement = null;
+            }
+            else
+            {
+                currentElement = ElementList[currentElement.ElementData.Parent];
+            }
+        }
+    }
 }

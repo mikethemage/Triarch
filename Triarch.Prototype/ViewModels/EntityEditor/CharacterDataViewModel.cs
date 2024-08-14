@@ -28,6 +28,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
+            _parent.EntityElements.RefreshDisplayText();
         }
     }
 
@@ -45,6 +46,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
+            _parent.EntityElements.RefreshDisplayText();
         }
     }
 
@@ -63,6 +65,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
+            _parent.EntityElements.RefreshDisplayText();
         }
     }
 
@@ -79,10 +82,13 @@ public class CharacterDataViewModel : ViewModelBase
 
     public void RefreshProperties()
     {
+        OnPropertyChanged(nameof(Mind));
+        OnPropertyChanged(nameof(Body));
         OnPropertyChanged(nameof(Soul));
         OnPropertyChanged(nameof(Health));
         OnPropertyChanged(nameof(Energy));
         OnPropertyChanged(nameof(ACV));
         OnPropertyChanged(nameof(DCV));
+        _parent.EntityElements.RefreshDisplayText();
     }
 }

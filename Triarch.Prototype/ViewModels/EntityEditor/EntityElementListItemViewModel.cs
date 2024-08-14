@@ -5,15 +5,12 @@ namespace Triarch.Prototype.ViewModels.EntityEditor;
 
 public class EntityElementListItemViewModel : ViewModelBase
 {
-    private string _displayText = "";
     public string DisplayText
     {
-        get { return _displayText; }
-        set
-        {
-            _displayText = value;
-            OnPropertyChanged(nameof(DisplayText));
-        }
+        get 
+        { 
+            return ElementData.DisplayText; 
+        }        
     }
 
     public RPGElement ElementData { get; private set; }
@@ -22,7 +19,7 @@ public class EntityElementListItemViewModel : ViewModelBase
     {
         ElementData = element;
         _owner = owner;
-        DisplayText = element.Name;
+        
         foreach (RPGElement child in element.Children)
         {
             EntityElementListItemViewModel newElement = new EntityElementListItemViewModel(child, owner);
@@ -50,4 +47,9 @@ public class EntityElementListItemViewModel : ViewModelBase
     }
 
     public ObservableCollection<EntityElementListItemViewModel> Children { get; set; } = new ObservableCollection<EntityElementListItemViewModel>();
+
+    internal void RefreshDisplayText()
+    {
+        OnPropertyChanged(nameof(DisplayText));
+    }
 }

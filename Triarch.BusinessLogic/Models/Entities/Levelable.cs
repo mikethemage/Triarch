@@ -4,6 +4,18 @@ using Triarch.BusinessLogic.Models.Definitions;
 namespace Triarch.BusinessLogic.Models.Entities;
 public class Levelable : RPGElement
 {
+    public override string DisplayText
+    {
+        get
+        {
+            if(Variant!=null)
+            {
+                return $"{Name} [{Variant.VariantName}] ({Points})";
+            }
+            return base.DisplayText;    
+        }
+    }
+
     public int MinLevel
     {
         get

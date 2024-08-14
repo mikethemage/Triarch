@@ -9,6 +9,15 @@ public abstract class RPGElement
     public bool IsFreebie { get; set; } = false;
     public virtual int BaseCost { get { return 0; } }
     public virtual int Points { get; protected set; } = 0;
+
+    public virtual string DisplayText
+    {
+        get
+        {
+            return $"{Name} ({Points})";
+        }
+    }
+
     public string Notes { get; set; } = string.Empty;
     public RPGElement? Parent { get; set; } = null;
     public List<RPGElement> Children { get; init; } = new List<RPGElement>();

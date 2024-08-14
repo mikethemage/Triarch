@@ -29,6 +29,7 @@ public class LevelableDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(Points));
             OnPropertyChanged(nameof(Description));
             _parent.ChangesSaved = false;
+            _parent.EntityElements.RefreshDisplayText();
         }
     }
 
@@ -44,5 +45,6 @@ public class LevelableDataViewModel : ViewModelBase
         OnPropertyChanged(nameof(Level));
         OnPropertyChanged(nameof(Points));
         OnPropertyChanged(nameof(Description));
+        _parent.EntityElements.RefreshDisplayText();
     }
 }
