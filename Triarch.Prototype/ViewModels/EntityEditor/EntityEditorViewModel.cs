@@ -249,6 +249,7 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
             }
             MoveUpCommand?.RaiseCanExecuteChanged();
             MoveDownCommand?.RaiseCanExecuteChanged();
+            parent.RefreshDisplayText();
         }
     }
 
