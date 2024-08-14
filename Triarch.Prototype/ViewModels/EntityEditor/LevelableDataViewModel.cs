@@ -35,7 +35,7 @@ public class LevelableDataViewModel : ViewModelBase
 
     public int PointsPerLevel { get { return _model.PointsPerLevel; } }
 
-    public int Points { get { return _model.Points; } }
+    public int Points { get { return _model.BaseCost; } }
 
     public string Description { get { return _model.Description; } }
 
