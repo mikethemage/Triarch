@@ -21,23 +21,32 @@
             <RowDefinition Height="170" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Margin="5,5,5,10" Height="35" Width="80" Content="Back" HorizontalAlignment="Stretch" Command="{Binding Path=BackCommand}" />
+            <Button Margin="5,5,5,10" Height="35" Width="80" Content="Close" HorizontalAlignment="Stretch" Command="{Binding Path=BackCommand}" />
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save" HorizontalAlignment="Stretch" Command="{Binding Path=SaveCommand}"/>
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save As" HorizontalAlignment="Stretch" Command="{Binding Path=SaveAsCommand}"/>
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Export to Text" HorizontalAlignment="Stretch" Command="{Binding Path=ExportTextCommand}"/>
         </StackPanel>
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*" MinWidth="200"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="5*" MinWidth="300"/>
+                
                 <ColumnDefinition Width="3*" MinWidth="30"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label  Content="{Binding Path=EntityNameLabelText}" Margin="10,10,10,5" Width="Auto" Grid.Column="0" />
+                    <TextBox VerticalContentAlignment="Center" Margin="10,10,10,5" Text="{Binding Path=EntityName}" Grid.Column="1" />
+                </Grid>
+                <Grid Grid.Row="1" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -56,27 +65,35 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
                 </Grid>
-                <TreeView x:Name="CharacterTreeView" Margin="10,10,10,10" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=EntityElements.RootElements}" Grid.Row="1">
-                    <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate DataType="x:Type vm:EntityElementListItemViewModel" ItemsSource="{Binding Path=Children}">
-                            <TextBlock Text="{Binding Path=DisplayText}"  />
-                        </HierarchicalDataTemplate>
-                    </TreeView.ItemTemplate>
-                    <TreeView.ItemContainerStyle>
-                        <Style TargetType="TreeViewItem">
-                            <Setter Property="IsExpanded" Value="True" />
-                            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
-                        </Style>
-                    </TreeView.ItemContainerStyle>
-                </TreeView>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <TreeView x:Name="CharacterTreeView" Margin="10,10,10,10" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=EntityElements.RootElements}" Grid.Column="0">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate DataType="x:Type vm:EntityElementListItemViewModel" ItemsSource="{Binding Path=Children}">
+                                <TextBlock Text="{Binding Path=DisplayText}"  />
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem">
+                                <Setter Property="IsExpanded" Value="True" />
+                                <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                    </TreeView>
+                    <StackPanel Grid.Column="1" Margin="10,5,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Button x:Name="MoveUpButton" Content="Move Up" Margin="5,5,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=MoveUpCommand}"/>
+                        <Button x:Name="MoveDownButton" Content="Move Down" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=MoveDownCommand}" />
+                        <Button x:Name="DelAttButton" Content="Delete" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=DeleteCommand}" />
+                    </StackPanel>
+                </Grid>
+                
             </Grid>
-            <StackPanel Grid.Column="1" Margin="10,5,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <Button x:Name="MoveUpButton" Content="Move Up" Margin="5,5,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=MoveUpCommand}"/>
-                <Button x:Name="MoveDownButton" Content="Move Down" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=MoveDownCommand}" />
-                <Button x:Name="DelAttButton" Content="Delete" Margin="5,15,5,5" Height="35" HorizontalAlignment="Stretch" Command="{Binding Path=DeleteCommand}" />
-            </StackPanel>
+            
 
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto"/>

@@ -22,7 +22,7 @@ public class RPGEntityOldFormatLoader
 
         RPGEntity output = new RPGEntity
         {
-            EntityName = treeView.Node.BESM3CACharacterData?.Name ?? "",
+            EntityName = treeView.Node.BESM3CACharacterData?.Notes ?? "",
             EntityType = "Character",
             Genre = rPGSystem.Genres[0],
             RPGSystem = rPGSystem

@@ -32,6 +32,28 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         ExportTextCommand = new RelayCommand(ExportText, CanExportText);
     }
 
+    public string EntityNameLabelText 
+    { 
+        get
+        {
+            return $"{_entity.EntityType} Name:";
+        } 
+    }
+
+    public string EntityName
+    {
+        get
+        {
+            return _entity.EntityName;
+        }
+        set
+        {
+            _entity.EntityName = value;
+            OnPropertyChanged(nameof(EntityName));
+            ChangesSaved=false;
+        }
+    }
+
     private bool CanExportText()
     {
         return true;

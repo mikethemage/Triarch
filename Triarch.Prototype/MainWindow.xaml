@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vmee="clr-namespace:Triarch.Prototype.ViewModels.EntityEditor"
         xmlns:vmmm="clr-namespace:Triarch.Prototype.ViewModels.MainMenu"
+        xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
         xmlns:v="clr-namespace:Triarch.Prototype.Views"
         xmlns:local="clr-namespace:Triarch.Prototype"
         mc:Ignorable="d"
-        Title="Triarch" Height="550" Width="800">
+        Title="Triarch" Height="550" Width="800"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vmee:EntityEditorViewModel}">
