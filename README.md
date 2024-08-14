@@ -21,7 +21,7 @@ Inspired by, but **not** based on or in anyway affiliated with _[BESMCG](https:/
 * [Buy BESM 3rd Edition here (PDF - DriveThruRPG)](https://www.drivethrurpg.com/product/24482/BESM-Big-Eyes-Small-Mouth-3rd-Edition)
 
 \
-Build Status:  ![build](https://github.com/mikethemage/Triarch/actions/workflows/main.yml/badge.svg)
+Build Status:  ![build](https://github.com/mikethemage/Triarch/actions/workflows/dotnet.yml/badge.svg)
 
 \
 \
