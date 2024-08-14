@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <Label x:Name="LevelLabel" Content="Level" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0"/>
-        <xctk:IntegerUpDown Height="28" x:Name="LevelTextBox" VerticalContentAlignment="Center" Text="{Binding Path=Level, Delay=100, UpdateSourceTrigger=PropertyChanged}" Minimum="{Binding Path=Model.MinLevel}" Maximum="{Binding Path=Model.MaxLevel}" Margin="5,0,5,5"  Grid.Row="1" Grid.Column="0"  />
+        <xctk:IntegerUpDown Height="28" x:Name="LevelTextBox" VerticalContentAlignment="Center" Text="{Binding Path=Level, Delay=100, UpdateSourceTrigger=PropertyChanged}" Minimum="{Binding Path=Model.MinLevel}" Maximum="{Binding Path=Model.MaxEnforceableLevel}" Margin="5,0,5,5"  Grid.Row="1" Grid.Column="0"  />
 
         <Label x:Name="PointsPerLevelLabel" Content="Points Per Level" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
         <TextBox Height="28" x:Name="PointsPerLevelTextBox" VerticalContentAlignment="Center" Text="{Binding Path=PointsPerLevel, Mode=OneWay}" Margin="5,0,5,5"  Grid.Row="1" Grid.Column="1"  IsReadOnly="True" />

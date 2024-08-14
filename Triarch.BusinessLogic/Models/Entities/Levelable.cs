@@ -34,6 +34,25 @@ public class Levelable : RPGElement
         }
     }
 
+    public int MaxEnforceableLevel
+    {
+        get
+        {
+            if (AssociatedDefinition is LevelableDefinition levelableDefinition 
+                && (levelableDefinition.EnforceMaxLevel == true
+                || (levelableDefinition.Progression != null && levelableDefinition.Progression.Progressions.Count > 0)
+                )
+                )
+            {
+                return levelableDefinition.MaxLevel;
+            }
+            else
+            {
+                return int.MaxValue;
+            }
+        }
+    }
+
     public int Level { get; set; } = 1;
 
     public int RequiredLevels { get; set; } = 0;
@@ -84,12 +103,16 @@ public class Levelable : RPGElement
     {
         get
         {
+            string description = AssociatedDefinition.Description ?? "";
 
-            string? description = AssociatedDefinition.Description ?? "";
+            if (Variant != null && Variant.Description != "")
+            {
+                description = Variant.Description;
+            }
 
             string completedDescription = "";
 
-            while (description != null)
+            while (description != "")
             {
                 string[] pieces = description.Split('[', 2);
                 completedDescription += pieces[0];
@@ -106,12 +129,12 @@ public class Levelable : RPGElement
                     }
                     else
                     {
-                        description = null;
+                        description = "";
                     }
                 }
                 else
                 {
-                    description = null;
+                    description = "";
                 }
             }
 

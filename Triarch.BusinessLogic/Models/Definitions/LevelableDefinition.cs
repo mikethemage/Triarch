@@ -1,6 +1,7 @@
 ﻿using Triarch.BusinessLogic.Models.Entities;
 
 namespace Triarch.BusinessLogic.Models.Definitions;
+
 public class LevelableDefinition : RPGElementDefinition
 {
     public int MaxLevel { get; set; }
