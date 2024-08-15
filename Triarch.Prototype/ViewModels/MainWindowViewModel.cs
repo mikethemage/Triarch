@@ -1,5 +1,4 @@
-﻿using Triarch.Prototype.ViewModels.EntityEditor;
-using Triarch.Prototype.ViewModels.MainMenu;
+﻿using Triarch.Prototype.ViewModels.MainMenu;
 
 namespace Triarch.Prototype.ViewModels;
 public class MainWindowViewModel : ViewModelBase

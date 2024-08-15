@@ -1,4 +1,4 @@
-﻿namespace Triarch.Prototype.ViewModels.EntityEditor;
+﻿namespace Triarch.Prototype.ViewModels;
 
 public interface IPageViewModel
 {
