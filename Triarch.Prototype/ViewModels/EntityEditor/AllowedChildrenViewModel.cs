@@ -17,7 +17,10 @@ public class AllowedChildrenViewModel : ViewModelBase
         _groupedAllowedChildrenList = collectionViewSource.View;
 
         FilterList = new ObservableCollection<FilterTypeViewModel>(_allAllowedChildren.Select(x => x.ElementType).Distinct().OrderBy(x => x.TypeOrder).Select(x => new FilterTypeViewModel { DisplayName = x.TypeName, IsSelected = false, Model = x }).ToList());
-        FilterList.Insert(0, new FilterTypeViewModel { DisplayName = "ALL", IsSelected = false, Model = null });
+
+        FilterTypeViewModel allFilter = new FilterTypeViewModel { DisplayName = "ALL", IsSelected = true, Model = null };
+        FilterList.Insert(0, allFilter);
+        _selectedFilter = allFilter;
     }
 
     private ElementDefinitionListItemViewModel? _selectedChild = null;
