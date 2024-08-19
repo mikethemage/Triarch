@@ -292,6 +292,8 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
             {
                 SelectedElement.LevelableData.RefreshProperties();
             }
+
+            EntityElements.Selected.RefreshDisplayText();
         }
     }
 

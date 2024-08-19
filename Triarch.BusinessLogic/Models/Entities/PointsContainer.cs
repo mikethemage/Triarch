@@ -13,14 +13,13 @@ public class PointsContainer : RPGElement
             {
                 if (pointsContainerDefinition.PointsContainerScale != 0)
                 {
-                    if (ChildPoints > 0 && ChildPoints < pointsContainerDefinition.PointsContainerScale)
+                    //"[...]divide by two (round down; minimum of 0 Points). [...] Note that this makes Items that
+                    //are described with only one Feature Attribute(such as a
+                    //camera) effectively free."
+
+                    if (ChildPoints > 0 )
                     {
-                        //If child points positive but less that pointscale we should still charge 1 point for the container:
-                        tempPoints += 1;
-                    }
-                    else
-                    {
-                        //Scale points e.g. 3E items valued at 1/2 total child points:
+                        //If child points positive, scale points e.g. 3E items valued at 1/2 total child points:
                         tempPoints += ChildPoints / pointsContainerDefinition.PointsContainerScale;
                     }
                 }
