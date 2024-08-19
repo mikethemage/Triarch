@@ -28,7 +28,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
-            _parent.EntityElements.RefreshDisplayText();
+            _parent.EntityElements.RefreshSelectedAndParentsDisplayText();
         }
     }
 
@@ -46,7 +46,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
-            _parent.EntityElements.RefreshDisplayText();
+            _parent.EntityElements.RefreshSelectedAndParentsDisplayText();
         }
     }
 
@@ -65,7 +65,7 @@ public class CharacterDataViewModel : ViewModelBase
             OnPropertyChanged(nameof(ACV));
             OnPropertyChanged(nameof(DCV));
             _parent.ChangesSaved = false;
-            _parent.EntityElements.RefreshDisplayText();
+            _parent.EntityElements.RefreshSelectedAndParentsDisplayText();
         }
     }
 
@@ -89,6 +89,6 @@ public class CharacterDataViewModel : ViewModelBase
         OnPropertyChanged(nameof(Energy));
         OnPropertyChanged(nameof(ACV));
         OnPropertyChanged(nameof(DCV));
-        _parent.EntityElements.RefreshDisplayText();
+        _parent.EntityElements.RefreshSelectedAndParentsDisplayText();
     }
 }

@@ -87,4 +87,27 @@ public class EntityController
             levelable.Level = newLevel;
         }
     }
+
+    public Stack<RPGElement> UpdateGenre(Genre genre, RPGEntity entity)
+    {
+        Stack<RPGElement> updatedStack = new Stack<RPGElement>();
+
+        entity.Genre = genre;
+        Queue<RPGElement> tempQueue = new Queue<RPGElement>([entity.RootElement]);
+        while (tempQueue.Count > 0)
+        {
+            RPGElement current = tempQueue.Dequeue();
+            foreach (RPGElement child in current.Children)
+            {
+                tempQueue.Enqueue(child);
+            }
+            if (current.AssociatedDefinition is MultiGenreDefinition)
+            {
+                updatedStack.Push(current);
+            }            
+        }
+
+        return updatedStack;
+    }
+
 }

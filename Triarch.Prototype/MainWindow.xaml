@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vmee="clr-namespace:Triarch.Prototype.ViewModels.EntityEditor"
+        xmlns:vmse="clr-namespace:Triarch.Prototype.ViewModels.SystemEditor"
         xmlns:vmmm="clr-namespace:Triarch.Prototype.ViewModels.MainMenu"
         xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
         xmlns:v="clr-namespace:Triarch.Prototype.Views"
@@ -18,6 +19,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vmmm:MainMenuViewModel}">
                 <v:MainMenuView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmse:SystemEditorViewModel}">
+                <v:SystemEditorView />
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding Path=CurrentPage}" />

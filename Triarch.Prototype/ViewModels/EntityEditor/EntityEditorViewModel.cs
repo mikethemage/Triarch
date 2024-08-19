@@ -132,13 +132,20 @@ public class EntityEditorViewModel : ViewModelBase, IPageViewModel
         set
         {
             _selectedGenre = value;
-            _entity.Genre = _selectedGenre.Model;
-            OnPropertyChanged(nameof(SelectedGenre));
-            ChangesSaved = false;
+            EntityController entityController = new EntityController();
+            Stack<RPGElement> updatedElements = entityController.UpdateGenre(_selectedGenre.Model, _entity);
+            while(updatedElements.Count > 0)
+            {
+                RPGElement updatedElement = updatedElements.Pop();
+                EntityElements.RefreshElementDisplayText(updatedElement);
+            }
+            
             if (SelectedElement?.LevelableData != null)
             {
                 SelectedElement.LevelableData.RefreshProperties();
             }
+            OnPropertyChanged(nameof(SelectedGenre));
+            ChangesSaved = false;
         }
     }
 

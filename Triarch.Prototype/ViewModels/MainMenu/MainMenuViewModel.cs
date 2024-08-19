@@ -10,6 +10,7 @@ using Triarch.Dtos.Entities;
 using Triarch.Prototype.Models;
 using Triarch.Prototype.Services;
 using Triarch.Prototype.ViewModels.EntityEditor;
+using Triarch.Prototype.ViewModels.SystemEditor;
 
 namespace Triarch.Prototype.ViewModels.MainMenu;
 
@@ -43,7 +44,9 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
 
     private void EditNewSystem()
     {
-        throw new NotImplementedException();
+        RPGSystem rPGSystem = new RPGSystem();        
+
+        Parent.CurrentPage = new SystemEditorViewModel(rPGSystem) { Parent = Parent };
     }
 
     private bool CanImportOldFormatEntity()

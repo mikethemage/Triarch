@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>0.3.1</Version>
+    <Version>0.3.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,11 +27,6 @@
     <None Update="Datafiles\SystemList.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\SystemEditor\" />
-    <Folder Include="Views\SystemEditor\" />
   </ItemGroup>
 
 </Project>

@@ -33,9 +33,14 @@ public class EntityElementsListViewModel : ViewModelBase
         }
     }
 
-    internal void RefreshDisplayText()
+    public void RefreshElementDisplayText(RPGElement element)
     {
-        var currentElement = Selected;
+        ElementList[element].RefreshDisplayText();
+    }
+
+    internal void RefreshSelectedAndParentsDisplayText()
+    {
+        EntityElementListItemViewModel? currentElement = Selected;
         while (currentElement != null)
         {
             currentElement.RefreshDisplayText();

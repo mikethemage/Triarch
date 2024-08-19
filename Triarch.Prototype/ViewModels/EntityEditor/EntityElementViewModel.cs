@@ -88,7 +88,7 @@ public class EntityElementViewModel : ViewModelBase
             levelable.Variant = variantDefinitionData;
             LevelableData?.RefreshProperties();
             _parent.ChangesSaved = false;
-            _parent.EntityElements.RefreshDisplayText();
+            _parent.EntityElements.RefreshSelectedAndParentsDisplayText();
         }
     }
 }

@@ -10,4 +10,9 @@ public partial class MainMenuView : UserControl
     {
         InitializeComponent();
     }
+
+    private void NewSystem_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+
+    }
 }
