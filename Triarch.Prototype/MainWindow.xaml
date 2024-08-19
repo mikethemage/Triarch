@@ -8,6 +8,7 @@
         xmlns:vmmm="clr-namespace:Triarch.Prototype.ViewModels.MainMenu"
         xmlns:vm="clr-namespace:Triarch.Prototype.ViewModels"
         xmlns:v="clr-namespace:Triarch.Prototype.Views"
+        xmlns:vee="clr-namespace:Triarch.Prototype.Views.SystemEditor"
         xmlns:local="clr-namespace:Triarch.Prototype"
         mc:Ignorable="d"
         Title="Triarch" Height="550" Width="800"
@@ -22,6 +23,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vmse:SystemEditorViewModel}">
                 <v:SystemEditorView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vmse:ElementTypeEditorViewModel}">
+                <vee:ElementTypeEditorView />
             </DataTemplate>
         </Grid.Resources>
         <ContentControl Content="{Binding Path=CurrentPage}" />

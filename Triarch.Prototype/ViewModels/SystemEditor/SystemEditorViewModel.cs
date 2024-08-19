@@ -20,8 +20,52 @@ public class SystemEditorViewModel : ViewModelBase, IPageViewModel
         _filePath= filePath;        
         BackCommand = new RelayCommand(Back, CanBack);
         SaveCommand = new RelayCommand(Save, CanSave);
-        SaveAsCommand = new RelayCommand(SaveAs, CanSaveAs);        
-    }    
+        SaveAsCommand = new RelayCommand(SaveAs, CanSaveAs);
+        EditElementTypesCommand = new RelayCommand(EditElementTypes, CanEditElementTypes);
+        EditGenresCommand = new RelayCommand(EditGenres, CanEditGenres);
+        EditProgressionsCommand = new RelayCommand(EditProgressions, CanEditProgressions);
+        EditElementsCommand = new RelayCommand(EditElements, CanEditElements);
+    }
+
+    private void EditElements()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void EditProgressions()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void EditGenres()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void EditElementTypes()
+    {
+        Parent.CurrentPage = new ElementTypeEditorViewModel(_rPGSystem, _filePath) { Parent = Parent, ChangesSaved = ChangesSaved};
+    }
+
+    private bool CanEditElements()
+    {
+        return true;
+    }
+
+    private bool CanEditProgressions()
+    {
+        return true;
+    }
+
+    private bool CanEditGenres()
+    {
+        return true;
+    }
+
+    private bool CanEditElementTypes()
+    {
+        return true;
+    }
 
     public required MainWindowViewModel Parent { get; set; }
 
@@ -29,7 +73,12 @@ public class SystemEditorViewModel : ViewModelBase, IPageViewModel
 
     public RelayCommand? SaveCommand { get; set; }
     public RelayCommand? SaveAsCommand { get; set; }
-    public RelayCommand? BackCommand { get; set; }    
+    public RelayCommand? BackCommand { get; set; }
+
+    public RelayCommand? EditElementTypesCommand { get; set; }
+    public RelayCommand? EditGenresCommand { get; set; }
+    public RelayCommand? EditProgressionsCommand { get; set; }
+    public RelayCommand? EditElementsCommand { get; set; }
 
     public string FileName
     {

@@ -39,7 +39,7 @@ public class MainMenuViewModel : ViewModelBase, IPageViewModel
 
     private bool CanEditNewSystem()
     {
-        return false;
+        return true;
     }
 
     private void EditNewSystem()
