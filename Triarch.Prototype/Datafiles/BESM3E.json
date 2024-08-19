@@ -38,7 +38,7 @@
     },
     {
       "typeName": "Character",
-      "builtIn": false,
+      "builtIn": true,
       "typeOrder": 6
     }
   ],
@@ -2265,24 +2265,7 @@
       "stat": "-",
       "pageNumbers": "37",
       "human": true,
-      "allowedChildrenNames": [
-        "Unique Variable",
-        "Assisted",
-        "Backlash",
-        "Concentration",
-        "Consumable",
-        "Delay",
-        "Dependent",
-        "Deplete",
-        "Emotional",
-        "Environmental",
-        "Equipment",
-        "Object",
-        "Recovery",
-        "Somatic Components",
-        "Unique Restriction",
-        "Unpredictable",
-        "Verbal Components",
+      "allowedChildrenNames": [  
         "Dimension Walk",
         "Elasticity",
         "Insubstantial",
@@ -11040,25 +11023,7 @@
       "pageNumbers": "25",
       "human": true,
       "allowedChildrenNames": [
-        "Character",
-        "Unique Variable",
-        "Assisted",
-        "Backlash",
-        "Concentration",
-        "Consumable",
-        "Delay",
-        "Dependent",
-        "Deplete",
-        "Detectable",
-        "Emotional",
-        "Environmental",
-        "Equipment",
-        "Object",
-        "Recovery",
-        "Somatic Components",
-        "Unique Restriction",
-        "Unpredictable",
-        "Verbal Components"
+        "Character"        
       ],
       "levelableData": {
         "maxLevel": 6,
