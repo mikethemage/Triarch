@@ -29,17 +29,17 @@ public class SystemEditorViewModel : ViewModelBase, IPageViewModel
 
     private void EditElements()
     {
-        throw new NotImplementedException();
+        Parent.CurrentPage = new ElementEditorViewModel(_rPGSystem, _filePath) { Parent = Parent, ChangesSaved = ChangesSaved };
     }
 
     private void EditProgressions()
     {
-        throw new NotImplementedException();
+        Parent.CurrentPage = new ProgressionEditorViewModel(_rPGSystem, _filePath) { Parent = Parent, ChangesSaved = ChangesSaved };
     }
 
     private void EditGenres()
     {
-        throw new NotImplementedException();
+        Parent.CurrentPage = new GenreEditorViewModel(_rPGSystem, _filePath) { Parent = Parent, ChangesSaved = ChangesSaved };
     }
 
     private void EditElementTypes()
@@ -176,4 +176,6 @@ public class SystemEditorViewModel : ViewModelBase, IPageViewModel
             OnPropertyChanged(nameof(SystemName));
         }
     }
+
+    
 }

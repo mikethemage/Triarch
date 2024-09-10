@@ -25,18 +25,32 @@
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save" HorizontalAlignment="Stretch" Command="{Binding Path=SaveCommand}"/>
             <Button Margin="5,5,5,10" Height="35" Width="80" Content="Save As" HorizontalAlignment="Stretch" Command="{Binding Path=SaveAsCommand}"/>            
         </StackPanel>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label HorizontalContentAlignment="Left" Content="System Name:" Grid.Column="0" />
-            <TextBox VerticalContentAlignment="Center" Text="{Binding Path=SystemName}" Grid.Column="1" Height="28" />
-            <Button Content="Test" Command="{Binding Path=EditElementTypesCommand}" Grid.Column="1" Grid.Row="1"/>
-        </Grid>        
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Margin="0 2" HorizontalContentAlignment="Left" Content="System Name:" Grid.Column="0" />
+                <TextBox Margin="0 2" VerticalContentAlignment="Center" Text="{Binding Path=SystemName}" Grid.Column="1" Height="28" />
+
+                <Label Margin="0 2" HorizontalContentAlignment="Left" Content="Core Ruleset:" Grid.Column="0" Grid.Row="1" />
+                <TextBox Margin="0 2" VerticalContentAlignment="Center" Text="{Binding Path=CoreRulesetName}" Grid.Column="1" Grid.Row="1" Height="28" />
+                <Label Margin="0 2" HorizontalContentAlignment="Left" Content="Description:" Grid.Column="0" Grid.Row="2" />
+                <TextBox Margin="0 2" VerticalContentAlignment="Center" Text="{Binding Path=Description}" Grid.Column="1" Grid.Row="2" Height="28" />
+
+            </Grid>
+            <Button Margin="10 5" Height="28" Content="Edit Element Types" Command="{Binding Path=EditElementTypesCommand}"/>
+            <Button Margin="10 5" Height="28" Content="Edit Progressions" Command="{Binding Path=EditProgressionsCommand}"/>
+            <Button Margin="10 5" Height="28" Content="Edit Genres" Command="{Binding Path=EditGenresCommand}"/>
+            <Button Margin="10 5" Height="28" Content="Edit Elements" Command="{Binding Path=EditElementsCommand}"/>           
+            
+        </StackPanel>
+        
     </Grid>
 </UserControl>

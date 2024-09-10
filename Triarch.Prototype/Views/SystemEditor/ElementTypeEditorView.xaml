@@ -28,23 +28,51 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0" ItemsSource="{Binding Path=ElementTypes}" SelectedItem="{Binding Path=SelectedElementTypeItem}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=DisplayText}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Test" Height="28" Grid.Row="0" />
+                <ListBox Grid.Row="1" ItemsSource="{Binding Path=ElementTypes}" SelectedItem="{Binding Path=SelectedElementTypeItem}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=DisplayText}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </Grid>
+            
             <StackPanel Grid.Column="1">
-                <Button Width="120" Content="Test" />
+                <Button Margin="5" Height="28" Width="120" Content="Add" />
+                <Button Margin="5" Height="28" Width="120" Content="Edit" />
+                <Button Margin="5" Height="28" Width="120" Content="Delete" />
+                <Button Margin="5" Height="28" Width="120" Content="MoveUp" />
+                <Button Margin="5" Height="28" Width="120" Content="MoveDown" />
             </StackPanel>
             <Grid Grid.Column="2">
-                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Height="28" Margin="5 2">Test</TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="0" Height="28" Margin="5 2" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Height="28" Margin="5 2">Test</TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="1" Height="28" Margin="5 2" />
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Height="28" Width="120" Margin="10 2" Content="Ok" />
+                    <Button Height="28" Width="120" Margin="10 2" Content="Cancel" />
+                </StackPanel>
             </Grid>
         </Grid>
 
